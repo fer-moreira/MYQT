@@ -4,9 +4,9 @@ SQL Manager é um programa livre e com código-aberto para o MySQL, Microsoft SQ
 
 ---
 ## Connector
-![CONNECTOR](src/screenshots/connector.png)</br>
+![connector](src/screenshots/connector.PNG)</br>
 ## Manager
-![Manager](src/screenshots/Consult.png)</br>
+![Consult](src/screenshots/Consult.PNG)</br>
 
 
 
