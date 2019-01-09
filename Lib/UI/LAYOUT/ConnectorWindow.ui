@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>278</width>
-    <height>299</height>
+    <width>282</width>
+    <height>303</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -29,7 +29,7 @@
      </font>
     </property>
     <property name="text">
-     <string>MYSQL MANAGER</string>
+     <string>SQL MANAGER</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -74,8 +74,14 @@
       <bold>true</bold>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">border:0;background-color:black;color:white;</string>
+    </property>
     <property name="text">
      <string>127.0.0.1</string>
+    </property>
+    <property name="frame">
+     <bool>true</bool>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -83,15 +89,21 @@
     <property name="placeholderText">
      <string>Host:</string>
     </property>
+    <property name="clearButtonEnabled">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QLineEdit" name="user_in">
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>90</y>
-      <width>130</width>
+      <width>120</width>
       <height>30</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border:0;background-color:black;color:white;</string>
     </property>
     <property name="text">
      <string>root</string>
@@ -99,21 +111,36 @@
     <property name="placeholderText">
      <string>User:</string>
     </property>
+    <property name="clearButtonEnabled">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QLineEdit" name="pass_in">
     <property name="geometry">
      <rect>
-      <x>140</x>
+      <x>150</x>
       <y>90</y>
-      <width>130</width>
+      <width>120</width>
       <height>30</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border:0;background-color:black;color:white;</string>
     </property>
     <property name="text">
      <string>123456</string>
     </property>
+    <property name="echoMode">
+     <enum>QLineEdit::Normal</enum>
+    </property>
     <property name="placeholderText">
      <string>Password:</string>
+    </property>
+    <property name="cursorMoveStyle">
+     <enum>Qt::LogicalMoveStyle</enum>
+    </property>
+    <property name="clearButtonEnabled">
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QCheckBox" name="buffered">
@@ -128,17 +155,26 @@
       <height>30</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
     <property name="text">
      <string>Buffered</string>
     </property>
     <property name="checkable">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="checked">
      <bool>false</bool>
     </property>
+    <property name="autoRepeat">
+     <bool>false</bool>
+    </property>
+    <property name="autoExclusive">
+     <bool>false</bool>
+    </property>
     <property name="tristate">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="getdb_btn">
@@ -158,6 +194,9 @@
       <pointsize>12</pointsize>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
     <property name="text">
      <string>GET DATABASES</string>
     </property>
@@ -175,7 +214,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">padding:8;</string>
+     <string notr="true">padding:8;border:0;background-color:black;color:white;</string>
     </property>
    </widget>
   </widget>
