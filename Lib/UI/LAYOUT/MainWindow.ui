@@ -9,12 +9,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>915</width>
-    <height>751</height>
+    <width>922</width>
+    <height>708</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>SQL MANAGER</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
   </property>
   <property name="windowFilePath">
    <string/>
@@ -26,10 +29,10 @@
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>193</x>
-      <y>0</y>
-      <width>710</width>
-      <height>614</height>
+      <x>187</x>
+      <y>10</y>
+      <width>691</width>
+      <height>580</height>
      </rect>
     </property>
     <property name="font">
@@ -78,9 +81,12 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>710</width>
-        <height>590</height>
+        <width>690</width>
+        <height>546</height>
        </rect>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;DATA DESCRIPTIONS&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
@@ -90,6 +96,9 @@
       </property>
       <property name="lineWidth">
        <number>1</number>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::AdjustToContents</enum>
       </property>
       <property name="editTriggers">
        <set>QAbstractItemView::NoEditTriggers</set>
@@ -107,10 +116,10 @@
        <bool>true</bool>
       </property>
       <property name="showGrid">
-       <bool>false</bool>
+       <bool>true</bool>
       </property>
       <property name="gridStyle">
-       <enum>Qt::NoPen</enum>
+       <enum>Qt::SolidLine</enum>
       </property>
       <property name="sortingEnabled">
        <bool>false</bool>
@@ -120,6 +129,12 @@
       </property>
       <property name="cornerButtonEnabled">
        <bool>true</bool>
+      </property>
+      <property name="rowCount">
+       <number>0</number>
+      </property>
+      <property name="columnCount">
+       <number>0</number>
       </property>
      </widget>
     </widget>
@@ -132,9 +147,12 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>710</width>
-        <height>590</height>
+        <width>690</width>
+        <height>546</height>
        </rect>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;ALL DATA IN TABLE&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
@@ -144,6 +162,9 @@
       </property>
       <property name="lineWidth">
        <number>1</number>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::AdjustToContents</enum>
       </property>
       <property name="editTriggers">
        <set>QAbstractItemView::NoEditTriggers</set>
@@ -161,10 +182,10 @@
        <bool>true</bool>
       </property>
       <property name="showGrid">
-       <bool>false</bool>
+       <bool>true</bool>
       </property>
       <property name="gridStyle">
-       <enum>Qt::NoPen</enum>
+       <enum>Qt::SolidLine</enum>
       </property>
       <property name="sortingEnabled">
        <bool>false</bool>
@@ -175,6 +196,12 @@
       <property name="cornerButtonEnabled">
        <bool>true</bool>
       </property>
+      <property name="rowCount">
+       <number>0</number>
+      </property>
+      <property name="columnCount">
+       <number>0</number>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="_query">
@@ -184,11 +211,14 @@
      <widget class="QTableWidget" name="result_out">
       <property name="geometry">
        <rect>
-        <x>0</x>
-        <y>290</y>
-        <width>710</width>
-        <height>290</height>
+        <x>4</x>
+        <y>270</y>
+        <width>684</width>
+        <height>270</height>
        </rect>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;RESULTS&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::Box</enum>
@@ -198,6 +228,9 @@
       </property>
       <property name="lineWidth">
        <number>1</number>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::AdjustToContents</enum>
       </property>
       <property name="editTriggers">
        <set>QAbstractItemView::NoEditTriggers</set>
@@ -237,20 +270,23 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>10</y>
-        <width>710</width>
-        <height>270</height>
+        <y>0</y>
+        <width>690</width>
+        <height>260</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <pointsize>15</pointsize>
+        <pointsize>13</pointsize>
         <stylestrategy>PreferAntialias</stylestrategy>
         <kerning>false</kerning>
        </font>
       </property>
       <property name="cursor" stdset="0">
        <cursorShape>ArrowCursor</cursorShape>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;NEW CONSULT&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="autoFillBackground">
        <bool>false</bool>
@@ -271,7 +307,7 @@
        <number>0</number>
       </property>
       <property name="plainText">
-       <string notr="true">select * from [table]</string>
+       <string notr="true">select * from </string>
       </property>
      </widget>
     </widget>
@@ -279,52 +315,10 @@
    <widget class="QPlainTextEdit" name="console_out">
     <property name="geometry">
      <rect>
-      <x>193</x>
-      <y>630</y>
-      <width>710</width>
-      <height>80</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>13</pointsize>
-      <weight>50</weight>
-      <italic>false</italic>
-      <bold>false</bold>
-      <underline>false</underline>
-      <strikeout>false</strikeout>
-      <kerning>true</kerning>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true"/>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::Box</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Plain</enum>
-    </property>
-    <property name="midLineWidth">
-     <number>0</number>
-    </property>
-    <property name="sizeAdjustPolicy">
-     <enum>QAbstractScrollArea::AdjustToContents</enum>
-    </property>
-    <property name="readOnly">
-     <bool>true</bool>
-    </property>
-    <property name="plainText">
-     <string>[ Console ]</string>
-    </property>
-   </widget>
-   <widget class="QListWidget" name="tables_out">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>24</y>
-      <width>170</width>
-      <height>686</height>
+      <x>4</x>
+      <y>590</y>
+      <width>874</width>
+      <height>110</height>
      </rect>
     </property>
     <property name="font">
@@ -333,7 +327,73 @@
       <weight>50</weight>
       <italic>false</italic>
       <bold>false</bold>
+      <underline>false</underline>
+      <strikeout>false</strikeout>
+      <kerning>true</kerning>
      </font>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;CONSOLE&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Plain</enum>
+    </property>
+    <property name="lineWidth">
+     <number>1</number>
+    </property>
+    <property name="midLineWidth">
+     <number>0</number>
+    </property>
+    <property name="sizeAdjustPolicy">
+     <enum>QAbstractScrollArea::AdjustToContents</enum>
+    </property>
+    <property name="undoRedoEnabled">
+     <bool>false</bool>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+    <property name="plainText">
+     <string/>
+    </property>
+    <property name="backgroundVisible">
+     <bool>false</bool>
+    </property>
+    <property name="centerOnScroll">
+     <bool>false</bool>
+    </property>
+    <property name="placeholderText">
+     <string>CONSOLE</string>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="tables_out">
+    <property name="geometry">
+     <rect>
+      <x>7</x>
+      <y>10</y>
+      <width>177</width>
+      <height>570</height>
+     </rect>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>180</width>
+      <height>570</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <weight>50</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;TABLES&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::Box</enum>
@@ -348,8 +408,8 @@
      <bool>true</bool>
     </property>
    </widget>
-   <zorder>tables_out</zorder>
    <zorder>tabWidget</zorder>
+   <zorder>tables_out</zorder>
    <zorder>console_out</zorder>
   </widget>
   <action name="actionImport_Query">
@@ -452,9 +512,13 @@
   </action>
  </widget>
  <tabstops>
-  <tabstop>query_in</tabstop>
+  <tabstop>tables_out</tabstop>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>data_result</tabstop>
   <tabstop>console_out</tabstop>
+  <tabstop>desc_result</tabstop>
   <tabstop>result_out</tabstop>
+  <tabstop>query_in</tabstop>
  </tabstops>
  <resources/>
  <connections/>
