@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>922</width>
+    <width>931</width>
     <height>708</height>
    </rect>
   </property>
@@ -25,14 +25,17 @@
   <property name="inputMethodHints">
    <set>Qt::ImhNone</set>
   </property>
+  <property name="tabShape">
+   <enum>QTabWidget::Rounded</enum>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>187</x>
-      <y>10</y>
+      <x>193</x>
+      <y>0</y>
       <width>691</width>
-      <height>580</height>
+      <height>590</height>
      </rect>
     </property>
     <property name="font">
@@ -41,6 +44,9 @@
       <weight>50</weight>
       <bold>false</bold>
      </font>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
     </property>
     <property name="autoFillBackground">
      <bool>false</bool>
@@ -82,11 +88,11 @@
         <x>0</x>
         <y>0</y>
         <width>690</width>
-        <height>546</height>
+        <height>556</height>
        </rect>
       </property>
       <property name="toolTip">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;DATA DESCRIPTIONS&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;DATA DESCRIPTIONS&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
@@ -148,11 +154,11 @@
         <x>0</x>
         <y>0</y>
         <width>690</width>
-        <height>546</height>
+        <height>556</height>
        </rect>
       </property>
       <property name="toolTip">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;ALL DATA IN TABLE&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;ALL DATA IN TABLE&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
@@ -211,14 +217,14 @@
      <widget class="QTableWidget" name="result_out">
       <property name="geometry">
        <rect>
-        <x>4</x>
-        <y>270</y>
-        <width>684</width>
-        <height>270</height>
+        <x>0</x>
+        <y>263</y>
+        <width>690</width>
+        <height>291</height>
        </rect>
       </property>
       <property name="toolTip">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;RESULTS&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;RESULTS&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::Box</enum>
@@ -291,6 +297,9 @@
       <property name="autoFillBackground">
        <bool>false</bool>
       </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
       <property name="inputMethodHints">
        <set>Qt::ImhDate|Qt::ImhDialableCharactersOnly|Qt::ImhDigitsOnly|Qt::ImhEmailCharactersOnly|Qt::ImhExclusiveInputMask|Qt::ImhFormattedNumbersOnly|Qt::ImhHiddenText|Qt::ImhLatinOnly|Qt::ImhLowercaseOnly|Qt::ImhMultiLine|Qt::ImhNoAutoUppercase|Qt::ImhNoEditMenu|Qt::ImhNoPredictiveText|Qt::ImhNoTextHandles|Qt::ImhPreferLatin|Qt::ImhPreferLowercase|Qt::ImhPreferNumbers|Qt::ImhPreferUppercase|Qt::ImhSensitiveData|Qt::ImhTime|Qt::ImhUppercaseOnly|Qt::ImhUrlCharactersOnly</set>
       </property>
@@ -315,10 +324,10 @@
    <widget class="QPlainTextEdit" name="console_out">
     <property name="geometry">
      <rect>
-      <x>4</x>
-      <y>590</y>
+      <x>10</x>
+      <y>581</y>
       <width>874</width>
-      <height>110</height>
+      <height>120</height>
      </rect>
     </property>
     <property name="font">
@@ -333,7 +342,7 @@
      </font>
     </property>
     <property name="toolTip">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;CONSOLE&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;CONSOLE&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::Box</enum>
@@ -369,48 +378,36 @@
      <string>CONSOLE</string>
     </property>
    </widget>
-   <widget class="QListWidget" name="tables_out">
+   <widget class="QTreeWidget" name="tables_out">
     <property name="geometry">
      <rect>
-      <x>7</x>
+      <x>10</x>
       <y>10</y>
-      <width>177</width>
-      <height>570</height>
+      <width>181</width>
+      <height>568</height>
      </rect>
     </property>
-    <property name="maximumSize">
-     <size>
-      <width>180</width>
-      <height>570</height>
-     </size>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>10</pointsize>
-      <weight>50</weight>
-      <italic>false</italic>
-      <bold>false</bold>
-     </font>
-    </property>
     <property name="toolTip">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;TABLES&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;DATABASES AND TABLES&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
-    <property name="frameShape">
-     <enum>QFrame::Box</enum>
+    <property name="styleSheet">
+     <string notr="true">background-color:rgb(240,240,240)</string>
     </property>
-    <property name="frameShadow">
-     <enum>QFrame::Plain</enum>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAsNeeded</enum>
     </property>
-    <property name="lineWidth">
-     <number>1</number>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarAsNeeded</enum>
     </property>
-    <property name="sortingEnabled">
-     <bool>true</bool>
+    <property name="sizeAdjustPolicy">
+     <enum>QAbstractScrollArea::AdjustToContents</enum>
     </property>
+    <column>
+     <property name="text">
+      <string>Databases</string>
+     </property>
+    </column>
    </widget>
-   <zorder>tabWidget</zorder>
-   <zorder>tables_out</zorder>
-   <zorder>console_out</zorder>
   </widget>
   <action name="actionImport_Query">
    <property name="text">
@@ -512,7 +509,6 @@
   </action>
  </widget>
  <tabstops>
-  <tabstop>tables_out</tabstop>
   <tabstop>tabWidget</tabstop>
   <tabstop>data_result</tabstop>
   <tabstop>console_out</tabstop>

@@ -31,7 +31,6 @@ class MainWindow(QMainWindow,Ui_Connector):
         self.getdb_btn.clicked.connect(self.Get_Databases_to_combobox)
 
     def Get_Databases_to_combobox (self):
-
         self._host = self.host_in.displayText()
         self._user = self.user_in.displayText()
         self._pass = self.pass_in.displayText()
@@ -43,12 +42,9 @@ class MainWindow(QMainWindow,Ui_Connector):
             )
             self.statusBar.showMessage("CONNECTED: %s"%self._host,10000)
 
-
             mycursor = mydb.cursor()
             mycursor.execute("show databases")
-
             myresult = mycursor.fetchall()
-
             items = []
 
             for x in myresult:
@@ -59,7 +55,6 @@ class MainWindow(QMainWindow,Ui_Connector):
             self.Connect_btn.setEnabled(True)
 
             self.dbs.addItems(items)
-
             self.Connect_btn.clicked.connect(self.Get_Database_to_manager)
 
         except Exception as error:

@@ -1,19 +1,38 @@
-import mysql.connector as mysql
+import sys
+from PyQt5.QtCore import pyqtSlot,QFile, QTextStream
+from PyQt5.QtWidgets import QApplication, QDialog,QMainWindow,QTreeWidget,QTreeView,QTreeWidgetItem,QTreeWidgetItemIterator
+from PyQt5.uic import loadUi
+from PyQt5 import QtGui
 
-mydb = mysql.connect(
-  host="127.0.0.1",
-  user="root",passwd="123456",
-  buffered=True,
-  database="sakila"
-)
+from Lib.UI.SCRIPT.Teste_ui import Ui_Form
 
-mycursor = mydb.cursor()
+app = QApplication(sys.argv)
+app.processEvents()
 
-mycursor.execute("select * from language")
 
-columns = mycursor.description
-print(columns)
 
-# myresult = mycursor.fetchall()
-# for x in myresult:
-#   print(x)
+class MainWindow(QMainWindow,QTreeWidgetItem,Ui_Form):
+    def __init__(self, parent = None):
+        super(MainWindow,self).__init__(parent)
+        self.setupUi(self)
+        self.setFixedSize(self.size())        
+        self.show()
+
+        dbTbs = {
+            "sakila":['a','b','c'],
+            "dbbi01":['aa','bb','cc'],
+            "menagerie":['aaa','bbb','ccc']
+        }
+
+        for db in dbTbs:
+            parent = QTreeWidgetItem(self.widget)
+            parent.setText(0,str(db))
+            parent.setFlags(parent.flags())
+
+            for table in dbTbs.get(db):
+                child = QTreeWidgetItem(parent)
+                child.setFlags(child.flags())
+                child.setText(0,str(table))
+
+Main_GUI = MainWindow()
+sys.exit(app.exec_())
