@@ -12,7 +12,7 @@ class Ui_SQLMANAGER(object):
     def setupUi(self, SQLMANAGER):
         SQLMANAGER.setObjectName("SQLMANAGER")
         SQLMANAGER.setWindowModality(QtCore.Qt.WindowModal)
-        SQLMANAGER.resize(931, 708)
+        SQLMANAGER.resize(929, 713)
         SQLMANAGER.setStyleSheet("")
         SQLMANAGER.setWindowFilePath("")
         SQLMANAGER.setInputMethodHints(QtCore.Qt.ImhNone)
