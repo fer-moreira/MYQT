@@ -3,13 +3,8 @@
 SQL Manager é um programa livre e com código-aberto para o MySQL, Microsoft SQL SERVER e PostgreSQL </br>
 
 ## Detalhes Gerais
-- SQL Manager é desenvolvido em python
+- Este software é desenvolvido em python </br> usando o framework para criação de interface QT (Cute)
 - Desenvolvido por Fernando Moreira entre 2018 - 2019
-
-
-## Alguns detalhes técnicos
-- SQL Manager é desenvolvido em Python
-- Usando o framework PYQT para criação de interfaces (GUI)
 
 </br>
 
