@@ -3,18 +3,21 @@
  <class>SQLMANAGER</class>
  <widget class="QMainWindow" name="SQLMANAGER">
   <property name="windowModality">
-   <enum>Qt::WindowModal</enum>
+   <enum>Qt::ApplicationModal</enum>
   </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>929</width>
-    <height>713</height>
+    <width>942</width>
+    <height>717</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>SQL MANAGER</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
@@ -25,6 +28,21 @@
   <property name="inputMethodHints">
    <set>Qt::ImhNone</set>
   </property>
+  <property name="iconSize">
+   <size>
+    <width>24</width>
+    <height>24</height>
+   </size>
+  </property>
+  <property name="toolButtonStyle">
+   <enum>Qt::ToolButtonTextBesideIcon</enum>
+  </property>
+  <property name="animated">
+   <bool>true</bool>
+  </property>
+  <property name="documentMode">
+   <bool>false</bool>
+  </property>
   <property name="tabShape">
    <enum>QTabWidget::Rounded</enum>
   </property>
@@ -32,10 +50,10 @@
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>193</x>
-      <y>0</y>
-      <width>691</width>
-      <height>590</height>
+      <x>242</x>
+      <y>-2</y>
+      <width>650</width>
+      <height>581</height>
      </rect>
     </property>
     <property name="font">
@@ -51,9 +69,6 @@
     <property name="autoFillBackground">
      <bool>false</bool>
     </property>
-    <property name="styleSheet">
-     <string notr="true"/>
-    </property>
     <property name="tabPosition">
      <enum>QTabWidget::North</enum>
     </property>
@@ -61,13 +76,13 @@
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <property name="elideMode">
      <enum>Qt::ElideNone</enum>
     </property>
     <property name="documentMode">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="tabsClosable">
      <bool>false</bool>
@@ -86,9 +101,9 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>0</y>
+        <y>2</y>
         <width>690</width>
-        <height>556</height>
+        <height>540</height>
        </rect>
       </property>
       <property name="toolTip">
@@ -152,9 +167,9 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>0</y>
+        <y>2</y>
         <width>690</width>
-        <height>556</height>
+        <height>540</height>
        </rect>
       </property>
       <property name="toolTip">
@@ -218,9 +233,9 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>263</y>
-        <width>690</width>
-        <height>291</height>
+        <y>270</y>
+        <width>640</width>
+        <height>273</height>
        </rect>
       </property>
       <property name="toolTip">
@@ -277,8 +292,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>690</width>
-        <height>260</height>
+        <width>640</width>
+        <height>271</height>
        </rect>
       </property>
       <property name="font">
@@ -296,9 +311,6 @@
       </property>
       <property name="autoFillBackground">
        <bool>false</bool>
-      </property>
-      <property name="styleSheet">
-       <string notr="true"/>
       </property>
       <property name="inputMethodHints">
        <set>Qt::ImhDate|Qt::ImhDialableCharactersOnly|Qt::ImhDigitsOnly|Qt::ImhEmailCharactersOnly|Qt::ImhExclusiveInputMask|Qt::ImhFormattedNumbersOnly|Qt::ImhHiddenText|Qt::ImhLatinOnly|Qt::ImhLowercaseOnly|Qt::ImhMultiLine|Qt::ImhNoAutoUppercase|Qt::ImhNoEditMenu|Qt::ImhNoPredictiveText|Qt::ImhNoTextHandles|Qt::ImhPreferLatin|Qt::ImhPreferLowercase|Qt::ImhPreferNumbers|Qt::ImhPreferUppercase|Qt::ImhSensitiveData|Qt::ImhTime|Qt::ImhUppercaseOnly|Qt::ImhUrlCharactersOnly</set>
@@ -325,9 +337,9 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>581</y>
+      <y>579</y>
       <width>874</width>
-      <height>120</height>
+      <height>130</height>
      </rect>
     </property>
     <property name="font">
@@ -383,15 +395,15 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>181</width>
-      <height>568</height>
+      <width>227</width>
+      <height>560</height>
      </rect>
     </property>
     <property name="toolTip">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;DATABASES AND TABLES&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
-    <property name="styleSheet">
-     <string notr="true">background-color:rgb(240,240,240)</string>
+    <property name="autoFillBackground">
+     <bool>false</bool>
     </property>
     <property name="verticalScrollBarPolicy">
      <enum>Qt::ScrollBarAsNeeded</enum>
