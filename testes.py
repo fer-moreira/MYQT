@@ -1,38 +1,24 @@
-import sys
-from PyQt5.QtCore import pyqtSlot,QFile, QTextStream
-from PyQt5.QtWidgets import QApplication, QDialog,QMainWindow,QTreeWidget,QTreeView,QTreeWidgetItem,QTreeWidgetItemIterator
-from PyQt5.uic import loadUi
-from PyQt5 import QtGui
 
-from Lib.UI.SCRIPT.Teste_ui import Ui_Form
+schema = {
+    'SELECT':'<p style="color:yellow;">SELECT</p>',
+    'FROM':'<p style="color:yellow;">FROM</p>',
+    'INNER':'<p style="color:yellow;">INNER</p>',
+    'JOIN':'<p style="color:yellow;">JOIN</p>',
+    'ON':'<p style="color:yellow;">ON</p>',
+    'AND':'<p style="color:yellow;">AND</p>',
+    'USE':'<p style="color:yellow;">USE</p>'
+}
 
-app = QApplication(sys.argv)
-app.processEvents()
+query = input("Enter Query: ")
 
+words = query.split(" ")
 
+finalQuery = ""
+for w in words:
+    if w in schema.keys():
+        scWord = schema.get(w)
+        finalQuery += "%s " %scWord
+    else:
+        finalQuery += "%s " %w
 
-class MainWindow(QMainWindow,QTreeWidgetItem,Ui_Form):
-    def __init__(self, parent = None):
-        super(MainWindow,self).__init__(parent)
-        self.setupUi(self)
-        self.setFixedSize(self.size())        
-        self.show()
-
-        dbTbs = {
-            "sakila":['a','b','c'],
-            "dbbi01":['aa','bb','cc'],
-            "menagerie":['aaa','bbb','ccc']
-        }
-
-        for db in dbTbs:
-            parent = QTreeWidgetItem(self.widget)
-            parent.setText(0,str(db))
-            parent.setFlags(parent.flags())
-
-            for table in dbTbs.get(db):
-                child = QTreeWidgetItem(parent)
-                child.setFlags(child.flags())
-                child.setText(0,str(table))
-
-Main_GUI = MainWindow()
-sys.exit(app.exec_())
+print(finalQuery)

@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>942</width>
-    <height>717</height>
+    <width>1085</width>
+    <height>758</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,9 +18,6 @@
   </property>
   <property name="autoFillBackground">
    <bool>false</bool>
-  </property>
-  <property name="styleSheet">
-   <string notr="true"/>
   </property>
   <property name="windowFilePath">
    <string/>
@@ -50,10 +47,10 @@
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>242</x>
-      <y>-2</y>
-      <width>650</width>
-      <height>581</height>
+      <x>280</x>
+      <y>0</y>
+      <width>760</width>
+      <height>570</height>
      </rect>
     </property>
     <property name="font">
@@ -76,13 +73,13 @@
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <property name="elideMode">
      <enum>Qt::ElideNone</enum>
     </property>
     <property name="documentMode">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="tabsClosable">
      <bool>false</bool>
@@ -101,8 +98,8 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>2</y>
-        <width>690</width>
+        <y>0</y>
+        <width>760</width>
         <height>540</height>
        </rect>
       </property>
@@ -167,8 +164,8 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>2</y>
-        <width>690</width>
+        <y>0</y>
+        <width>760</width>
         <height>540</height>
        </rect>
       </property>
@@ -233,9 +230,9 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>270</y>
-        <width>640</width>
-        <height>273</height>
+        <y>262</y>
+        <width>756</width>
+        <height>278</height>
        </rect>
       </property>
       <property name="toolTip">
@@ -292,8 +289,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>640</width>
-        <height>271</height>
+        <width>756</width>
+        <height>260</height>
        </rect>
       </property>
       <property name="font">
@@ -311,6 +308,9 @@
       </property>
       <property name="autoFillBackground">
        <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: 1 solid lightgray;</string>
       </property>
       <property name="inputMethodHints">
        <set>Qt::ImhDate|Qt::ImhDialableCharactersOnly|Qt::ImhDigitsOnly|Qt::ImhEmailCharactersOnly|Qt::ImhExclusiveInputMask|Qt::ImhFormattedNumbersOnly|Qt::ImhHiddenText|Qt::ImhLatinOnly|Qt::ImhLowercaseOnly|Qt::ImhMultiLine|Qt::ImhNoAutoUppercase|Qt::ImhNoEditMenu|Qt::ImhNoPredictiveText|Qt::ImhNoTextHandles|Qt::ImhPreferLatin|Qt::ImhPreferLowercase|Qt::ImhPreferNumbers|Qt::ImhPreferUppercase|Qt::ImhSensitiveData|Qt::ImhTime|Qt::ImhUppercaseOnly|Qt::ImhUrlCharactersOnly</set>
@@ -336,10 +336,10 @@
    <widget class="QPlainTextEdit" name="console_out">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>579</y>
-      <width>874</width>
-      <height>130</height>
+      <x>280</x>
+      <y>580</y>
+      <width>760</width>
+      <height>170</height>
      </rect>
     </property>
     <property name="font">
@@ -357,7 +357,7 @@
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;CONSOLE&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="frameShape">
-     <enum>QFrame::Box</enum>
+     <enum>QFrame::NoFrame</enum>
     </property>
     <property name="frameShadow">
      <enum>QFrame::Plain</enum>
@@ -367,6 +367,9 @@
     </property>
     <property name="midLineWidth">
      <number>0</number>
+    </property>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarAsNeeded</enum>
     </property>
     <property name="sizeAdjustPolicy">
      <enum>QAbstractScrollArea::AdjustToContents</enum>
@@ -395,8 +398,8 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>227</width>
-      <height>560</height>
+      <width>260</width>
+      <height>700</height>
      </rect>
     </property>
     <property name="toolTip">
@@ -416,9 +419,38 @@
     </property>
     <column>
      <property name="text">
-      <string>Databases</string>
+      <string>DATABASES</string>
+     </property>
+     <property name="textAlignment">
+      <set>AlignCenter</set>
      </property>
     </column>
+   </widget>
+   <widget class="QPushButton" name="createdb_btn">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>710</y>
+      <width>78</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>CREATE</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="createdb_in">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>710</y>
+      <width>180</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="placeholderText">
+     <string>Create Database:</string>
+    </property>
    </widget>
   </widget>
   <action name="actionImport_Query">

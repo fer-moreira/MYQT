@@ -1,28 +1,30 @@
-## SIMPLE MODULES 
-import time
-import sys
-##################
+## SIMPLE MODULES ##
+import time         #
+import sys          #
+####################
 
 ######### MYSQL MODULE #########+
 import mysql.connector as mysql #
 ################################+
 
-################### PYQT MODULES ###################################################
-from PyQt5              import QtCore
-from PyQt5.uic          import loadUi
-from PyQt5.QtGui        import QStandardItemModel,QStandardItem
-from PyQt5.QtWidgets    import QApplication, QDialog,QFileDialog,QMainWindow,QStyleFactory
-from PyQt5.QtWidgets    import QAction,QToolBar,QTableWidget,QTableWidgetItem,QHeaderView,QTreeWidgetItem
-from PyQt5.QtCore       import pyqtSlot,QFile, QTextStream,QCoreApplication,Qt
-from PyQt5.QtGui        import QIcon
-####################################################################################
+################### PYQT MODULES ##############################################################################
+from PyQt5              import QtCore                                                                          #
+from PyQt5.uic          import loadUi                                                                          #
+from PyQt5.QtGui        import QStandardItemModel,QStandardItem                                                #
+from PyQt5.QtWidgets    import (QApplication, QDialog,QFileDialog,QMainWindow,QStyleFactory,                   #
+                   QAction,QToolBar,QTableWidget,QTableWidgetItem,QHeaderView,QTreeWidgetItem)                 #
+from PyQt5.QtCore       import pyqtSlot,QFile, QTextStream,QCoreApplication,Qt                                 #
+from PyQt5.QtGui        import QIcon                                                                           #
+###############################################################################################################
+
+## INTERFACE MODULES #######################################
+from Lib.UI.SCRIPT.MainWindow   import Ui_SQLMANAGER        #
+from Lib.icons_manager          import (_run,_runSelected,  #
+_import,_export,_refresh,ui_db,ui_tb,ico_consult)           #
+############################################################
 
 from functools          import partial
 
-## INTERFACE MODULES ##############################
-from Lib.UI.SCRIPT.MainWindow   import Ui_SQLMANAGER
-from Lib.icons_manager          import _run,_runSelected,_import,_export,_refresh,ui_db,ui_tb,ico_consult
-###################################################
 
 class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQLMANAGER,object):
     def __init__(self,hs,us,ps,bfr, parent = None):
@@ -31,7 +33,6 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
         self.setFixedSize(self.size())
         self.add_tool_bar()
         self.setWindowIcon(QIcon(ico_consult))
-
         self.show()
 
         self.hs = hs
@@ -42,11 +43,12 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
         try:
             self.mydb = mysql.connect(host=self.hs,user=self.us,passwd=self.ps,buffered=self.bfred)
             self.Get_Databases()
-            self.WriteConsole("Connected to SQL Server")
+            self.WriteConsole('<b>Connected to SQL Server</b>')
         except:
-            self.WriteConsole("Cannot Connect to SQL Server")
+            self.WriteConsole('<p style="color:red;">Cannot Connect to SQL Server</p>')
 
         self.tables_out.itemDoubleClicked.connect(self.ItemDoubleClicked)
+        self.createdb_btn.clicked.connect(self.Create_DB)
 
     def ItemDoubleClicked   (self):         ## SINGLE CLICK HANDLER FOR QTreeWIDGET
         index = self.tables_out.currentIndex()
@@ -87,7 +89,6 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
                         data = QTableWidgetItem(str(allSQLRows[lin][col]))
                         self.result_out.setItem(lin,col,data)
 
-
             columns = cursor.description
             for col in range(0,lenCol):
                 headerName = QTableWidgetItem(columns[col][0])
@@ -95,10 +96,10 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
 
             self.result_out.resizeColumnsToContents()
 
-            self.WriteConsole(_query)
+            self.WriteConsole("<i>%s</i>"%_query)
 
         except Exception as error:
-            self.WriteConsole(error)
+            self.WriteConsole('<p style="color:red;">%s</p>'%error)
             pass
     
     def GetAllQuery         (self):         # EXECUTE ALL QUERY TEXT
@@ -110,7 +111,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
         _allText = str(self.query_in.toPlainText()).replace("\n"," ")
         _startIndex = cursor.selectionStart()
         _endIndex = cursor.selectionEnd()
-        
+
         _buildText = ""
 
         for letter in range(_startIndex,_endIndex):
@@ -186,11 +187,11 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
                 self.desc_result.setHorizontalHeaderItem(col, headerName)
 
             self.desc_result.resizeColumnsToContents()
-            self.WriteConsole(str(_query))
+            self.WriteConsole("<i>%s</i>"%str(_query))
             self.processEvents()
 
         except Exception as error:
-            self.WriteConsole(error)
+            self.WriteConsole('<p style="color:red;">%s</p>'%error)
             pass    
     def Get_All_Data        (self,data):    # GET ALL DATA FROM TABLES
         table = str(data)
@@ -220,11 +221,20 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
                 self.data_result.setHorizontalHeaderItem(col, headerName)
             
             self.data_result.resizeColumnsToContents()
-            self.WriteConsole(str(_query))
+            self.WriteConsole("<i>%s</i>"%str(_query))
             self.processEvents()
         except Exception as error:
-            self.WriteConsole(error)
+            self.WriteConsole('<p style="color:red;">%s</p>'%error)
             pass
+
+    def Create_DB           (self):
+        dbName = self.createdb_in.displayText()
+        createPattern = "CREATE DATABASE %s" %dbName
+
+        cursor = self.mydb.cursor()
+        cursor.execute(createPattern)
+        
+        self.Get_Databases()
 
     def load_query_from_file(self):         # OPEN DIALOG BOX TO LOAD FILE
         try:
@@ -269,7 +279,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
         toolBar.addAction(export_t)              #
         #########################################
     def WriteConsole        (self,text):    # DEBUG ALL STATE TO CONSOLE
-        self.console_out.appendPlainText(str(text))
+        self.console_out.appendHtml(str(text))
         self.processEvents()
     
     #--#########################################################################################################################--#
