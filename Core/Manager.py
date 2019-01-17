@@ -27,7 +27,7 @@ from functools          import partial
 
 
 class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQLMANAGER,object):
-    def __init__(self,hs,us,ps,bfr, parent = None):
+    def __init__(self,hs,pt,us,ps,bfr, parent = None):
         super(ManagerWindow,self).__init__(parent)
         self.setupUi(self)
         self.setFixedSize(self.size())
@@ -36,12 +36,13 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
         self.show()
 
         self.hs = hs
+        self.pt = pt
         self.us = us
         self.ps = ps
         self.bfred = bfr
 
         try:
-            self.mydb = mysql.connect(host=self.hs,user=self.us,passwd=self.ps,buffered=self.bfred)
+            self.mydb = mysql.connect(host=self.hs,port=self.pt,user=self.us,passwd=self.ps,buffered=self.bfred)
             self.Get_Databases()
             self.WriteConsole('<b>Connected to SQL Server</b>')
         except:

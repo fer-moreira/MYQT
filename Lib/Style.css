@@ -633,7 +633,7 @@ Gui--PropertyEditor--PropertyEditor > QWidget > QWidget > QWidget {
 Header of tree and list views
 ==================================================================================================*/
 QHeaderView {
-    background-color: #c3c3c3;
+    background-color: transparent;
     border-top-left-radius: 2px; /* 1px less than its container */
     border-top-right-radius: 2px; /* 1px less than its container */
     border-bottom-left-radius: 0px;
