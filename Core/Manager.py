@@ -12,7 +12,7 @@ from PyQt5              import QtCore                                           
 from PyQt5.uic          import loadUi                                                                          #
 from PyQt5.QtGui        import QStandardItemModel,QStandardItem                                                #
 from PyQt5.QtWidgets    import (QApplication, QDialog,QFileDialog,QMainWindow,QStyleFactory,                   #
-                   QAction,QToolBar,QTableWidget,QTableWidgetItem,QHeaderView,QTreeWidgetItem)                 #
+                   QAction,QToolBar,QTableWidget,QTableWidgetItem,QHeaderView,QTreeWidgetItem)                 #                                                                                #
 from PyQt5.QtCore       import pyqtSlot,QFile, QTextStream,QCoreApplication,Qt                                 #
 from PyQt5.QtGui        import QIcon                                                                           #
 ###############################################################################################################
@@ -258,17 +258,22 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
     def add_tool_bar        (self):         # ADD TOOLBAR AND TOOLBAR ICONS HANDLER
         toolBar = QToolBar()
         toolBar.setMovable(False)
-        toolBar.setToolButtonStyle(Qt.ToolButtonIconOnly)
-        tb_config = self.addToolBar(Qt.LeftToolBarArea,toolBar)
+        toolBar.setToolButtonStyle(Qt.ToolButtonTextUnderIcon)
+        tb_config = self.addToolBar(Qt.TopToolBarArea,toolBar)
         # tb = self.addToolBar("File")
 
-        ############### CREATING BUTTONS ICONS AND SETTING FUNCTION #####################################################################################################
-        compileAll =        QAction(QIcon(_run),        "Execute SQL        (F9)",              self,shortcut="F9",             triggered=self.GetAllQuery)              #
-        compileSelected =   QAction(QIcon(_runSelected),"Execute Selected   (Shift+Ctrl+F9)",   self,shortcut="Shift+Ctrl+F9",  triggered=self.GetSelectedQuery)         #
-        import_t =          QAction(QIcon(_import),     "Load SQL from file (Ctrl+O)",          self,shortcut="Ctrl+O",         triggered=self.load_query_from_file)     #
-        export_t =          QAction(QIcon(_export),     "Save SQL in file   (Ctrl+S)",          self,shortcut="Ctrl+S",         triggered=self.save_query_to_file)       #
-        refresh_t =         QAction(QIcon(_refresh),    "Refresh            (F5)",              self,shortcut="F5",             triggered=self.Get_Databases)               #
-        #################################################################################################################################################################
+        ############### CREATING BUTTONS ICONS AND SETTING FUNCTION #############################################################################
+        compileAll =        QAction(QIcon(_run),        "Run",          self,shortcut="F9",             triggered=self.GetAllQuery)              #
+        compileSelected =   QAction(QIcon(_runSelected),"Run Selected", self,shortcut="Shift+Ctrl+F9",  triggered=self.GetSelectedQuery)         #
+        import_t =          QAction(QIcon(_import),     "Load",         self,shortcut="Ctrl+O",         triggered=self.load_query_from_file)     #
+        export_t =          QAction(QIcon(_export),     "Save",         self,shortcut="Ctrl+S",         triggered=self.save_query_to_file)       #
+        refresh_t =         QAction(QIcon(_refresh),    "Refresh",      self,shortcut="F5",             triggered=self.Get_Databases)            #
+        #########################################################################################################################################
+        compileAll.setToolTip       ("RUN ALL QUERY (F9)")
+        compileSelected.setToolTip  ("RUN SELECTED QUERY (Shift+Ctrl+F9)")
+        import_t.setToolTip         ("RUN ALL QUERY (Ctrl+O)")
+        export_t.setToolTip         ("RUN ALL QUERY (Ctrl+S)")
+        refresh_t.setToolTip        ("RUN ALL QUERY (F5)")
 
         ## ADDING BUTTON TO MENU ################
         toolBar.addAction(refresh_t)             #
@@ -279,6 +284,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
         toolBar.addAction(import_t)              #
         toolBar.addAction(export_t)              #
         #########################################
+
     def WriteConsole        (self,text):    # DEBUG ALL STATE TO CONSOLE
         self.console_out.appendHtml(str(text))
         self.processEvents()

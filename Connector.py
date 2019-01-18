@@ -48,8 +48,7 @@ class MainWindow(QMainWindow,Ui_Connector):
             self.close()
         
         except Exception as error:
-            # self.console_out.appendHtml("%s"%error)
-            
+            self.console_out.setHtml('<p style="color:red;">%s</p>'%error)
             print(error)
             pass
     

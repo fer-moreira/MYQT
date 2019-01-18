@@ -9,12 +9,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1085</width>
-    <height>758</height>
+    <width>1052</width>
+    <height>830</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>SQL MANAGER</string>
+   <string>SQL Manager [0.1a]</string>
   </property>
   <property name="autoFillBackground">
    <bool>false</bool>
@@ -48,16 +48,20 @@
     <property name="geometry">
      <rect>
       <x>280</x>
-      <y>0</y>
+      <y>2</y>
       <width>760</width>
-      <height>570</height>
+      <height>610</height>
      </rect>
     </property>
     <property name="font">
      <font>
+      <family>Consolas</family>
       <pointsize>10</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
+      <underline>false</underline>
+      <strikeout>false</strikeout>
      </font>
     </property>
     <property name="layoutDirection">
@@ -74,6 +78,12 @@
     </property>
     <property name="currentIndex">
      <number>0</number>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>24</width>
+      <height>24</height>
+     </size>
     </property>
     <property name="elideMode">
      <enum>Qt::ElideNone</enum>
@@ -92,7 +102,7 @@
     </property>
     <widget class="QWidget" name="_desc">
      <attribute name="title">
-      <string>Table</string>
+      <string>Fields</string>
      </attribute>
      <widget class="QTableWidget" name="desc_result">
       <property name="geometry">
@@ -100,7 +110,7 @@
         <x>0</x>
         <y>0</y>
         <width>760</width>
-        <height>540</height>
+        <height>580</height>
        </rect>
       </property>
       <property name="toolTip">
@@ -166,7 +176,7 @@
         <x>0</x>
         <y>0</y>
         <width>760</width>
-        <height>540</height>
+        <height>580</height>
        </rect>
       </property>
       <property name="toolTip">
@@ -230,7 +240,7 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>262</y>
+        <y>300</y>
         <width>756</width>
         <height>278</height>
        </rect>
@@ -290,11 +300,12 @@
         <x>0</x>
         <y>0</y>
         <width>756</width>
-        <height>260</height>
+        <height>297</height>
        </rect>
       </property>
       <property name="font">
        <font>
+        <family>Consolas</family>
         <pointsize>13</pointsize>
         <stylestrategy>PreferAntialias</stylestrategy>
         <kerning>false</kerning>
@@ -310,7 +321,7 @@
        <bool>false</bool>
       </property>
       <property name="styleSheet">
-       <string notr="true">border: 1 solid lightgray;</string>
+       <string notr="true">border:1 solid darkred;</string>
       </property>
       <property name="inputMethodHints">
        <set>Qt::ImhDate|Qt::ImhDialableCharactersOnly|Qt::ImhDigitsOnly|Qt::ImhEmailCharactersOnly|Qt::ImhExclusiveInputMask|Qt::ImhFormattedNumbersOnly|Qt::ImhHiddenText|Qt::ImhLatinOnly|Qt::ImhLowercaseOnly|Qt::ImhMultiLine|Qt::ImhNoAutoUppercase|Qt::ImhNoEditMenu|Qt::ImhNoPredictiveText|Qt::ImhNoTextHandles|Qt::ImhPreferLatin|Qt::ImhPreferLowercase|Qt::ImhPreferNumbers|Qt::ImhPreferUppercase|Qt::ImhSensitiveData|Qt::ImhTime|Qt::ImhUppercaseOnly|Qt::ImhUrlCharactersOnly</set>
@@ -328,7 +339,7 @@
        <number>0</number>
       </property>
       <property name="plainText">
-       <string notr="true">select * from </string>
+       <string notr="true"/>
       </property>
      </widget>
     </widget>
@@ -337,13 +348,14 @@
     <property name="geometry">
      <rect>
       <x>280</x>
-      <y>580</y>
-      <width>760</width>
-      <height>170</height>
+      <y>620</y>
+      <width>756</width>
+      <height>130</height>
      </rect>
     </property>
     <property name="font">
      <font>
+      <family>Consolas</family>
       <pointsize>10</pointsize>
       <weight>50</weight>
       <italic>false</italic>
@@ -355,6 +367,9 @@
     </property>
     <property name="toolTip">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;CONSOLE&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:rgb(248,248,248)</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::NoFrame</enum>
@@ -397,16 +412,24 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>10</y>
+      <y>0</y>
       <width>260</width>
-      <height>700</height>
+      <height>710</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Consolas</family>
+     </font>
     </property>
     <property name="toolTip">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;DATABASES AND TABLES&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="autoFillBackground">
      <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">margin:2</string>
     </property>
     <property name="verticalScrollBarPolicy">
      <enum>Qt::ScrollBarAsNeeded</enum>
@@ -419,7 +442,14 @@
     </property>
     <column>
      <property name="text">
-      <string>DATABASES</string>
+      <string>CONNECTION</string>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
      </property>
      <property name="textAlignment">
       <set>AlignCenter</set>
@@ -430,10 +460,15 @@
     <property name="geometry">
      <rect>
       <x>190</x>
-      <y>710</y>
+      <y>713</y>
       <width>78</width>
       <height>40</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Consolas</family>
+     </font>
     </property>
     <property name="text">
      <string>CREATE</string>
@@ -443,10 +478,15 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>710</y>
+      <y>713</y>
       <width>180</width>
       <height>40</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Consolas</family>
+     </font>
     </property>
     <property name="placeholderText">
      <string>Create Database:</string>

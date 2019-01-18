@@ -11,11 +11,11 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Connector(object):
     def setupUi(self, Connector):
         Connector.setObjectName("Connector")
-        Connector.resize(283, 264)
+        Connector.resize(286, 243)
         self.centralwidget = QtWidgets.QWidget(Connector)
         self.centralwidget.setObjectName("centralwidget")
         self.title = QtWidgets.QLabel(self.centralwidget)
-        self.title.setGeometry(QtCore.QRect(14, 4, 260, 50))
+        self.title.setGeometry(QtCore.QRect(14, 0, 260, 40))
         font = QtGui.QFont()
         font.setPointSize(16)
         self.title.setFont(font)
@@ -23,7 +23,7 @@ class Ui_Connector(object):
         self.title.setObjectName("title")
         self.Connect_btn = QtWidgets.QPushButton(self.centralwidget)
         self.Connect_btn.setEnabled(True)
-        self.Connect_btn.setGeometry(QtCore.QRect(14, 150, 260, 50))
+        self.Connect_btn.setGeometry(QtCore.QRect(14, 140, 260, 50))
         font = QtGui.QFont()
         font.setPointSize(15)
         font.setBold(True)
@@ -31,7 +31,7 @@ class Ui_Connector(object):
         self.Connect_btn.setFont(font)
         self.Connect_btn.setObjectName("Connect_btn")
         self.host_in = QtWidgets.QLineEdit(self.centralwidget)
-        self.host_in.setGeometry(QtCore.QRect(14, 60, 150, 40))
+        self.host_in.setGeometry(QtCore.QRect(14, 50, 150, 40))
         font = QtGui.QFont()
         font.setPointSize(12)
         font.setBold(True)
@@ -42,18 +42,18 @@ class Ui_Connector(object):
         self.host_in.setClearButtonEnabled(True)
         self.host_in.setObjectName("host_in")
         self.user_in = QtWidgets.QLineEdit(self.centralwidget)
-        self.user_in.setGeometry(QtCore.QRect(14, 110, 90, 30))
+        self.user_in.setGeometry(QtCore.QRect(14, 100, 90, 30))
         self.user_in.setClearButtonEnabled(True)
         self.user_in.setObjectName("user_in")
         self.pass_in = QtWidgets.QLineEdit(self.centralwidget)
-        self.pass_in.setGeometry(QtCore.QRect(114, 110, 90, 30))
+        self.pass_in.setGeometry(QtCore.QRect(114, 100, 90, 30))
         self.pass_in.setEchoMode(QtWidgets.QLineEdit.Normal)
         self.pass_in.setCursorMoveStyle(QtCore.Qt.LogicalMoveStyle)
         self.pass_in.setClearButtonEnabled(True)
         self.pass_in.setObjectName("pass_in")
         self.buffered = QtWidgets.QCheckBox(self.centralwidget)
         self.buffered.setEnabled(True)
-        self.buffered.setGeometry(QtCore.QRect(214, 110, 80, 30))
+        self.buffered.setGeometry(QtCore.QRect(214, 100, 80, 30))
         self.buffered.setStyleSheet("")
         self.buffered.setCheckable(True)
         self.buffered.setChecked(True)
@@ -62,7 +62,7 @@ class Ui_Connector(object):
         self.buffered.setTristate(False)
         self.buffered.setObjectName("buffered")
         self.port_in = QtWidgets.QLineEdit(self.centralwidget)
-        self.port_in.setGeometry(QtCore.QRect(170, 60, 100, 40))
+        self.port_in.setGeometry(QtCore.QRect(170, 50, 100, 40))
         font = QtGui.QFont()
         font.setPointSize(10)
         font.setBold(True)
@@ -73,7 +73,11 @@ class Ui_Connector(object):
         self.port_in.setClearButtonEnabled(True)
         self.port_in.setObjectName("port_in")
         self.console_out = QtWidgets.QTextBrowser(self.centralwidget)
-        self.console_out.setGeometry(QtCore.QRect(-1, 220, 286, 45))
+        self.console_out.setGeometry(QtCore.QRect(-1, 205, 286, 40))
+        font = QtGui.QFont()
+        font.setFamily("Consolas")
+        font.setPointSize(10)
+        self.console_out.setFont(font)
         self.console_out.setObjectName("console_out")
         Connector.setCentralWidget(self.centralwidget)
 
@@ -94,6 +98,11 @@ class Ui_Connector(object):
         self.buffered.setText(_translate("Connector", "Buffered"))
         self.port_in.setText(_translate("Connector", "3306"))
         self.port_in.setPlaceholderText(_translate("Connector", "Port:"))
+        self.console_out.setHtml(_translate("Connector", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'Consolas\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'MS Shell Dlg 2\';\"><br /></p></body></html>"))
 
 
 if __name__ == "__main__":
