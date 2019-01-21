@@ -7,9 +7,11 @@ from PyQt5.uic import loadUi
 from PyQt5 import QtGui
 
 from Core.Manager import ManagerWindow
-from Lib.UI.SCRIPT.ConnectorWindow import Ui_Connector
+from Core.PopupHandler import PopupWindow
 
+from Lib.UI.SCRIPT.ConnectorWindow import Ui_Connector
 from Lib.icons_manager import ico_connector
+
 
 app = QApplication(sys.argv)
 app.processEvents()
@@ -48,7 +50,7 @@ class MainWindow(QMainWindow,Ui_Connector):
             self.close()
         
         except Exception as error:
-            self.console_out.setHtml('<p style="color:red;">%s</p>'%error)
+            self.PopupWindow = PopupWindow(str(error))
             print(error)
             pass
     

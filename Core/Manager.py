@@ -1,13 +1,14 @@
-## SIMPLE MODULES ##
+## SIMPLE MODULES ##+
 import time         #
 import sys          #
-####################
+import xlrd         #
+####################+
 
 ######### MYSQL MODULE #########+
 import mysql.connector as mysql #
 ################################+
 
-################### PYQT MODULES ##############################################################################
+################### PYQT MODULES ##############################################################################+
 from PyQt5              import QtCore                                                                          #
 from PyQt5.uic          import loadUi                                                                          #
 from PyQt5.QtGui        import QStandardItemModel,QStandardItem                                                #
@@ -15,16 +16,15 @@ from PyQt5.QtWidgets    import (QApplication, QDialog,QFileDialog,QMainWindow,QS
                    QAction,QToolBar,QTableWidget,QTableWidgetItem,QHeaderView,QTreeWidgetItem)                 #                                                                                #
 from PyQt5.QtCore       import pyqtSlot,QFile, QTextStream,QCoreApplication,Qt                                 #
 from PyQt5.QtGui        import QIcon                                                                           #
-###############################################################################################################
+###############################################################################################################+
 
-## INTERFACE MODULES #######################################
+## INTERFACE MODULES #######################################+
 from Lib.UI.SCRIPT.MainWindow   import Ui_SQLMANAGER        #
 from Lib.icons_manager          import (_run,_runSelected,  #
 _import,_export,_refresh,ui_db,ui_tb,ico_consult)           #
-############################################################
+############################################################+
 
 from functools          import partial
-
 
 class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQLMANAGER,object):
     def __init__(self,hs,pt,us,ps,bfr, parent = None):
@@ -228,15 +228,6 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
             self.WriteConsole('<p style="color:red;">%s</p>'%error)
             pass
 
-    def Create_DB           (self):
-        dbName = self.createdb_in.displayText()
-        createPattern = "CREATE DATABASE %s" %dbName
-
-        cursor = self.mydb.cursor()
-        cursor.execute(createPattern)
-        
-        self.Get_Databases()
-
     def load_query_from_file(self):         # OPEN DIALOG BOX TO LOAD FILE
         try:
             fname = QFileDialog.getOpenFileName(self, 'Load SQL From file', 'Query',"Select query file (*.indext *.sql *.dat *.csv *.tsv *.psv)")
@@ -254,7 +245,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
             _file.write(toSave_query)
             _file.close()
         except FileNotFoundError:pass
-    
+
     def add_tool_bar        (self):         # ADD TOOLBAR AND TOOLBAR ICONS HANDLER
         toolBar = QToolBar()
         toolBar.setMovable(False)
@@ -285,8 +276,17 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
         toolBar.addAction(export_t)              #
         #########################################
 
+    def Create_DB           (self):
+        dbName = self.createdb_in.displayText()
+        createPattern = "CREATE DATABASE %s" %dbName
+
+        cursor = self.mydb.cursor()
+        cursor.execute(createPattern)
+        
+        self.Get_Databases()
+
     def WriteConsole        (self,text):    # DEBUG ALL STATE TO CONSOLE
         self.console_out.appendHtml(str(text))
         self.processEvents()
-    
+
     #--#########################################################################################################################--#

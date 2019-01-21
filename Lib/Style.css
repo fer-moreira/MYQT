@@ -1,18 +1,43 @@
 /*  REDLIGHT    : #c63f3f  
     REDADARK    : #ba0000
-    REDSHADOW   : #5e0000
-*/
+	REDSHADOW   : #5e0000
+	 
+QCheckBox::indicator:unchecked {
+	image: url(image/checkbox_unchecked.png);
+}
+QCheckBox::indicator:checked {
+	image: url(image/checkbox_checked.png);
+}
+QRadioButton::indicator::unchecked {
+	image: url(image/radio_normal.png);
+}
 
-QWidget#frmLogin,QWidget#frmPopup,QWidget#frmHostInfo,QWidget#frmLogout,QWidget#frmConfig,QWidget#frmData,QWidget#frmDefence,QWidget#frmHost,QWidget#frmMain,QWidget#frmPwd,QWidget#frmSelect,QWidget#frmMessageBox{
+QRadioButton::indicator::checked {
+	image: url(image/radio_selected.png);
+} 
+QComboBox::down-arrow,QDateEdit::down-arrow {
+	image: url(image/array_down.png);
+}  
+
+QWidget#title
+{
 	border:1px solid #c63f3f;
 	border-radius:0px;
 }
-
-.QFrame{
-	border:1px solid #ba0000;
-	border-radius:5px;
+QPushButton#btnMenu,QPushButton#btnMenu_Min,QPushButton#btnMenu_Max,QPushButton#btnMenu_Close{
+	border-radius:0px;
+	color: #F0F0F0;
+	background-color:rgba(0, 0, 0, 0);
+	border-style:none;
 }
 
+QPushButton#btnMenu:hover,QPushButton#btnMenu_Min:hover,QPushButton#btnMenu_Max:hover{
+	background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(25, 134, 199, 0), stop:1 #ba0000);
+}
+
+QPushButton#btnMenu_Close:hover{
+	background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(238, 0, 0, 128), stop:1 rgba(238, 44, 44, 255));
+}
 QWidget#widget_title{
 	background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #c63f3f, stop:1 #5e0000);
 }
@@ -24,6 +49,18 @@ QLabel#lab_Ico,QLabel#lab_Title{
 	border-style:none;
 }
 
+*/
+
+* {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+QPlainTextEdit
+{
+	border: 1 solid rgb(187, 0, 0);
+}
+
+
 QLineEdit {
 	border: 1px solid #ba0000;
 	border-radius: 5px;
@@ -32,89 +69,9 @@ QLineEdit {
 	selection-background-color: #c63f3f;
 }
 
-QLineEdit[echoMode="2"] {
-	lineedit-password-character: 9679;
-}
-
-.QGroupBox{
-	border: 1px solid #ba0000;
-	border-radius: 5px;
-}
-
-.QPushButton{
-	border-style: none;
-	border: 0px;
-	color: #F0F0F0;
-	padding: 5px;
-	min-height: 20px;
-	border-radius:5px;
-	background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #c63f3f, stop:1 #5e0000);
-}
-
-.QPushButton[focusPolicy="0"] {
-	border-style: none;
-	border: 0px;
-	color: #F0F0F0;
-	padding: 0px;
-	min-height: 10px;
-	border-radius:3px;
-	background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #c63f3f, stop:1 #5e0000);
-}
-
-.QPushButton:hover{
-	background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #ba0000, stop:1 #5e0000);
-}
-
-.QPushButton:pressed{
-	background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #c63f3f, stop:1 #5e0000);
-}
-
-QPushButton#btnMenu,QPushButton#btnMenu_Min,QPushButton#btnMenu_Max,QPushButton#btnMenu_Close{
-	border-radius:0px;
-	color: #F0F0F0;
-	background-color:rgba(0,0,0,0);
-	border-style:none;
-}
-
-QPushButton#btnMenu:hover,QPushButton#btnMenu_Min:hover,QPushButton#btnMenu_Max:hover{
-	background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(25, 134, 199, 0), stop:1 #ba0000);
-}
-
-QPushButton#btnMenu_Close:hover{
-	background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(238, 0, 0, 128), stop:1 rgba(238, 44, 44, 255));
-}
-
-QCheckBox {
-	spacing: 2px;
-}
-
 QCheckBox::indicator {
 	width: 20px;
 	height: 20px;
-}
-/* 
-QCheckBox::indicator:unchecked {
-	image: url(image/checkbox_unchecked.png);
-}
-
-QCheckBox::indicator:checked {
-	image: url(image/checkbox_checked.png);
-} */
-/* 
-QRadioButton::indicator::unchecked {
-	image: url(image/radio_normal.png);
-}
-
-QRadioButton::indicator::checked {
-	image: url(image/radio_selected.png);
-} */
-/* 
-QComboBox::down-arrow,QDateEdit::down-arrow {
-	image: url(image/array_down.png);
-} */
-
-QRadioButton {
-	spacing: 2px;
 }
 
 QRadioButton::indicator {
@@ -122,23 +79,11 @@ QRadioButton::indicator {
 	height: 15px;
 }
 
-QComboBox,QDateEdit{
+QComboBox{
 	border-radius: 3px;
 	padding: 1px 10px 1px 5px;
 	border: 1px solid #ba0000;
 }
-
-QComboBox::drop-down,QDateEdit::drop-down {
-	subcontrol-origin: padding;
-	subcontrol-position: top right;
-	width: 15px;
-	border-left-width: 1px;
-	border-left-style: solid;
-	border-top-right-radius: 3px;
-	border-bottom-right-radius: 3px;
-	border-left-color: #ba0000;
-}
-
 
 QMenu {
 	background-color:#F0F0F0;
@@ -350,4 +295,42 @@ QTabBar::tab:selected, QTabBar::tab:hover {
 QStatusBar::item {
      border: 1px solid #ba0000;
      border-radius: 3px;
+}
+
+.QFrame{
+	border:1px solid #ba0000;
+	border-radius:5px;
+}
+
+.QGroupBox{
+	border: 1px solid #ba0000;
+	border-radius: 5px;
+}
+
+.QPushButton{
+	border-style: none;
+	border: 0px;
+	color: #F0F0F0;
+	padding: 5px;
+	min-height: 20px;
+	border-radius:5px;
+	background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #c63f3f, stop:1 #5e0000);
+}
+
+.QPushButton[focusPolicy="0"] {
+	border-style: none;
+	border: 0px;
+	color: #F0F0F0;
+	padding: 0px;
+	min-height: 10px;
+	border-radius:3px;
+	background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #c63f3f, stop:1 #5e0000);
+}
+
+.QPushButton:hover{
+	background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #ba0000, stop:1 #5e0000);
+}
+
+.QPushButton:pressed{
+	background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #c63f3f, stop:1 #5e0000);
 }

@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1052</width>
-    <height>830</height>
+    <width>1045</width>
+    <height>815</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -44,22 +44,28 @@
    <enum>QTabWidget::Rounded</enum>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QTabWidget" name="tabWidget">
+   <widget class="QTabWidget" name="tabs">
     <property name="geometry">
      <rect>
       <x>280</x>
       <y>2</y>
-      <width>760</width>
-      <height>610</height>
+      <width>762</width>
+      <height>612</height>
      </rect>
+    </property>
+    <property name="sizeIncrement">
+     <size>
+      <width>9</width>
+      <height>18</height>
+     </size>
     </property>
     <property name="font">
      <font>
       <family>Consolas</family>
       <pointsize>10</pointsize>
-      <weight>75</weight>
+      <weight>50</weight>
       <italic>false</italic>
-      <bold>true</bold>
+      <bold>false</bold>
       <underline>false</underline>
       <strikeout>false</strikeout>
      </font>
@@ -77,7 +83,7 @@
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <property name="iconSize">
      <size>
@@ -89,7 +95,7 @@
      <enum>Qt::ElideNone</enum>
     </property>
     <property name="documentMode">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="tabsClosable">
      <bool>false</bool>
@@ -293,6 +299,9 @@
       <property name="rowCount">
        <number>0</number>
       </property>
+      <property name="columnCount">
+       <number>0</number>
+      </property>
      </widget>
      <widget class="QPlainTextEdit" name="query_in">
       <property name="geometry">
@@ -302,6 +311,12 @@
         <width>756</width>
         <height>297</height>
        </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
       </property>
       <property name="font">
        <font>
@@ -314,6 +329,9 @@
       <property name="cursor" stdset="0">
        <cursorShape>ArrowCursor</cursorShape>
       </property>
+      <property name="mouseTracking">
+       <bool>false</bool>
+      </property>
       <property name="toolTip">
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;NEW CONSULT&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
@@ -321,7 +339,7 @@
        <bool>false</bool>
       </property>
       <property name="styleSheet">
-       <string notr="true">border:1 solid darkred;</string>
+       <string notr="true"/>
       </property>
       <property name="inputMethodHints">
        <set>Qt::ImhDate|Qt::ImhDialableCharactersOnly|Qt::ImhDigitsOnly|Qt::ImhEmailCharactersOnly|Qt::ImhExclusiveInputMask|Qt::ImhFormattedNumbersOnly|Qt::ImhHiddenText|Qt::ImhLatinOnly|Qt::ImhLowercaseOnly|Qt::ImhMultiLine|Qt::ImhNoAutoUppercase|Qt::ImhNoEditMenu|Qt::ImhNoPredictiveText|Qt::ImhNoTextHandles|Qt::ImhPreferLatin|Qt::ImhPreferLowercase|Qt::ImhPreferNumbers|Qt::ImhPreferUppercase|Qt::ImhSensitiveData|Qt::ImhTime|Qt::ImhUppercaseOnly|Qt::ImhUrlCharactersOnly</set>
@@ -341,6 +359,12 @@
       <property name="plainText">
        <string notr="true"/>
       </property>
+      <property name="backgroundVisible">
+       <bool>false</bool>
+      </property>
+      <property name="centerOnScroll">
+       <bool>false</bool>
+      </property>
      </widget>
     </widget>
    </widget>
@@ -349,7 +373,7 @@
      <rect>
       <x>280</x>
       <y>620</y>
-      <width>756</width>
+      <width>758</width>
       <height>130</height>
      </rect>
     </property>
@@ -367,9 +391,6 @@
     </property>
     <property name="toolTip">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;CONSOLE&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color:rgb(248,248,248)</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::NoFrame</enum>
@@ -459,9 +480,9 @@
    <widget class="QPushButton" name="createdb_btn">
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>713</y>
-      <width>78</width>
+      <x>191</x>
+      <y>710</y>
+      <width>77</width>
       <height>40</height>
      </rect>
     </property>
@@ -477,10 +498,10 @@
    <widget class="QLineEdit" name="createdb_in">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>713</y>
-      <width>180</width>
-      <height>40</height>
+      <x>12</x>
+      <y>711</y>
+      <width>177</width>
+      <height>38</height>
      </rect>
     </property>
     <property name="font">
@@ -593,12 +614,15 @@
   </action>
  </widget>
  <tabstops>
-  <tabstop>tabWidget</tabstop>
-  <tabstop>data_result</tabstop>
-  <tabstop>console_out</tabstop>
-  <tabstop>desc_result</tabstop>
-  <tabstop>result_out</tabstop>
+  <tabstop>tabs</tabstop>
   <tabstop>query_in</tabstop>
+  <tabstop>result_out</tabstop>
+  <tabstop>console_out</tabstop>
+  <tabstop>createdb_in</tabstop>
+  <tabstop>createdb_btn</tabstop>
+  <tabstop>desc_result</tabstop>
+  <tabstop>data_result</tabstop>
+  <tabstop>tables_out</tabstop>
  </tabstops>
  <resources/>
  <connections/>
