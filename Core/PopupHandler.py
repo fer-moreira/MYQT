@@ -12,10 +12,9 @@ class PopupWindow(QMainWindow,Ui_Error):
         self.setFixedSize(self.size())        
 
         self._log = _log
+
         self.console_out.setText(self._log)
 
         self.ok.clicked.connect(self.close)
 
         self.show()
-
-

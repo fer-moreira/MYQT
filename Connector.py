@@ -28,7 +28,8 @@ class MainWindow(QMainWindow,Ui_Connector):
 
         self.show()
 
-        self.Connect_btn.clicked.connect(self.Connect)
+        self.buttons.accepted.connect(self.Connect)
+        self.buttons.rejected.connect(self.close)
 
     def Connect (self):
         self._host = self.host_in.displayText()
@@ -37,7 +38,6 @@ class MainWindow(QMainWindow,Ui_Connector):
         self._pass = self.pass_in.displayText()
         self.buffered_c = self.buffered.isChecked()
 
-        
         try:
             mydb = mysql.connect(
             host=self._host,
@@ -53,7 +53,6 @@ class MainWindow(QMainWindow,Ui_Connector):
             self.PopupWindow = PopupWindow(str(error))
             print(error)
             pass
-    
 
 Main_GUI = MainWindow()
 sys.exit(app.exec_())

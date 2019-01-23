@@ -251,7 +251,6 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
         toolBar.setMovable(False)
         toolBar.setToolButtonStyle(Qt.ToolButtonTextUnderIcon)
         tb_config = self.addToolBar(Qt.TopToolBarArea,toolBar)
-        # tb = self.addToolBar("File")
 
         ############### CREATING BUTTONS ICONS AND SETTING FUNCTION #############################################################################
         compileAll =        QAction(QIcon(_run),        "Run",          self,shortcut="F9",             triggered=self.GetAllQuery)              #
@@ -260,6 +259,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
         export_t =          QAction(QIcon(_export),     "Save",         self,shortcut="Ctrl+S",         triggered=self.save_query_to_file)       #
         refresh_t =         QAction(QIcon(_refresh),    "Refresh",      self,shortcut="F5",             triggered=self.Get_Databases)            #
         #########################################################################################################################################
+        
         compileAll.setToolTip       ("RUN ALL QUERY (F9)")
         compileSelected.setToolTip  ("RUN SELECTED QUERY (Shift+Ctrl+F9)")
         import_t.setToolTip         ("RUN ALL QUERY (Ctrl+O)")
@@ -282,11 +282,11 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
 
         cursor = self.mydb.cursor()
         cursor.execute(createPattern)
-        
+
         self.Get_Databases()
 
     def WriteConsole        (self,text):    # DEBUG ALL STATE TO CONSOLE
         self.console_out.appendHtml(str(text))
         self.processEvents()
 
-    #--#########################################################################################################################--#
+# - - ######################################################################################################################### - - #

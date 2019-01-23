@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>443</width>
-    <height>295</height>
+    <width>338</width>
+    <height>257</height>
    </rect>
   </property>
   <property name="font">
@@ -19,95 +19,99 @@
   <property name="windowTitle">
    <string>SQL CONNECTOR</string>
   </property>
+  <property name="dockOptions">
+   <set>QMainWindow::AllowTabbedDocks|QMainWindow::AnimatedDocks|QMainWindow::VerticalTabs</set>
+  </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="Connect_btn">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>254</y>
-      <width>80</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial,Helvetica,sans-serif</family>
-      <pointsize>10</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>Open</string>
-    </property>
-   </widget>
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>2</x>
-      <y>1</y>
-      <width>440</width>
-      <height>240</height>
+      <x>3</x>
+      <y>0</y>
+      <width>331</width>
+      <height>210</height>
      </rect>
     </property>
     <property name="currentIndex">
      <number>0</number>
     </property>
-    <widget class="QWidget" name="cfg">
+    <property name="iconSize">
+     <size>
+      <width>20</width>
+      <height>20</height>
+     </size>
+    </property>
+    <property name="documentMode">
+     <bool>false</bool>
+    </property>
+    <property name="tabsClosable">
+     <bool>false</bool>
+    </property>
+    <property name="movable">
+     <bool>false</bool>
+    </property>
+    <property name="tabBarAutoHide">
+     <bool>false</bool>
+    </property>
+    <widget class="QWidget" name="cnt">
      <attribute name="title">
-      <string>Configurations</string>
+      <string>Connection</string>
      </attribute>
-     <widget class="QLabel" name="label">
+     <widget class="QLineEdit" name="user_in">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>10</y>
-        <width>100</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial,Helvetica,sans-serif</family>
-        <pointsize>12</pointsize>
-        <weight>50</weight>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>Network Type:</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="host_in">
-      <property name="geometry">
-       <rect>
-        <x>162</x>
-        <y>45</y>
-        <width>260</width>
+        <y>130</y>
+        <width>120</width>
         <height>30</height>
        </rect>
       </property>
       <property name="font">
        <font>
         <pointsize>10</pointsize>
-        <weight>50</weight>
-        <bold>false</bold>
        </font>
       </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Username&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
       <property name="text">
-       <string>127.0.0.1</string>
+       <string>root</string>
       </property>
-      <property name="frame">
-       <bool>true</bool>
+      <property name="placeholderText">
+       <string>User:</string>
       </property>
-      <property name="alignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      <property name="clearButtonEnabled">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="pass_in">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>130</y>
+        <width>80</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Password&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="text">
+       <string>123456</string>
+      </property>
+      <property name="echoMode">
+       <enum>QLineEdit::Normal</enum>
+      </property>
+      <property name="placeholderText">
+       <string>Password:</string>
+      </property>
+      <property name="cursorMoveStyle">
+       <enum>Qt::LogicalMoveStyle</enum>
       </property>
       <property name="clearButtonEnabled">
        <bool>false</bool>
@@ -116,9 +120,9 @@
      <widget class="QLineEdit" name="port_in">
       <property name="geometry">
        <rect>
-        <x>162</x>
-        <y>79</y>
-        <width>260</width>
+        <x>140</x>
+        <y>90</y>
+        <width>80</width>
         <height>30</height>
        </rect>
       </property>
@@ -128,6 +132,9 @@
         <weight>50</weight>
         <bold>false</bold>
        </font>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Server PORT&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="text">
        <string>3306</string>
@@ -138,26 +145,8 @@
       <property name="alignment">
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
       </property>
-      <property name="clearButtonEnabled">
-       <bool>false</bool>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="user_in">
-      <property name="geometry">
-       <rect>
-        <x>162</x>
-        <y>113</y>
-        <width>260</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>root</string>
+      <property name="placeholderText">
+       <string>Port:</string>
       </property>
       <property name="clearButtonEnabled">
        <bool>false</bool>
@@ -169,20 +158,21 @@
       </property>
       <property name="geometry">
        <rect>
-        <x>162</x>
-        <y>183</y>
-        <width>260</width>
-        <height>20</height>
+        <x>230</x>
+        <y>90</y>
+        <width>90</width>
+        <height>30</height>
        </rect>
       </property>
       <property name="font">
        <font>
         <family>Arial,Helvetica,sans-serif</family>
         <pointsize>10</pointsize>
+        <italic>true</italic>
        </font>
       </property>
-      <property name="styleSheet">
-       <string notr="true"/>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Buffered Connection&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="text">
        <string>Buffered</string>
@@ -203,63 +193,47 @@
        <bool>false</bool>
       </property>
      </widget>
-     <widget class="QLineEdit" name="pass_in">
+     <widget class="QLineEdit" name="host_in">
       <property name="geometry">
        <rect>
-        <x>162</x>
-        <y>146</y>
-        <width>260</width>
+        <x>10</x>
+        <y>90</y>
+        <width>120</width>
         <height>30</height>
        </rect>
       </property>
       <property name="font">
        <font>
         <pointsize>10</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Server / IP&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
       <property name="text">
-       <string>123456</string>
+       <string>127.0.0.1</string>
       </property>
-      <property name="echoMode">
-       <enum>QLineEdit::Normal</enum>
+      <property name="frame">
+       <bool>true</bool>
       </property>
-      <property name="cursorMoveStyle">
-       <enum>Qt::LogicalMoveStyle</enum>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+      <property name="placeholderText">
+       <string>Server/IP:</string>
       </property>
       <property name="clearButtonEnabled">
        <bool>false</bool>
       </property>
      </widget>
-     <widget class="QLabel" name="label_2">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>44</y>
-        <width>100</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial,Helvetica,sans-serif</family>
-        <pointsize>12</pointsize>
-        <weight>50</weight>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>Server/ IP:</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-      </property>
-     </widget>
      <widget class="QComboBox" name="comboBox">
       <property name="geometry">
        <rect>
-        <x>162</x>
-        <y>11</y>
-        <width>260</width>
+        <x>10</x>
+        <y>10</y>
+        <width>310</width>
         <height>30</height>
        </rect>
       </property>
@@ -270,37 +244,7 @@
       </item>
       <item>
        <property name="text">
-        <string>MYSQL (named pipe)</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>MYSQL (SSH TUNEL)</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Microsoft Server (named pipe)</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
         <string>Microsoft Server (TCP/IP)</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Microsoft Server (SPX/IPX)</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Microsoft Server (Banyan VINES)</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Microsoft Server (Windows RPC)</string>
        </property>
       </item>
       <item>
@@ -309,135 +253,170 @@
        </property>
       </item>
      </widget>
-     <widget class="QLabel" name="label_4">
+     <widget class="QCheckBox" name="trusted">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>78</y>
-        <width>100</width>
+        <x>230</x>
+        <y>130</y>
+        <width>80</width>
         <height>30</height>
        </rect>
       </property>
       <property name="font">
        <font>
         <family>Arial,Helvetica,sans-serif</family>
-        <pointsize>12</pointsize>
-        <weight>50</weight>
-        <bold>false</bold>
+        <pointsize>10</pointsize>
+        <italic>true</italic>
        </font>
       </property>
-      <property name="text">
-       <string>Port:</string>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Trusted Connection&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
-      <property name="alignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      <property name="text">
+       <string>Trusted</string>
+      </property>
+      <property name="checkable">
+       <bool>true</bool>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+      <property name="autoRepeat">
+       <bool>false</bool>
+      </property>
+      <property name="autoExclusive">
+       <bool>false</bool>
+      </property>
+      <property name="tristate">
+       <bool>false</bool>
       </property>
      </widget>
-     <widget class="QLabel" name="label_5">
+     <widget class="QCheckBox" name="driver">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>112</y>
-        <width>100</width>
+        <x>230</x>
+        <y>50</y>
+        <width>90</width>
         <height>30</height>
        </rect>
       </property>
       <property name="font">
        <font>
         <family>Arial,Helvetica,sans-serif</family>
-        <pointsize>12</pointsize>
-        <weight>50</weight>
-        <bold>false</bold>
+        <pointsize>10</pointsize>
+        <italic>true</italic>
        </font>
       </property>
-      <property name="text">
-       <string>User:</string>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Use server Driver&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
-      <property name="alignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      <property name="text">
+       <string>Use Driver</string>
+      </property>
+      <property name="checkable">
+       <bool>true</bool>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+      <property name="autoRepeat">
+       <bool>false</bool>
+      </property>
+      <property name="autoExclusive">
+       <bool>false</bool>
+      </property>
+      <property name="tristate">
+       <bool>false</bool>
       </property>
      </widget>
-     <widget class="QLabel" name="label_6">
+     <widget class="QLineEdit" name="driver_in">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>145</y>
-        <width>100</width>
+        <y>50</y>
+        <width>210</width>
         <height>30</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <family>Arial,Helvetica,sans-serif</family>
-        <pointsize>12</pointsize>
+        <pointsize>10</pointsize>
         <weight>50</weight>
         <bold>false</bold>
        </font>
       </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Driver&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
       <property name="text">
-       <string>Password:</string>
+       <string>SQL Server Native Client 11.0</string>
+      </property>
+      <property name="frame">
+       <bool>true</bool>
       </property>
       <property name="alignment">
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
       </property>
+      <property name="placeholderText">
+       <string>Driver:</string>
+      </property>
+      <property name="clearButtonEnabled">
+       <bool>false</bool>
+      </property>
      </widget>
-     <zorder>label_5</zorder>
-     <zorder>label_2</zorder>
-     <zorder>label_6</zorder>
-     <zorder>label_4</zorder>
-     <zorder>label</zorder>
-     <zorder>host_in</zorder>
-     <zorder>port_in</zorder>
-     <zorder>user_in</zorder>
-     <zorder>buffered</zorder>
-     <zorder>pass_in</zorder>
-     <zorder>comboBox</zorder>
     </widget>
     <widget class="QWidget" name="adv">
      <attribute name="title">
-      <string>Advanced</string>
+      <string>More</string>
      </attribute>
     </widget>
    </widget>
-   <widget class="QPushButton" name="Connect_btn_2">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
+   <widget class="QDialogButtonBox" name="buttons">
     <property name="geometry">
      <rect>
-      <x>350</x>
-      <y>254</y>
-      <width>80</width>
+      <x>12</x>
+      <y>217</y>
+      <width>310</width>
       <height>30</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>Arial,Helvetica,sans-serif</family>
       <pointsize>10</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
      </font>
     </property>
-    <property name="text">
-     <string>Cancel</string>
+    <property name="styleSheet">
+     <string notr="true">	min-width: 80px;
+ min-height: 20px;</string>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+    <property name="standardButtons">
+     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Open</set>
+    </property>
+    <property name="centerButtons">
+     <bool>true</bool>
     </property>
    </widget>
-   <zorder>tabWidget</zorder>
-   <zorder>Connect_btn</zorder>
-   <zorder>Connect_btn_2</zorder>
   </widget>
  </widget>
  <tabstops>
-  <tabstop>tabWidget</tabstop>
   <tabstop>comboBox</tabstop>
   <tabstop>host_in</tabstop>
   <tabstop>port_in</tabstop>
   <tabstop>user_in</tabstop>
   <tabstop>pass_in</tabstop>
   <tabstop>buffered</tabstop>
-  <tabstop>Connect_btn</tabstop>
-  <tabstop>Connect_btn_2</tabstop>
  </tabstops>
  <resources/>
  <connections/>

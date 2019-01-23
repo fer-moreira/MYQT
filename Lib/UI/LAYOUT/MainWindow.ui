@@ -19,6 +19,9 @@
   <property name="autoFillBackground">
    <bool>false</bool>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <property name="windowFilePath">
    <string/>
   </property>
@@ -116,14 +119,14 @@
         <x>0</x>
         <y>0</y>
         <width>760</width>
-        <height>580</height>
+        <height>575</height>
        </rect>
       </property>
       <property name="toolTip">
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;DATA DESCRIPTIONS&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <property name="frameShadow">
        <enum>QFrame::Plain</enum>
@@ -182,14 +185,14 @@
         <x>0</x>
         <y>0</y>
         <width>760</width>
-        <height>580</height>
+        <height>575</height>
        </rect>
       </property>
       <property name="toolTip">
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;ALL DATA IN TABLE&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <property name="frameShadow">
        <enum>QFrame::Plain</enum>
@@ -246,16 +249,16 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>300</y>
+        <y>310</y>
         <width>756</width>
-        <height>278</height>
+        <height>270</height>
        </rect>
       </property>
       <property name="toolTip">
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;RESULTS&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="frameShape">
-       <enum>QFrame::Box</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <property name="frameShadow">
        <enum>QFrame::Plain</enum>
@@ -297,17 +300,41 @@
        <bool>false</bool>
       </property>
       <property name="rowCount">
-       <number>0</number>
+       <number>16</number>
       </property>
       <property name="columnCount">
-       <number>0</number>
+       <number>8</number>
       </property>
+      <row/>
+      <row/>
+      <row/>
+      <row/>
+      <row/>
+      <row/>
+      <row/>
+      <row/>
+      <row/>
+      <row/>
+      <row/>
+      <row/>
+      <row/>
+      <row/>
+      <row/>
+      <row/>
+      <column/>
+      <column/>
+      <column/>
+      <column/>
+      <column/>
+      <column/>
+      <column/>
+      <column/>
      </widget>
      <widget class="QPlainTextEdit" name="query_in">
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>0</y>
+        <y>2</y>
         <width>756</width>
         <height>297</height>
        </rect>
@@ -338,14 +365,11 @@
       <property name="autoFillBackground">
        <bool>false</bool>
       </property>
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
       <property name="inputMethodHints">
        <set>Qt::ImhDate|Qt::ImhDialableCharactersOnly|Qt::ImhDigitsOnly|Qt::ImhEmailCharactersOnly|Qt::ImhExclusiveInputMask|Qt::ImhFormattedNumbersOnly|Qt::ImhHiddenText|Qt::ImhLatinOnly|Qt::ImhLowercaseOnly|Qt::ImhMultiLine|Qt::ImhNoAutoUppercase|Qt::ImhNoEditMenu|Qt::ImhNoPredictiveText|Qt::ImhNoTextHandles|Qt::ImhPreferLatin|Qt::ImhPreferLowercase|Qt::ImhPreferNumbers|Qt::ImhPreferUppercase|Qt::ImhSensitiveData|Qt::ImhTime|Qt::ImhUppercaseOnly|Qt::ImhUrlCharactersOnly</set>
       </property>
       <property name="frameShape">
-       <enum>QFrame::Box</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <property name="frameShadow">
        <enum>QFrame::Plain</enum>
@@ -364,6 +388,31 @@
       </property>
       <property name="centerOnScroll">
        <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="Line" name="line">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>300</y>
+        <width>760</width>
+        <height>10</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <property name="lineWidth">
+       <number>2</number>
+      </property>
+      <property name="midLineWidth">
+       <number>0</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
       </property>
      </widget>
     </widget>
@@ -433,9 +482,9 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>0</y>
+      <y>10</y>
       <width>260</width>
-      <height>710</height>
+      <height>690</height>
      </rect>
     </property>
     <property name="font">
@@ -449,8 +498,8 @@
     <property name="autoFillBackground">
      <bool>false</bool>
     </property>
-    <property name="styleSheet">
-     <string notr="true">margin:2</string>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
     </property>
     <property name="verticalScrollBarPolicy">
      <enum>Qt::ScrollBarAsNeeded</enum>
@@ -461,6 +510,15 @@
     <property name="sizeAdjustPolicy">
      <enum>QAbstractScrollArea::AdjustToContents</enum>
     </property>
+    <attribute name="headerVisible">
+     <bool>false</bool>
+    </attribute>
+    <attribute name="headerCascadingSectionResizes">
+     <bool>false</bool>
+    </attribute>
+    <attribute name="headerHighlightSections">
+     <bool>true</bool>
+    </attribute>
     <column>
      <property name="text">
       <string>CONNECTION</string>
@@ -483,23 +541,39 @@
       <x>191</x>
       <y>710</y>
       <width>77</width>
-      <height>40</height>
+      <height>38</height>
      </rect>
+    </property>
+    <property name="baseSize">
+     <size>
+      <width>0</width>
+      <height>0</height>
+     </size>
     </property>
     <property name="font">
      <font>
       <family>Consolas</family>
+      <pointsize>10</pointsize>
      </font>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::WheelFocus</enum>
     </property>
     <property name="text">
      <string>CREATE</string>
+    </property>
+    <property name="autoRepeat">
+     <bool>false</bool>
+    </property>
+    <property name="autoExclusive">
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QLineEdit" name="createdb_in">
     <property name="geometry">
      <rect>
       <x>12</x>
-      <y>711</y>
+      <y>710</y>
       <width>177</width>
       <height>38</height>
      </rect>
