@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1045</width>
-    <height>815</height>
+    <width>1048</width>
+    <height>799</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,9 +18,6 @@
   </property>
   <property name="autoFillBackground">
    <bool>false</bool>
-  </property>
-  <property name="styleSheet">
-   <string notr="true"/>
   </property>
   <property name="windowFilePath">
    <string/>
@@ -53,7 +50,7 @@
       <x>280</x>
       <y>2</y>
       <width>762</width>
-      <height>612</height>
+      <height>650</height>
      </rect>
     </property>
     <property name="sizeIncrement">
@@ -117,9 +114,9 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>0</y>
+        <y>310</y>
         <width>760</width>
-        <height>575</height>
+        <height>310</height>
        </rect>
       </property>
       <property name="toolTip">
@@ -174,6 +171,80 @@
        <number>0</number>
       </property>
      </widget>
+     <widget class="QPlainTextEdit" name="create_in">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>1</y>
+        <width>760</width>
+        <height>303</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial,Helvetica,sans-serif</family>
+        <pointsize>13</pointsize>
+       </font>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;CONSOLE&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Plain</enum>
+      </property>
+      <property name="lineWidth">
+       <number>1</number>
+      </property>
+      <property name="midLineWidth">
+       <number>0</number>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAsNeeded</enum>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::AdjustToContents</enum>
+      </property>
+      <property name="undoRedoEnabled">
+       <bool>false</bool>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="plainText">
+       <string/>
+      </property>
+      <property name="backgroundVisible">
+       <bool>false</bool>
+      </property>
+      <property name="centerOnScroll">
+       <bool>false</bool>
+      </property>
+      <property name="placeholderText">
+       <string/>
+      </property>
+     </widget>
+     <widget class="Line" name="line_2">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>300</y>
+        <width>760</width>
+        <height>10</height>
+       </rect>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <property name="lineWidth">
+       <number>4</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="_data">
      <attribute name="title">
@@ -183,9 +254,9 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>0</y>
+        <y>1</y>
         <width>760</width>
-        <height>575</height>
+        <height>620</height>
        </rect>
       </property>
       <property name="toolTip">
@@ -249,9 +320,9 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>310</y>
+        <y>308</y>
         <width>756</width>
-        <height>270</height>
+        <height>310</height>
        </rect>
       </property>
       <property name="toolTip">
@@ -300,35 +371,11 @@
        <bool>false</bool>
       </property>
       <property name="rowCount">
-       <number>16</number>
+       <number>0</number>
       </property>
       <property name="columnCount">
-       <number>8</number>
+       <number>0</number>
       </property>
-      <row/>
-      <row/>
-      <row/>
-      <row/>
-      <row/>
-      <row/>
-      <row/>
-      <row/>
-      <row/>
-      <row/>
-      <row/>
-      <row/>
-      <row/>
-      <row/>
-      <row/>
-      <row/>
-      <column/>
-      <column/>
-      <column/>
-      <column/>
-      <column/>
-      <column/>
-      <column/>
-      <column/>
      </widget>
      <widget class="QPlainTextEdit" name="query_in">
       <property name="geometry">
@@ -358,9 +405,6 @@
       </property>
       <property name="mouseTracking">
        <bool>false</bool>
-      </property>
-      <property name="toolTip">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;NEW CONSULT&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="autoFillBackground">
        <bool>false</bool>
@@ -394,9 +438,9 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>300</y>
+        <y>293</y>
         <width>760</width>
-        <height>10</height>
+        <height>20</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -406,7 +450,7 @@
        <enum>QFrame::Raised</enum>
       </property>
       <property name="lineWidth">
-       <number>2</number>
+       <number>4</number>
       </property>
       <property name="midLineWidth">
        <number>0</number>
@@ -420,16 +464,16 @@
    <widget class="QPlainTextEdit" name="console_out">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>620</y>
-      <width>758</width>
-      <height>130</height>
+      <x>10</x>
+      <y>660</y>
+      <width>1030</width>
+      <height>80</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Consolas</family>
-      <pointsize>10</pointsize>
+      <pointsize>12</pointsize>
       <weight>50</weight>
       <italic>false</italic>
       <bold>false</bold>
@@ -484,7 +528,7 @@
       <x>10</x>
       <y>10</y>
       <width>260</width>
-      <height>690</height>
+      <height>590</height>
      </rect>
     </property>
     <property name="font">
@@ -510,11 +554,14 @@
     <property name="sizeAdjustPolicy">
      <enum>QAbstractScrollArea::AdjustToContents</enum>
     </property>
+    <property name="columnCount">
+     <number>1</number>
+    </property>
     <attribute name="headerVisible">
-     <bool>false</bool>
+     <bool>true</bool>
     </attribute>
     <attribute name="headerCascadingSectionResizes">
-     <bool>false</bool>
+     <bool>true</bool>
     </attribute>
     <attribute name="headerHighlightSections">
      <bool>true</bool>
@@ -539,7 +586,7 @@
     <property name="geometry">
      <rect>
       <x>191</x>
-      <y>710</y>
+      <y>601</y>
       <width>77</width>
       <height>38</height>
      </rect>
@@ -572,8 +619,8 @@
    <widget class="QLineEdit" name="createdb_in">
     <property name="geometry">
      <rect>
-      <x>12</x>
-      <y>710</y>
+      <x>10</x>
+      <y>601</y>
       <width>177</width>
       <height>38</height>
      </rect>

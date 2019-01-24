@@ -1,15 +1,13 @@
 
 schema = {
-    'SELECT':'<p style="color:yellow;">SELECT</p>',
+    'SELECT':'<p style="color:red;">SELECT</p>',
     'FROM':'<p style="color:yellow;">FROM</p>',
-    'INNER':'<p style="color:yellow;">INNER</p>',
-    'JOIN':'<p style="color:yellow;">JOIN</p>',
-    'ON':'<p style="color:yellow;">ON</p>',
-    'AND':'<p style="color:yellow;">AND</p>',
-    'USE':'<p style="color:yellow;">USE</p>'
+    'INNER':'<p style="color:blue;">INNER</p>',
+    'JOIN':'<p style="color:dark;">JOIN</p>',
+    'ON':'<p style="color:green;">ON</p>',
+    'AND':'<p style="color:blue;">AND</p>',
+    'USE':'<p style="color:cyan;">USE</p>'
 }
-
-query = input("Enter Query: ")
 
 words = query.split(" ")
 
@@ -20,5 +18,3 @@ for w in words:
         finalQuery += "%s " %scWord
     else:
         finalQuery += "%s " %w
-
-print(finalQuery)
