@@ -27,9 +27,9 @@ to see all your information (Table columns type / Table data)
 # Interface
 
 <img src="src/screenshots/connector.PNG" alt="connector" width="300"/></br>
-<img src="src/screenshots/manager.PNG" alt="manager" width="400"/>
-<img src="src/screenshots/table_script.PNG" alt="types" width="400"/>
-<img src="src/screenshots/data.PNG" alt="data" width="400"/>
+<img src="src/screenshots/manager.PNG" alt="manager" width="600"/>
+<img src="src/screenshots/table_script.PNG" alt="types" width="600"/>
+<img src="src/screenshots/data.PNG" alt="data" width="600"/>
 
 ---
 
