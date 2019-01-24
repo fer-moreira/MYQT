@@ -8,6 +8,10 @@ SQL Manager is a free, open source application for MySQL database manager
 - This software is developed in python using the QT (Cute) framework for creating  interface 
 - Developed by Fernando Moreira between 2018 - 2019
 
+## Using interface
+- Two clicks on a database to use it
+- Two clicks on a table within the active database
+to see all your information (Table columns type / Table data)
 
 ## Shortcuts Usage
 <pre>
@@ -17,11 +21,6 @@ SQL Manager is a free, open source application for MySQL database manager
 - Export query              -> (Ctrl + S) 
 - Execute selected QUERY    -> (Ctrl + Shift F9)
 </pre>
-
-## Using interface
-- Two clicks on a database to use it
-- Two clicks on a table within the active database
-to see all your information (Table columns type / Table data)
 
 ## Requirements
 <pre>
