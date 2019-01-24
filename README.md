@@ -2,40 +2,36 @@
 
 [![Build Status](https://travis-ci.com/zisongbr/MYSQL_PYQT.svg?branch=master)](https://travis-ci.com/zisongbr/MYSQL_PYQT)
 
-SQL Manager é um programa livre e com código-aberto para o MySQL </br>
+SQL Manager is a free, open source application for MySQL database manager
 
-## Detalhes Gerais
-- Este software é desenvolvido em python </br> usando o framework para criação de interface QT (Cute)
-- Desenvolvido por Fernando Moreira entre 2018 - 2019
+## General Details
+- This software is developed in python using the QT (Cute) framework for creating  interface 
+- Developed by Fernando Moreira between 2018 - 2019
 
-## Features
-- Atualizar modificações        *( F5 )*
-- Executar QUERY                *( F9 )*
-- Executar QUERY selecionada    *( Ctrl + Shift F9 )*
-- Importar query                *( Ctrl + O)*
-- Exportar query                *( Ctrl + S )*
 
-## Navegação pela interface
-- Dois cliques em um banco de dados para usar-lo
-- Dois cliques em uma tabela dentro do banco de dados ativo</br>
-para ver todas as suas informações (Descrição de tipos / Visualizar todos os dados da tabela)
+## Shortcuts Usage
+<pre>
+- Refresh changes           -> (F5)
+- Execute QUERY             -> (F9) 
+- Import query              -> (Ctrl + O) 
+- Export query              -> (Ctrl + S) 
+- Execute selected QUERY    -> (Ctrl + Shift F9)
+</pre>
 
-</br>
+## Using interface
+- Two clicks on a database to use it
+- Two clicks on a table within the active database
+to see all your information (Table columns type / Table data)
+
 
 # Interface
 
-## JANELA PARA SE CONECTAR AO SERVIDOR
-![connector](src/screenshots/connector.PNG)</br>
-## EXEMPLO DE EXECUÇÃO DE QUERY
-![Consult](src/screenshots/manager.PNG)</br>
-## VER OS TIPOS EM QUE A COLUNA FOI CRIADA
-![Consult](src/screenshots/table_script.PNG)</br>
-## VISUALIZAÇÃO DOS DADOS NA TABELA
-![Consult](src/screenshots/data.PNG)</br>
-
-</br>
+<img src="src/screenshots/connector.PNG" alt="connector" width="300"/></br>
+<img src="src/screenshots/manager.PNG" alt="manager" width="400"/>
+<img src="src/screenshots/table_script.PNG" alt="types" width="400"/>
+<img src="src/screenshots/data.PNG" alt="data" width="400"/>
 
 ---
 
-**Author : Fernando Ferreira Moreira**</br>
+**Author : Fernando Ferreira Moreira**
 **CC0 - 2018 Creative Commons**
