@@ -1,6 +1,6 @@
 # SQL Manager
 
-![buildstatus](https://travis-ci.com/zisongbr/MYSQL_PYQT.svg?branch=master)
+[![Build Status](https://travis-ci.com/zisongbr/MYSQL_PYQT.svg?branch=master)](https://travis-ci.com/zisongbr/MYSQL_PYQT)
 
 SQL Manager é um programa livre e com código-aberto para o MySQL </br>
 
