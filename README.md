@@ -23,15 +23,26 @@ SQL Manager is a free, open source application for MySQL database manager
 - Two clicks on a table within the active database
 to see all your information (Table columns type / Table data)
 
+## Requirements
+<pre>
+- pip install -r requirements.txt
+
+- mysql-connector           = 2.1.6
+- mysql-connector-python    = 8.0.13
+- mysql-connector-python-rf = 2.2.2
+- PyQt5                     = 5.11.3
+- PyQt5-sip                 = 4.19.13   
+</pre>
 
 # Interface
 
-<img src="src/screenshots/connector.PNG" alt="connector" width="300"/></br>
-<img src="src/screenshots/manager.PNG" alt="manager" width="600"/>
-<img src="src/screenshots/table_script.PNG" alt="types" width="600"/>
-<img src="src/screenshots/data.PNG" alt="data" width="600"/>
+<img src="src/screenshots/connector.PNG"    alt="connector" width="400"/></br>
+<img src="src/screenshots/manager.PNG"      alt="manager"   width="600"/>
+<img src="src/screenshots/table_script.PNG" alt="types"     width="600"/>
+<img src="src/screenshots/data.PNG"         alt="data"      width="600"/>
 
 ---
 
 **Author : Fernando Ferreira Moreira**
+
 **CC0 - 2018 Creative Commons**
