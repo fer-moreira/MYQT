@@ -1,7 +1,5 @@
 # SQL Manager
 
-[![Build Status](https://travis-ci.com/zisongbr/MYSQL_PYQT.svg?branch=master)](https://travis-ci.com/zisongbr/MYSQL_PYQT)
-
 SQL Manager is a free, open source application for MySQL database manager
 
 ## General Details
