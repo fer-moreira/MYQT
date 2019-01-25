@@ -83,7 +83,7 @@
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <property name="iconSize">
      <size>
@@ -183,7 +183,7 @@
       <property name="font">
        <font>
         <family>Arial,Helvetica,sans-serif</family>
-        <pointsize>13</pointsize>
+        <pointsize>11</pointsize>
        </font>
       </property>
       <property name="toolTip">
@@ -320,9 +320,9 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>308</y>
+        <y>310</y>
         <width>756</width>
-        <height>310</height>
+        <height>308</height>
        </rect>
       </property>
       <property name="toolTip">
@@ -383,7 +383,7 @@
         <x>0</x>
         <y>2</y>
         <width>756</width>
-        <height>297</height>
+        <height>301</height>
        </rect>
       </property>
       <property name="sizePolicy">
@@ -438,7 +438,7 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>293</y>
+        <y>295</y>
         <width>760</width>
         <height>20</height>
        </rect>
@@ -586,7 +586,7 @@
     <property name="geometry">
      <rect>
       <x>191</x>
-      <y>601</y>
+      <y>610</y>
       <width>77</width>
       <height>38</height>
      </rect>
@@ -620,7 +620,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>601</y>
+      <y>610</y>
       <width>177</width>
       <height>38</height>
      </rect>

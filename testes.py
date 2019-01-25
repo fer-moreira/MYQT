@@ -1,20 +1,21 @@
+from PyQt5.QtCore import pyqtSlot,QFile, QTextStream
+from PyQt5.QtWidgets import QApplication, QDialog,QMainWindow,QStyleFactory,QAction,QMenu
+from PyQt5.uic import loadUi
+from PyQt5 import QtGui
 
-schema = {
-    'SELECT':'<p style="color:red;">SELECT</p>',
-    'FROM':'<p style="color:yellow;">FROM</p>',
-    'INNER':'<p style="color:blue;">INNER</p>',
-    'JOIN':'<p style="color:dark;">JOIN</p>',
-    'ON':'<p style="color:green;">ON</p>',
-    'AND':'<p style="color:blue;">AND</p>',
-    'USE':'<p style="color:cyan;">USE</p>'
-}
+from Lib.UI.SCRIPT.Testes import Ui_Testes
 
-words = query.split(" ")
+import sys
 
-finalQuery = ""
-for w in words:
-    if w in schema.keys():
-        scWord = schema.get(w)
-        finalQuery += "%s " %scWord
-    else:
-        finalQuery += "%s " %w
+app = QApplication(sys.argv)
+app.processEvents()
+
+class MainWindow(QMainWindow,Ui_Testes):
+    def __init__(self, parent = None):
+        super(MainWindow,self).__init__(parent)
+        self.setupUi(self)
+        self.setFixedSize(self.size())
+        self.show()
+
+Main_GUI = MainWindow()
+sys.exit(app.exec_())

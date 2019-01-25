@@ -145,7 +145,6 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
                 parent.setText(0,"%s"%_db)
                 parent.setIcon(0,QIcon(ui_db))
                 parent.setFlags(parent.flags())
-                self.processEvents()
         except Exception as error:
             self.WriteConsole(error)
             pass
@@ -166,7 +165,6 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
                 break
                 
         self.tables_out.expandAll()
-        self.processEvents()
 
     def Get_CreateCode      (self,data):
         table = str(data)
@@ -322,7 +320,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
             self.processEvents()
 
     def SchemeColorText (self,text):
-        query = str(text.lower()).replace(","," , ").replace("("," ( ").replace(")"," ) ").replace("\n","\n\n").replace("="," = ")
+        query = str(text.lower()).replace(","," , ").replace("("," ( ").replace(")"," ) ").replace("="," = ")
         
         from Lib.color_schema import schema,marrom_pat
 
@@ -336,6 +334,6 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
             else:
                 finalQuery += "%s " %marrom_pat.format(w)
         
-        return finalQuery
+        return finalQuery.replace('\n','<br></br>')
 
 # - - ######################################################################################################################### - - #
