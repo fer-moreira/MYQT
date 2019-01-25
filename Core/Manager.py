@@ -10,7 +10,6 @@ import mysql.connector as mysql #
 
 ################### PYQT MODULES ##############################################################################+
 from PyQt5              import QtCore                                                                          #
-from PyQt5.uic          import loadUi                                                                          #
 from PyQt5.QtGui        import QStandardItemModel,QStandardItem                                                #
 from PyQt5.QtWidgets    import (QApplication, QDialog,QFileDialog,QMainWindow,QStyleFactory,                   #
                    QAction,QToolBar,QTableWidget,QTableWidgetItem,QHeaderView,QTreeWidgetItem)                 #                                                                                #
@@ -26,6 +25,8 @@ _import,_export,_refresh,ui_db,ui_tb,ico_consult)           #
 
 from functools          import partial
 
+from Core.ConsoleHandler        import ConsoleWindow        #
+
 class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQLMANAGER,object):
     def __init__(self,hs,pt,us,ps,bfr, parent = None):
         super(ManagerWindow,self).__init__(parent)
@@ -34,6 +35,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
         self.add_tool_bar()
         self.setWindowIcon(QIcon(ico_consult))
         self.show()
+
 
         self.hs = hs
         self.pt = pt
@@ -50,6 +52,9 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
 
         self.tables_out.itemDoubleClicked.connect(self.ItemDoubleClicked)
         self.createdb_btn.clicked.connect(self.Create_DB)
+
+        self.openConsole.clicked.connect(self.OpenConsoleWindow)
+        self.openedConsole = False
 
     def ItemDoubleClicked   (self):         ## SINGLE CLICK HANDLER FOR QTreeWIDGET
         index = self.tables_out.currentIndex()
@@ -335,5 +340,16 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
                 finalQuery += "%s " %marrom_pat.format(w)
         
         return finalQuery.replace('\n','<br></br>')
+
+    def OpenConsoleWindow (self):
+        self.openedConsole = not self.openedConsole
+
+        if self.openedConsole == True:
+            self.console_out.setGeometry(10,5,1000,735)
+            self.openConsole.setText("C\nL\nO\nS\nE")
+        else:
+            self.console_out.setGeometry(10,660,1000,80)
+            self.console_out.verticalScrollBar().setValue(self.console_out.verticalScrollBar().maximum())
+            self.openConsole.setText("O\nP\nE\nN")
 
 # - - ######################################################################################################################### - - #

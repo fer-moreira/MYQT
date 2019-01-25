@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-    <img src="src\Toolbar_Icons\ui_database.png" alt="Logo" width="100">
+    <img src="src\Toolbar_Icons\ui_database.png" alt="logo" width="100">
   <br>
   MYQT<br>
   MySQL Database Manager
@@ -10,8 +10,7 @@
 
 <h4 align="center">MySQL Querying Tool with QT Designer</h4>
 
-<img align="center" src="https://raw.githubusercontent.com/dwyl/repo-badges/master/highresPNGs/build-passing.png"    alt="Build: Passing" width="100"/>
-
+<img src="https://raw.githubusercontent.com/dwyl/repo-badges/master/highresPNGs/build-passing.png"    alt="Build: Passing" width="100"/></br>
 MYQT is an open source visual database design and querying tool for the MySQL database developed in python using the QT (Cute) framework for creating  interface, Developed by Fernando Moreira between 2018 - 2019
 
 # Interface Help

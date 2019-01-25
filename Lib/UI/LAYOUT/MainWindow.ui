@@ -19,6 +19,9 @@
   <property name="autoFillBackground">
    <bool>false</bool>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <property name="windowFilePath">
    <string/>
   </property>
@@ -466,7 +469,7 @@
      <rect>
       <x>10</x>
       <y>660</y>
-      <width>1030</width>
+      <width>1000</width>
       <height>80</height>
      </rect>
     </property>
@@ -486,7 +489,7 @@
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;CONSOLE&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="frameShape">
-     <enum>QFrame::NoFrame</enum>
+     <enum>QFrame::Box</enum>
     </property>
     <property name="frameShadow">
      <enum>QFrame::Plain</enum>
@@ -517,9 +520,6 @@
     </property>
     <property name="centerOnScroll">
      <bool>false</bool>
-    </property>
-    <property name="placeholderText">
-     <string>CONSOLE</string>
     </property>
    </widget>
    <widget class="QTreeWidget" name="tables_out">
@@ -621,7 +621,7 @@
      <rect>
       <x>10</x>
       <y>610</y>
-      <width>177</width>
+      <width>180</width>
       <height>38</height>
      </rect>
     </property>
@@ -634,6 +634,28 @@
      <string>Create Database:</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="openConsole">
+    <property name="geometry">
+     <rect>
+      <x>1010</x>
+      <y>660</y>
+      <width>30</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>O
+P
+E
+N</string>
+    </property>
+   </widget>
+   <zorder>tabs</zorder>
+   <zorder>tables_out</zorder>
+   <zorder>createdb_btn</zorder>
+   <zorder>createdb_in</zorder>
+   <zorder>openConsole</zorder>
+   <zorder>console_out</zorder>
   </widget>
   <action name="actionImport_Query">
    <property name="text">

@@ -3,7 +3,6 @@ import mysql.connector as mysql
 
 from PyQt5.QtCore import pyqtSlot,QFile, QTextStream
 from PyQt5.QtWidgets import QApplication, QDialog,QMainWindow,QStyleFactory,QAction,QMenu
-from PyQt5.uic import loadUi
 from PyQt5 import QtGui
 
 from Core.Manager import ManagerWindow
