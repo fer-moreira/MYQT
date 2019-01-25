@@ -1,5 +1,5 @@
-mysql-connector==2.1.6
-mysql-connector-python==8.0.13
-mysql-connector-python-rf==2.2.2
-PyQt5==5.11.3
-PyQt5-sip==4.19.13
+mysql-connector
+mysql-connector-python
+mysql-connector-python-rf
+PyQt5
+PyQt5-sip
