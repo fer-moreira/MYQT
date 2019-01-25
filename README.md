@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-    <img src="src\Toolbar_Icons\ui_database.png" alt="logo" width="100">
+    <img src="src\Toolbar_Icons\ui_database.png" alt="Logo" width="100">
   <br>
   MYQT<br>
   MySQL Database Manager
