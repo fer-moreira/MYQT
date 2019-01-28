@@ -383,9 +383,9 @@
    <widget class="QDialogButtonBox" name="buttons">
     <property name="geometry">
      <rect>
-      <x>12</x>
+      <x>70</x>
       <y>210</y>
-      <width>310</width>
+      <width>190</width>
       <height>47</height>
      </rect>
     </property>

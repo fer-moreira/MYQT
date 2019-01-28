@@ -25,7 +25,7 @@ _import,_export,_refresh,ui_db,ui_tb,ico_consult)           #
 
 from functools          import partial
 
-from Core.ConsoleHandler        import ConsoleWindow        #
+from Core.ConsoleHandler        import ConsoleWindow        
 
 class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQLMANAGER,object):
     def __init__(self,hs,pt,us,ps,bfr, parent = None):
@@ -48,7 +48,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
             self.Get_Databases()
             self.WriteConsole('<b>Connected to SQL Server</b>',True)
         except:
-            self.WriteConsole('<p style="color:red;">Cannot Connect to SQL Server</span>',True)
+            self.WriteConsole('<p style="color:rgb(175, 50, 50);">Cannot Connect to SQL Server</span>',True)
 
         self.tables_out.itemDoubleClicked.connect(self.ItemDoubleClicked)
         self.createdb_btn.clicked.connect(self.Create_DB)
@@ -109,7 +109,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
             self.WriteConsole("%s"%_query.lower(),False)
             self.processEvents()
         except Exception as error:
-            self.WriteConsole('<p style="color:red;">%s</span>'%error,True)
+            self.WriteConsole('<p style="color:rgb(175, 50, 50);">%s</span>'%error,True)
             pass
 
     
@@ -220,7 +220,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
             self.processEvents()
 
         except Exception as error:
-            self.WriteConsole('<p style="color:red;">%s</span>'%error,True)
+            self.WriteConsole('<p style="color:rgb(175, 50, 50);">%s</span>'%error,True)
             pass    
     def Get_All_Data        (self,data):    # GET ALL DATA FROM TABLES
         table = str(data)
@@ -252,7 +252,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
             self.data_result.resizeColumnsToContents()
             self.processEvents()
         except Exception as error:
-            self.WriteConsole('<p style="color:red;">%s</span>'%error,True)
+            self.WriteConsole('<p style="color:rgb(175, 50, 50);">%s</span>'%error,True)
             pass
 
     def load_query_from_file(self):         # OPEN DIALOG BOX TO LOAD FILE
@@ -327,7 +327,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
     def SchemeColorText (self,text):
         query = str(text.lower()).replace(","," , ").replace("("," ( ").replace(")"," ) ").replace("="," = ")
         
-        from Lib.color_schema import schema,marrom_pat
+        from Lib.color_schema import schema,greenPat,bluePat
 
         words = query.split(" ")
 
@@ -337,8 +337,13 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
                 scWord = schema.get(w)
                 finalQuery += "%s " %scWord.format(str(w).upper())
             else:
-                finalQuery += "%s " %marrom_pat.format(w)
-        
+                try:
+                    if eval(w) >= 0:
+                        finalQuery += "%s " %bluePat.format(w)                    
+                except:
+                    finalQuery += "%s " %greenPat.format(w)
+                    pass
+                    
         return finalQuery.replace('\n','<br></br>')
 
     def OpenConsoleWindow (self):
@@ -351,5 +356,6 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
             self.console_out.setGeometry(10,660,1000,80)
             self.console_out.verticalScrollBar().setValue(self.console_out.verticalScrollBar().maximum())
             self.openConsole.setText("O\nP\nE\nN")
+
 
 # - - ######################################################################################################################### - - #

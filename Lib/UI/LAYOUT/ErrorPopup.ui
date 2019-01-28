@@ -27,9 +27,9 @@ QFrame[frameShape=&quot;5&quot;] /* QFrame::VLine == 0x0005 */
   <widget class="QPushButton" name="ok">
    <property name="geometry">
     <rect>
-     <x>280</x>
+     <x>260</x>
      <y>130</y>
-     <width>80</width>
+     <width>90</width>
      <height>30</height>
     </rect>
    </property>
@@ -62,6 +62,9 @@ QFrame[frameShape=&quot;5&quot;] /* QFrame::VLine == 0x0005 */
    <property name="frameShape">
     <enum>QFrame::NoFrame</enum>
    </property>
+   <property name="lineWidth">
+    <number>0</number>
+   </property>
    <property name="html">
     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -74,16 +77,38 @@ p, li { white-space: pre-wrap; }
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>-10</y>
-     <width>390</width>
-     <height>40</height>
+     <y>0</y>
+     <width>410</width>
+     <height>30</height>
     </rect>
    </property>
    <property name="frameShadow">
     <enum>QFrame::Sunken</enum>
    </property>
    <property name="lineWidth">
-    <number>20</number>
+    <number>19</number>
+   </property>
+   <property name="midLineWidth">
+    <number>0</number>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="Line" name="line_2">
+   <property name="geometry">
+    <rect>
+     <x>-10</x>
+     <y>111</y>
+     <width>410</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Sunken</enum>
+   </property>
+   <property name="lineWidth">
+    <number>2</number>
    </property>
    <property name="midLineWidth">
     <number>0</number>
@@ -95,6 +120,7 @@ p, li { white-space: pre-wrap; }
   <zorder>console_out</zorder>
   <zorder>line</zorder>
   <zorder>ok</zorder>
+  <zorder>line_2</zorder>
  </widget>
  <tabstops>
   <tabstop>console_out</tabstop>

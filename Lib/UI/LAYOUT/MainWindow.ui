@@ -19,9 +19,6 @@
   <property name="autoFillBackground">
    <bool>false</bool>
   </property>
-  <property name="styleSheet">
-   <string notr="true"/>
-  </property>
   <property name="windowFilePath">
    <string/>
   </property>
@@ -86,7 +83,7 @@
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <property name="iconSize">
      <size>
@@ -558,7 +555,7 @@
      <number>1</number>
     </property>
     <attribute name="headerVisible">
-     <bool>true</bool>
+     <bool>false</bool>
     </attribute>
     <attribute name="headerCascadingSectionResizes">
      <bool>true</bool>
@@ -606,6 +603,9 @@
     <property name="focusPolicy">
      <enum>Qt::WheelFocus</enum>
     </property>
+    <property name="acceptDrops">
+     <bool>false</bool>
+    </property>
     <property name="text">
      <string>CREATE</string>
     </property>
@@ -642,6 +642,10 @@
       <width>30</width>
       <height>80</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-top-right-radius:20px;
+border-bottom-right-radius:20px;</string>
     </property>
     <property name="text">
      <string>O

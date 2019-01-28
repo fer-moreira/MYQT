@@ -132,7 +132,7 @@ class Ui_Connector(object):
         self.adv.setObjectName("adv")
         self.tabWidget.addTab(self.adv, "")
         self.buttons = QtWidgets.QDialogButtonBox(self.centralwidget)
-        self.buttons.setGeometry(QtCore.QRect(12, 210, 310, 47))
+        self.buttons.setGeometry(QtCore.QRect(70, 210, 190, 47))
         font = QtGui.QFont()
         font.setPointSize(10)
         self.buttons.setFont(font)

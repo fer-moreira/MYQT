@@ -1,28 +1,61 @@
-b_pat       = '<span style="color:#0000ff;">{0}</span>'
-r_pat       = '<span style="color:#fc030a;">{0}</span>'
-marrom_pat  = '<span style="color:#000000;">{0}</span>'
+grayPat     = '<span style="color:rgb(105,105,105);">{0}</span>'
+purplePat   = '<span style="color:rgb(195,114,195);">{0}</span>'
+bluePat     = '<span style="color:rgb(96,117,255);">{0}</span>'
+greenPat    = '<span style="color:rgb(143,195,45);">{0}</span>'
 
 schema = {
-'select':b_pat,'from'       :b_pat,'inner'      :b_pat,'join'       :b_pat,'on' :b_pat,
-'create':b_pat,'table'      :b_pat,'show'       :b_pat,'update'     :b_pat,'key':b_pat,
-'desc'  :b_pat,'as'         :b_pat,'reference'  :b_pat,'foreign'    :b_pat,'use':b_pat,
-'limit' :b_pat,'references' :b_pat,'and'        :b_pat,
+    '(': grayPat,
+    ')': grayPat,
+    '=': grayPat,
 
-'collate':b_pat,'smallint'      :b_pat,
-'primary':b_pat,'not'           :b_pat,
-'null'   :b_pat,'auto_increment':b_pat,
+    'select'    : grayPat,
+    'from'      : grayPat,
+    'inner'     : grayPat,
+    'join'      : grayPat,
+    'on'        : grayPat,
+    'create'    : grayPat,
+    'table'     : grayPat,
+    'show'      : grayPat,
+    'update'    : grayPat,
+    'key'       : grayPat,
+    'desc'      : grayPat,
+    'as'        : grayPat,
+    'reference' : grayPat,
+    'foreign'   : grayPat,
+    'use'       : grayPat,
+    'limit'     : grayPat,
+    'references': grayPat,
+    'and'       : grayPat,
 
-'charset':'<br></br>%s'%b_pat,
-'engine' :'<br></br>%s'%b_pat,
+    'collate'       : grayPat,
+    'smallint'      : grayPat,
+    'primary'       : grayPat,
+    'not'           : grayPat,
+    'null'          : grayPat,
+    'auto_increment': grayPat,
+    'order'         : grayPat,
+    'by'            : grayPat,
+    'group'         : grayPat,
+    'asc'           : grayPat,
+    'cascade'       : grayPat,
+    'constraint'    : grayPat,
 
-'(':b_pat,
-')':b_pat,
-'=':b_pat,
+    'foreign'   : bluePat,
+    'key'       : bluePat,
+    'primary'   : bluePat,
 
-'smallint'  :r_pat,'unsigned'   :r_pat,
-'*'         :r_pat,','          :r_pat,
-'innodb'    :r_pat,'varchar'    :r_pat,
-'utf8'      :r_pat,'tinyint'    :r_pat,
+    '*'         : purplePat,
+    ','         : purplePat,
 
-'default'   :r_pat
+    'smallint'  : purplePat,
+    'unsigned'  : purplePat,
+
+    'innodb'    : purplePat,
+    'varchar'   : purplePat,
+    'utf8'      : purplePat,
+    'tinyint'   : purplePat,
+    'default'   : purplePat,
+
+    'charset'   : '<br></br>%s' % bluePat,
+    'engine'    : '<br></br>%s' % bluePat
 }
