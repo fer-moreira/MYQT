@@ -1,7 +1,10 @@
-grayPat     = '<span style="color:rgb(105,105,105);">{0}</span>'
 purplePat   = '<span style="color:rgb(195,114,195);">{0}</span>'
-bluePat     = '<span style="color:rgb(96,117,255);">{0}</span>'
+grayPat     = '<span style="color:rgb(105,105,105);">{0}</span>'
+
+redPat    = '<span style="color:rgb(200, 0, 0);">{0}</span>'
 greenPat    = '<span style="color:rgb(143,195,45);">{0}</span>'
+bluePat     = '<span style="color:rgb(96,117,255);">{0}</span>'
+
 
 schema = {
     '(': grayPat,
@@ -55,6 +58,9 @@ schema = {
     'utf8'      : purplePat,
     'tinyint'   : purplePat,
     'default'   : purplePat,
+
+    '(' : redPat,
+    ')' : redPat,
 
     'charset'   : '<br></br>%s' % bluePat,
     'engine'    : '<br></br>%s' % bluePat

@@ -12,7 +12,7 @@ import mysql.connector as mysql #
 from PyQt5              import QtCore                                                                          #
 from PyQt5.QtGui        import QStandardItemModel,QStandardItem                                                #
 from PyQt5.QtWidgets    import (QApplication, QDialog,QFileDialog,QMainWindow,QStyleFactory,                   #
-                   QAction,QToolBar,QTableWidget,QTableWidgetItem,QHeaderView,QTreeWidgetItem)                 #                                                                                #
+QMenu,qApp,QAction,QToolBar,QTableWidget,QTableWidgetItem,QHeaderView,QTreeWidgetItem)                         #                                                                                #
 from PyQt5.QtCore       import pyqtSlot,QFile, QTextStream,QCoreApplication,Qt                                 #
 from PyQt5.QtGui        import QIcon                                                                           #
 ###############################################################################################################+
@@ -31,11 +31,10 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
     def __init__(self,hs,pt,us,ps,bfr, parent = None):
         super(ManagerWindow,self).__init__(parent)
         self.setupUi(self)
-        self.setFixedSize(self.size())
+        # self.setFixedSize(self.size())
         self.add_tool_bar()
         self.setWindowIcon(QIcon(ico_consult))
         self.show()
-
 
         self.hs = hs
         self.pt = pt
@@ -53,7 +52,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
         self.tables_out.itemDoubleClicked.connect(self.ItemDoubleClicked)
         self.createdb_btn.clicked.connect(self.Create_DB)
 
-        self.openConsole.clicked.connect(self.OpenConsoleWindow)
+        self.openConsole.clicked.connect(self.ExpandConsoleWindow)
         self.openedConsole = False
 
     def ItemDoubleClicked   (self):         ## SINGLE CLICK HANDLER FOR QTreeWIDGET
@@ -109,7 +108,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
             self.WriteConsole("%s"%_query.lower(),False)
             self.processEvents()
         except Exception as error:
-            self.WriteConsole('<p style="color:rgb(175, 50, 50);">%s</span>'%error,True)
+            self.WriteConsole(error,True)
             pass
 
     
@@ -150,6 +149,8 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
                 parent.setText(0,"%s"%_db)
                 parent.setIcon(0,QIcon(ui_db))
                 parent.setFlags(parent.flags())
+
+            self.WriteConsole("SHOW DATABASES",False)
         except Exception as error:
             self.WriteConsole(error)
             pass
@@ -170,6 +171,8 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
                 break
                 
         self.tables_out.expandAll()
+        self.WriteConsole("SHOW TABLES",False)
+
 
     def Get_CreateCode      (self,data):
         table = str(data)
@@ -188,6 +191,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
             
             self.WriteConsole("%s"%str(_query),False)
         except Exception as error:
+            self.WriteConsole(error,True)
             print(error)
     def Get_Desc            (self,data):    # GET ALL TABLES DESCRITIONS 
         table = str(data)
@@ -220,7 +224,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
             self.processEvents()
 
         except Exception as error:
-            self.WriteConsole('<p style="color:rgb(175, 50, 50);">%s</span>'%error,True)
+            self.WriteConsole(error,True)
             pass    
     def Get_All_Data        (self,data):    # GET ALL DATA FROM TABLES
         table = str(data)
@@ -252,7 +256,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
             self.data_result.resizeColumnsToContents()
             self.processEvents()
         except Exception as error:
-            self.WriteConsole('<p style="color:rgb(175, 50, 50);">%s</span>'%error,True)
+            self.WriteConsole(error,True)
             pass
 
     def load_query_from_file(self):         # OPEN DIALOG BOX TO LOAD FILE
@@ -282,27 +286,27 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
         tb_config = self.addToolBar(Qt.TopToolBarArea,toolBar)
 
         ############### CREATING BUTTONS ICONS AND SETTING FUNCTION #############################################################################
-        compileAll =        QAction(QIcon(_run),        "Run",          self,shortcut="F9",             triggered=self.GetAllQuery)              #
-        compileSelected =   QAction(QIcon(_runSelected),"Run Selected", self,shortcut="Shift+Ctrl+F9",  triggered=self.GetSelectedQuery)         #
-        import_t =          QAction(QIcon(_import),     "Load",         self,shortcut="Ctrl+O",         triggered=self.load_query_from_file)     #
-        export_t =          QAction(QIcon(_export),     "Save",         self,shortcut="Ctrl+S",         triggered=self.save_query_to_file)       #
-        refresh_t =         QAction(QIcon(_refresh),    "Refresh",      self,shortcut="F5",             triggered=self.Get_Databases)            #
+        refresh_t =         QAction(QIcon(_refresh),    "F5",           self,shortcut="F5",             triggered=self.Get_Databases)            #
+        compileAll =        QAction(QIcon(_run),        "F9",           self,shortcut="F9",             triggered=self.GetAllQuery)              #
+        import_t =          QAction(QIcon(_import),     "Ctrl+O",       self,shortcut="Ctrl+O",         triggered=self.load_query_from_file)     #
+        export_t =          QAction(QIcon(_export),     "Ctrl+S",       self,shortcut="Ctrl+S",         triggered=self.save_query_to_file)       #
+        compileSelected =   QAction(QIcon(_runSelected),"Shift+Ctrl+F9",self,shortcut="Shift+Ctrl+F9",  triggered=self.GetSelectedQuery)         #
         #########################################################################################################################################
         
-        compileAll.setToolTip       ("RUN ALL QUERY (F9)")
-        compileSelected.setToolTip  ("RUN SELECTED QUERY (Shift+Ctrl+F9)")
-        import_t.setToolTip         ("RUN ALL QUERY (Ctrl+O)")
-        export_t.setToolTip         ("RUN ALL QUERY (Ctrl+S)")
-        refresh_t.setToolTip        ("RUN ALL QUERY (F5)")
+        refresh_t.setToolTip        ("Refresh Server (F5)")
+        import_t.setToolTip         ("Load SQL (Ctrl+O)")
+        export_t.setToolTip         ("Save SQL (Ctrl+S)")
+        compileAll.setToolTip       ("Run All QUERY (F9)")
+        compileSelected.setToolTip  ("Run Selected QUERY (Shift+Ctrl+F9)")
 
         ## ADDING BUTTON TO MENU ################
         toolBar.addAction(refresh_t)             #
         toolBar.addSeparator()                   #
-        toolBar.addAction(compileAll)            #
-        toolBar.addAction(compileSelected)       #
-        toolBar.addSeparator()                   #
         toolBar.addAction(import_t)              #
         toolBar.addAction(export_t)              #
+        toolBar.addSeparator()                   #
+        toolBar.addAction(compileAll)            #
+        toolBar.addAction(compileSelected)       #
         #########################################
         self.processEvents()
     def Create_DB           (self):
@@ -321,7 +325,8 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
             self.console_out.appendHtml(coloredText)
             self.processEvents()
         else:
-            self.console_out.appendHtml(str(text))
+            errorPat = '<p style="color:rgb(175, 50, 50);">{0}</span>'
+            self.console_out.appendHtml(errorPat.format(str(text)))
             self.processEvents()
 
     def SchemeColorText (self,text):
@@ -344,9 +349,9 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
                     finalQuery += "%s " %greenPat.format(w)
                     pass
                     
-        return finalQuery.replace('\n','<br></br>')
-
-    def OpenConsoleWindow (self):
+        return finalQuery.replace('\n','<br></br>').replace(' , ',',').replace(' ) ',')').replace(' ( ','(')
+    
+    def ExpandConsoleWindow (self):
         self.openedConsole = not self.openedConsole
 
         if self.openedConsole == True:
@@ -357,5 +362,12 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
             self.console_out.verticalScrollBar().setValue(self.console_out.verticalScrollBar().maximum())
             self.openConsole.setText("O\nP\nE\nN")
 
+    def contextMenuEvent(self, event):
+        cmenu = QMenu(self)
+        
+        newAct = cmenu.addAction("New Database")
+        opnAct = cmenu.addAction("Delete Database")
+
+        action = cmenu.exec_(self.mapToGlobal(event.pos()))
 
 # - - ######################################################################################################################### - - #

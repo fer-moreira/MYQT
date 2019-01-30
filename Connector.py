@@ -2,7 +2,7 @@ import sys
 import mysql.connector as mysql
 
 from PyQt5.QtCore import pyqtSlot,QFile, QTextStream
-from PyQt5.QtWidgets import QApplication, QDialog,QMainWindow,QStyleFactory,QAction,QMenu
+from PyQt5.QtWidgets import QApplication, QDialog,QMainWindow,QStyleFactory,QAction,QMenu,QMessageBox
 from PyQt5 import QtGui
 
 from Core.Manager import ManagerWindow
@@ -15,18 +15,16 @@ from Lib.icons_manager import ico_connector
 app = QApplication(sys.argv)
 app.processEvents()
 
-_style = str(open(r'Lib\Style.css','r').read())
+_style = str(open(r'assets\Stylesheet\Style.css','r').read())
 app.setStyleSheet(_style)
 
 class MainWindow(QMainWindow,Ui_Connector):
     def __init__(self, parent = None):
         super(MainWindow,self).__init__(parent)
         self.setupUi(self)
-        self.setFixedSize(self.size())        
         self.setWindowIcon(QtGui.QIcon(ico_connector))
 
         self.show()
-
         self.buttons.accepted.connect(self.Connect)
         self.buttons.rejected.connect(self.close)
 
@@ -49,7 +47,8 @@ class MainWindow(QMainWindow,Ui_Connector):
             self.close()
         
         except Exception as error:
-            self.PopupWindow = PopupWindow(str(error))
+            reply = QMessageBox.critical(self, "CRITICAL ERROR",str(error),QMessageBox.Ok)
+
             print(error)
             pass
 

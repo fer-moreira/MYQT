@@ -11,7 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Testes(object):
     def setupUi(self, Testes):
         Testes.setObjectName("Testes")
-        Testes.resize(327, 158)
+        Testes.resize(547, 466)
         self.centralwidget = QtWidgets.QWidget(Testes)
         self.centralwidget.setObjectName("centralwidget")
         Testes.setCentralWidget(self.centralwidget)
