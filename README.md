@@ -10,8 +10,14 @@
 
 <h4 align="center">MySQL Querying Tool with QT Designer</h4>
 
-<img src="https://raw.githubusercontent.com/dwyl/repo-badges/master/highresPNGs/build-passing.png" align="left" alt="Build: Passing" width="100"/>
-<img src="https://david-dm.org/zisongbr/MYQT.svg" alt="Dependency" width="150" align="left"/> </br>
+<img src="https://img.shields.io/badge/Status-in%20progress-yellowgreen.svg" align="left" width="125"/>
+<img src="https://david-dm.org/zisongbr/MYQT.svg" width="150" align="left"/> 
+<img src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg" width="150" align="left"/>
+<img src="http://hits.dwyl.io/zisongbr/MYQT.svg" width="80" align="left"/>
+<img src="https://img.shields.io/github/languages/count/zisongbr/MYQT.svg" width="90" align="left" />
+<img src="https://img.shields.io/github/last-commit/zisongbr/MYQT.svg" width="90" align="left />
+                                                                                         
+</br>
 
 MYQT is an open source visual database design and querying tool for the MySQL database developed in python using the QT (Cute) framework for creating  interface, Developed by Fernando Moreira between 2018 - 2019
 
