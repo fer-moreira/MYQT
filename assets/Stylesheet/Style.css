@@ -9,6 +9,7 @@ QTabWidget::tab-bar {
     background-color: rgb(255,255,255);
 }
 QTabBar::tab {
+	margin: 2px;
     border-top-right-radius:6px;
     padding: 3px 8px;
     top: 1;
@@ -52,7 +53,7 @@ QMenu::item:selected {
 }
 QMenu::separator {
     height: 1px;
-    background: rgb(0, 0, 0);
+    background: rgb(255, 255, 255);
 }
 QProgressBar {
     text-align: center;

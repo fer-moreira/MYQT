@@ -50,12 +50,16 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
             self.WriteConsole('<p style="color:rgb(175, 50, 50);">Cannot Connect to SQL Server</span>',True)
 
         self.tables_out.itemDoubleClicked.connect(self.ItemDoubleClicked)
-        self.createdb_btn.clicked.connect(self.Create_DB)
 
         self.openConsole.clicked.connect(self.ExpandConsoleWindow)
         self.openedConsole = False
 
-    def ItemDoubleClicked   (self):         ## SINGLE CLICK HANDLER FOR QTreeWIDGET
+        # self.customContextMenuRequested().connect(self.testes)
+
+    # def testes (self):
+    #     print("TESTES")
+
+    def ItemDoubleClicked   (self):                 ## SINGLE CLICK HANDLER FOR QTreeWIDGET
         index = self.tables_out.currentIndex()
         data =  self.tables_out.model().data(index)
         text = str(data)
@@ -77,7 +81,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
 
         self.processEvents()
 
-    def Execute_Querry      (self,text):    ## MASTER HANDLER FOR EXECUTE ANY QUERY AND RETURN ALL RESULTS 
+    def Execute_Querry      (self,text):            ## MASTER HANDLER FOR EXECUTE ANY QUERY AND RETURN ALL RESULTS 
         _query = text
 
         try:
@@ -110,13 +114,12 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
         except Exception as error:
             self.WriteConsole(error,True)
             pass
-
     
-    def GetAllQuery         (self):         # EXECUTE ALL QUERY TEXT
+    def GetAllQuery         (self):                 # EXECUTE ALL QUERY TEXT
         _allQuery = str(self.query_in.toPlainText()).replace("\n"," ")
         self.Execute_Querry(_allQuery)
         self.processEvents()
-    def GetSelectedQuery    (self):         # EXECUTE ONLY SELECTED QUERY TEXT 
+    def GetSelectedQuery    (self):                 # EXECUTE ONLY SELECTED QUERY TEXT 
         cursor = self.query_in.textCursor()
         
         _allText = str(self.query_in.toPlainText()).replace("\n"," ")
@@ -131,8 +134,8 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
         self.Execute_Querry(_buildText)
         self.processEvents()
 
-    def Get_Databases       (self):         # GET ALL DATABASES IN SERVER AND RETURN AS PARENT TO QTREEVIEW
-        try:            
+    def Get_Databases       (self):                 # GET ALL DATABASES IN SERVER AND RETURN AS PARENT TO QTREEVIEW      
+        try:
             self.tables_out.clear()
             self.databases = []
             _dict = {}
@@ -154,7 +157,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
         except Exception as error:
             self.WriteConsole(error)
             pass
-    def Get_Tables          (self,_cDb):    # GET ALL TABLES FROM DATABASE AND RETURN IN TREE VIEW AS CHILD OF DATABASE PARENT ITEM  
+    def Get_Tables          (self,_cDb):            # GET ALL TABLES FROM DATABASE AND RETURN IN TREE VIEW AS CHILD OF DATABASE PARENT ITEM         
         top_level_items = self.tables_out.topLevelItemCount()
         for i in range(top_level_items):
             top_item = self.tables_out.topLevelItem(i)
@@ -193,7 +196,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
         except Exception as error:
             self.WriteConsole(error,True)
             print(error)
-    def Get_Desc            (self,data):    # GET ALL TABLES DESCRITIONS 
+    def Get_Desc            (self,data):            # GET ALL TABLES DESCRITIONS 
         table = str(data)
         _query = "desc %s"%table
 
@@ -226,7 +229,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
         except Exception as error:
             self.WriteConsole(error,True)
             pass    
-    def Get_All_Data        (self,data):    # GET ALL DATA FROM TABLES
+    def Get_All_Data        (self,data):            # GET ALL DATA FROM TABLES
         table = str(data)
         _query = "select * from %s"%table
 
@@ -259,7 +262,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
             self.WriteConsole(error,True)
             pass
 
-    def load_query_from_file(self):         # OPEN DIALOG BOX TO LOAD FILE
+    def load_query_from_file(self):                 # OPEN DIALOG BOX TO LOAD FILE
         try:
             fname = QFileDialog.getOpenFileName(self, 'Load SQL From file', 'Query',"Select query file (*.indext *.sql *.dat *.csv *.tsv *.psv)")
             selectFilePath = str(fname[0])
@@ -268,7 +271,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
             self.query_in.setPlainText(_content)
             self.processEvents()
         except FileNotFoundError:pass
-    def save_query_to_file  (self):         # OPEN DIALOG BOX TO SAVE QUERY TEXT TO FILE
+    def save_query_to_file  (self):                 # OPEN DIALOG BOX TO SAVE QUERY TEXT TO FILE
         try:
             options = QFileDialog.Options()
             saved_file,_ = QFileDialog.getSaveFileName(self,"Save SQL to file Query","Query","Query Files (*.sql);;Text Files (*.indext);;Data Files (*.dat);;All Files (*)",options=options)            
@@ -279,7 +282,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
             self.processEvents()
         except FileNotFoundError:pass
 
-    def add_tool_bar        (self):         # ADD TOOLBAR AND TOOLBAR ICONS HANDLER
+    def add_tool_bar        (self):                 # ADD TOOLBAR AND TOOLBAR ICONS HANDLER
         toolBar = QToolBar()
         toolBar.setMovable(False)
         toolBar.setToolButtonStyle(Qt.ToolButtonTextUnderIcon)
@@ -309,15 +312,15 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
         toolBar.addAction(compileSelected)       #
         #########################################
         self.processEvents()
-    def Create_DB           (self):
-        dbName = self.createdb_in.displayText()
-        createPattern = "CREATE DATABASE %s" %dbName
+    # def Create_DB           (self):
+    #     dbName = self.createdb_in.displayText()
+    #     createPattern = "CREATE DATABASE %s" %dbName
 
-        cursor = self.mydb.cursor()
-        cursor.execute(createPattern)
+    #     cursor = self.mydb.cursor()
+    #     cursor.execute(createPattern)
 
-        self.Get_Databases()
-        self.processEvents()
+    #     self.Get_Databases()
+    #     self.processEvents()
 
     def WriteConsole        (self,text,isError):    # DEBUG ALL STATE TO CONSOLE
         if isError == False:
@@ -328,8 +331,18 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
             errorPat = '<p style="color:rgb(175, 50, 50);">{0}</span>'
             self.console_out.appendHtml(errorPat.format(str(text)))
             self.processEvents()
+    def ExpandConsoleWindow (self):                 # EXPAND CONSOLE WINDOW
+        self.openedConsole = not self.openedConsole
 
-    def SchemeColorText (self,text):
+        if self.openedConsole == True:
+            self.console_out.setGeometry(10,9,1000,721)
+            self.openConsole.setText("C\nL\nO\nS\nE")
+        else:
+            self.console_out.setGeometry(10,650,1000,80)
+            self.console_out.verticalScrollBar().setValue(self.console_out.verticalScrollBar().maximum())
+            self.openConsole.setText("O\nP\nE\nN")
+
+    def SchemeColorText (self,text):                # ADD COLOR TO SQL CODE
         query = str(text.lower()).replace(","," , ").replace("("," ( ").replace(")"," ) ").replace("="," = ")
         
         from Lib.color_schema import schema,greenPat,bluePat
@@ -351,23 +364,15 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,Ui_SQL
                     
         return finalQuery.replace('\n','<br></br>').replace(' , ',',').replace(' ) ',')').replace(' ( ','(')
     
-    def ExpandConsoleWindow (self):
-        self.openedConsole = not self.openedConsole
-
-        if self.openedConsole == True:
-            self.console_out.setGeometry(10,5,1000,735)
-            self.openConsole.setText("C\nL\nO\nS\nE")
-        else:
-            self.console_out.setGeometry(10,660,1000,80)
-            self.console_out.verticalScrollBar().setValue(self.console_out.verticalScrollBar().maximum())
-            self.openConsole.setText("O\nP\nE\nN")
-
-    def contextMenuEvent(self, event):
+    def contextMenuEvent(self, event):              # CUSTOM CONTEXT MENU
         cmenu = QMenu(self)
         
-        newAct = cmenu.addAction("New Database")
-        opnAct = cmenu.addAction("Delete Database")
+        newDB = cmenu.addAction("New Database")
+        cmenu.addSeparator()
+        saveSQL = cmenu.addAction("Save SQL")
+        loadSQL = cmenu.addAction("Load SQL")
+        cmenu.addSeparator()
+        expTable = cmenu.addAction("Export Table")
+
 
         action = cmenu.exec_(self.mapToGlobal(event.pos()))
-
-# - - ######################################################################################################################### - - #

@@ -10,18 +10,21 @@
 
 <h4 align="center">MySQL Querying Tool with QT Designer</h4>
 
-<img src="https://img.shields.io/badge/Status-in%20progress-yellowgreen.svg" align="left" width="113" />
+<img src="https://img.shields.io/badge/Status-in%20progress-yellowgreen.svg" width="115" />
 
-<img src="https://img.shields.io/github/last-commit/zisongbr/MYQT.svg" width="123" align="left" />
+<img src="https://img.shields.io/github/last-commit/zisongbr/MYQT.svg" width="123" />
 
-<img src="https://img.shields.io/github/languages/count/zisongbr/MYQT.svg" width="90" align="left" />
+<img src="https://img.shields.io/github/languages/count/zisongbr/MYQT.svg" width="90"/>
                                                                                          
-<img src="https://david-dm.org/zisongbr/MYQT.svg" width="150" align="left"/> 
+<img src="https://david-dm.org/zisongbr/MYQT.svg" width="150"/> 
 
-<img src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg" width="150" align="left"/>
+<img src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg" width="150"/>
 
-<img src="http://hits.dwyl.io/zisongbr/MYQT.svg" width="75" align="left"/>
+<img src="http://hits.dwyl.io/zisongbr/MYQT.svg" width="75"/>
 
+<img src="https://img.shields.io/twitter/follow/nando_ferreira2.svg?label=Twitter"/>
+
+<img src="https://img.shields.io/github/repo-size/zisongbr/MYQT.svg"/>
 </br>
 
 MYQT is an open source visual database design and querying tool for the MySQL database developed in python using the QT (Cute) framework for creating  interface, Developed by Fernando Moreira between 2018 - 2019
@@ -72,6 +75,7 @@ Python >= 3 with at least the following modules is required:
 <img src="assets/prints/data.PNG"         alt="Table Content"     width="500"/>
 
 
-
 ---
+
 #### Author : Fernando Ferreira Moreira <br> CC0 - 2018 Creative Commons
+
