@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-    <img src="assets/Interface/ui_database.png" alt="logo" width="350">
+    <img src="assets/Interface/ui_database.png" alt="logo" width="100">
   <br>
   MYQT<br>
   MySQL Database Manager
@@ -10,9 +10,9 @@
 
 <h4 align="center">MySQL Querying Tool with QT Designer</h4>
 
-<img src="https://raw.githubusercontent.com/dwyl/repo-badges/master/highresPNGs/build-passing.png"    alt="Build: Passing" width="100"/>
-<img src="https://david-dm.org/zisongbr/MYQT.svg" alt="Dependency" width="100"/> 
-</br>
+<img src="https://raw.githubusercontent.com/dwyl/repo-badges/master/highresPNGs/build-passing.png" align="left" alt="Build: Passing" width="100"/>
+<img src="https://david-dm.org/zisongbr/MYQT.svg" alt="Dependency" width="150" align="left"/> </br>
+
 MYQT is an open source visual database design and querying tool for the MySQL database developed in python using the QT (Cute) framework for creating  interface, Developed by Fernando Moreira between 2018 - 2019
 
 # Interface Help
@@ -55,10 +55,10 @@ Python >= 3 with at least the following modules is required:
 </pre>
 
 # Interface UI
-<img src="src/screenshots/connector.PNG"    alt="connector" width="300"/></br>
-<img src="src/screenshots/manager.PNG"      alt="manager"   width="500"/>
-<img src="src/screenshots/table_script.PNG" alt="types"     width="500"/>
-<img src="src/screenshots/data.PNG"         alt="data"      width="500"/>
+<img src="assets/prints/connector.PNG"    alt="Server Connector"  width="300"/></br>
+<img src="assets/prints/manager.PNG"      alt="Query Manager"     width="500"/>
+<img src="assets/prints/table_script.PNG" alt="Table Types"       width="500"/>
+<img src="assets/prints/data.PNG"         alt="Table Content"     width="500"/>
 
 
 
