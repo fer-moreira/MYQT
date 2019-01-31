@@ -10,17 +10,17 @@
 
 <h4 align="center">MySQL Querying Tool with QT Designer</h4>
 
-<img src="https://img.shields.io/badge/Status-in%20progress-yellowgreen.svg" align="center" width="113" />
+<img src="https://img.shields.io/badge/Status-in%20progress-yellowgreen.svg" align="left" width="113" />
 
-<img src="https://img.shields.io/github/last-commit/zisongbr/MYQT.svg" width="123" align="center" />
+<img src="https://img.shields.io/github/last-commit/zisongbr/MYQT.svg" width="123" align="left" />
 
-<img src="https://img.shields.io/github/languages/count/zisongbr/MYQT.svg" width="90" align="center" />
+<img src="https://img.shields.io/github/languages/count/zisongbr/MYQT.svg" width="90" align="left" />
                                                                                          
-<img src="https://david-dm.org/zisongbr/MYQT.svg" width="150" align="center"/> 
+<img src="https://david-dm.org/zisongbr/MYQT.svg" width="150" align="left"/> 
 
-<img src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg" width="150" align="center"/>
+<img src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg" width="150" align="left"/>
 
-<img src="http://hits.dwyl.io/zisongbr/MYQT.svg" width="75" align="center"/>
+<img src="http://hits.dwyl.io/zisongbr/MYQT.svg" width="75" align="left"/>
 
 </br>
 
