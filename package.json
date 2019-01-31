@@ -1,0 +1,16 @@
+{
+  "name": "MYQT",
+  "version": "0.1a",
+  "description": "MySQL Querying Tool with QT Designer",
+  "main": "Connector.py",
+  "scripts": {
+    "start": "python Connector.py"
+  },
+  "dependencies": {
+    "PyQt5": "^5.11.3",
+    "mysql-connector": "^2.1.6",
+    "mysql-connector-python":"^8.0.13",
+    "mysql-connector-python-rf" : "^2.2.2",
+    "PyQt5-sip" : "^4.19.13"    
+  }
+}
