@@ -10,18 +10,18 @@
 
 <h4 align="center">MySQL Querying Tool with QT Designer</h4>
 
-<img src="https://img.shields.io/badge/Status-in%20progress-yellowgreen.svg" width="115" align="left" hspace="10"/>
-<img src="https://img.shields.io/github/last-commit/zisongbr/MYQT.svg" width="123" align="left" hspace="10"/>
-<img src="https://img.shields.io/github/languages/count/zisongbr/MYQT.svg" width="90" align="left" hspace="10"/>
-<img src="https://david-dm.org/zisongbr/MYQT.svg" width="150" align="left" hspace="10"/>
+<img src="https://img.shields.io/badge/Status-in%20progress-yellowgreen.svg" alt="Dev Status" width="115" align="left" hspace="10"/>
+<img src="https://img.shields.io/github/last-commit/zisongbr/MYQT.svg" alt="Last Commit" width="123" align="left" hspace="10"/>
+<img src="https://img.shields.io/github/languages/count/zisongbr/MYQT.svg" alt="Languages" width="90" align="left" hspace="10"/>
+<img src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg" alt="Contributions" width="150" align="left" hspace="10"/>
 
 </br>
+<img src="https://david-dm.org/zisongbr/MYQT.svg" alt="dependencies" width="150" align="left" hspace="10"/>
+<img src="http://hits.dwyl.io/zisongbr/MYQT.svg" alt="hit" width="75" align="left" hspace="10"/>
+<img src="https://img.shields.io/twitter/follow/nando_ferreira2.svg?label=Twitter" alt="Twitter" align="left" hspace="10"/>
+<img src="https://img.shields.io/github/repo-size/zisongbr/MYQT.svg" alt="Repo Size" align="left" hspace="10"/>
 
-<img src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg" width="150" align="left" hspace="10" vspace="10"/>
-<img src="http://hits.dwyl.io/zisongbr/MYQT.svg" width="75" align="left" hspace="10" vspace="10"/>
-<img src="https://img.shields.io/twitter/follow/nando_ferreira2.svg?label=Twitter" align="left" hspace="10" vspace="10"/>
-<img src="https://img.shields.io/github/repo-size/zisongbr/MYQT.svg" align="left" hspace="10" vspace="10"/>
-
+</br>
 </br>
 
 MYQT is an open source visual database design and querying tool for the MySQL database developed in python using the QT (Cute) framework for creating  interface, Developed by Fernando Moreira between 2018 - 2019
