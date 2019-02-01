@@ -10,7 +10,7 @@
 
 <h4 align="center">MySQL Querying Tool with QT Designer</h4>
 
-<img src="https://img.shields.io/badge/Status-in%20progress-yellowgreen.svg " width="115" align="left" hspace="10"/>
+<img src="https://img.shields.io/badge/Status-in%20progress-yellowgreen.svg" width="115" align="left" hspace="10"/>
 <img src="https://img.shields.io/github/last-commit/zisongbr/MYQT.svg" width="123" align="left" hspace="10"/>
 <img src="https://img.shields.io/github/languages/count/zisongbr/MYQT.svg" width="90" align="left" hspace="10"/>
 <img src="https://david-dm.org/zisongbr/MYQT.svg" width="150" align="left" hspace="10"/>
