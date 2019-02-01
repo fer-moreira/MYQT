@@ -294,7 +294,7 @@ class Ui_SQLMANAGER(object):
         self.actionRefresh_Database.setObjectName("actionRefresh_Database")
 
         self.retranslateUi(SQLMANAGER)
-        self.tabs.setCurrentIndex(1)
+        self.tabs.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(SQLMANAGER)
         SQLMANAGER.setTabOrder(self.tabs, self.query_in)
         SQLMANAGER.setTabOrder(self.query_in, self.result_out)
