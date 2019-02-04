@@ -18,10 +18,9 @@
     <img src="https://img.shields.io/github/languages/count/zisongbr/MYQT.svg" alt="Languages" width="90"/>
     <img src="https://img.shields.io/twitter/follow/nando_ferreira2.svg?label=Twitter" alt="Twitter"/>
     <img src="https://img.shields.io/github/repo-size/zisongbr/MYQT.svg" alt="Repo Size"/>
+    <img src="https://img.shields.io/badge/license-wtfpl-green.svg" alt="License"/>
     </br>
 </h1>
-
-
 
 ### MYQT is an open source visual database design and querying tool for the MySQL database developed in python using the QT (Cute) framework for creating  interface, Developed by Fernando Moreira between 2018 - 2019
 
