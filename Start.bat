@@ -2,17 +2,8 @@
 cls
 
 :ESPECIFIC COMPUTER
-%localappdata%\programs\Python\Python37-32\Scripts\pyuic5.exe -x .\Lib\UI\LAYOUT\MainWindow.ui         -o .\Lib\UI\SCRIPT\MainWindow.py  
-%localappdata%\programs\Python\Python37-32\Scripts\pyuic5.exe -x .\Lib\UI\LAYOUT\ConnectorWindow.ui    -o .\Lib\UI\SCRIPT\ConnectorWindow.py  
-%localappdata%\programs\Python\Python37-32\Scripts\pyuic5.exe -x .\Lib\UI\LAYOUT\ErrorPopup.ui         -o .\Lib\UI\SCRIPT\ErrorPopup.py  
-%localappdata%\programs\Python\Python37-32\Scripts\pyuic5.exe -x .\Lib\UI\LAYOUT\Testes.ui             -o .\Lib\UI\SCRIPT\Testes.py  
-%localappdata%\programs\Python\Python37-32\Scripts\pyuic5.exe -x .\Lib\UI\LAYOUT\Console.ui             -o .\Lib\UI\SCRIPT\Console.py  
+%localappdata%\programs\Python\Python37-32\Scripts\pyuic5.exe -x .\assets\UI\Layout\MainWindow.ui         -o .\assets\UI\Scripts\MainWindow.py  
+%localappdata%\programs\Python\Python37-32\Scripts\pyuic5.exe -x .\assets\UI\Layout\ConnectorWindow.ui    -o .\assets\UI\Scripts\ConnectorWindow.py  
+%localappdata%\programs\Python\Python37-32\Scripts\pyuic5.exe -x .\assets\UI\Layout\ErrorPopup.ui         -o .\assets\UI\Scripts\ErrorPopup.py  
+%localappdata%\programs\Python\Python37-32\Scripts\pyuic5.exe -x .\assets\UI\Layout\DB_Creator.ui         -o .\assets\UI\Scripts\DB_Creator.py
 py.exe Connector.py
-
-REM :NORMAL COMPUTER
-REM pyuic5 -x .\Lib\UI\LAYOUT\MainWindow.ui      -o .\Lib\UI\SCRIPT\MainWindow.py  
-REM pyuic5 -x .\Lib\UI\LAYOUT\ConnectorWindow.ui -o .\Lib\UI\SCRIPT\ConnectorWindow.py  
-REM pyuic5 -x .\Lib\UI\LAYOUT\ErrorPopup.ui      -o .\Lib\UI\SCRIPT\ErrorPopup.py  
-REM pyuic5 -x .\Lib\UI\LAYOUT\Testes.ui          -o .\Lib\UI\SCRIPT\Testes.py  
-REM pyuic5 -x .\Lib\UI\LAYOUT\Console.ui          -o .\Lib\UI\SCRIPT\Console.py  
-REM python Connector.py

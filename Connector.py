@@ -6,12 +6,10 @@ from PyQt5.QtWidgets import QApplication, QDialog,QMainWindow,QStyleFactory,QAct
 from PyQt5 import QtGui
 
 from Core.Manager import ManagerWindow
-from Core.PopupHandler import PopupWindow
-
-from Lib.UI.SCRIPT.ConnectorWindow import Ui_Connector
+from assets.UI.Scripts.ConnectorWindow import Ui_Connector
 from Lib.icons_manager import ico_connector
 
-
+    
 app = QApplication(sys.argv)
 app.processEvents()
 

@@ -9,8 +9,8 @@
 </h1>
 
 <h1 align="center">
-    <img src="https://img.shields.io/badge/Status-in%20progress-yellowgreen.svg" alt="Dev Status" width="130"/>
-    <img src="https://img.shields.io/github/last-commit/zisongbr/MYQT.svg" alt="Last Commit" width="135"/>
+    <img src="https://img.shields.io/badge/Status-in%20progress-yellowgreen.svg" alt="Dev Status" width="115"/>
+    <img src="https://img.shields.io/github/last-commit/zisongbr/MYQT.svg" alt="Last Commit" width="123"/>
     <img src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg" alt="Contributions" width="150"/>
     <img src="https://david-dm.org/zisongbr/MYQT.svg" alt="dependencies" width="150"/>    
     </br>
@@ -18,7 +18,6 @@
     <img src="https://img.shields.io/github/languages/count/zisongbr/MYQT.svg" alt="Languages" width="90"/>
     <img src="https://img.shields.io/twitter/follow/nando_ferreira2.svg?label=Twitter" alt="Twitter"/>
     <img src="https://img.shields.io/github/repo-size/zisongbr/MYQT.svg" alt="Repo Size"/>
-    <img src="https://img.shields.io/badge/license-wtfpl-green.svg" alt="License"/>
     </br>
 </h1>
 
