@@ -5,9 +5,9 @@ from PyQt5 import QtGui
 
 from assets.UI.Scripts.DB_Creator import Ui_Creator
 
-class DBCreatpr(QMainWindow,Ui_Creator):
-    def __init__(self, _log,parent = None):
-        super(DBCreatpr,self).__init__(parent)
+class DBCreator(QMainWindow,Ui_Creator):
+    def __init__(self,parent = None):
+        super(DBCreator,self).__init__(parent)
         self.setupUi(self)
         self.show()
 

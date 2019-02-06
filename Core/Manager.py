@@ -20,6 +20,7 @@ from PyQt5.QtGui        import QIcon
 ## INTERFACE MODULES ########################################################################################+
 from assets.UI.Scripts.MainWindow   import Ui_SQLMANAGER
 from Lib.icons_manager       import (_run,_runSelected,_import,_export,_refresh,_newDatabase,_newTable,ui_db,ui_tb,ico_consult)
+from Core.Database_creator import DBCreator
 ############################################################################################################+
 
 from functools          import partial
@@ -235,7 +236,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         print("NEW DATABASE")
 
     def createTable (self):
-        print("NEW TABLE")
+        self.tableCreator = DBCreator()
 
     def add_tool_bar        (self):                 # ADD TOOLBAR AND TOOLBAR ICONS HANDLER 
         toolBar = QToolBar()
@@ -247,13 +248,13 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         spacer_b.setSizePolicy(QSizePolicy.Expanding,QSizePolicy.Preferred)
         tb_config = self.addToolBar(Qt.TopToolBarArea,toolBar)
 
-        refresh_t       = QAction(QIcon(_refresh),    "REFRESH",           self,shortcut="F5",           triggered=self.Get_Databases)
-        compileAll      = QAction(QIcon(_run),        "COMPILE",           self,shortcut="F9",           triggered=self.GetAllQuery)
-        import_t        = QAction(QIcon(_import),     " IMPORT",       self,shortcut="Ctrl+O",       triggered=self.load_query_from_file)
-        export_t        = QAction(QIcon(_export),     " EXPORT",       self,shortcut="Ctrl+S",       triggered=self.save_query_to_file)
+        refresh_t       = QAction(QIcon(_refresh),    "REFRESH",self,shortcut="F5",           triggered=self.Get_Databases)
+        compileAll      = QAction(QIcon(_run),        "COMPILE",self,shortcut="F9",           triggered=self.GetAllQuery)
+        import_t        = QAction(QIcon(_import),     " IMPORT",self,shortcut="Ctrl+O",       triggered=self.load_query_from_file)
+        export_t        = QAction(QIcon(_export),     " EXPORT",self,shortcut="Ctrl+S",       triggered=self.save_query_to_file)
         compileSelected = QAction(QIcon(_runSelected),"RUN  SL",self,shortcut="Shift+Ctrl+F9",triggered=self.GetSelectedQuery)
-        newDatabase     = QAction(QIcon(_newDatabase),"NEW  DB", self,                         triggered=self.createDatabae)
-        newTable     = QAction(QIcon(_newTable)      ,"NEW  TB",    self,                         triggered=self.createTable)
+        newDatabase     = QAction(QIcon(_newDatabase),"NEW  DB",self,                         triggered=self.createDatabae)
+        newTable     = QAction(QIcon(_newTable)      ,"NEW  TB",self,                         triggered=self.createTable)
 
         refresh_t.setToolTip        ("Refresh Server (F5)")
         import_t.setToolTip         ("Load SQL (Ctrl+O)")
