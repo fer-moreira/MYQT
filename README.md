@@ -10,7 +10,7 @@
 
 <h1 align="center">
     <img src="https://img.shields.io/badge/Status-in%20progress-yellowgreen.svg" alt="Dev Status" width="130"/>
-    <img src="https://img.shields.io/github/last-commit/zisongbr/MYQT.svg" alt="Last Commit" width="165"/>
+    <img src="https://img.shields.io/github/last-commit/zisongbr/MYQT.svg" alt="Last Commit" width="135"/>
     <img src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg" alt="Contributions" width="150"/>
     <img src="https://david-dm.org/zisongbr/MYQT.svg" alt="dependencies" width="150"/>    
     </br>
