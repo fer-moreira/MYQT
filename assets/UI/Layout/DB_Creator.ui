@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>Creator</class>
  <widget class="QMainWindow" name="Creator">
+  <property name="windowModality">
+   <enum>Qt::ApplicationModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -21,8 +24,195 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
+    <item row="12" column="1" colspan="2">
+     <widget class="QLineEdit" name="f_collection">
+      <property name="minimumSize">
+       <size>
+        <width>280</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>290</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>utf8_general_ci</string>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="1" colspan="2">
+     <widget class="QLabel" name="label_5">
+      <property name="minimumSize">
+       <size>
+        <width>280</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>280</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Pattern:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="1" colspan="2">
+     <widget class="QLabel" name="label_6">
+      <property name="minimumSize">
+       <size>
+        <width>280</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>280</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Comment:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="11" column="1" colspan="2">
+     <widget class="QLabel" name="label_7">
+      <property name="minimumSize">
+       <size>
+        <width>280</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>280</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Collection</string>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="1" colspan="2">
+     <widget class="QComboBox" name="pattern_combo">
+      <property name="minimumSize">
+       <size>
+        <width>280</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>290</width>
+        <height>30</height>
+       </size>
+      </property>
+      <item>
+       <property name="text">
+        <string>N/A</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>AUTO_INCREMENT</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="10" column="1" colspan="2">
+     <widget class="QLineEdit" name="f_comment">
+      <property name="minimumSize">
+       <size>
+        <width>280</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>290</width>
+        <height>30</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item row="13" column="0">
+     <widget class="QPushButton" name="execute">
+      <property name="minimumSize">
+       <size>
+        <width>330</width>
+        <height>50</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>EXECUTE CREATE CODE</string>
+      </property>
+      <property name="shortcut">
+       <string>F9</string>
+      </property>
+     </widget>
+    </item>
+    <item row="13" column="1" colspan="2" alignment="Qt::AlignVCenter">
+     <widget class="QPushButton" name="create">
+      <property name="minimumSize">
+       <size>
+        <width>280</width>
+        <height>50</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>290</width>
+        <height>50</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>CREATE CODE</string>
+      </property>
+      <property name="shortcut">
+       <string>Return</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1" colspan="2">
+     <widget class="QLineEdit" name="table_name">
+      <property name="minimumSize">
+       <size>
+        <width>281</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>290</width>
+        <height>30</height>
+       </size>
+      </property>
+     </widget>
+    </item>
     <item row="0" column="0" rowspan="13">
-     <widget class="QPlainTextEdit" name="plainTextEdit">
+     <widget class="QPlainTextEdit" name="code_preview">
       <property name="minimumSize">
        <size>
         <width>330</width>
@@ -55,22 +245,6 @@
       </property>
      </widget>
     </item>
-    <item row="1" column="1" colspan="2">
-     <widget class="QLineEdit" name="d_name">
-      <property name="minimumSize">
-       <size>
-        <width>281</width>
-        <height>30</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>290</width>
-        <height>30</height>
-       </size>
-      </property>
-     </widget>
-    </item>
     <item row="2" column="1" colspan="2">
      <widget class="QLabel" name="label">
       <property name="minimumSize">
@@ -96,7 +270,7 @@
      </widget>
     </item>
     <item row="3" column="1" colspan="2">
-     <widget class="QLineEdit" name="f_name">
+     <widget class="QLineEdit" name="field_name">
       <property name="minimumSize">
        <size>
         <width>280</width>
@@ -131,25 +305,12 @@
        </font>
       </property>
       <property name="text">
-       <string>Tipo de dados:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="2">
-     <widget class="QLabel" name="label_4">
-      <property name="maximumSize">
-       <size>
-        <width>124</width>
-        <height>30</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>Valor:</string>
+       <string>Data type:</string>
       </property>
      </widget>
     </item>
     <item row="5" column="1">
-     <widget class="QComboBox" name="comboBox">
+     <widget class="QComboBox" name="databox">
       <property name="minimumSize">
        <size>
         <width>160</width>
@@ -339,8 +500,21 @@
       </item>
      </widget>
     </item>
+    <item row="4" column="2">
+     <widget class="QLabel" name="label_4">
+      <property name="maximumSize">
+       <size>
+        <width>124</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>Value:</string>
+      </property>
+     </widget>
+    </item>
     <item row="5" column="2" alignment="Qt::AlignHCenter">
-     <widget class="QLineEdit" name="lineEdit">
+     <widget class="QLineEdit" name="datavalue">
       <property name="minimumSize">
        <size>
         <width>110</width>
@@ -371,7 +545,7 @@
       <property name="title">
        <string>Booleans</string>
       </property>
-      <widget class="QCheckBox" name="checkBox">
+      <widget class="QCheckBox" name="unsigned_2">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -407,7 +581,7 @@
         <bool>false</bool>
        </property>
       </widget>
-      <widget class="QCheckBox" name="checkBox_2">
+      <widget class="QCheckBox" name="allownull">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -431,7 +605,7 @@
         </font>
        </property>
        <property name="text">
-        <string>Permitir NULL</string>
+        <string>Allow NULL</string>
        </property>
        <property name="iconSize">
         <size>
@@ -443,7 +617,7 @@
         <bool>false</bool>
        </property>
       </widget>
-      <widget class="QCheckBox" name="checkBox_3">
+      <widget class="QCheckBox" name="zerofill">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -481,203 +655,42 @@
       </widget>
      </widget>
     </item>
-    <item row="7" column="1" colspan="2">
-     <widget class="QLabel" name="label_5">
-      <property name="minimumSize">
-       <size>
-        <width>280</width>
-        <height>20</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>280</width>
-        <height>20</height>
-       </size>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Padrão:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="8" column="1" colspan="2">
-     <widget class="QComboBox" name="comboBox_2">
-      <property name="minimumSize">
-       <size>
-        <width>280</width>
-        <height>30</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>290</width>
-        <height>30</height>
-       </size>
-      </property>
-      <item>
-       <property name="text">
-        <string>N/A</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>NULL</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>AUTO_INCREMENT</string>
-       </property>
-      </item>
-     </widget>
-    </item>
-    <item row="9" column="1" colspan="2">
-     <widget class="QLabel" name="label_6">
-      <property name="minimumSize">
-       <size>
-        <width>280</width>
-        <height>20</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>280</width>
-        <height>20</height>
-       </size>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Comment:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="10" column="1" colspan="2">
-     <widget class="QLineEdit" name="f_name_2">
-      <property name="minimumSize">
-       <size>
-        <width>280</width>
-        <height>30</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>290</width>
-        <height>30</height>
-       </size>
-      </property>
-     </widget>
-    </item>
-    <item row="11" column="1" colspan="2">
-     <widget class="QLabel" name="label_7">
-      <property name="minimumSize">
-       <size>
-        <width>280</width>
-        <height>20</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>280</width>
-        <height>20</height>
-       </size>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Collection</string>
-      </property>
-     </widget>
-    </item>
-    <item row="12" column="1" colspan="2">
-     <widget class="QLineEdit" name="f_name_3">
-      <property name="minimumSize">
-       <size>
-        <width>280</width>
-        <height>30</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>290</width>
-        <height>30</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>utf8_general_ci</string>
-      </property>
-     </widget>
-    </item>
-    <item row="13" column="0">
-     <widget class="QPushButton" name="pushButton_2">
-      <property name="minimumSize">
-       <size>
-        <width>330</width>
-        <height>50</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>EXECUTE CREATE CODE</string>
-      </property>
-      <property name="shortcut">
-       <string>F9</string>
-      </property>
-     </widget>
-    </item>
-    <item row="13" column="1" colspan="2" alignment="Qt::AlignVCenter">
-     <widget class="QPushButton" name="pushButton">
-      <property name="minimumSize">
-       <size>
-        <width>280</width>
-        <height>50</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>290</width>
-        <height>50</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>REFRESH</string>
-      </property>
-      <property name="shortcut">
-       <string>F5</string>
-      </property>
-     </widget>
-    </item>
    </layout>
    <zorder>groupBox</zorder>
-   <zorder>d_name</zorder>
-   <zorder>f_name</zorder>
+   <zorder>table_name</zorder>
+   <zorder>field_name</zorder>
    <zorder>label</zorder>
    <zorder>label_2</zorder>
    <zorder>label_3</zorder>
-   <zorder>comboBox</zorder>
+   <zorder>databox</zorder>
    <zorder>label_4</zorder>
-   <zorder>lineEdit</zorder>
-   <zorder>comboBox_2</zorder>
+   <zorder>datavalue</zorder>
+   <zorder>pattern_combo</zorder>
    <zorder>label_5</zorder>
    <zorder>label_6</zorder>
-   <zorder>f_name_2</zorder>
-   <zorder>f_name_3</zorder>
+   <zorder>f_comment</zorder>
+   <zorder>f_collection</zorder>
    <zorder>label_7</zorder>
-   <zorder>plainTextEdit</zorder>
-   <zorder>pushButton</zorder>
-   <zorder>pushButton_2</zorder>
+   <zorder>code_preview</zorder>
+   <zorder>create</zorder>
+   <zorder>execute</zorder>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>code_preview</tabstop>
+  <tabstop>table_name</tabstop>
+  <tabstop>field_name</tabstop>
+  <tabstop>databox</tabstop>
+  <tabstop>datavalue</tabstop>
+  <tabstop>unsigned_2</tabstop>
+  <tabstop>allownull</tabstop>
+  <tabstop>zerofill</tabstop>
+  <tabstop>pattern_combo</tabstop>
+  <tabstop>f_comment</tabstop>
+  <tabstop>f_collection</tabstop>
+  <tabstop>create</tabstop>
+  <tabstop>execute</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
