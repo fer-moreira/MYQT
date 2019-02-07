@@ -150,8 +150,8 @@
      <widget class="QDialogButtonBox" name="buttons">
       <property name="minimumSize">
        <size>
-        <width>310</width>
-        <height>30</height>
+        <width>80</width>
+        <height>20</height>
        </size>
       </property>
       <property name="font">

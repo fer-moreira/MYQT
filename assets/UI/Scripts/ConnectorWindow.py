@@ -63,7 +63,7 @@ class Ui_Connector(object):
         self.trusted.setObjectName("trusted")
         self.gridLayout.addWidget(self.trusted, 3, 2, 1, 1)
         self.buttons = QtWidgets.QDialogButtonBox(self.centralwidget)
-        self.buttons.setMinimumSize(QtCore.QSize(310, 30))
+        self.buttons.setMinimumSize(QtCore.QSize(80, 20))
         font = QtGui.QFont()
         font.setPointSize(10)
         self.buttons.setFont(font)

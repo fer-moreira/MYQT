@@ -256,6 +256,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
                 self.application_error("myqt_1:\nNo database selected")
         except Exception as error:
             self.application_error(error)
+            
             pass
 
     def add_tool_bar         (self):                 # ADD TOOLBAR AND TOOLBAR ICONS HANDLER 
@@ -342,4 +343,5 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
             self.processEvents()
     
     def application_error    (self,error):
+        print(error)
         reply = QMessageBox.critical(self, "CRITICAL ERROR",str(error),QMessageBox.Ok)

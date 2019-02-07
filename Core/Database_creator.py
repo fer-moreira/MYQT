@@ -3,7 +3,7 @@ import mysql.connector as mysql
 ################################+
 
 from PyQt5.QtCore import pyqtSlot
-from PyQt5.QtWidgets import QApplication, QDialog,QMainWindow,QMenu
+from PyQt5.QtWidgets import QApplication, QDialog,QMainWindow,QMessageBox
 from PyQt5 import QtGui
 
 from assets.UI.Scripts.DB_Creator import Ui_Creator
@@ -15,17 +15,26 @@ class DBCreator(QMainWindow,Ui_Creator):
         self.show()
 
 
-        self.db = db,self.hs = hs,self.pt = pt,self.us = us,self.ps = ps,self.bfred = bfr
+        self.db = db
+        self.hs = hs
+        self.pt = pt
+        self.us = us
+        self.ps = ps
+        self.bfred = bfr
         self.mydb = mysql.connect(database=self.db,host=self.hs,port=self.pt,user=self.us,passwd=self.ps,buffered=self.bfred)
+    
+        self._content = ""
+        self._fieldDicts = {}
 
 
-        self._content   = ""
-        self._fieldDict = {}
+        try:
+            self.create.clicked.connect(self.get_content)
+        except Exception as error:
+            self.application_error(error)
 
-        self.create.clicked.connect(self.get_content)
 
     def get_content (self):
-        code_pattern = ''',{field_name} {data_type}({data_scale}) {unsigned} {zerofill} {useNull} {pattern_increment} COMMENT '{comment}' COLLATE '{collection}'''
+        code_pattern = '''{field_name} {data_type}({data_scale}) {unsigned} {zerofill} {useNull} {pattern_increment} COMMENT '{comment}' COLLATE '{collection}'''
 
         _tableName  = str(self.table_name.text())
         _fieldName  = str(self.field_name.text())
@@ -55,18 +64,26 @@ class DBCreator(QMainWindow,Ui_Creator):
         pattern_increment=_pattern,
         comment=_comment,
         collection=_collection)
-        
-        self._content += "%s\n" %final_code
 
-        _queryPattern = '''CREATE TABLE {tb_name} (\n{content}\n)\nCOLLATE='utf8_general_ci\n;'''
-        final_query = _queryPattern.format(tb_name=_tableName,content=self._content).replace("(\n,","(\n")
+        self._fieldDicts[_fieldName] = final_code
 
-        self.code_preview.setPlainText(final_query)
+        for patKey in self._fieldDicts:
+            _piece = self._fieldDicts.get(patKey)
+            print(_piece)
+            pass
 
-        self._fieldDict
+        lastKeyID = int(len(self._fieldDicts)-1)
+        lastKey = list(self._fieldDicts)[lastKeyID]
+
+        print(lastKey)
+        # print(lastKeyID," -> ",lastKey)
 
     def execute_create_code (self):
         sql_query = str(self.code_preview.ToPlainText())
 
         self.cursor = self.mydb.cursor()
         self.cursor.execute(sql_query)
+
+    def application_error    (self,error):
+        print(error)
+        reply = QMessageBox.critical(self, "ERROR",str(error),QMessageBox.Ok)
