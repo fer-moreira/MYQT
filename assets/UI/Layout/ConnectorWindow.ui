@@ -2,11 +2,14 @@
 <ui version="4.0">
  <class>Connector</class>
  <widget class="QMainWindow" name="Connector">
+  <property name="windowModality">
+   <enum>Qt::ApplicationModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>328</width>
+    <width>339</width>
     <height>262</height>
    </rect>
   </property>
@@ -123,6 +126,9 @@
         <italic>true</italic>
        </font>
       </property>
+      <property name="cursor">
+       <cursorShape>ForbiddenCursor</cursorShape>
+      </property>
       <property name="toolTip">
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Trusted Connection&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
@@ -158,6 +164,9 @@
        <font>
         <pointsize>10</pointsize>
        </font>
+      </property>
+      <property name="cursor">
+       <cursorShape>ArrowCursor</cursorShape>
       </property>
       <property name="styleSheet">
        <string notr="true">	min-width: 80px;
@@ -226,6 +235,9 @@
         <pointsize>10</pointsize>
         <italic>true</italic>
        </font>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
       </property>
       <property name="toolTip">
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Buffered Connection&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -303,6 +315,9 @@
         <bold>false</bold>
        </font>
       </property>
+      <property name="cursor">
+       <cursorShape>ForbiddenCursor</cursorShape>
+      </property>
       <property name="toolTip">
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Driver&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
@@ -341,6 +356,9 @@
         <italic>true</italic>
        </font>
       </property>
+      <property name="cursor">
+       <cursorShape>ForbiddenCursor</cursorShape>
+      </property>
       <property name="toolTip">
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Use server Driver&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
@@ -378,6 +396,9 @@
         <height>30</height>
        </size>
       </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
       <item>
        <property name="text">
         <string>MYSQL (TCP/IP)</string>
@@ -402,9 +423,12 @@
   <tabstop>comboBox</tabstop>
   <tabstop>host_in</tabstop>
   <tabstop>port_in</tabstop>
+  <tabstop>buffered</tabstop>
   <tabstop>user_in</tabstop>
   <tabstop>pass_in</tabstop>
-  <tabstop>buffered</tabstop>
+  <tabstop>trusted</tabstop>
+  <tabstop>driver_in</tabstop>
+  <tabstop>driver</tabstop>
  </tabstops>
  <resources/>
  <connections/>

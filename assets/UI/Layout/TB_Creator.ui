@@ -1,0 +1,743 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Creator</class>
+ <widget class="QMainWindow" name="Creator">
+  <property name="windowModality">
+   <enum>Qt::ApplicationModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>446</width>
+    <height>633</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Table creator</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="12" column="1" colspan="3">
+     <widget class="QLineEdit" name="f_collection">
+      <property name="minimumSize">
+       <size>
+        <width>215</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>215</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="cursor">
+       <cursorShape>IBeamCursor</cursorShape>
+      </property>
+      <property name="text">
+       <string>utf8_general_ci</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="1" colspan="3">
+     <widget class="QGroupBox" name="groupBox">
+      <property name="minimumSize">
+       <size>
+        <width>215</width>
+        <height>126</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>215</width>
+        <height>126</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="title">
+       <string>Booleans</string>
+      </property>
+      <widget class="QCheckBox" name="unsigned_2">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>270</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>270</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>270</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+         <weight>50</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>Unsigned</string>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="tristate">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="allownull">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>50</y>
+         <width>270</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>270</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>270</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+         <weight>50</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>Allow NULL</string>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="tristate">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="zerofill">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>80</y>
+         <width>270</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>270</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>270</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+         <weight>50</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>ZEROFILL</string>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="tristate">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </widget>
+    </item>
+    <item row="7" column="1" colspan="3">
+     <widget class="QLabel" name="label_5">
+      <property name="minimumSize">
+       <size>
+        <width>215</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>215</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Pattern:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="1" colspan="3">
+     <widget class="QLabel" name="label_6">
+      <property name="minimumSize">
+       <size>
+        <width>215</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>215</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Comment:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="11" column="1" colspan="3">
+     <widget class="QLabel" name="label_7">
+      <property name="minimumSize">
+       <size>
+        <width>215</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>215</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Collation</string>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="1" colspan="3">
+     <widget class="QComboBox" name="pattern_combo">
+      <property name="minimumSize">
+       <size>
+        <width>215</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>215</width>
+        <height>30</height>
+       </size>
+      </property>
+      <item>
+       <property name="text">
+        <string>NO DEFAULT VALUE</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>DEFAULT NULL</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>AUTO_INCREMENT</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="10" column="1" colspan="3">
+     <widget class="QLineEdit" name="f_comment">
+      <property name="minimumSize">
+       <size>
+        <width>215</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>215</width>
+        <height>30</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item row="13" column="0">
+     <widget class="QPushButton" name="execute">
+      <property name="minimumSize">
+       <size>
+        <width>200</width>
+        <height>50</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>EXECUTE CREATE CODE</string>
+      </property>
+      <property name="shortcut">
+       <string>F9</string>
+      </property>
+     </widget>
+    </item>
+    <item row="13" column="1" colspan="3" alignment="Qt::AlignVCenter">
+     <widget class="QPushButton" name="create">
+      <property name="minimumSize">
+       <size>
+        <width>220</width>
+        <height>50</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>190</width>
+        <height>50</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>CREATE CODE</string>
+      </property>
+      <property name="shortcut">
+       <string>Return</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1" colspan="3">
+     <widget class="QLineEdit" name="table_name">
+      <property name="minimumSize">
+       <size>
+        <width>215</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>215</width>
+        <height>30</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0" rowspan="13">
+     <widget class="QPlainTextEdit" name="code_preview">
+      <property name="minimumSize">
+       <size>
+        <width>200</width>
+        <height>528</height>
+       </size>
+      </property>
+      <property name="cursor" stdset="0">
+       <cursorShape>IBeamCursor</cursorShape>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1" colspan="3">
+     <widget class="QLabel" name="label_2">
+      <property name="minimumSize">
+       <size>
+        <width>215</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>215</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Table name:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1" colspan="3">
+     <widget class="QLabel" name="label">
+      <property name="minimumSize">
+       <size>
+        <width>215</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>215</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Field name:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1" colspan="3">
+     <widget class="QLineEdit" name="field_name">
+      <property name="minimumSize">
+       <size>
+        <width>215</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>215</width>
+        <height>30</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QLabel" name="label_3">
+      <property name="minimumSize">
+       <size>
+        <width>100</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>100</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Data type:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="1">
+     <widget class="QComboBox" name="databox">
+      <property name="minimumSize">
+       <size>
+        <width>100</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>100</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <item>
+       <property name="text">
+        <string>TINYINT</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>SMALLINT</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>MEDIUMINT</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>INT</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>BIGINT</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>BIT</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>FLOAT</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>DOUBLE</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>DECIMAL</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>CHAR</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>VARCHAR</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>TINYTEXT</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>MEDIUMTEXT</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>LONGTEXT</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>JSON</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>BINARY</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>VARBINARY</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>BLOB</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>MEDIUMBLOB</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>LONGBLOB</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>DATE</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>TIME</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>YEAR</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>DATETIME</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>TIMESTAMP</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>POINT</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>LINESTRING</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>POLYGON</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>GEOMETRY</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>MULTIPOINT</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>MULTILINESTRING</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>MULTIPOLYGON</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>GEOMETRYCOLLECTION</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>ENUM</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>SET</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="5" column="2">
+     <widget class="QLineEdit" name="datavalue">
+      <property name="minimumSize">
+       <size>
+        <width>110</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>64</width>
+        <height>30</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="2">
+     <widget class="QLabel" name="label_4">
+      <property name="minimumSize">
+       <size>
+        <width>110</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>114</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>Value:</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+   <zorder>groupBox</zorder>
+   <zorder>table_name</zorder>
+   <zorder>field_name</zorder>
+   <zorder>label</zorder>
+   <zorder>label_2</zorder>
+   <zorder>label_3</zorder>
+   <zorder>databox</zorder>
+   <zorder>pattern_combo</zorder>
+   <zorder>label_5</zorder>
+   <zorder>label_6</zorder>
+   <zorder>f_comment</zorder>
+   <zorder>f_collection</zorder>
+   <zorder>label_7</zorder>
+   <zorder>code_preview</zorder>
+   <zorder>create</zorder>
+   <zorder>execute</zorder>
+   <zorder>datavalue</zorder>
+   <zorder>label_4</zorder>
+  </widget>
+ </widget>
+ <tabstops>
+  <tabstop>table_name</tabstop>
+  <tabstop>field_name</tabstop>
+  <tabstop>databox</tabstop>
+  <tabstop>datavalue</tabstop>
+  <tabstop>unsigned_2</tabstop>
+  <tabstop>allownull</tabstop>
+  <tabstop>zerofill</tabstop>
+  <tabstop>pattern_combo</tabstop>
+  <tabstop>f_comment</tabstop>
+  <tabstop>f_collection</tabstop>
+  <tabstop>create</tabstop>
+  <tabstop>code_preview</tabstop>
+  <tabstop>execute</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

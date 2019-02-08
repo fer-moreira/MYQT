@@ -1,3 +1,4 @@
 # coding: utf-8
-from .Manager import *
-from .Database_creator import *
+from .Database_Creator import *
+# from .Manager import *
+from .Table_Creator import *

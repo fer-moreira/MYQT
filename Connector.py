@@ -1,15 +1,15 @@
 import sys
+
 import mysql.connector as mysql
-
-from PyQt5.QtCore import pyqtSlot,QFile, QTextStream
-from PyQt5.QtWidgets import QApplication, QDialog,QMainWindow,QStyleFactory,QAction,QMenu,QMessageBox
 from PyQt5 import QtGui
+from PyQt5.QtCore import QFile, QTextStream, pyqtSlot
+from PyQt5.QtWidgets import (QAction, QApplication, QDialog, QMainWindow,
+                             QMenu, QMessageBox, QStyleFactory)
 
-from Core.Manager import ManagerWindow
 from assets.UI.Scripts.ConnectorWindow import Ui_Connector
+from Core.Manager import ManagerWindow
 from Lib.icons_manager import ico_connector
 
-    
 app = QApplication(sys.argv)
 app.processEvents()
 

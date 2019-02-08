@@ -11,7 +11,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Connector(object):
     def setupUi(self, Connector):
         Connector.setObjectName("Connector")
-        Connector.resize(328, 262)
+        Connector.setWindowModality(QtCore.Qt.ApplicationModal)
+        Connector.resize(339, 262)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -55,6 +56,7 @@ class Ui_Connector(object):
         font.setPointSize(10)
         font.setItalic(True)
         self.trusted.setFont(font)
+        self.trusted.setCursor(QtGui.QCursor(QtCore.Qt.ForbiddenCursor))
         self.trusted.setCheckable(True)
         self.trusted.setChecked(True)
         self.trusted.setAutoRepeat(False)
@@ -67,6 +69,7 @@ class Ui_Connector(object):
         font = QtGui.QFont()
         font.setPointSize(10)
         self.buttons.setFont(font)
+        self.buttons.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
         self.buttons.setStyleSheet("    min-width: 80px;\n"
 " min-height: 20px;")
         self.buttons.setOrientation(QtCore.Qt.Horizontal)
@@ -94,6 +97,7 @@ class Ui_Connector(object):
         font.setPointSize(10)
         font.setItalic(True)
         self.buffered.setFont(font)
+        self.buffered.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.buffered.setCheckable(True)
         self.buffered.setChecked(True)
         self.buffered.setAutoRepeat(False)
@@ -121,6 +125,7 @@ class Ui_Connector(object):
         font.setBold(False)
         font.setWeight(50)
         self.driver_in.setFont(font)
+        self.driver_in.setCursor(QtGui.QCursor(QtCore.Qt.ForbiddenCursor))
         self.driver_in.setFrame(True)
         self.driver_in.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.driver_in.setClearButtonEnabled(False)
@@ -134,6 +139,7 @@ class Ui_Connector(object):
         font.setPointSize(10)
         font.setItalic(True)
         self.driver.setFont(font)
+        self.driver.setCursor(QtGui.QCursor(QtCore.Qt.ForbiddenCursor))
         self.driver.setCheckable(True)
         self.driver.setChecked(True)
         self.driver.setAutoRepeat(False)
@@ -148,6 +154,7 @@ class Ui_Connector(object):
         sizePolicy.setHeightForWidth(self.comboBox.sizePolicy().hasHeightForWidth())
         self.comboBox.setSizePolicy(sizePolicy)
         self.comboBox.setMinimumSize(QtCore.QSize(310, 30))
+        self.comboBox.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.comboBox.setObjectName("comboBox")
         self.comboBox.addItem("")
         self.comboBox.addItem("")
@@ -159,9 +166,12 @@ class Ui_Connector(object):
         QtCore.QMetaObject.connectSlotsByName(Connector)
         Connector.setTabOrder(self.comboBox, self.host_in)
         Connector.setTabOrder(self.host_in, self.port_in)
-        Connector.setTabOrder(self.port_in, self.user_in)
+        Connector.setTabOrder(self.port_in, self.buffered)
+        Connector.setTabOrder(self.buffered, self.user_in)
         Connector.setTabOrder(self.user_in, self.pass_in)
-        Connector.setTabOrder(self.pass_in, self.buffered)
+        Connector.setTabOrder(self.pass_in, self.trusted)
+        Connector.setTabOrder(self.trusted, self.driver_in)
+        Connector.setTabOrder(self.driver_in, self.driver)
 
     def retranslateUi(self, Connector):
         _translate = QtCore.QCoreApplication.translate

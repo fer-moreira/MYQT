@@ -1,28 +1,23 @@
-## SIMPLE MODULES ##+
-import time
 import sys
-import xlrd
-####################+
-
-######### MYSQL MODULE #########+
+import time
+from functools import partial
 import mysql.connector as mysql
-################################+
+import xlrd
+from PyQt5 import QtCore, QtWidgets
+from PyQt5.QtCore import QCoreApplication, QFile, Qt, QTextStream, pyqtSlot
+from PyQt5.QtGui import QIcon, QStandardItem, QStandardItemModel
+from PyQt5.QtWidgets import (QAction, QApplication, QDialog, QFileDialog,QHeaderView,
+QMainWindow, QMenu, QMessageBox,QSizePolicy, QStyleFactory, QTableWidget,QTableWidgetItem,
+ QToolBar, QTreeWidgetItem,QWidget, qApp)
 
-################### PYQT MODULES ###############################################################+
-from PyQt5              import QtCore,QtWidgets
-from PyQt5.QtGui        import QStandardItemModel,QStandardItem
-from PyQt5.QtWidgets    import (QApplication, QDialog,QFileDialog,QMainWindow,QStyleFactory,QWidget,QSizePolicy,QMessageBox,
-QMenu,qApp,QAction,QToolBar,QTableWidget,QTableWidgetItem,QHeaderView,QTreeWidgetItem)
-from PyQt5.QtCore       import pyqtSlot,QFile, QTextStream,QCoreApplication,Qt
-from PyQt5.QtGui        import QIcon
-################################################################################################+
+from Lib.icons_manager import (_export, _import, _newDatabase, _newTable,
+                               _refresh, _run, _runSelected, ico_consult,
+                               ui_db, ui_tb)
 
-## INTERFACE MODULES ########################################################################################+
-from assets.UI.Scripts.MainWindow   import Ui_SQLMANAGER
-from Lib.icons_manager       import (_run,_runSelected,_import,_export,_refresh,_newDatabase,_newTable,ui_db,ui_tb,ico_consult)
-from Core.Database_creator import DBCreator
-############################################################################################################+
-from functools          import partial
+
+from assets.UI.Scripts.MainWindow import Ui_SQLMANAGER
+from Core.Table_Creator import TBCreator
+from Core.Database_Creator import DBCreator
 
 class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLMANAGER,object):
     def __init__(self,hs,pt,us,ps,bfr, parent = None):
@@ -148,7 +143,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         self.tables_out.expandAll()
         self.console_output("SHOW TABLES",False)
     
-    def get_table_script     (self,data):
+    def get_table_script     (self,data):            # GET CREATE TABLE SCRIPT
         table = str(data)
         _query = "show create table %s" %table
         try:
@@ -245,18 +240,22 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
             pass
     
     def create_database      (self):                 # OPEN DATABASE CREATOR WIZARD
-        print("NEW DATABASE")
+        try:
+            self.databaseCreator = DBCreator(self.hs,self.pt,self.us,self.ps,self.bfred)
+            self.databaseCreator.show()
+        except Exception as error:
+            self.application_error(error)
+            pass
      
     def create_table         (self):                 # OPEN TABLE CREATOR WIZARD
         try:
             if not (self.mydb.database is None):
-                self.tableCreator = DBCreator(str(self.mydb.database),self.hs,self.pt,self.us,self.ps,self.bfred)
+                self.tableCreator = TBCreator(str(self.mydb.database),self.hs,self.pt,self.us,self.ps,self.bfred)
                 self.tableCreator.show()
             else:
                 self.application_error("myqt_1:\nNo database selected")
         except Exception as error:
             self.application_error(error)
-            
             pass
 
     def add_tool_bar         (self):                 # ADD TOOLBAR AND TOOLBAR ICONS HANDLER 
@@ -304,7 +303,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
             self.console_out.verticalScrollBar().setValue(self.console_out.verticalScrollBar().maximum())
             self.openConsole.setText("O\nP\nE\nN")
     
-    def colorize_sql_query   (self,text):                # ADD COLOR TO SQL CODE 
+    def colorize_sql_query   (self,text):            # ADD COLOR TO SQL CODE 
         query = str(text.lower()).replace(","," , ").replace("("," ( ").replace(")"," ) ").replace("="," = ")
         from Lib.color_schema import schema,greenPat,bluePat
         words = query.split(" ")
@@ -322,7 +321,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
                     pass
         return finalQuery.replace('\n','<br></br>').replace(' , ',',').replace(' ) ',')').replace(' ( ','(') 
     
-    def contextMenuEvent     (self, event):              # CUSTOM CONTEXT MENU   
+    def contextMenuEvent     (self, event):          # CUSTOM CONTEXT MENU   
         cmenu = QMenu(self)
         newDB = cmenu.addAction("New Database")
         cmenu.addSeparator()
@@ -330,6 +329,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         loadSQL = cmenu.addAction("Load SQL")
         cmenu.addSeparator()
         expTable = cmenu.addAction("Export Table")
+
         action = cmenu.exec_(self.mapToGlobal(event.pos()))
 
     def console_output       (self,text,isError):    # DEBUG ALL STATE TO CONSOLE    
