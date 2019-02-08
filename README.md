@@ -5,7 +5,7 @@
     MYQT
     <br>
     MySQL Querying Tool with QT Designer
-    </br>
+    <br>
 </h1>
 
 <h1 align="center">
@@ -13,15 +13,14 @@
     <img src="https://img.shields.io/github/last-commit/zisongbr/MYQT.svg" alt="Last Commit" width="123"/>
     <img src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg" alt="Contributions" width="150"/>
     <img src="https://david-dm.org/zisongbr/MYQT.svg" alt="dependencies" width="150"/>    
-    </br>
+    <br>
     <img src="http://hits.dwyl.io/zisongbr/MYQT.svg" alt="hit" width="75"/>
     <img src="https://img.shields.io/github/languages/count/zisongbr/MYQT.svg" alt="Languages" width="90"/>
     <img src="https://img.shields.io/twitter/follow/nando_ferreira2.svg?label=Twitter" alt="Twitter"/>
     <img src="https://img.shields.io/github/repo-size/zisongbr/MYQT.svg" alt="Repo Size"/>
-    </br>
 </h1>
 
-### MYQT is an open source visual database design and querying tool for the MySQL database developed in python using the QT (Cute) framework for creating  interface, Developed by Fernando Moreira between 2018 - 2019
+MYQT is an open source visual database design and querying tool for the MySQL database developed in python using the QT (Cute) framework for creating  interface, Developed by Fernando Moreira between 2018 - 2019
 
 # **Interface Help**
 <pre>
@@ -62,11 +61,11 @@ Python >= 3 with at least the following modules is required:
 </pre>
 
 # **Interface UI**
-<img src="assets/prints/connector.PNG"    alt="Server Connector"  width="300"/></br>
+<img src="assets/prints/connector.PNG"    alt="Server Connector"  width="300"/><br>
 <img src="assets/prints/manager.PNG"      alt="Query Manager"     width="500"/>
 <img src="assets/prints/table_script.PNG" alt="Table Types"       width="500"/>
 <img src="assets/prints/data.PNG"         alt="Table Content"     width="500"/>
-
+<br>
 ---
-
+<br>
 #### Author : Fernando Ferreira Moreira <br> CC0 - 2018 Creative Commons
