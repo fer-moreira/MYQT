@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1054</width>
-    <height>786</height>
+    <width>1087</width>
+    <height>724</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -18,18 +18,6 @@
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
-  </property>
-  <property name="minimumSize">
-   <size>
-    <width>1054</width>
-    <height>786</height>
-   </size>
-  </property>
-  <property name="maximumSize">
-   <size>
-    <width>1054</width>
-    <height>786</height>
-   </size>
   </property>
   <property name="windowTitle">
    <string>SQL Manager [0.1a]</string>
@@ -39,6 +27,9 @@
   </property>
   <property name="autoFillBackground">
    <bool>false</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
   </property>
   <property name="windowFilePath">
    <string/>
@@ -68,10 +59,10 @@
    <widget class="QTabWidget" name="tabs">
     <property name="geometry">
      <rect>
-      <x>278</x>
-      <y>9</y>
-      <width>767</width>
-      <height>636</height>
+      <x>260</x>
+      <y>0</y>
+      <width>800</width>
+      <height>630</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -88,13 +79,8 @@
     </property>
     <property name="font">
      <font>
-      <family>Consolas</family>
-      <pointsize>10</pointsize>
-      <weight>50</weight>
-      <italic>false</italic>
-      <bold>false</bold>
-      <underline>false</underline>
-      <strikeout>false</strikeout>
+      <family>Arial,Helvetica,sans-serif</family>
+      <pointsize>12</pointsize>
      </font>
     </property>
     <property name="focusPolicy">
@@ -116,7 +102,7 @@
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <property name="iconSize">
      <size>
@@ -125,10 +111,13 @@
      </size>
     </property>
     <property name="elideMode">
-     <enum>Qt::ElideNone</enum>
+     <enum>Qt::ElideLeft</enum>
+    </property>
+    <property name="usesScrollButtons">
+     <bool>false</bool>
     </property>
     <property name="documentMode">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="tabsClosable">
      <bool>false</bool>
@@ -150,13 +139,22 @@
       <string>Data</string>
      </attribute>
      <widget class="QTableWidget" name="data_result">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>761</width>
-        <height>611</height>
+        <width>800</width>
+        <height>606</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial,Helvetica,sans-serif</family>
+        <pointsize>10</pointsize>
+       </font>
       </property>
       <property name="contextMenuPolicy">
        <enum>Qt::DefaultContextMenu</enum>
@@ -202,12 +200,6 @@
       </property>
       <property name="cornerButtonEnabled">
        <bool>true</bool>
-      </property>
-      <property name="rowCount">
-       <number>0</number>
-      </property>
-      <property name="columnCount">
-       <number>0</number>
       </property>
      </widget>
     </widget>
@@ -226,8 +218,8 @@
        <rect>
         <x>0</x>
         <y>310</y>
-        <width>760</width>
-        <height>300</height>
+        <width>800</width>
+        <height>295</height>
        </rect>
       </property>
       <property name="contextMenuPolicy">
@@ -275,26 +267,20 @@
       <property name="cornerButtonEnabled">
        <bool>true</bool>
       </property>
-      <property name="rowCount">
-       <number>0</number>
-      </property>
-      <property name="columnCount">
-       <number>0</number>
-      </property>
      </widget>
      <widget class="QPlainTextEdit" name="create_in">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>760</width>
+        <width>800</width>
         <height>303</height>
        </rect>
       </property>
       <property name="font">
        <font>
         <family>Arial,Helvetica,sans-serif</family>
-        <pointsize>11</pointsize>
+        <pointsize>10</pointsize>
        </font>
       </property>
       <property name="frameShape">
@@ -334,25 +320,6 @@
        <string/>
       </property>
      </widget>
-     <widget class="Line" name="separator">
-      <property name="geometry">
-       <rect>
-        <x>-10</x>
-        <y>300</y>
-        <width>780</width>
-        <height>10</height>
-       </rect>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <property name="lineWidth">
-       <number>4</number>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
     </widget>
     <widget class="QWidget" name="_query">
      <property name="sizePolicy">
@@ -369,8 +336,8 @@
        <rect>
         <x>0</x>
         <y>310</y>
-        <width>760</width>
-        <height>300</height>
+        <width>800</width>
+        <height>296</height>
        </rect>
       </property>
       <property name="sizePolicy">
@@ -378,6 +345,12 @@
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial,Helvetica,sans-serif</family>
+        <pointsize>10</pointsize>
+       </font>
       </property>
       <property name="contextMenuPolicy">
        <enum>Qt::DefaultContextMenu</enum>
@@ -424,19 +397,13 @@
       <property name="cornerButtonEnabled">
        <bool>false</bool>
       </property>
-      <property name="rowCount">
-       <number>0</number>
-      </property>
-      <property name="columnCount">
-       <number>0</number>
-      </property>
      </widget>
      <widget class="QPlainTextEdit" name="query_in">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>760</width>
+        <width>800</width>
         <height>301</height>
        </rect>
       </property>
@@ -454,10 +421,8 @@
       </property>
       <property name="font">
        <font>
-        <family>Consolas</family>
-        <pointsize>13</pointsize>
-        <stylestrategy>PreferAntialias</stylestrategy>
-        <kerning>false</kerning>
+        <family>Arial,Helvetica,sans-serif</family>
+        <pointsize>11</pointsize>
        </font>
       </property>
       <property name="cursor" stdset="0">
@@ -494,58 +459,25 @@
        <bool>false</bool>
       </property>
      </widget>
-     <widget class="Line" name="separrator">
-      <property name="geometry">
-       <rect>
-        <x>-10</x>
-        <y>295</y>
-        <width>780</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <property name="lineWidth">
-       <number>4</number>
-      </property>
-      <property name="midLineWidth">
-       <number>0</number>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
     </widget>
    </widget>
    <widget class="QTreeWidget" name="tables_out">
     <property name="geometry">
      <rect>
-      <x>9</x>
-      <y>9</y>
+      <x>0</x>
+      <y>0</y>
       <width>260</width>
-      <height>630</height>
+      <height>730</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>Consolas</family>
+      <family>Arial,Helvetica,sans-serif</family>
+      <pointsize>10</pointsize>
      </font>
     </property>
     <property name="autoFillBackground">
      <bool>false</bool>
-    </property>
-    <property name="styleSheet">
-     <string notr="true"/>
     </property>
     <property name="frameShape">
      <enum>QFrame::NoFrame</enum>
@@ -577,12 +509,22 @@
     <attribute name="headerCascadingSectionResizes">
      <bool>true</bool>
     </attribute>
+    <attribute name="headerDefaultSectionSize">
+     <number>100</number>
+    </attribute>
     <attribute name="headerHighlightSections">
      <bool>true</bool>
     </attribute>
     <column>
      <property name="text">
       <string>CONNECTION</string>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
      </property>
      <property name="textAlignment">
       <set>AlignCenter</set>
@@ -592,26 +534,23 @@
    <widget class="QPlainTextEdit" name="console_out">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>650</y>
-      <width>1000</width>
-      <height>80</height>
+      <x>260</x>
+      <y>630</y>
+      <width>800</width>
+      <height>72</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>Consolas</family>
+      <family>Arial,Helvetica,sans-serif</family>
       <pointsize>12</pointsize>
-      <weight>50</weight>
-      <italic>false</italic>
-      <bold>false</bold>
-      <underline>false</underline>
-      <strikeout>false</strikeout>
-      <kerning>true</kerning>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">border:2px solid rgb(60,60,60);</string>
+    </property>
     <property name="frameShape">
-     <enum>QFrame::Box</enum>
+     <enum>QFrame::NoFrame</enum>
     </property>
     <property name="frameShadow">
      <enum>QFrame::Plain</enum>
@@ -647,32 +586,80 @@
    <widget class="QPushButton" name="openConsole">
     <property name="geometry">
      <rect>
-      <x>1010</x>
-      <y>650</y>
-      <width>30</width>
-      <height>80</height>
+      <x>979</x>
+      <y>702</y>
+      <width>81</width>
+      <height>22</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <kerning>true</kerning>
+      <family>Arial,Helvetica,sans-serif</family>
+      <pointsize>10</pointsize>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">border-top-right-radius:20px;
-border-bottom-right-radius:20px;</string>
+     <string notr="true">border-top-right-radius:0px;
+border-bottom-right-radius:0px;</string>
     </property>
     <property name="text">
-     <string>O
-P
-E
-N</string>
+     <string>EXPAND</string>
+    </property>
+    <property name="default">
+     <bool>false</bool>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
     </property>
    </widget>
-   <zorder>tabs</zorder>
-   <zorder>tables_out</zorder>
-   <zorder>openConsole</zorder>
-   <zorder>console_out</zorder>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>702</y>
+      <width>719</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(80, 80, 80);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="openConsole_2">
+    <property name="geometry">
+     <rect>
+      <x>870</x>
+      <y>702</y>
+      <width>110</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial,Helvetica,sans-serif</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-top-right-radius:0px;
+border-bottom-right-radius:0px;</string>
+    </property>
+    <property name="text">
+     <string>EXPORT LOG</string>
+    </property>
+    <property name="default">
+     <bool>false</bool>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
+    </property>
+   </widget>
   </widget>
   <action name="actionImport_Query">
    <property name="text">

@@ -267,12 +267,9 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
     def add_tool_bar         (self):                 # ADD TOOLBAR AND TOOLBAR ICONS HANDLER 
         toolBar = QToolBar()
         toolBar.setMovable(False)
-        toolBar.setToolButtonStyle(Qt.ToolButtonTextUnderIcon)
-        spacer_a = QWidget() #SPACER LEFT
-        spacer_b = QWidget() #SPACER RIGHT
-        spacer_a.setSizePolicy(QSizePolicy.Expanding,QSizePolicy.Preferred)
-        spacer_b.setSizePolicy(QSizePolicy.Expanding,QSizePolicy.Preferred)
-        tb_config = self.addToolBar(Qt.TopToolBarArea,toolBar)
+        toolBar.setToolButtonStyle(Qt.ToolButtonIconOnly)
+        
+        tb_config = self.addToolBar(Qt.LeftToolBarArea,toolBar)
 
         refresh_t       = QAction(QIcon(_refresh),    "REFRESH",self,shortcut="F5",           triggered=self.refresh_database)
         compileAll      = QAction(QIcon(_run),        "COMPILE",self,shortcut="F9",           triggered=self.get_all_text)
@@ -280,7 +277,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         export_t        = QAction(QIcon(_export),     "EXPORT" ,self,shortcut="Ctrl+S",       triggered=self.save_query_to_file)
         compileSelected = QAction(QIcon(_runSelected),"RUN SL" ,self,shortcut="Shift+Ctrl+F9",triggered=self.get_selected_text)
         newDatabase     = QAction(QIcon(_newDatabase),"NEW DB" ,self,                         triggered=self.create_database)
-        newTable     = QAction(QIcon(_newTable)      ,"NEW TB" ,self,                         triggered=self.create_table)
+        newTable        = QAction(QIcon(_newTable)   ,"NEW TB" ,self,                         triggered=self.create_table)
 
         refresh_t.setToolTip        ("Refresh Server (F5)")
         import_t.setToolTip         ("Load SQL (Ctrl+O)")
@@ -290,24 +287,22 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         newDatabase.setToolTip      ("Open DATABASE CREATOR")
         newTable.setToolTip         ("Open TABLE CREATOR")
 
-        toolBar.addWidget(spacer_a),toolBar.addSeparator()
         toolBar.addAction(refresh_t)
-        toolBar.addSeparator(),toolBar.addAction(import_t),toolBar.addAction(export_t)
-        toolBar.addSeparator(),toolBar.addAction(compileAll),toolBar.addAction(compileSelected)
-        toolBar.addSeparator(),toolBar.addAction(newDatabase),toolBar.addAction(newTable)
-        toolBar.addSeparator(),toolBar.addWidget(spacer_b)
+        toolBar.addAction(import_t),toolBar.addAction(export_t)
+        toolBar.addAction(compileAll),toolBar.addAction(compileSelected)
+        toolBar.addAction(newDatabase),toolBar.addAction(newTable)
         
         self.processEvents()
 
     def expand_console       (self):                 # EXPAND CONSOLE WINDOW 
         self.openedConsole = not self.openedConsole
         if self.openedConsole == True:
-            self.console_out.setGeometry(10,9,1000,721)
-            self.openConsole.setText("C\nL\nO\nS\nE")
+            self.console_out.setGeometry(260,26,800,676)
+            self.openConsole.setText("CLOSE")
         else:
-            self.console_out.setGeometry(10,650,1000,80)
+            self.console_out.setGeometry(260,630,800,72)
             self.console_out.verticalScrollBar().setValue(self.console_out.verticalScrollBar().maximum())
-            self.openConsole.setText("O\nP\nE\nN")
+            self.openConsole.setText("EXPAND")
     
     def colorize_sql_query   (self,text):            # ADD COLOR TO SQL CODE 
         query = str(text.lower()).replace(","," , ").replace("("," ( ").replace(")"," ) ").replace("="," = ")

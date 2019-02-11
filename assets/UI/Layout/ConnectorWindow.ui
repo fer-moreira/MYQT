@@ -67,11 +67,14 @@
       <property name="text">
        <string>root</string>
       </property>
+      <property name="frame">
+       <bool>false</bool>
+      </property>
       <property name="placeholderText">
        <string>User:</string>
       </property>
       <property name="clearButtonEnabled">
-       <bool>false</bool>
+       <bool>true</bool>
       </property>
      </widget>
     </item>
@@ -94,6 +97,9 @@
       <property name="text">
        <string>123456</string>
       </property>
+      <property name="frame">
+       <bool>false</bool>
+      </property>
       <property name="echoMode">
        <enum>QLineEdit::Normal</enum>
       </property>
@@ -104,7 +110,7 @@
        <enum>Qt::LogicalMoveStyle</enum>
       </property>
       <property name="clearButtonEnabled">
-       <bool>false</bool>
+       <bool>true</bool>
       </property>
      </widget>
     </item>
@@ -205,7 +211,7 @@
        <string>3306</string>
       </property>
       <property name="frame">
-       <bool>true</bool>
+       <bool>false</bool>
       </property>
       <property name="alignment">
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -214,7 +220,7 @@
        <string>Port:</string>
       </property>
       <property name="clearButtonEnabled">
-       <bool>false</bool>
+       <bool>true</bool>
       </property>
      </widget>
     </item>
@@ -284,7 +290,7 @@
        <string>127.0.0.1</string>
       </property>
       <property name="frame">
-       <bool>true</bool>
+       <bool>false</bool>
       </property>
       <property name="alignment">
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -293,7 +299,7 @@
        <string>Server/IP:</string>
       </property>
       <property name="clearButtonEnabled">
-       <bool>false</bool>
+       <bool>true</bool>
       </property>
      </widget>
     </item>
@@ -325,7 +331,7 @@
        <string>SQL Server Native Client 11.0</string>
       </property>
       <property name="frame">
-       <bool>true</bool>
+       <bool>false</bool>
       </property>
       <property name="alignment">
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -334,7 +340,7 @@
        <string>Driver:</string>
       </property>
       <property name="clearButtonEnabled">
-       <bool>false</bool>
+       <bool>true</bool>
       </property>
      </widget>
     </item>
@@ -392,12 +398,18 @@
       </property>
       <property name="minimumSize">
        <size>
-        <width>310</width>
+        <width>99</width>
         <height>30</height>
        </size>
       </property>
       <property name="cursor">
        <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
+      <property name="frame">
+       <bool>false</bool>
       </property>
       <item>
        <property name="text">

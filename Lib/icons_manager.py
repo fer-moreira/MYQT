@@ -9,5 +9,5 @@ _newTable       = r'assets\UI\Icons\act_newTable.png'
 ui_db           = r'assets\UI\Icons\ui_database.PNG'
 ui_tb           = r'assets\UI\Icons\ui_table.PNG'
 
-ico_connector   = r'assets\UI\Icons\ico_connector.svg'
+ico_connector   = r'assets\UI\Icons\ico_connector.PNG'
 ico_consult     = r'assets\UI\Icons\ico_consult.png'
