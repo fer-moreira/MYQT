@@ -544,6 +544,9 @@
     <property name="autoFillBackground">
      <bool>false</bool>
     </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
     <property name="frameShape">
      <enum>QFrame::NoFrame</enum>
     </property>
@@ -562,11 +565,14 @@
     <property name="sizeAdjustPolicy">
      <enum>QAbstractScrollArea::AdjustToContents</enum>
     </property>
+    <property name="headerHidden">
+     <bool>false</bool>
+    </property>
     <property name="columnCount">
      <number>1</number>
     </property>
     <attribute name="headerVisible">
-     <bool>false</bool>
+     <bool>true</bool>
     </attribute>
     <attribute name="headerCascadingSectionResizes">
      <bool>true</bool>
@@ -577,6 +583,9 @@
     <column>
      <property name="text">
       <string>CONNECTION</string>
+     </property>
+     <property name="textAlignment">
+      <set>AlignCenter</set>
      </property>
     </column>
    </widget>

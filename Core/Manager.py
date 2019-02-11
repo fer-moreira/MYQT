@@ -35,8 +35,8 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
 
         try:
             self.mydb = mysql.connect(host=self.hs,port=self.pt,user=self.us,passwd=self.ps,buffered=self.bfred)
-            self.get_server_dbs()
             self.console_output('<b>Connected to SQL Server</b>',True)
+            self.get_server_dbs()
         except:
             self.console_output('<p style="color:rgb(175, 50, 50);">Cannot Connect to SQL Server</span>',True)
 
@@ -258,6 +258,12 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
             self.application_error(error)
             pass
 
+    def refresh_database (self):
+        self.get_server_dbs()
+        _db = str(self.mydb.database)
+        self.get_tables_from_db(_db)
+
+
     def add_tool_bar         (self):                 # ADD TOOLBAR AND TOOLBAR ICONS HANDLER 
         toolBar = QToolBar()
         toolBar.setMovable(False)
@@ -268,7 +274,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         spacer_b.setSizePolicy(QSizePolicy.Expanding,QSizePolicy.Preferred)
         tb_config = self.addToolBar(Qt.TopToolBarArea,toolBar)
 
-        refresh_t       = QAction(QIcon(_refresh),    "REFRESH",self,shortcut="F5",           triggered=self.get_server_dbs)
+        refresh_t       = QAction(QIcon(_refresh),    "REFRESH",self,shortcut="F5",           triggered=self.refresh_database)
         compileAll      = QAction(QIcon(_run),        "COMPILE",self,shortcut="F9",           triggered=self.get_all_text)
         import_t        = QAction(QIcon(_import),     "IMPORT" ,self,shortcut="Ctrl+O",       triggered=self.load_query_from_file)
         export_t        = QAction(QIcon(_export),     "EXPORT" ,self,shortcut="Ctrl+S",       triggered=self.save_query_to_file)

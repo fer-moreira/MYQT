@@ -29,7 +29,7 @@ class TBCreator(QMainWindow,Ui_Creator):
 
 
     def get_content (self):
-        code_pattern = '''{field_name} {data_type}{data_scale} {unsigned} {zerofill} {useNull} {pattern_increment} {comment}  {collection} COMMA_POINTER'''
+        code_pattern = '''`{field_name}` {data_type}{data_scale} {unsigned} {zerofill} {useNull} {pattern_increment} {comment}  {collection} COMMA_POINTER'''
 
         _tableName  = str(self.table_name.text())
         _fieldName  = str(self.field_name.text())
@@ -75,7 +75,7 @@ class TBCreator(QMainWindow,Ui_Creator):
         lastKeyID = int(len(self._fieldDicts)-1)
         lastKey = list(self._fieldDicts)[lastKeyID]
 
-        _content_pattern = '''CREATE TABLE {tb_name} (\n{content}\n)\nCHARSET=UTF8\nENGINE=InnoDB\n;'''
+        _content_pattern = '''CREATE TABLE `{tb_name}` (\n{content}\n)\nCHARSET=UTF8\nENGINE=InnoDB\n;'''
         _content = ""
 
         for key in self._fieldDicts:

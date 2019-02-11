@@ -165,24 +165,15 @@ QTreeView,QListView,QTableView{
     selection-color: rgb(255, 255, 255);
     selection-background-color: rgb(0, 0, 0);
 }
-QTableView::item:selected, QListView::item:selected {
-    background-color: rgb(179, 179, 179);
-    border: 2px solid rgb(56, 56, 56);
+QTreeView::item:selected {
     color: rgb(0, 0, 0);
+    background-color: rgb(228, 228, 228);
+    border: 2px solid rgb(61, 61, 61);
 }
 QTableView::item:hover, QListView::item:hover, QTreeView::item:hover {
     color: rgb(0, 0, 0);
     background-color: rgb(255, 255, 255);
     border: 2px solid rgb(71, 71, 71);
-}
-QTableView::item, QListView::item, QTreeView::item {
-    padding: 5px;
-    margin: 0px;
-}
-QTreeView::item:selected {
-    color: rgb(0, 0, 0);
-    background-color: rgb(228, 228, 228);
-    border: 2px solid rgb(61, 61, 61);
 }
 QHeaderView::section {
     padding:3px;
@@ -197,14 +188,6 @@ QPushButton{
     padding: 5px;
     color: rgb(255, 255, 255);
     background-color: rgb(0,0,0);
-}
-QPushButton[focusPolicy="0"] {
-    border-style: none;
-    border: 0px;
-    padding: 0px;
-    color: rgb(255, 255, 255);
-    border: 2px solid rgb(0,0,0);
-    background: rgb(0,0,0);
 }
 QPushButton:hover, QPushButton:pressed {
     background-color: rgb(255, 255, 255);
