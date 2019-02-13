@@ -45,8 +45,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
 
         self.openedConsole = False
 
-
-    def QUERY_EXECUTE_HANDLER(self,text):            ## MASTER HANDLER FOR EXECUTE ANY QUERY AND RETURN ALL RESULTS  
+    def EXECUTE_QUERY_HANDLER(self,text):            ## MASTER HANDLER FOR EXECUTE ANY QUERY AND RETURN ALL RESULTS  
         _query = text
         try:
             cursor = self.mydb.cursor()
@@ -90,9 +89,9 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
             self.get_table_data(text)
         self.processEvents() 
     
-    def get_all_text         (self):                 # EXECUTE ALL QUERY TEXT    
+    def get_all_text         (self):                 # EXECUTE ALL QUERY TEXT           
         _allQuery = str(self.query_in.toPlainText()).replace("\n"," ")
-        self.QUERY_EXECUTE_HANDLER(_allQuery)
+        self.EXECUTE_QUERY_HANDLER(_allQuery)
         self.processEvents()
     
     def get_selected_text    (self):                 # EXECUTE ONLY SELECTED QUERY TEXT 
@@ -103,10 +102,10 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         _buildText = ""
         for letter in range(_startIndex,_endIndex):
             _buildText+=_allText[letter]
-        self.QUERY_EXECUTE_HANDLER(_buildText)
+        self.EXECUTE_QUERY_HANDLER(_buildText)
         self.processEvents()
     
-    def get_server_dbs       (self):                 # GET ALL DATABASES IN SERVER AND RETURN AS PARENT TO QTREEVIEW 
+    def get_server_dbs       (self):                 # GET ALL DATABASES IN SERVER AND RETURN AS PARENT TO QTREEVIEW    
         try:
             self.tables_out.clear()
             self.databases = []
@@ -143,7 +142,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         self.tables_out.expandAll()
         self.console_output("SHOW TABLES",False)
     
-    def get_table_script     (self,data):            # GET CREATE TABLE SCRIPT
+    def get_table_script     (self,data):            # GET CREATE TABLE SCRIPT       
         table = str(data)
         _query = "show create table %s" %table
         try:
@@ -239,7 +238,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
             self.application_error(error)
             pass
     
-    def create_database      (self):                 # OPEN DATABASE CREATOR WIZARD
+    def create_database      (self):                 # OPEN DATABASE CREATOR WIZARD     
         try:
             self.databaseCreator = DBCreator(self.hs,self.pt,self.us,self.ps,self.bfred)
             self.databaseCreator.show()
@@ -247,7 +246,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
             self.application_error(error)
             pass
      
-    def create_table         (self):                 # OPEN TABLE CREATOR WIZARD
+    def create_table         (self):                 # OPEN TABLE CREATOR WIZARD        
         try:
             if not (self.mydb.database is None):
                 self.tableCreator = TBCreator(str(self.mydb.database),self.hs,self.pt,self.us,self.ps,self.bfred)
@@ -258,13 +257,12 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
             self.application_error(error)
             pass
 
-    def refresh_database (self):
+    def refresh_database     (self):                 # REFRESH HANDLER FOR REFRESHIND DATABASE AND ITS TABLE    
         self.get_server_dbs()
         _db = str(self.mydb.database)
         self.get_tables_from_db(_db)
 
-
-    def add_tool_bar         (self):                 # ADD TOOLBAR AND TOOLBAR ICONS HANDLER 
+    def add_tool_bar         (self):                 # ADD TOOLBAR AND TOOLBAR ICONS HANDLER                    
         toolBar = QToolBar()
         toolBar.setMovable(False)
         toolBar.setToolButtonStyle(Qt.ToolButtonIconOnly)
@@ -294,7 +292,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         
         self.processEvents()
 
-    def expand_console       (self):                 # EXPAND CONSOLE WINDOW 
+    def expand_console       (self):                 # EXPAND CONSOLE WINDOW        
         self.openedConsole = not self.openedConsole
         if self.openedConsole == True:
             self.console_out.setGeometry(260,26,800,676)
@@ -304,7 +302,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
             self.console_out.verticalScrollBar().setValue(self.console_out.verticalScrollBar().maximum())
             self.openConsole.setText("EXPAND")
     
-    def colorize_sql_query   (self,text):            # ADD COLOR TO SQL CODE 
+    def colorize_sql_query   (self,text):            # ADD COLOR TO SQL CODE        
         query = str(text.lower()).replace(","," , ").replace("("," ( ").replace(")"," ) ").replace("="," = ")
         from Lib.color_schema import schema,greenPat,bluePat
         words = query.split(" ")
@@ -322,7 +320,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
                     pass
         return finalQuery.replace('\n','<br></br>').replace(' , ',',').replace(' ) ',')').replace(' ( ','(') 
     
-    def contextMenuEvent     (self, event):          # CUSTOM CONTEXT MENU   
+    def contextMenuEvent     (self,event):          # CUSTOM CONTEXT MENU           
         cmenu = QMenu(self)
         newDB = cmenu.addAction("New Database")
         cmenu.addSeparator()
@@ -333,7 +331,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
 
         action = cmenu.exec_(self.mapToGlobal(event.pos()))
 
-    def console_output       (self,text,isError):    # DEBUG ALL STATE TO CONSOLE    
+    def console_output       (self,text,isError):   # DEBUG ALL STATE TO CONSOLE    
         if isError == False:
             coloredText = self.colorize_sql_query(text)
             self.console_out.appendHtml(coloredText)
@@ -343,6 +341,4 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
             self.console_out.appendHtml(errorPat.format(str(text)))
             self.processEvents()
     
-    def application_error    (self,error):
-        print(error)
-        reply = QMessageBox.critical(self, "CRITICAL ERROR",str(error),QMessageBox.Ok)
+    def application_error    (self,error): reply = QMessageBox.critical(self, "CRITICAL ERROR",str(error),QMessageBox.Ok)
