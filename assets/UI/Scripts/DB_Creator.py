@@ -99,6 +99,7 @@ class Ui_Creator(object):
         Creator.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(Creator)
+        self.clearBtn.clicked.connect(self.db_name.clear)
         QtCore.QMetaObject.connectSlotsByName(Creator)
 
     def retranslateUi(self, Creator):

@@ -322,12 +322,10 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
     
     def contextMenuEvent     (self,event):          # CUSTOM CONTEXT MENU           
         cmenu = QMenu(self)
-        newDB = cmenu.addAction("New Database")
-        cmenu.addSeparator()
-        saveSQL = cmenu.addAction("Save SQL")
-        loadSQL = cmenu.addAction("Load SQL")
-        cmenu.addSeparator()
-        expTable = cmenu.addAction("Export Table")
+        newDB   = cmenu.addAction("New Database",self.create_database)
+        newTbl  = cmenu.addAction("New Table",self.create_table)
+        saveSQL = cmenu.addAction("Save SQL",self.save_query_to_file)
+        loadSQL = cmenu.addAction("Load SQL",self.load_query_from_file)
 
         action = cmenu.exec_(self.mapToGlobal(event.pos()))
 

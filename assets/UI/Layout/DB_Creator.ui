@@ -232,5 +232,22 @@
   </widget>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>clearBtn</sender>
+   <signal>clicked()</signal>
+   <receiver>db_name</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>169</x>
+     <y>216</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>178</x>
+     <y>77</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
