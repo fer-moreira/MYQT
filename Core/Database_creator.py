@@ -19,12 +19,12 @@ class DBCreator(QMainWindow,Ui_Creator):
 
         self.mydb = mysql.connect(host=self.hs,port=self.pt,user=self.us,passwd=self.ps,buffered=self.bfred)
 
-        self.get_all_database()
+        self.refresh_databases()
 
-        # self.deleteBtn.clicked.connect(self.delete_selected_database())
+        self.deleteBtn.clicked.connect(self.delete_selected_database)
+        self.createBtn.clicked.connect(self.create_new_database)
 
-
-    def get_all_database (self):
+    def refresh_databases (self):
         self.databases.clear()
 
         cursor = self.mydb.cursor()
@@ -35,6 +35,20 @@ class DBCreator(QMainWindow,Ui_Creator):
             _item = db[0]
             self.databases.addItem(_item)
 
-    # def delete_selected_database (self):
-    #     _selectedItem = self.databases.currentItem()
-    #     print(_selectedItem)
+    def create_new_database (self):
+        _db_name = str(self.db_name.displayText())
+        add_query = "CREATE DATABASE {}".format(_db_name)
+        cursor = self.mydb.cursor()
+        cursor.execute(add_query)
+        self.refresh_databases()
+        
+
+    def delete_selected_database (self):
+        try:
+            selected_item  = str([item.text() for item in self.databases.selectedItems()][0])
+            del_query = "drop database {}".format(selected_item)
+            cursor = self.mydb.cursor()
+            cursor.execute(del_query)
+            self.refresh_databases()
+        except Exception as error:
+            print(error)

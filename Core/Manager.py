@@ -242,6 +242,11 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         try:
             self.databaseCreator = DBCreator(self.hs,self.pt,self.us,self.ps,self.bfred)
             self.databaseCreator.show()
+
+            if self.databaseCreator.closeEvent():
+                print("CLOSED")
+
+
         except Exception as error:
             self.application_error(error)
             pass
