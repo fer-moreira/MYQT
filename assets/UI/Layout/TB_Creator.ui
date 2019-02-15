@@ -67,43 +67,16 @@
         <rect>
          <x>10</x>
          <y>20</y>
-         <width>191</width>
-         <height>91</height>
+         <width>190</width>
+         <height>108</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_2">
-        <item row="0" column="0">
-         <widget class="QCheckBox" name="unsigned_2">
-          <property name="font">
-           <font>
-            <pointsize>11</pointsize>
-            <weight>50</weight>
-            <italic>false</italic>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="cursor">
-           <cursorShape>PointingHandCursor</cursorShape>
-          </property>
-          <property name="text">
-           <string>Unsigned</string>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>25</width>
-            <height>25</height>
-           </size>
-          </property>
-          <property name="tristate">
-           <bool>false</bool>
-          </property>
-         </widget>
-        </item>
         <item row="1" column="0">
          <widget class="QCheckBox" name="allownull">
           <property name="font">
            <font>
-            <pointsize>11</pointsize>
+            <pointsize>10</pointsize>
             <weight>50</weight>
             <italic>false</italic>
             <bold>false</bold>
@@ -126,11 +99,38 @@
           </property>
          </widget>
         </item>
+        <item row="0" column="0">
+         <widget class="QCheckBox" name="unsigned_2">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <weight>50</weight>
+            <italic>false</italic>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="text">
+           <string>Unsigned</string>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>25</width>
+            <height>25</height>
+           </size>
+          </property>
+          <property name="tristate">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
         <item row="2" column="0">
          <widget class="QCheckBox" name="zerofill">
           <property name="font">
            <font>
-            <pointsize>11</pointsize>
+            <pointsize>10</pointsize>
             <weight>50</weight>
             <italic>false</italic>
             <bold>false</bold>
@@ -141,6 +141,33 @@
           </property>
           <property name="text">
            <string>ZEROFILL</string>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>25</width>
+            <height>25</height>
+           </size>
+          </property>
+          <property name="tristate">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QCheckBox" name="primary">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <weight>50</weight>
+            <italic>false</italic>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="text">
+           <string>PRIMARY KEY</string>
           </property>
           <property name="iconSize">
            <size>
@@ -179,6 +206,9 @@
       <property name="text">
        <string>Pattern:</string>
       </property>
+      <property name="buddy">
+       <cstring>pattern_combo</cstring>
+      </property>
      </widget>
     </item>
     <item row="9" column="1" colspan="3">
@@ -202,6 +232,9 @@
       </property>
       <property name="text">
        <string>Comment:</string>
+      </property>
+      <property name="buddy">
+       <cstring>f_comment</cstring>
       </property>
      </widget>
     </item>
@@ -227,6 +260,9 @@
       <property name="text">
        <string>Collation</string>
       </property>
+      <property name="buddy">
+       <cstring>f_collection</cstring>
+      </property>
      </widget>
     </item>
     <item row="8" column="1" colspan="3">
@@ -245,12 +281,12 @@
       </property>
       <item>
        <property name="text">
-        <string>NO DEFAULT VALUE</string>
+        <string>DEFAULT NULL</string>
        </property>
       </item>
       <item>
        <property name="text">
-        <string>DEFAULT NULL</string>
+        <string>NO DEFAULT VALUE</string>
        </property>
       </item>
       <item>
@@ -365,6 +401,9 @@
       <property name="text">
        <string>Table name:</string>
       </property>
+      <property name="buddy">
+       <cstring>table_name</cstring>
+      </property>
      </widget>
     </item>
     <item row="2" column="1" colspan="3">
@@ -388,6 +427,9 @@
       </property>
       <property name="text">
        <string>Field name:</string>
+      </property>
+      <property name="buddy">
+       <cstring>field_name</cstring>
       </property>
      </widget>
     </item>
@@ -428,6 +470,9 @@
       </property>
       <property name="text">
        <string>Data type:</string>
+      </property>
+      <property name="buddy">
+       <cstring>databox</cstring>
       </property>
      </widget>
     </item>
@@ -658,6 +703,9 @@
       <property name="text">
        <string>Value:</string>
       </property>
+      <property name="buddy">
+       <cstring>datavalue</cstring>
+      </property>
      </widget>
     </item>
    </layout>
@@ -682,6 +730,7 @@
   </widget>
  </widget>
  <tabstops>
+  <tabstop>code_preview</tabstop>
   <tabstop>table_name</tabstop>
   <tabstop>field_name</tabstop>
   <tabstop>databox</tabstop>
@@ -689,13 +738,30 @@
   <tabstop>unsigned_2</tabstop>
   <tabstop>allownull</tabstop>
   <tabstop>zerofill</tabstop>
+  <tabstop>primary</tabstop>
   <tabstop>pattern_combo</tabstop>
   <tabstop>f_comment</tabstop>
   <tabstop>f_collection</tabstop>
   <tabstop>create</tabstop>
-  <tabstop>code_preview</tabstop>
   <tabstop>execute</tabstop>
  </tabstops>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>primary</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>unsigned_2</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>292</x>
+     <y>333</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>305</x>
+     <y>266</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

@@ -105,7 +105,7 @@
        <number>1</number>
       </property>
       <attribute name="headerVisible">
-       <bool>false</bool>
+       <bool>true</bool>
       </attribute>
       <attribute name="headerCascadingSectionResizes">
        <bool>true</bool>
@@ -612,6 +612,12 @@
       <property name="text">
        <string/>
       </property>
+      <property name="textFormat">
+       <enum>Qt::PlainText</enum>
+      </property>
+      <property name="scaledContents">
+       <bool>false</bool>
+      </property>
      </widget>
     </item>
     <item row="1" column="1" colspan="2">
@@ -797,9 +803,15 @@ border-bottom-right-radius:0px;</string>
   </action>
  </widget>
  <tabstops>
-  <tabstop>tabs</tabstop>
-  <tabstop>console_out</tabstop>
   <tabstop>tables_out</tabstop>
+  <tabstop>data_result</tabstop>
+  <tabstop>desc_result</tabstop>
+  <tabstop>query_in</tabstop>
+  <tabstop>create_in</tabstop>
+  <tabstop>result_out</tabstop>
+  <tabstop>console_out</tabstop>
+  <tabstop>openConsole</tabstop>
+  <tabstop>tabs</tabstop>
  </tabstops>
  <resources/>
  <connections/>

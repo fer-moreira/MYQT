@@ -182,14 +182,14 @@ class Ui_Connector(object):
 
         self.retranslateUi(Connector)
         QtCore.QMetaObject.connectSlotsByName(Connector)
-        Connector.setTabOrder(self.comboBox, self.host_in)
+        Connector.setTabOrder(self.comboBox, self.driver_in)
+        Connector.setTabOrder(self.driver_in, self.driver)
+        Connector.setTabOrder(self.driver, self.host_in)
         Connector.setTabOrder(self.host_in, self.port_in)
         Connector.setTabOrder(self.port_in, self.buffered)
         Connector.setTabOrder(self.buffered, self.user_in)
         Connector.setTabOrder(self.user_in, self.pass_in)
         Connector.setTabOrder(self.pass_in, self.trusted)
-        Connector.setTabOrder(self.trusted, self.driver_in)
-        Connector.setTabOrder(self.driver_in, self.driver)
 
     def retranslateUi(self, Connector):
         _translate = QtCore.QCoreApplication.translate

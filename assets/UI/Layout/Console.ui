@@ -58,6 +58,10 @@
    </layout>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>console</tabstop>
+  <tabstop>export_2</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

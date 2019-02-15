@@ -59,6 +59,12 @@ class TBCreator(QMainWindow,Ui_Creator):
 
         if not(self.f_comment.text() == ''):_comment = str("COMMENT '%s'"%self.f_comment.text())
         else:_comment = ''
+        
+        if self.primary.isChecked():_primary = ",\nPRIMARY KEY (%s)"%_fieldName
+        else:_primary = ""
+            
+        if str(self.pattern_combo.currentText()) == "AUTO_INCREMENT":self.primary.setEnabled(True)
+        else: self.primary.setEnabled(False)
 
         final_code = code_pattern.format(
         field_name=_fieldName,
@@ -80,7 +86,7 @@ class TBCreator(QMainWindow,Ui_Creator):
         lastKeyID = int(len(self._fieldDicts)-1)
         lastKey = list(self._fieldDicts)[lastKeyID]
 
-        _content_pattern = '''CREATE TABLE `{tb_name}` (\n{content}\n)\nCHARSET=UTF8\nENGINE=InnoDB\n;'''
+        _content_pattern = '''CREATE TABLE `{tb_name}` (\n{content}\n {PRIMARY_KEY_POINTER})\nCHARSET=UTF8\nENGINE=InnoDB\n;'''
         _content = ""
 
         for key in self._fieldDicts:
@@ -88,7 +94,9 @@ class TBCreator(QMainWindow,Ui_Creator):
             else:_query = self._fieldDicts.get(key).replace("COMMA_POINTER",",")
             _content += "%s\n"%_query
         
-        final_createTable = _content_pattern.format(tb_name=_tableName,content=_content)
+        
+
+        final_createTable = _content_pattern.format(tb_name=_tableName,content=_content,PRIMARY_KEY_POINTER=_primary)
 
         self.code_preview.setPlainText(final_createTable)
 

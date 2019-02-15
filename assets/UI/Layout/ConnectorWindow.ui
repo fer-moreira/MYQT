@@ -473,14 +473,14 @@
  </widget>
  <tabstops>
   <tabstop>comboBox</tabstop>
+  <tabstop>driver_in</tabstop>
+  <tabstop>driver</tabstop>
   <tabstop>host_in</tabstop>
   <tabstop>port_in</tabstop>
   <tabstop>buffered</tabstop>
   <tabstop>user_in</tabstop>
   <tabstop>pass_in</tabstop>
   <tabstop>trusted</tabstop>
-  <tabstop>driver_in</tabstop>
-  <tabstop>driver</tabstop>
  </tabstops>
  <resources/>
  <connections/>

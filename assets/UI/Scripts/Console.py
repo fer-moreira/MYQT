@@ -36,6 +36,7 @@ class Ui_Canvas(object):
 
         self.retranslateUi(Canvas)
         QtCore.QMetaObject.connectSlotsByName(Canvas)
+        Canvas.setTabOrder(self.console, self.export_2)
 
     def retranslateUi(self, Canvas):
         _translate = QtCore.QCoreApplication.translate
