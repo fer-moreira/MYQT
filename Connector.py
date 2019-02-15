@@ -46,9 +46,6 @@ class MainWindow(QMainWindow,Ui_Connector):
         
         except Exception as error:
             reply = QMessageBox.critical(self, "CRITICAL ERROR",str(error),QMessageBox.Ok)
-            
-
-            print(error)
             pass
 
 Main_GUI = MainWindow()

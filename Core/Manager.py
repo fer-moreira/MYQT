@@ -18,6 +18,7 @@ from Lib.icons_manager import (_export, _import, _newDatabase, _newTable,
 from assets.UI.Scripts.MainWindow import Ui_SQLMANAGER
 from Core.Table_Creator import TBCreator
 from Core.Database_Creator import DBCreator
+from Core.Console import Console
 
 class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLMANAGER,object):
     def __init__(self,hs,pt,us,ps,bfr, parent = None):
@@ -25,7 +26,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         self.setupUi(self)
         self.add_tool_bar()
         self.setWindowIcon(QIcon(ico_consult))
-        self.show()
+        self.showMaximized()
 
         self.hs = hs
         self.pt = pt
@@ -234,18 +235,12 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
             _file.write(toSave_query)
             _file.close()
             self.processEvents()
-        except Exception as error:
-            self.application_error(error)
-            pass
+        except FileNotFoundError:pass
     
     def create_database      (self):                 # OPEN DATABASE CREATOR WIZARD     
         try:
-            self.databaseCreator = DBCreator(self.hs,self.pt,self.us,self.ps,self.bfred)
+            self.databaseCreator = DBCreator(self.hs,self.pt,self.us,self.ps,self.bfred,self)
             self.databaseCreator.show()
-
-            if self.databaseCreator.closeEvent():
-                print("CLOSED")
-
 
         except Exception as error:
             self.application_error(error)
@@ -254,7 +249,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
     def create_table         (self):                 # OPEN TABLE CREATOR WIZARD        
         try:
             if not (self.mydb.database is None):
-                self.tableCreator = TBCreator(str(self.mydb.database),self.hs,self.pt,self.us,self.ps,self.bfred)
+                self.tableCreator = TBCreator(str(self.mydb.database),self.hs,self.pt,self.us,self.ps,self.bfred,self)
                 self.tableCreator.show()
             else:
                 self.application_error("myqt_1:\nNo database selected")
@@ -298,14 +293,10 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         self.processEvents()
 
     def expand_console       (self):                 # EXPAND CONSOLE WINDOW        
-        self.openedConsole = not self.openedConsole
-        if self.openedConsole == True:
-            self.console_out.setGeometry(260,26,800,676)
-            self.openConsole.setText("CLOSE")
-        else:
-            self.console_out.setGeometry(260,630,800,72)
-            self.console_out.verticalScrollBar().setValue(self.console_out.verticalScrollBar().maximum())
-            self.openConsole.setText("EXPAND")
+        _msg = str(self.console_out.toPlainText())
+        self.consoleWindow = Console()
+        self.consoleWindow.console.setPlainText(_msg)
+        self.consoleWindow.show()
     
     def colorize_sql_query   (self,text):            # ADD COLOR TO SQL CODE        
         query = str(text.lower()).replace(","," , ").replace("("," ( ").replace(")"," ) ").replace("="," = ")

@@ -6,7 +6,7 @@ from PyQt5.QtWidgets import QApplication, QDialog, QMainWindow, QMessageBox
 from assets.UI.Scripts.DB_Creator import Ui_Creator
 
 class DBCreator(QMainWindow,Ui_Creator):
-    def __init__(self,hs,pt,us,ps,bfr, parent = None):
+    def __init__(self,hs,pt,us,ps,bfr,manager_window, parent = None):
         super(DBCreator,self).__init__(parent)
         self.setupUi(self)
         self.show()
@@ -16,6 +16,7 @@ class DBCreator(QMainWindow,Ui_Creator):
         self.us = us        #USUARIO
         self.ps = ps        #PASSWORD
         self.bfred = bfr    #BUFFERED
+        self.manager = manager_window
 
         self.mydb = mysql.connect(host=self.hs,port=self.pt,user=self.us,passwd=self.ps,buffered=self.bfred)
 
@@ -34,6 +35,8 @@ class DBCreator(QMainWindow,Ui_Creator):
         for db in _result:
             _item = db[0]
             self.databases.addItem(_item)
+
+        self.manager.refresh_database()
 
     def create_new_database (self):
         _db_name = str(self.db_name.displayText())

@@ -89,7 +89,7 @@ class Ui_Connector(object):
         self.user_in.setClearButtonEnabled(True)
         self.user_in.setObjectName("user_in")
         self.buttons = QtWidgets.QDialogButtonBox(self.groupBox)
-        self.buttons.setGeometry(QtCore.QRect(10, 200, 320, 40))
+        self.buttons.setGeometry(QtCore.QRect(10, 200, 311, 40))
         font = QtGui.QFont()
         font.setPointSize(10)
         font.setBold(False)

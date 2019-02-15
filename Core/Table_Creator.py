@@ -6,7 +6,7 @@ from PyQt5.QtWidgets import QApplication, QDialog, QMainWindow, QMessageBox
 from assets.UI.Scripts.TB_Creator import Ui_Creator
 
 class TBCreator(QMainWindow,Ui_Creator):
-    def __init__(self,db,hs,pt,us,ps,bfr, parent = None):
+    def __init__(self,db,hs,pt,us,ps,bfr,manager, parent = None):
         super(TBCreator,self).__init__(parent)
         self.setupUi(self)
         self.show()
@@ -17,6 +17,8 @@ class TBCreator(QMainWindow,Ui_Creator):
         self.us = us
         self.ps = ps
         self.bfred = bfr
+        self.manager = manager
+
         self.mydb = mysql.connect(database=self.db,host=self.hs,port=self.pt,user=self.us,passwd=self.ps,buffered=self.bfred)
     
         self._content = ""
@@ -24,8 +26,11 @@ class TBCreator(QMainWindow,Ui_Creator):
 
         try:
             self.create.clicked.connect(self.get_content)
+            self.execute.clicked.connect(self.execute_create_code)
         except Exception as error:
             self.application_error(error)
+
+        
 
 
     def get_content (self):
@@ -88,11 +93,11 @@ class TBCreator(QMainWindow,Ui_Creator):
         self.code_preview.setPlainText(final_createTable)
 
     def execute_create_code (self):
-        sql_query = str(self.code_preview.ToPlainText())
+        sql_query = str(self.code_preview.toPlainText())
 
         self.cursor = self.mydb.cursor()
         self.cursor.execute(sql_query)
 
-    def application_error    (self,error):
-        print(error)
-        reply = QMessageBox.critical(self, "ERROR",str(error),QMessageBox.Ok)
+        self.manager.refresh_database()
+
+    def application_error    (self,error):reply = QMessageBox.critical(self, "ERROR",str(error),QMessageBox.Ok)
