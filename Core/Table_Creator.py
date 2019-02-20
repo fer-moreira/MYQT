@@ -30,9 +30,6 @@ class TBCreator(QMainWindow,Ui_Creator):
         except Exception as error:
             self.application_error(error)
 
-        
-
-
     def get_content (self):
         code_pattern = '''`{field_name}` {data_type}{data_scale} {unsigned} {zerofill} {useNull} {pattern_increment} {comment}  {collection} COMMA_POINTER'''
 

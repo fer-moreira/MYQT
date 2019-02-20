@@ -77,6 +77,9 @@
         <pointsize>10</pointsize>
        </font>
       </property>
+      <property name="contextMenuPolicy">
+       <enum>Qt::CustomContextMenu</enum>
+      </property>
       <property name="autoFillBackground">
        <bool>false</bool>
       </property>
@@ -495,6 +498,9 @@
           <property name="mouseTracking">
            <bool>false</bool>
           </property>
+          <property name="contextMenuPolicy">
+           <enum>Qt::CustomContextMenu</enum>
+          </property>
           <property name="autoFillBackground">
            <bool>false</bool>
           </property>
@@ -633,6 +639,9 @@
         <family>Arial,Helvetica,sans-serif</family>
         <pointsize>12</pointsize>
        </font>
+      </property>
+      <property name="contextMenuPolicy">
+       <enum>Qt::CustomContextMenu</enum>
       </property>
       <property name="styleSheet">
        <string notr="true">border:2px solid rgb(60,60,60);</string>

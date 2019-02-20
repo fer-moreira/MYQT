@@ -4,8 +4,8 @@ from functools import partial
 import mysql.connector as mysql
 import xlrd
 from PyQt5 import QtCore, QtWidgets
-from PyQt5.QtCore import QCoreApplication, QFile, Qt, QTextStream, pyqtSlot
-from PyQt5.QtGui import QIcon, QStandardItem, QStandardItemModel
+from PyQt5.QtCore import QCoreApplication, QFile, Qt, QTextStream, pyqtSlot,pyqtSignal
+from PyQt5.QtGui import QIcon, QStandardItem, QStandardItemModel,QCursor
 from PyQt5.QtWidgets import (QAction, QApplication, QDialog, QFileDialog,QHeaderView,
 QMainWindow, QMenu, QMessageBox,QSizePolicy, QStyleFactory, QTableWidget,QTableWidgetItem,
  QToolBar, QTreeWidgetItem,QWidget, qApp)
@@ -19,6 +19,10 @@ from assets.UI.Scripts.MainWindow import Ui_SQLMANAGER
 from Core.Table_Creator import TBCreator
 from Core.Database_Creator import DBCreator
 from Core.Console import Console
+
+# import win32clipboard as clip
+
+#+---
 
 class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLMANAGER,object):
     def __init__(self,hs,pt,us,ps,bfr, parent = None):
@@ -46,28 +50,36 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
 
         self.openedConsole = False
 
+        self.console_out.customContextMenuRequested.connect(self.console_context_menu)
+        self.tables_out.customContextMenuRequested.connect(self.TDB_context_menu)
+        self.query_in.customContextMenuRequested.connect(self.query_context_menu)
+
+
     def EXECUTE_QUERY_HANDLER(self,text):            ## MASTER HANDLER FOR EXECUTE ANY QUERY AND RETURN ALL RESULTS  
         _query = text
         try:
             cursor = self.mydb.cursor()
             cursor.execute(_query)
-            allSQLRows = cursor.fetchall()
-            lenRow = len(allSQLRows)
-            lenCol = len(allSQLRows[0])
-            self.result_out.setRowCount(lenRow) ##set number of rows
-            self.result_out.setColumnCount(lenCol) ##this is fixed for result_out, ensure that both of your tables, sql and qtablewidged have the same number of columns
-            if allSQLRows is not None:
-                for lin in range(0,lenRow):
-                    for col in range(0,lenCol):
-                        data = QTableWidgetItem(str(allSQLRows[lin][col]))
-                        self.result_out.setItem(lin,col,data)
-            columns = cursor.description
-            for col in range(0,lenCol):
-                headerName = QTableWidgetItem(columns[col][0])
-                self.result_out.setHorizontalHeaderItem(col, headerName)
-            self.result_out.resizeColumnsToContents()
-            self.console_output("%s"%_query.lower(),False)
-            self.processEvents()
+            try:
+                allSQLRows = cursor.fetchall() #fetch results to dictionary
+                lenRow = len(allSQLRows)
+                lenCol = len(allSQLRows[0])
+                self.result_out.setRowCount(lenRow) ##set number of rows
+                self.result_out.setColumnCount(lenCol) ##this is fixed for result_out, ensure that both of your tables, sql and qtablewidged have the same number of columns
+                if allSQLRows is not None:
+                    for lin in range(0,lenRow):
+                        for col in range(0,lenCol):
+                            data = QTableWidgetItem(str(allSQLRows[lin][col]))
+                            self.result_out.setItem(lin,col,data)
+                columns = cursor.description
+                for col in range(0,lenCol):
+                    headerName = QTableWidgetItem(columns[col][0])
+                    self.result_out.setHorizontalHeaderItem(col, headerName)
+                self.result_out.resizeColumnsToContents()
+                self.console_output("%s"%_query.lower(),False)
+                self.processEvents()
+            except:pass
+            # self.console_output(_query,False)
         except Exception as error:
             self.console_output(error,True)
             pass
@@ -316,15 +328,6 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
                     pass
         return finalQuery.replace('\n','<br></br>').replace(' , ',',').replace(' ) ',')').replace(' ( ','(') 
     
-    def contextMenuEvent     (self,event):          # CUSTOM CONTEXT MENU           
-        cmenu = QMenu(self)
-        newDB   = cmenu.addAction("New Database",self.create_database)
-        newTbl  = cmenu.addAction("New Table",self.create_table)
-        saveSQL = cmenu.addAction("Save SQL",self.save_query_to_file)
-        loadSQL = cmenu.addAction("Load SQL",self.load_query_from_file)
-
-        action = cmenu.exec_(self.mapToGlobal(event.pos()))
-
     def console_output       (self,text,isError):   # DEBUG ALL STATE TO CONSOLE    
         if isError == False:
             coloredText = self.colorize_sql_query(text)
@@ -336,3 +339,40 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
             self.processEvents()
     
     def application_error    (self,error): reply = QMessageBox.critical(self, "CRITICAL ERROR",str(error),QMessageBox.Ok)
+
+    # def copy_text (self):
+    #     clip.OpenClipboard()
+
+    def console_context_menu (self,event):
+        cmenu = QMenu(self)
+        viewlog   = cmenu.addAction("View all log",self.expand_console)
+        _pos = QCursor.pos()
+        action = cmenu.exec_(self.mapFromGlobal(_pos))
+    def TDB_context_menu (self):
+        cmenu = QMenu(self)
+
+        newDb = cmenu.addAction("Database Manager",self.create_database)
+        newTb = cmenu.addAction("Table Manager",self.create_table)
+
+        _pos = QCursor.pos()
+        action = cmenu.exec_(self.mapFromGlobal(_pos))
+    def query_context_menu (self):
+        _menu = QMenu(self)
+
+        _menu.addAction("Copy")
+        _menu.addAction("Paste")
+        _menu.addSeparator()
+        _menu.addAction("Compile",self.get_all_text)
+        _menu.addAction("Compile selected",self.get_selected_text)
+        _menu.addSeparator()
+        _menu.addAction("Load SQL",self.load_query_from_file)
+        _menu.addAction("Save SQL",self.save_query_to_file)
+        _menu.addSeparator()
+        _menu.addAction("Format SQL")
+        _menu.addAction("Clear QUERY",lambda:self.query_in.setPlainText(""))
+        _menu.addSeparator()
+
+        _pos = QCursor.pos()
+        action = _menu.exec_(self.mapFromGlobal(_pos))
+
+

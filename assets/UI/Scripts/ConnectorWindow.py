@@ -60,6 +60,7 @@ class Ui_Connector(object):
         font.setWeight(75)
         self.comboBox.setFont(font)
         self.comboBox.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.comboBox.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.comboBox.setAutoFillBackground(False)
         self.comboBox.setStyleSheet("padding:4")
         self.comboBox.setFrame(False)
