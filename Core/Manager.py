@@ -2,18 +2,15 @@ import sys
 import time
 from functools import partial
 import mysql.connector as mysql
-import xlrd
 from PyQt5 import QtCore, QtWidgets
-from PyQt5.QtCore import QCoreApplication, QFile, Qt, QTextStream, pyqtSlot,pyqtSignal
-from PyQt5.QtGui import QIcon, QStandardItem, QStandardItemModel,QCursor
+from PyQt5.QtCore import QCoreApplication, QFile, Qt
+from PyQt5.QtGui import QIcon,QCursor, QFont, QSyntaxHighlighter, QTextCharFormat
 from PyQt5.QtWidgets import (QAction, QApplication, QDialog, QFileDialog,QHeaderView,
 QMainWindow, QMenu, QMessageBox,QSizePolicy, QStyleFactory, QTableWidget,QTableWidgetItem,
  QToolBar, QTreeWidgetItem,QWidget, qApp)
 
-from Lib.icons_manager import (_export, _import, _newDatabase, _newTable,
-                               _refresh, _run, _runSelected, ico_consult,
-                               ui_db, ui_tb)
-
+from Lib.icons_manager import (_export, _import, _newDatabase, _newTable,_refresh, _run, _runSelected, ico_consult,ui_db, ui_tb)
+from Lib.SQL_formatter import Formatter
 
 from assets.UI.Scripts.MainWindow import Ui_SQLMANAGER
 from Core.Table_Creator import TBCreator
@@ -53,7 +50,6 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         self.console_out.customContextMenuRequested.connect(self.console_context_menu)
         self.tables_out.customContextMenuRequested.connect(self.TDB_context_menu)
         self.query_in.customContextMenuRequested.connect(self.query_context_menu)
-
 
     def EXECUTE_QUERY_HANDLER(self,text):            ## MASTER HANDLER FOR EXECUTE ANY QUERY AND RETURN ALL RESULTS  
         _query = text
@@ -340,23 +336,26 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
     
     def application_error    (self,error): reply = QMessageBox.critical(self, "CRITICAL ERROR",str(error),QMessageBox.Ok)
 
-    # def copy_text (self):
-    #     clip.OpenClipboard()
+    def format_sql_text      (self):
+        sql_text = str(self.query_in.toPlainText())
+        
+        formated_text = sql_text.replace("from","\nfrom").replace("FROM","\nFROM")
+        self.query_in.setPlainText(formated_text)
 
     def console_context_menu (self,event):
         cmenu = QMenu(self)
-        viewlog   = cmenu.addAction("View all log",self.expand_console)
+        cmenu.addAction("View all log",self.expand_console)
         _pos = QCursor.pos()
         action = cmenu.exec_(self.mapFromGlobal(_pos))
-    def TDB_context_menu (self):
+    def TDB_context_menu     (self):
         cmenu = QMenu(self)
 
-        newDb = cmenu.addAction("Database Manager",self.create_database)
-        newTb = cmenu.addAction("Table Manager",self.create_table)
+        cmenu.addAction("Database Manager",self.create_database)
+        cmenu.addAction("Table Manager",self.create_table)
 
         _pos = QCursor.pos()
         action = cmenu.exec_(self.mapFromGlobal(_pos))
-    def query_context_menu (self):
+    def query_context_menu   (self):
         _menu = QMenu(self)
 
         _menu.addAction("Copy")
@@ -368,7 +367,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         _menu.addAction("Load SQL",self.load_query_from_file)
         _menu.addAction("Save SQL",self.save_query_to_file)
         _menu.addSeparator()
-        _menu.addAction("Format SQL")
+        _menu.addAction("Format SQL",self.format_sql_text)
         _menu.addAction("Clear QUERY",lambda:self.query_in.setPlainText(""))
         _menu.addSeparator()
 
