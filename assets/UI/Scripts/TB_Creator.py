@@ -266,7 +266,7 @@ class Ui_Creator(object):
 
     def retranslateUi(self, Creator):
         _translate = QtCore.QCoreApplication.translate
-        Creator.setWindowTitle(_translate("Creator", "Table creator"))
+        Creator.setWindowTitle(_translate("Creator", "Create Table"))
         self.label_2.setText(_translate("Creator", "Table name:"))
         self.label.setText(_translate("Creator", "Field name:"))
         self.label_3.setText(_translate("Creator", "Data type:"))

@@ -104,7 +104,7 @@ class Ui_Creator(object):
 
     def retranslateUi(self, Creator):
         _translate = QtCore.QCoreApplication.translate
-        Creator.setWindowTitle(_translate("Creator", "Database Creator"))
+        Creator.setWindowTitle(_translate("Creator", "Create a Database"))
         self.CreateDB_BOX.setTitle(_translate("Creator", "Create a Database"))
         self.db_name.setPlaceholderText(_translate("Creator", "Enter DB Name:"))
         self.createBtn.setText(_translate("Creator", "Create Database"))

@@ -38,7 +38,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>SQL CONNECTOR</string>
+   <string>SQL Connector</string>
   </property>
   <property name="dockNestingEnabled">
    <bool>false</bool>

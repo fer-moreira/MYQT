@@ -20,16 +20,13 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>SQL Manager [0.1a]</string>
+   <string>SQL Manager</string>
   </property>
   <property name="windowOpacity">
    <double>1.000000000000000</double>
   </property>
   <property name="autoFillBackground">
    <bool>false</bool>
-  </property>
-  <property name="styleSheet">
-   <string notr="true"/>
   </property>
   <property name="windowFilePath">
    <string/>
@@ -251,7 +248,7 @@
            </font>
           </property>
           <property name="contextMenuPolicy">
-           <enum>Qt::DefaultContextMenu</enum>
+           <enum>Qt::CustomContextMenu</enum>
           </property>
           <property name="frameShape">
            <enum>QFrame::NoFrame</enum>
@@ -337,7 +334,7 @@
            </size>
           </property>
           <property name="contextMenuPolicy">
-           <enum>Qt::DefaultContextMenu</enum>
+           <enum>Qt::CustomContextMenu</enum>
           </property>
           <property name="frameShape">
            <enum>QFrame::NoFrame</enum>
@@ -551,7 +548,7 @@
            </font>
           </property>
           <property name="contextMenuPolicy">
-           <enum>Qt::DefaultContextMenu</enum>
+           <enum>Qt::CustomContextMenu</enum>
           </property>
           <property name="frameShape">
            <enum>QFrame::NoFrame</enum>
@@ -690,6 +687,12 @@
     <item row="2" column="2">
      <widget class="QPushButton" name="openConsole">
       <property name="minimumSize">
+       <size>
+        <width>81</width>
+        <height>22</height>
+       </size>
+      </property>
+      <property name="maximumSize">
        <size>
         <width>81</width>
         <height>22</height>

@@ -194,7 +194,7 @@ class Ui_Connector(object):
 
     def retranslateUi(self, Connector):
         _translate = QtCore.QCoreApplication.translate
-        Connector.setWindowTitle(_translate("Connector", "SQL CONNECTOR"))
+        Connector.setWindowTitle(_translate("Connector", "SQL Connector"))
         self.groupBox.setTitle(_translate("Connector", "Login"))
         self.host_in.setToolTip(_translate("Connector", "<html><head/><body><p>Server / IP</p></body></html>"))
         self.host_in.setText(_translate("Connector", "127.0.0.1"))

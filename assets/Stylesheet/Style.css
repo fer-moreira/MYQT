@@ -26,14 +26,14 @@ color:rgb(200,200,200);
 /*  ---------------------------- CONTEXT MENU ---------------------------- */
 QMenu
 {
-background-color:rgb(50,50,50);
-color:rgb(100,100,100);
+background-color:rgb(32, 32, 32);
+color:rgb(136, 136, 136);
 padding: 2;
 }
 QMenu::item:selected 
 {
-background:rgb(150,150,150);
-color:white;
+background:rgb(116, 116, 116);
+color:rgb(255, 255, 255);
 }
 QMenu::separator {
 background:rgb(100,100,100);

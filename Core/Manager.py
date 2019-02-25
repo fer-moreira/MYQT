@@ -3,7 +3,7 @@ import time
 from functools import partial
 import mysql.connector as mysql
 from PyQt5 import QtCore, QtWidgets
-from PyQt5.QtCore import QCoreApplication, QFile, Qt
+from PyQt5.QtCore import QCoreApplication, QFile, Qt,QPoint
 from PyQt5.QtGui import QIcon,QCursor, QFont, QSyntaxHighlighter, QTextCharFormat
 from PyQt5.QtWidgets import (QAction, QApplication, QDialog, QFileDialog,QHeaderView,
 QMainWindow, QMenu, QMessageBox,QSizePolicy, QStyleFactory, QTableWidget,QTableWidgetItem,
@@ -18,8 +18,6 @@ from Core.Database_Creator import DBCreator
 from Core.Console import Console
 
 # import win32clipboard as clip
-
-#+---
 
 class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLMANAGER,object):
     def __init__(self,hs,pt,us,ps,bfr, parent = None):
@@ -51,7 +49,11 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         self.tables_out.customContextMenuRequested.connect(self.TDB_context_menu)
         self.query_in.customContextMenuRequested.connect(self.query_context_menu)
 
-    def EXECUTE_QUERY_HANDLER(self,text):            ## MASTER HANDLER FOR EXECUTE ANY QUERY AND RETURN ALL RESULTS  
+        self.result_out.customContextMenuRequested.connect(lambda:self.table_view_context_menu(self.result_out))
+        self.desc_result.customContextMenuRequested.connect(lambda:self.table_view_context_menu(self.desc_result))
+        self.data_result.customContextMenuRequested.connect(lambda:self.table_view_context_menu(self.data_result))
+
+    def EXECUTE_QUERY_HANDLER(self,text):            ## MASTER HANDLER FOR EXECUTE ANY QUERY AND RETURN ALL RESULTS
         _query = text
         try:
             cursor = self.mydb.cursor()
@@ -79,8 +81,8 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         except Exception as error:
             self.console_output(error,True)
             pass
-    
-    def ItemDoubleClicked    (self):                 ## SINGLE CLICK HANDLER FOR QTreeWIDGET 
+
+    def ItemDoubleClicked    (self):                 ## SINGLE CLICK HANDLER FOR QTreeWIDGET
         index = self.tables_out.currentIndex()
         data =  self.tables_out.model().data(index)
         text = str(data)
@@ -96,14 +98,14 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
             self.get_table_script(text)
             self.get_table_types(text)
             self.get_table_data(text)
-        self.processEvents() 
-    
-    def get_all_text         (self):                 # EXECUTE ALL QUERY TEXT           
+        self.processEvents()
+
+    def get_all_text         (self):                 # EXECUTE ALL QUERY TEXT
         _allQuery = str(self.query_in.toPlainText()).replace("\n"," ")
         self.EXECUTE_QUERY_HANDLER(_allQuery)
         self.processEvents()
-    
-    def get_selected_text    (self):                 # EXECUTE ONLY SELECTED QUERY TEXT 
+
+    def get_selected_text    (self):                 # EXECUTE ONLY SELECTED QUERY TEXT
         cursor = self.query_in.textCursor()
         _allText = str(self.query_in.toPlainText()).replace("\n"," ")
         _startIndex = cursor.selectionStart()
@@ -113,8 +115,8 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
             _buildText+=_allText[letter]
         self.EXECUTE_QUERY_HANDLER(_buildText)
         self.processEvents()
-    
-    def get_server_dbs       (self):                 # GET ALL DATABASES IN SERVER AND RETURN AS PARENT TO QTREEVIEW    
+
+    def get_server_dbs       (self):                 # GET ALL DATABASES IN SERVER AND RETURN AS PARENT TO QTREEVIEW
         try:
             self.tables_out.clear()
             self.databases = []
@@ -133,8 +135,8 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         except Exception as error:
             self.application_error(error)
             pass
-    
-    def get_tables_from_db   (self,_cDb):            # GET ALL TABLES FROM DATABASE AND RETURN IN TREE VIEW AS CHILD OF DATABASE PARENT ITEM 
+
+    def get_tables_from_db   (self,_cDb):            # GET ALL TABLES FROM DATABASE AND RETURN IN TREE VIEW AS CHILD OF DATABASE PARENT ITEM
         top_level_items = self.tables_out.topLevelItemCount()
         for i in range(top_level_items):
             top_item = self.tables_out.topLevelItem(i)
@@ -150,8 +152,8 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
                 break
         self.tables_out.expandAll()
         self.console_output("SHOW TABLES",False)
-    
-    def get_table_script     (self,data):            # GET CREATE TABLE SCRIPT       
+
+    def get_table_script     (self,data):            # GET CREATE TABLE SCRIPT
         table = str(data)
         _query = "show create table %s" %table
         try:
@@ -166,8 +168,8 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         except Exception as error:
             self.console_output(error,True)
             print(error)
-    
-    def get_table_types      (self,data):            # GET ALL TABLES DESCRITIONS    
+
+    def get_table_types      (self,data):            # GET ALL TABLES DESCRITIONS
         table = str(data)
         _query = "desc %s"%table
         try:
@@ -191,9 +193,9 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
             self.processEvents()
         except Exception as error:
             self.console_output(error,True)
-            pass    
-    
-    def get_table_data       (self,data):            # GET ALL DATA FROM TABLES      
+            pass
+
+    def get_table_data       (self,data):            # GET ALL DATA FROM TABLES
         table = str(data)
         _query = "select * from %s"%table
         try:
@@ -206,7 +208,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
             lenCol = len(allSQLRows[0])
 
             self.data_result.setRowCount(lenRow) ##set number of rows
-            self.data_result.setColumnCount(lenCol) ##set number of columns 
+            self.data_result.setColumnCount(lenCol) ##set number of columns
 
             if allSQLRows is not None:
                 for lin in range(0,lenRow):
@@ -217,14 +219,14 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
             for col in range(0,lenCol):
                 headerName = QTableWidgetItem(columns[col][0])
                 self.data_result.setHorizontalHeaderItem(col, headerName)
-            
+
             self.data_result.resizeColumnsToContents()
             self.processEvents()
         except Exception as error:
             self.console_output(error,True)
             pass
-    
-    def load_query_from_file (self):                 # OPEN DIALOG BOX TO LOAD FILE  
+
+    def load_query_from_file (self):                 # OPEN DIALOG BOX TO LOAD FILE
         try:
             fname = QFileDialog.getOpenFileName(self, 'Load SQL From file', 'Query',"Select query file (*.indext *.sql *.dat *.csv *.tsv *.psv)")
             selectFilePath = str(fname[0])
@@ -233,19 +235,19 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
             self.query_in.setPlainText(_content)
             self.processEvents()
         except FileNotFoundError:pass
-    
-    def save_query_to_file   (self):                 # OPEN DIALOG BOX TO SAVE QUERY TEXT TO FILE    
+
+    def save_query_to_file   (self):                 # OPEN DIALOG BOX TO SAVE QUERY TEXT TO FILE
         try:
             options = QFileDialog.Options()
-            saved_file,_ = QFileDialog.getSaveFileName(self,"Save SQL to file Query","Query","Query Files (*.sql);;Text Files (*.indext);;Data Files (*.dat);;All Files (*)",options=options)            
+            saved_file,_ = QFileDialog.getSaveFileName(self,"Save SQL to file Query","Query","Query Files (*.sql);;Text Files (*.indext);;Data Files (*.dat);;All Files (*)",options=options)
             toSave_query = self.query_in.toPlainText()
             _file = open(saved_file,'w')
             _file.write(toSave_query)
             _file.close()
             self.processEvents()
         except FileNotFoundError:pass
-    
-    def create_database      (self):                 # OPEN DATABASE CREATOR WIZARD     
+
+    def create_database      (self):                 # OPEN DATABASE CREATOR WIZARD
         try:
             self.databaseCreator = DBCreator(self.hs,self.pt,self.us,self.ps,self.bfred,self)
             self.databaseCreator.show()
@@ -253,8 +255,8 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         except Exception as error:
             self.application_error(error)
             pass
-     
-    def create_table         (self):                 # OPEN TABLE CREATOR WIZARD        
+
+    def create_table         (self):                 # OPEN TABLE CREATOR WIZARD
         try:
             if not (self.mydb.database is None):
                 self.tableCreator = TBCreator(str(self.mydb.database),self.hs,self.pt,self.us,self.ps,self.bfred,self)
@@ -265,16 +267,16 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
             self.application_error(error)
             pass
 
-    def refresh_database     (self):                 # REFRESH HANDLER FOR REFRESHIND DATABASE AND ITS TABLE    
+    def refresh_database     (self):                 # REFRESH HANDLER FOR REFRESHIND DATABASE AND ITS TABLE
         self.get_server_dbs()
         _db = str(self.mydb.database)
         self.get_tables_from_db(_db)
 
-    def add_tool_bar         (self):                 # ADD TOOLBAR AND TOOLBAR ICONS HANDLER                    
+    def add_tool_bar         (self):                 # ADD TOOLBAR AND TOOLBAR ICONS HANDLER
         toolBar = QToolBar()
         toolBar.setMovable(False)
         toolBar.setToolButtonStyle(Qt.ToolButtonIconOnly)
-        
+
         tb_config = self.addToolBar(Qt.LeftToolBarArea,toolBar)
 
         refresh_t       = QAction(QIcon(_refresh),    "REFRESH",self,shortcut="F5",           triggered=self.refresh_database)
@@ -297,16 +299,16 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         toolBar.addAction(import_t),toolBar.addAction(export_t)
         toolBar.addAction(compileAll),toolBar.addAction(compileSelected)
         toolBar.addAction(newDatabase),toolBar.addAction(newTable)
-        
+
         self.processEvents()
 
-    def expand_console       (self):                 # EXPAND CONSOLE WINDOW        
+    def expand_console       (self):                 # EXPAND CONSOLE WINDOW
         _msg = str(self.console_out.toPlainText())
         self.consoleWindow = Console()
         self.consoleWindow.console.setPlainText(_msg)
         self.consoleWindow.show()
-    
-    def colorize_sql_query   (self,text):            # ADD COLOR TO SQL CODE        
+
+    def colorize_sql_query   (self,text):            # ADD COLOR TO SQL CODE
         query = str(text.lower()).replace(","," , ").replace("("," ( ").replace(")"," ) ").replace("="," = ")
         from Lib.color_schema import schema,greenPat,bluePat
         words = query.split(" ")
@@ -318,13 +320,13 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
             else:
                 try:
                     if eval(w) >= 0:
-                        finalQuery += "%s " %bluePat.format(w)                    
+                        finalQuery += "%s " %bluePat.format(w)
                 except:
                     finalQuery += "%s " %greenPat.format(w)
                     pass
-        return finalQuery.replace('\n','<br></br>').replace(' , ',',').replace(' ) ',')').replace(' ( ','(') 
-    
-    def console_output       (self,text,isError):   # DEBUG ALL STATE TO CONSOLE    
+        return finalQuery.replace('\n','<br></br>').replace(' , ',',').replace(' ) ',')').replace(' ( ','(')
+
+    def console_output       (self,text,isError):    # DEBUG ALL STATE TO CONSOLE
         if isError == False:
             coloredText = self.colorize_sql_query(text)
             self.console_out.appendHtml(coloredText)
@@ -333,21 +335,40 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
             errorPat = '<p style="color:rgb(175, 50, 50);">{0}</span>'
             self.console_out.appendHtml(errorPat.format(str(text)))
             self.processEvents()
-    
+
     def application_error    (self,error): reply = QMessageBox.critical(self, "CRITICAL ERROR",str(error),QMessageBox.Ok)
 
     def format_sql_text      (self):
         sql_text = str(self.query_in.toPlainText())
-        
+
         formated_text = sql_text.replace("from","\nfrom").replace("FROM","\nFROM")
         self.query_in.setPlainText(formated_text)
 
-    def console_context_menu (self,event):
+    def export_table         (self,_w):
+        maxRow = _w.rowCount()
+        maxColumn = _w.columnCount()
+
+        _data = ""
+
+        for r in range(0, maxRow):
+            for c in range(0, maxColumn):
+                _d = str(_w.item(r, c).text())
+                _data += "%s," % _d
+            _data += "\n"
+
+        options = QFileDialog.Options()
+        saved_file, _ = QFileDialog.getSaveFileName(
+            self, "Save Table to file ", "data", "Table to text data(*.txt);;Table to csv (*.csv);;All Files (*)", options=options)
+        _file = open(saved_file, 'w')
+        _file.write(_data)
+        _file.close()
+
+    def console_context_menu    (self,event):
         cmenu = QMenu(self)
         cmenu.addAction("View all log",self.expand_console)
         _pos = QCursor.pos()
         action = cmenu.exec_(self.mapFromGlobal(_pos))
-    def TDB_context_menu     (self):
+    def TDB_context_menu        (self):
         cmenu = QMenu(self)
 
         cmenu.addAction("Database Manager",self.create_database)
@@ -355,11 +376,11 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
 
         _pos = QCursor.pos()
         action = cmenu.exec_(self.mapFromGlobal(_pos))
-    def query_context_menu   (self):
+    def query_context_menu      (self):
         _menu = QMenu(self)
 
-        _menu.addAction("Copy")
-        _menu.addAction("Paste")
+        _menu.addAction("Copy  (NOT IMPLEMENTED)")
+        _menu.addAction("Paste (NOT IMPLEMENTED)")
         _menu.addSeparator()
         _menu.addAction("Compile",self.get_all_text)
         _menu.addAction("Compile selected",self.get_selected_text)
@@ -373,5 +394,8 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
 
         _pos = QCursor.pos()
         action = _menu.exec_(self.mapFromGlobal(_pos))
-
-
+    def table_view_context_menu (self,_w):
+        cmenu = QMenu(self)
+        cmenu.addAction("Export Data", lambda:self.export_table(_w))
+        _pos = QCursor.pos()
+        action = cmenu.exec_(self.mapFromGlobal(_pos))
