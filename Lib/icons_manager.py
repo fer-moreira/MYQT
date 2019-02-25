@@ -5,6 +5,8 @@ _export         = r'assets\UI\Icons\act_export.PNG'
 _refresh        = r'assets\UI\Icons\act_refresh.PNG'
 _newDatabase    = r'assets\UI\Icons\act_newDatabase.png'
 _newTable       = r'assets\UI\Icons\act_newTable.png'
+_viewGraphs     = r'assets\UI\Icons\act_viewGraphics.png'
+_exportData     = r'assets\UI\Icons\act_export_result.png'
 
 ui_db           = r'assets\UI\Icons\ui_database.PNG'
 ui_tb           = r'assets\UI\Icons\ui_table.PNG'

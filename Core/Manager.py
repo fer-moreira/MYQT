@@ -7,9 +7,13 @@ from PyQt5.QtCore import QCoreApplication, QFile, Qt,QPoint
 from PyQt5.QtGui import QIcon,QCursor, QFont, QSyntaxHighlighter, QTextCharFormat
 from PyQt5.QtWidgets import (QAction, QApplication, QDialog, QFileDialog,QHeaderView,
 QMainWindow, QMenu, QMessageBox,QSizePolicy, QStyleFactory, QTableWidget,QTableWidgetItem,
- QToolBar, QTreeWidgetItem,QWidget, qApp)
+QToolBar, QTreeWidgetItem,QWidget, qApp)
 
-from Lib.icons_manager import (_export, _import, _newDatabase, _newTable,_refresh, _run, _runSelected, ico_consult,ui_db, ui_tb)
+
+from Lib.icons_manager import _export, _import, _newDatabase, _newTable, _refresh, _run, _runSelected, _viewGraphs, _exportData
+from Lib.icons_manager import ico_consult
+from Lib.icons_manager import ui_db, ui_tb
+
 from Lib.SQL_formatter import Formatter
 
 from assets.UI.Scripts.MainWindow import Ui_SQLMANAGER
@@ -60,6 +64,8 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
             cursor.execute(_query)
             try:
                 allSQLRows = cursor.fetchall() #fetch results to dictionary
+                allSQLRows_dict = allSQLRows
+                print(allSQLRows_dict)
                 lenRow = len(allSQLRows)
                 lenCol = len(allSQLRows[0])
                 self.result_out.setRowCount(lenRow) ##set number of rows
@@ -286,19 +292,29 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         compileSelected = QAction(QIcon(_runSelected),"RUN SL" ,self,shortcut="Shift+Ctrl+F9",triggered=self.get_selected_text)
         newDatabase     = QAction(QIcon(_newDatabase),"NEW DB" ,self,                         triggered=self.create_database)
         newTable        = QAction(QIcon(_newTable)   ,"NEW TB" ,self,                         triggered=self.create_table)
+        viewGraphics    = QAction(QIcon(_viewGraphs) ,"GRAPHVI",self,                         triggered=self.viewGraphics)
+        exportData      = QAction(QIcon(_exportData) ,"DATAEXP",self,                         triggered=lambda:self.export_table(self.result_out))
+    
 
-        refresh_t.setToolTip        ("Refresh Server (F5)")
+        refresh_t.setToolTip        ("Refresh all server databases and table (F5)")
         import_t.setToolTip         ("Load SQL (Ctrl+O)")
         export_t.setToolTip         ("Save SQL (Ctrl+S)")
-        compileAll.setToolTip       ("Run All QUERY (F9)")
-        compileSelected.setToolTip  ("Run Selected QUERY (Shift+Ctrl+F9)")
-        newDatabase.setToolTip      ("Open DATABASE CREATOR")
-        newTable.setToolTip         ("Open TABLE CREATOR")
+        compileAll.setToolTip       ("Run all query (F9)")
+        compileSelected.setToolTip  ("Run selected query (Shift+Ctrl+F9)")
+        newDatabase.setToolTip      ("Open database creator")
+        newTable.setToolTip         ("Open table creator")
+        viewGraphics.setToolTip     ("View table content in graphic plot")
+        exportData.setToolTip       ("Export all data from result table")
 
+        # toolBar.addSeparator()
         toolBar.addAction(refresh_t)
         toolBar.addAction(import_t),toolBar.addAction(export_t)
+        toolBar.addSeparator()
         toolBar.addAction(compileAll),toolBar.addAction(compileSelected)
+        toolBar.addSeparator()
         toolBar.addAction(newDatabase),toolBar.addAction(newTable)
+        toolBar.addSeparator()
+        toolBar.addAction(viewGraphics),toolBar.addAction(exportData)
 
         self.processEvents()
 
@@ -344,24 +360,29 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         formated_text = sql_text.replace("from","\nfrom").replace("FROM","\nFROM")
         self.query_in.setPlainText(formated_text)
 
-    def export_table         (self,_w):
-        maxRow = _w.rowCount()
-        maxColumn = _w.columnCount()
+    def export_table         (self,_w):  
+        try:
+            maxRow = _w.rowCount()
+            maxColumn = _w.columnCount()
 
-        _data = ""
+            _data = ""
 
-        for r in range(0, maxRow):
-            for c in range(0, maxColumn):
-                _d = str(_w.item(r, c).text())
-                _data += "%s," % _d
-            _data += "\n"
+            for r in range(0, maxRow):
+                for c in range(0, maxColumn):
+                    _d = str(_w.item(r, c).text())
+                    _data += "%s," % _d
+                _data += "\n"
 
-        options = QFileDialog.Options()
-        saved_file, _ = QFileDialog.getSaveFileName(
-            self, "Save Table to file ", "data", "Table to text data(*.txt);;Table to csv (*.csv);;All Files (*)", options=options)
-        _file = open(saved_file, 'w')
-        _file.write(_data)
-        _file.close()
+            options = QFileDialog.Options()
+
+            saved_file, _ = QFileDialog.getSaveFileName(self, "Save Table to file ", "data", "Table to text data(*.txt);;Table to csv (*.csv);;All Files (*)", options=options)
+            _file = open(saved_file, 'w')
+            _file.write(_data)
+            _file.close()
+        except FileNotFoundError:pass
+
+    def viewGraphics         (self):
+        print("NOT IMPLEMENTED")
 
     def console_context_menu    (self,event):
         cmenu = QMenu(self)

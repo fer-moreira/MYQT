@@ -147,18 +147,6 @@ min-height: 35px;
 min-width: 50px;
 }
 
-/* -------------------------------------------------------------------------- */
-
-QToolButton
-{
-color:rgb(200,200,200);
-background:rgb(100,100,100);
-}
-QToolButton:hover,QToolButton:pressed
-{
-color:white;
-background:rgb(50,50,50);
-}
 
 /*  ----------------------------  LCD NUMBER ---------------------------- */
 QLCDNumber
@@ -313,8 +301,31 @@ background: white;
 /* ---------------------------------------------------------------------------------------------- */
 
 QToolBar {
-    background: rgb(30,30,30);
-    spacing: 2;
+    background: rgb(100, 100, 100);
+    spacing: 4;
 }
+/* QToolBar:separator
+{
+    background: rgb(90, 90, 90);
+} */
 
 /* ---------------------------------------------------------------------------------------------- */
+
+QToolButton
+{
+margin: 3;
+color:rgb(255, 255, 255);
+background:transparent;
+}
+QToolButton:hover
+{
+margin: 0;
+color:white;
+background:rgb(50,50,50);
+}
+QToolButton:pressed
+{
+margin: 0;
+color:white;
+background:rgb(29, 29, 29);
+}
