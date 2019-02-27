@@ -1,6 +1,5 @@
-import mysql.connector as mysql
-from PyQt5 import QtGui
-from PyQt5.QtCore import pyqtSlot
+""" MYQT.Console simple module to view all console log and export to file """
+
 from PyQt5.QtWidgets import QApplication, QDialog, QMainWindow, QMessageBox,QFileDialog
 
 from assets.UI.Scripts.Console import Ui_Canvas

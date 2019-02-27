@@ -1,3 +1,5 @@
+"""MYQT.icons_manager simple module to control the UI interface elements"""
+
 _run            = r'assets\UI\Icons\act_compile.PNG'
 _runSelected    = r'assets\UI\Icons\act_compileSel.PNG'
 _import         = r'assets\UI\Icons\act_import.PNG'

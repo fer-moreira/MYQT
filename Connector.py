@@ -1,3 +1,18 @@
+"""
+MYQT.Connector é o modulo que gerencia como o aplicativo deve se conectar com o Servidor
+e como ele deve agir depois de conectar
+
+Atualmente o conector conta com as seguintes interfaces:
+
++---------------------------+----+
+|Connection Type            |USE?|
++---------------------------+----+
+| MYSQL Server     (TCP/IP) | OK |
+| Microsoft Server (TCP/IP) | NO |
+| Postgree SQL     (TCP/IP) | NO |
++---------------------------+----+
+"""
+
 import sys
 
 import mysql.connector as mysql
@@ -9,6 +24,7 @@ from PyQt5.QtWidgets import (QAction, QApplication, QDialog, QMainWindow,
 from assets.UI.Scripts.ConnectorWindow import Ui_Connector
 from Core.Manager import ManagerWindow
 from Lib.icons_manager import ico_connector
+
 
 app = QApplication(sys.argv)
 app.processEvents()

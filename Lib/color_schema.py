@@ -1,3 +1,5 @@
+"""MYQT.color_schema highlight syntax module"""
+
 purplePat   = '<span style="color:rgb(195,114,195);">{0}</span>'
 grayPat     = '<span style="color:rgb(105,105,105);">{0}</span>'
 

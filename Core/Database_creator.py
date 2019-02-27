@@ -1,3 +1,5 @@
+""" MYQT.Database_Creator simple wizard for database creator """
+
 import mysql.connector as mysql
 from PyQt5 import QtGui
 from PyQt5.QtCore import pyqtSlot
