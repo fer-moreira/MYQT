@@ -452,3 +452,5 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         cmenu.addAction("Export Data", lambda:self.export_table(_w))
         _pos = QCursor.pos()
         action = cmenu.exec_(self.mapFromGlobal(_pos))
+
+
