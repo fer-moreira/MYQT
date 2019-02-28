@@ -11,5 +11,7 @@ install:
   - pip3 install pyqt5
   - pip3 install pyqt5-tools
   - pip3 install pyqt5-sip
+  - pip3 install numpy
+  - pip3 install pandas
 script:
   - Connector
