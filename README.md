@@ -53,11 +53,17 @@ MYQT is an open source visual database design and querying tool for the MySQL da
 <pre>
 Python >= 3 with at least the following modules is required:
 - pip install -r requirements.txt
-- mysql-connector           = 2.1.6
-- mysql-connector-python    = 8.0.13
-- mysql-connector-python-rf = 2.2.2
-- PyQt5                     = 5.11.3
-- PyQt5-sip                 = 4.19.13   
+- PyQt5                      : ^5.11.3
+- mysql-connector            : ^2.1.6
+- mysql-connector-python     : ^8.0.13
+- mysql-connector-python-rf  : ^2.2.2
+- PyQt5-sip                  :  ^4.19.13
+- matplotlib                 :  ^3.0.2
+- numpy                      :  ^1.15.2
+- panda"                     :  ^0.3.1
+- pandas                     :  ^0.23.4
+- tabula"                    :  ^1.0.5
+- tabula-py                  : ^1.3.1
 </pre>
 
 # **Interface UI**
