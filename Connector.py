@@ -29,7 +29,7 @@ from Lib.icons_manager import ico_connector
 app = QApplication(sys.argv)
 app.processEvents()
 
-_style = str(open(r'assets\Stylesheet\Style.css','r').read())
+_style = str(open(r'assets\Stylesheet\Style_White.css','r').read())
 app.setStyleSheet(_style)
 
 class MainWindow(QMainWindow,Ui_Connector):
