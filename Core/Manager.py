@@ -6,7 +6,6 @@ Como:
 - Criação, modificação e remoção de banco de dados
 - Amostragem de resultado em tabela
 - Exportar uma tabela para um arquivo
-- Visualizar os resultados em gráficos/plotagem
 
 """
 
@@ -23,8 +22,8 @@ QToolBar, QTreeWidgetItem,QWidget, qApp)
 
 
 from Lib.icons_manager import _export, _import, _newDatabase, _newTable, _refresh, _run, _runSelected, _viewGraphs, _exportData
-from Lib.icons_manager import ico_consult
-from Lib.icons_manager import ui_db, ui_tb
+from Lib.icons_manager import ui_db, ui_tb, ui_data,ui_field,ui_query
+from Lib.icons_manager import win_manager
 
 from Lib.SQL_formatter import Formatter
 
@@ -32,14 +31,16 @@ from assets.UI.Scripts.MainWindow import Ui_SQLMANAGER
 from Core.Table_Creator import TBCreator
 from Core.Database_Creator import DBCreator
 from Core.Console import Console
-from Core.Plot_visualizer import PlotVisualizer
 
 class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLMANAGER,object):
     def __init__(self,hs,pt,us,ps,bfr, parent = None):
         super(ManagerWindow,self).__init__(parent)
         self.setupUi(self)
+        self.setWindowIcon(QIcon(win_manager))
+        self.tabs.setTabIcon(0,QIcon(ui_data))
+        self.tabs.setTabIcon(1,QIcon(ui_field))
+        self.tabs.setTabIcon(2,QIcon(ui_query))
         self.add_tool_bar()
-        self.setWindowIcon(QIcon(ico_consult))
         self.showMaximized()
 
         self.hs = hs
@@ -80,8 +81,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
             cursor.execute(_query)
             try:
                 allSQLRows = cursor.fetchall() #fetch results to dictionary
-                allSQLRows_dict = allSQLRows
-                print(allSQLRows_dict)
+                # allSQLRows_dict = allSQLRows
                 lenRow = len(allSQLRows)
                 lenCol = len(allSQLRows[0])
                 self.result_out.setRowCount(lenRow) ##set number of rows
@@ -312,7 +312,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         toolBar.setMovable(False)
         toolBar.setToolButtonStyle(Qt.ToolButtonIconOnly)
 
-        tb_config = self.addToolBar(Qt.LeftToolBarArea,toolBar)
+        self.addToolBar(Qt.LeftToolBarArea,toolBar)
 
         refresh_t       = QAction(QIcon(_refresh),    "REFRESH",self,shortcut="F5",           triggered=self.refresh_database)
         compileAll      = QAction(QIcon(_run),        "COMPILE",self,shortcut="F9",           triggered=self.get_all_text)
@@ -321,7 +321,6 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         compileSelected = QAction(QIcon(_runSelected),"RUN SL" ,self,shortcut="Shift+Ctrl+F9",triggered=self.get_selected_text)
         newDatabase     = QAction(QIcon(_newDatabase),"NEW DB" ,self,                         triggered=self.create_database)
         newTable        = QAction(QIcon(_newTable)   ,"NEW TB" ,self,                         triggered=self.create_table)
-        viewGraphics    = QAction(QIcon(_viewGraphs) ,"GRAPHVI",self,                         triggered=self.viewGraphics)
         exportData      = QAction(QIcon(_exportData) ,"DATAEXP",self,                         triggered=lambda:self.export_table(self.result_out))
     
 
@@ -332,7 +331,6 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         compileSelected.setToolTip  ("Run selected query (Shift+Ctrl+F9)")
         newDatabase.setToolTip      ("Open database creator")
         newTable.setToolTip         ("Open table creator")
-        viewGraphics.setToolTip     ("View table content in graphic plot")
         exportData.setToolTip       ("Export all data from result table")
 
         # toolBar.addSeparator()
@@ -343,7 +341,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         toolBar.addSeparator()
         toolBar.addAction(newDatabase),toolBar.addAction(newTable)
         toolBar.addSeparator()
-        toolBar.addAction(viewGraphics),toolBar.addAction(exportData)
+        toolBar.addAction(exportData)
 
         self.processEvents()
 
@@ -412,9 +410,6 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
             _file.write(_data)
             _file.close()
         except FileNotFoundError:pass
-
-    def viewGraphics         (self):
-        self.plotViewer = PlotVisualizer()
 
     def console_context_menu    (self,event):
         cmenu = QMenu(self)

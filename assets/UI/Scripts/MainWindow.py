@@ -12,7 +12,7 @@ class Ui_SQLMANAGER(object):
     def setupUi(self, SQLMANAGER):
         SQLMANAGER.setObjectName("SQLMANAGER")
         SQLMANAGER.setWindowModality(QtCore.Qt.ApplicationModal)
-        SQLMANAGER.resize(942, 723)
+        SQLMANAGER.resize(942, 725)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -20,348 +20,6 @@ class Ui_SQLMANAGER(object):
         SQLMANAGER.setSizePolicy(sizePolicy)
         SQLMANAGER.setWindowOpacity(1.0)
         SQLMANAGER.setAutoFillBackground(False)
-        SQLMANAGER.setStyleSheet("/*  ---------------------------- ALL OTHERS WIDGETS ---------------------------- */\n"
-"*{\n"
-"font-family: Arial, Helvetica, sans-serif;\n"
-"selection-background-color: rgb(0, 93, 170);\n"
-"selection-color: rgb(255, 255, 255);\n"
-"}\n"
-"\n"
-"/*  ---------------------------- MAIN WINDOW, WIDGET ---------------------------- */\n"
-"QMainWindow,QWidget\n"
-"{\n"
-"color:rgb(0,0,0);\n"
-"background:rgb(255,255,255);\n"
-"}\n"
-"\n"
-"/*  ---------------------------- MENU BAR ---------------------------- */\n"
-"QMenuBar\n"
-"{\n"
-"color:rgb(120,120,120);\n"
-"background:rgb(230,230,230);\n"
-"}\n"
-"QMenuBar::item:selected\n"
-"{\n"
-"color:rgb(100,100,100);\n"
-"background:rgb(200,200,200);\n"
-"}\n"
-"/*  ---------------------------- CONTEXT MENU ---------------------------- */\n"
-"QMenu\n"
-"{\n"
-"color:rgb(90,90,90);\n"
-"background:rgb(230,230,230);\n"
-"padding: 3;\n"
-"}\n"
-"QMenu::item:selected \n"
-"{\n"
-"color:rgb(90,90,90);\n"
-"background:rgb(200,200,200);\n"
-"}\n"
-"QMenu::separator {\n"
-"background:rgb(200,200,200);\n"
-"height:1px;\n"
-"}\n"
-"\n"
-"\n"
-"/*  ---------------------------- TAB WIDGET ---------------------------- */\n"
-"QTabBar::tab {\n"
-"color:rgb(150,150,150);\n"
-"background:rgb(240,240,240);\n"
-"}\n"
-"QTabBar::tab:selected {\n"
-"background:white;\n"
-"color:rgb(100,100,100);\n"
-"}\n"
-"\n"
-"/*  ---------------------------- LINE_EDIT TEXT BROWSER TEXT_EDIT PLAIN_TEXT ---------------------------- */\n"
-"QLineEdit,QTextBrowser,QTextEdit,QPlainTextEdit \n"
-"{\n"
-"color:rgb(20,20,20);\n"
-"background-color:white;\n"
-"border:1px solid lightgrey;\n"
-"}\n"
-"\n"
-"/*  ---------------------------- CHECK/COMBO BOX ----------------------------*/\n"
-"QComboBox {\n"
-"border: transparent;\n"
-"padding: 1px 18px 1px 3px;\n"
-"min-width: 6em;\n"
-"color:black;\n"
-"background-color:white;\n"
-"}\n"
-"\n"
-"QComboBox:editable {\n"
-"background: white;\n"
-"}\n"
-"\n"
-"QComboBox:!editable, QComboBox::drop-down:editable {\n"
-"background:white;\n"
-"border:1px solid black;\n"
-" }\n"
-"\n"
-" /* QComboBox gets the \"on\" state when the popup is open */\n"
-" QComboBox:!editable:on, QComboBox::drop-down:editable:on {\n"
-"     background: rgb(230,230,230);\n"
-" }\n"
-"QComboBox:on { /* shift the text when the popup opens */\n"
-"padding-top: 3px;\n"
-"padding-left: 4px;\n"
-"color:rgb(0, 93, 170);;\n"
-" }\n"
-"\n"
-"QComboBox::drop-down {\n"
-"subcontrol-origin: padding;\n"
-"subcontrol-position: top right;\n"
-"width: 15px;\n"
-"border-left-width: 2px;\n"
-"border-left-color: darkgray;\n"
-"border-left-style: solid; /* just a single line */\n"
-"border-top-right-radius: 3px; /* same radius as the QComboBox */\n"
-"border-bottom-right-radius: 3px;\n"
-"background-color:rgb(0, 93, 170);;\n"
-" }\n"
-"\n"
-"QCheckBox,QRadioButton\n"
-"{\n"
-"background: white;\n"
-"color:rgb(40,40,40);\n"
-"padding: 5;\n"
-"border:1px solid rgb(230,230,230);\n"
-"}\n"
-"\n"
-"/* ----------------------------  TOOL BOX  ----------------------------  */\n"
-"QToolBox::tab\n"
-"{\n"
-"color:darkgrey;\n"
-"background:lightgrey;\n"
-"}\n"
-"QToolBox::tab::selected\n"
-"{\n"
-"color:grey;\n"
-"background:rgb(250, 250,250);\n"
-"}\n"
-"QToolBox::tab::hover\n"
-"{\n"
-"color:white;\n"
-"background:rgb(0, 93, 170);\n"
-"}\n"
-"/*  ---------------------------- PROGRESS BAR ---------------------------- */\n"
-"QProgressBar {\n"
-"color:grey;\n"
-"text-align: center;\n"
-"font-size:13px;\n"
-"}\n"
-"QProgressBar::chunk {\n"
-"background:rgb(0, 193, 50);\n"
-"}\n"
-"\n"
-"\n"
-"/*  ---------------------------- PUSHBUTTON ---------------------------- */\n"
-"QPushButton\n"
-"{\n"
-"border: 1px solid lightgrey;\n"
-"color:white;\n"
-"background:rgb(0, 93, 170);\n"
-"}\n"
-"\n"
-"QPushButton:hover\n"
-"{\n"
-"border: 1px solid lightgrey;\n"
-"color:white;\n"
-"background:rgb(0, 120, 210);\n"
-"}\n"
-"\n"
-"QPushButton:pressed\n"
-"{\n"
-"border: 1px solid lightgrey;\n"
-"color:white;\n"
-"background:rgb(0, 53, 100);\n"
-"}\n"
-"\n"
-"\n"
-"\n"
-"/* -------------------------- QDIALOG BUTTON BOX ----------------------------------- */\n"
-"\n"
-"QDialogButtonBox\n"
-"{\n"
-"min-height: 35px;\n"
-"min-width: 50px;\n"
-"}\n"
-"\n"
-"\n"
-"/*  ----------------------------  LCD NUMBER ---------------------------- */\n"
-"QLCDNumber\n"
-"{\n"
-"color:rgb(0, 93, 170);\n"
-"border:2 solid rgb(100,100,100);\n"
-"}\n"
-"\n"
-"/*  ---------------------------- TABLE_LIST_TABLE ---------------------------- */\n"
-"QTableView,QTableWidget\n"
-"{\n"
-"    alternate-background-color: rgb(230, 230, 230);\n"
-"}\n"
-"QTreeView\n"
-"{\n"
-"    background: rgb(250,250,250);\n"
-"    color: rgb(180,180,180);\n"
-"}\n"
-"QTableView::item:selected, QListView::item:selected,QTableView::item:hover, QListView::item:hover, QTreeView::item:hover \n"
-"{\n"
-"background:rgb(0, 93, 170);\n"
-"color:rgb(250,250,250);\n"
-"}\n"
-"QTableView::item, QListView::item, QTreeView::item\n"
-"{\n"
-"color:rgb(100,100,100);\n"
-"}\n"
-"QTreeView::item:selected,QListView::item:selected,QTableView::item:selected\n"
-"{\n"
-"color:rgb(37, 62, 71);\n"
-"background:rgb(209, 241, 252);\n"
-"}\n"
-"\n"
-"/*  ---------------------------- HEADER VIEW ---------------------------- */\n"
-"QHeaderView::section \n"
-"{\n"
-"color:darkgrey;\n"
-"background:white;\n"
-"border:1px solid rgb(240,240,240);\n"
-"text-align:center;\n"
-"padding:1;\n"
-"}\n"
-"\n"
-"/* ------------------------------- CALENDAR -------------------------------------------------- */\n"
-"\n"
-"QCalendarView\n"
-"{ \n"
-"color: rgb(20,20,20); \n"
-"background-color: rgb(240,240,240);\n"
-"alternate-background-color: rgb(0, 93, 170);\n"
-"selection-background-color: white; \n"
-"selection-color: black;\n"
-"}\n"
-"QAbstractItemView\n"
-"{\n"
-"color:rgb(200,200,200);\n"
-"}\n"
-"\n"
-"/* ---------------------------------------- SLIDER HORIZONTAL ----------------------------------------------- */\n"
-"\n"
-"QSlider::groove:horizontal,QSlider::add-page:horizontal \n"
-"{\n"
-"background: rgb(70,70,70);\n"
-"height: 17px;\n"
-"}\n"
-"QSlider::sub-page:horizontal {\n"
-"height: 10px;\n"
-"background: rgb(100,100,100);\n"
-"}\n"
-"QSlider::handle:horizontal {\n"
-"margin-right: -10px;\n"
-"margin-left: -10px;\n"
-"background: rgb(150,150,150);\n"
-"}\n"
-"QSlider::handle:horizontal:hover {\n"
-"background:rgb(255, 255, 255);\n"
-"}\n"
-"\n"
-"/* --------------------------------  VERTICAL SLIDER -------------------------------------------------------------- */\n"
-"\n"
-"QSlider::handle\n"
-"{\n"
-"border-radius: 5px;\n"
-"}\n"
-"\n"
-"QSlider::groove:vertical,QSlider::add-page:vertical\n"
-"{\n"
-"width: 20px;\n"
-"background: rgb(70,70,70);\n"
-"}\n"
-"QSlider::sub-page:vertical \n"
-"{\n"
-"background: rgb(100,100,100);\n"
-"}\n"
-"\n"
-"QSlider::handle:vertical {\n"
-"margin-top: -10px;\n"
-"margin-bottom: -10px;\n"
-"background: rgb(150,150,150);\n"
-"}\n"
-"QSlider::handle:vertical:hover {\n"
-"background: white;\n"
-"}\n"
-"\n"
-"/* --------------------------------- SCROLLBAR HORIZONTAL -------------------------------------- */\n"
-"\n"
-"QScrollBar::groove:horizontal{\n"
-"background: white;\n"
-"height: 17px;\n"
-"}\n"
-"QScrollBar::sub-page:horizontal,QScrollBar::add-page:horizontal  {\n"
-"height: 10px;\n"
-"background: rgb(100,100,100);\n"
-"}\n"
-"QScrollBar::handle:horizontal {\n"
-"margin-right: -5px;\n"
-"background: rgb(150,150,150);\n"
-"}\n"
-"QScrollBar::handle:horizontal:hover {\n"
-"background: white;\n"
-"}\n"
-"\n"
-"/* --------------------------------------- SCROLLBAR VERTICAL ---------------------------------------------- */\n"
-"\n"
-"QScrollBar::groove:vertical\n"
-"{\n"
-"width: 20px;\n"
-"}\n"
-"QScrollBar::sub-page:vertical,QScrollBar::add-page:vertical\n"
-"{\n"
-"background: rgb(100,100,100);\n"
-"}\n"
-"QScrollBar::handle:vertical \n"
-"{\n"
-"margin-top: -3px;\n"
-"margin-bottom: -3px;\n"
-"background: rgb(150,150,150);\n"
-"}\n"
-"QScrollBar::handle:vertical:hover \n"
-"{\n"
-"background: white;\n"
-"}\n"
-"\n"
-"/* ---------------------------------------------------------------------------------------------- */\n"
-"\n"
-"QToolBar {\n"
-"    background: rgb(50, 50, 50);\n"
-"    spacing: 4;\n"
-"}\n"
-"/* QToolBar:separator\n"
-"{\n"
-"    background: rgb(80, 80, 80);\n"
-"} */\n"
-"\n"
-"/* ---------------------------------------------------------------------------------------------- */\n"
-"\n"
-"QToolButton\n"
-"{\n"
-"margin: 3;\n"
-"color:rgb(255, 255, 255);\n"
-"background:transparent;\n"
-"}\n"
-"QToolButton:hover\n"
-"{\n"
-"margin: 0;\n"
-"color:white;\n"
-"background:rgb(50,50,50);\n"
-"}\n"
-"QToolButton:pressed\n"
-"{\n"
-"margin: 0;\n"
-"color:white;\n"
-"background:rgb(29, 29, 29);\n"
-"}")
         SQLMANAGER.setWindowFilePath("")
         SQLMANAGER.setInputMethodHints(QtCore.Qt.ImhNone)
         SQLMANAGER.setIconSize(QtCore.QSize(24, 24))
@@ -375,7 +33,7 @@ class Ui_SQLMANAGER(object):
         self.gridLayout.setObjectName("gridLayout")
         self.tables_out = QtWidgets.QTreeWidget(self.centralwidget)
         self.tables_out.setMinimumSize(QtCore.QSize(258, 0))
-        self.tables_out.setMaximumSize(QtCore.QSize(266, 16777215))
+        self.tables_out.setMaximumSize(QtCore.QSize(258, 16777215))
         font = QtGui.QFont()
         font.setFamily("Arial,Helvetica,sans-serif")
         font.setPointSize(10)
@@ -420,7 +78,7 @@ class Ui_SQLMANAGER(object):
         self.tabs.setAutoFillBackground(False)
         self.tabs.setTabPosition(QtWidgets.QTabWidget.North)
         self.tabs.setTabShape(QtWidgets.QTabWidget.Rounded)
-        self.tabs.setIconSize(QtCore.QSize(24, 24))
+        self.tabs.setIconSize(QtCore.QSize(15, 15))
         self.tabs.setElideMode(QtCore.Qt.ElideLeft)
         self.tabs.setUsesScrollButtons(False)
         self.tabs.setDocumentMode(True)
@@ -530,33 +188,6 @@ class Ui_SQLMANAGER(object):
         self.gridLayout_4.setHorizontalSpacing(6)
         self.gridLayout_4.setVerticalSpacing(4)
         self.gridLayout_4.setObjectName("gridLayout_4")
-        self.query_in = QtWidgets.QPlainTextEdit(self._query)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.query_in.sizePolicy().hasHeightForWidth())
-        self.query_in.setSizePolicy(sizePolicy)
-        self.query_in.setMinimumSize(QtCore.QSize(0, 301))
-        self.query_in.setBaseSize(QtCore.QSize(0, 0))
-        font = QtGui.QFont()
-        font.setFamily("Arial,Helvetica,sans-serif")
-        font.setPointSize(11)
-        self.query_in.setFont(font)
-        self.query_in.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.ArrowCursor))
-        self.query_in.setMouseTracking(False)
-        self.query_in.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
-        self.query_in.setAutoFillBackground(False)
-        self.query_in.setInputMethodHints(QtCore.Qt.ImhDate|QtCore.Qt.ImhDialableCharactersOnly|QtCore.Qt.ImhDigitsOnly|QtCore.Qt.ImhEmailCharactersOnly|QtCore.Qt.ImhExclusiveInputMask|QtCore.Qt.ImhFormattedNumbersOnly|QtCore.Qt.ImhHiddenText|QtCore.Qt.ImhLatinOnly|QtCore.Qt.ImhLowercaseOnly|QtCore.Qt.ImhMultiLine|QtCore.Qt.ImhNoAutoUppercase|QtCore.Qt.ImhNoEditMenu|QtCore.Qt.ImhNoPredictiveText|QtCore.Qt.ImhNoTextHandles|QtCore.Qt.ImhPreferLatin|QtCore.Qt.ImhPreferLowercase|QtCore.Qt.ImhPreferNumbers|QtCore.Qt.ImhPreferUppercase|QtCore.Qt.ImhSensitiveData|QtCore.Qt.ImhTime|QtCore.Qt.ImhUppercaseOnly|QtCore.Qt.ImhUrlCharactersOnly)
-        self.query_in.setFrameShape(QtWidgets.QFrame.NoFrame)
-        self.query_in.setFrameShadow(QtWidgets.QFrame.Plain)
-        self.query_in.setLineWidth(1)
-        self.query_in.setMidLineWidth(0)
-        self.query_in.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
-        self.query_in.setPlainText("")
-        self.query_in.setBackgroundVisible(False)
-        self.query_in.setCenterOnScroll(False)
-        self.query_in.setObjectName("query_in")
-        self.gridLayout_4.addWidget(self.query_in, 0, 0, 1, 1)
         self.result_out = QtWidgets.QTableWidget(self._query)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
@@ -586,20 +217,36 @@ class Ui_SQLMANAGER(object):
         self.result_out.setObjectName("result_out")
         self.result_out.setColumnCount(0)
         self.result_out.setRowCount(0)
-        self.gridLayout_4.addWidget(self.result_out, 1, 0, 1, 1)
+        self.gridLayout_4.addWidget(self.result_out, 2, 0, 1, 1)
+        self.query_in = QtWidgets.QPlainTextEdit(self._query)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.query_in.sizePolicy().hasHeightForWidth())
+        self.query_in.setSizePolicy(sizePolicy)
+        self.query_in.setMinimumSize(QtCore.QSize(0, 301))
+        self.query_in.setBaseSize(QtCore.QSize(0, 0))
+        font = QtGui.QFont()
+        font.setFamily("Arial,Helvetica,sans-serif")
+        font.setPointSize(11)
+        self.query_in.setFont(font)
+        self.query_in.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.ArrowCursor))
+        self.query_in.setMouseTracking(False)
+        self.query_in.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
+        self.query_in.setAutoFillBackground(False)
+        self.query_in.setInputMethodHints(QtCore.Qt.ImhDate|QtCore.Qt.ImhDialableCharactersOnly|QtCore.Qt.ImhDigitsOnly|QtCore.Qt.ImhEmailCharactersOnly|QtCore.Qt.ImhExclusiveInputMask|QtCore.Qt.ImhFormattedNumbersOnly|QtCore.Qt.ImhHiddenText|QtCore.Qt.ImhLatinOnly|QtCore.Qt.ImhLowercaseOnly|QtCore.Qt.ImhMultiLine|QtCore.Qt.ImhNoAutoUppercase|QtCore.Qt.ImhNoEditMenu|QtCore.Qt.ImhNoPredictiveText|QtCore.Qt.ImhNoTextHandles|QtCore.Qt.ImhPreferLatin|QtCore.Qt.ImhPreferLowercase|QtCore.Qt.ImhPreferNumbers|QtCore.Qt.ImhPreferUppercase|QtCore.Qt.ImhSensitiveData|QtCore.Qt.ImhTime|QtCore.Qt.ImhUppercaseOnly|QtCore.Qt.ImhUrlCharactersOnly)
+        self.query_in.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.query_in.setFrameShadow(QtWidgets.QFrame.Plain)
+        self.query_in.setLineWidth(1)
+        self.query_in.setMidLineWidth(0)
+        self.query_in.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
+        self.query_in.setPlainText("")
+        self.query_in.setBackgroundVisible(False)
+        self.query_in.setCenterOnScroll(False)
+        self.query_in.setObjectName("query_in")
+        self.gridLayout_4.addWidget(self.query_in, 1, 0, 1, 1)
         self.tabs.addTab(self._query, "")
         self.gridLayout.addWidget(self.tabs, 0, 1, 1, 2)
-        self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setEnabled(True)
-        self.label.setMinimumSize(QtCore.QSize(409, 22))
-        self.label.setAutoFillBackground(False)
-        self.label.setStyleSheet("background-color: lightgrey;")
-        self.label.setText("")
-        self.label.setTextFormat(QtCore.Qt.PlainText)
-        self.label.setScaledContents(False)
-        self.label.setWordWrap(False)
-        self.label.setObjectName("label")
-        self.gridLayout.addWidget(self.label, 2, 1, 1, 1)
         self.console_out = QtWidgets.QPlainTextEdit(self.centralwidget)
         self.console_out.setMinimumSize(QtCore.QSize(660, 130))
         self.console_out.setMaximumSize(QtCore.QSize(16777215, 130))
@@ -624,18 +271,14 @@ class Ui_SQLMANAGER(object):
         self.console_out.setObjectName("console_out")
         self.gridLayout.addWidget(self.console_out, 1, 1, 1, 2)
         self.openConsole = QtWidgets.QPushButton(self.centralwidget)
-        self.openConsole.setMinimumSize(QtCore.QSize(81, 22))
-        self.openConsole.setMaximumSize(QtCore.QSize(81, 22))
         font = QtGui.QFont()
         font.setFamily("Arial,Helvetica,sans-serif")
         font.setPointSize(10)
         self.openConsole.setFont(font)
-        self.openConsole.setStyleSheet("border-top-right-radius:0px;\n"
-"border-bottom-right-radius:0px;")
         self.openConsole.setDefault(False)
         self.openConsole.setFlat(False)
         self.openConsole.setObjectName("openConsole")
-        self.gridLayout.addWidget(self.openConsole, 2, 2, 1, 1)
+        self.gridLayout.addWidget(self.openConsole, 2, 1, 1, 2)
         SQLMANAGER.setCentralWidget(self.centralwidget)
         self.actionImport_Query = QtWidgets.QAction(SQLMANAGER)
         self.actionImport_Query.setShortcutContext(QtCore.Qt.WidgetWithChildrenShortcut)
@@ -666,12 +309,11 @@ class Ui_SQLMANAGER(object):
         self.actionRefresh_Database.setObjectName("actionRefresh_Database")
 
         self.retranslateUi(SQLMANAGER)
-        self.tabs.setCurrentIndex(2)
+        self.tabs.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(SQLMANAGER)
         SQLMANAGER.setTabOrder(self.tables_out, self.data_result)
         SQLMANAGER.setTabOrder(self.data_result, self.desc_result)
-        SQLMANAGER.setTabOrder(self.desc_result, self.query_in)
-        SQLMANAGER.setTabOrder(self.query_in, self.create_in)
+        SQLMANAGER.setTabOrder(self.desc_result, self.create_in)
         SQLMANAGER.setTabOrder(self.create_in, self.result_out)
         SQLMANAGER.setTabOrder(self.result_out, self.console_out)
         SQLMANAGER.setTabOrder(self.console_out, self.openConsole)
@@ -687,7 +329,7 @@ class Ui_SQLMANAGER(object):
         self.tabs.setTabText(self.tabs.indexOf(self._desc), _translate("SQLMANAGER", "Fields"))
         self.result_out.setSortingEnabled(False)
         self.tabs.setTabText(self.tabs.indexOf(self._query), _translate("SQLMANAGER", "Query"))
-        self.openConsole.setText(_translate("SQLMANAGER", "VIEW LOG"))
+        self.openConsole.setText(_translate("SQLMANAGER", "EXPAND LOG VISUALIZER"))
         self.actionImport_Query.setText(_translate("SQLMANAGER", "Load SQL File"))
         self.actionImport_Query.setShortcut(_translate("SQLMANAGER", "Ctrl+W"))
         self.actionExport_Query.setText(_translate("SQLMANAGER", "Execute SQL File"))

@@ -1,17 +1,30 @@
 """MYQT.icons_manager simple module to control the UI interface elements"""
 
-_run            = r'assets\UI\Icons\act_compile.PNG'
-_runSelected    = r'assets\UI\Icons\act_compileSel.PNG'
-_import         = r'assets\UI\Icons\act_import.PNG'
-_export         = r'assets\UI\Icons\act_export.PNG'
-_refresh        = r'assets\UI\Icons\act_refresh.PNG'
-_newDatabase    = r'assets\UI\Icons\act_newDatabase.png'
-_newTable       = r'assets\UI\Icons\act_newTable.png'
-_viewGraphs     = r'assets\UI\Icons\act_viewGraphics.png'
-_exportData     = r'assets\UI\Icons\act_export_result.png'
+# TOOLBAR ICONS
+_run            = r'assets\UI\Icons\toolbar_icons\act_compile.PNG'
+_runSelected    = r'assets\UI\Icons\toolbar_icons\act_compileSel.PNG'
+_import         = r'assets\UI\Icons\toolbar_icons\act_import.PNG'
+_export         = r'assets\UI\Icons\toolbar_icons\act_export.PNG'
+_refresh        = r'assets\UI\Icons\toolbar_icons\act_refresh.PNG'
+_newDatabase    = r'assets\UI\Icons\toolbar_icons\act_newDatabase.png'
+_newTable       = r'assets\UI\Icons\toolbar_icons\act_newTable.png'
+_viewGraphs     = r'assets\UI\Icons\toolbar_icons\act_viewGraphics.png'
+_exportData     = r'assets\UI\Icons\toolbar_icons\act_export_result.png'
 
-ui_db           = r'assets\UI\Icons\ui_database.PNG'
-ui_tb           = r'assets\UI\Icons\ui_table.PNG'
+# INTERFACE ICONS
+ui_db           = r'assets\UI\Icons\interface_icons\ui_database.PNG'
+ui_tb           = r'assets\UI\Icons\interface_icons\ui_table.PNG'
+ui_data         = r'assets\UI\Icons\interface_icons\data_ico.png'
+ui_field        = r'assets\UI\Icons\interface_icons\fields_ico.png'
+ui_query        = r'assets\UI\Icons\interface_icons\query_ico.png'
 
-ico_connector   = r'assets\UI\Icons\ico_connector.PNG'
-ico_consult     = r'assets\UI\Icons\ico_consult.png'
+# BRAND ICONS
+
+b_mysql        = r'assets\UI\Icons\brand_icons\dolphin.png'
+b_mssql        = r'assets\UI\Icons\brand_icons\mssql.png'
+b_postgreesql  = r'assets\UI\Icons\brand_icons\postgre.png'
+
+# WINDOW ICONS
+
+win_connector   = r'assets\UI\Icons\win_icons\ico_connector.png'
+win_manager     = r'assets\UI\Icons\win_icons\ico_consult.png'

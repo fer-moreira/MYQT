@@ -16,15 +16,15 @@ Atualmente o conector conta com as seguintes interfaces:
 import sys
 
 import mysql.connector as mysql
-from PyQt5 import QtGui
+from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import QFile, QTextStream, pyqtSlot
-from PyQt5.QtWidgets import (QAction, QApplication, QDialog, QMainWindow,
-                             QMenu, QMessageBox, QStyleFactory)
+from PyQt5.QtWidgets import (QAction, QApplication, QDialog, QMainWindow,QMenu, QMessageBox, QStyleFactory)
 
-from assets.UI.Scripts.ConnectorWindow import Ui_Connector
 from Core.Manager import ManagerWindow
-from Lib.icons_manager import ico_connector
+from assets.UI.Scripts.ConnectorWindow import Ui_Connector
 
+from Lib.icons_manager import win_connector
+from Lib.icons_manager import b_mssql,b_mysql,b_postgreesql
 
 app = QApplication(sys.argv)
 app.processEvents()
@@ -36,17 +36,26 @@ class MainWindow(QMainWindow,Ui_Connector):
     def __init__(self, parent = None):
         super(MainWindow,self).__init__(parent)
         self.setupUi(self)
-        self.setWindowIcon(QtGui.QIcon(ico_connector))
+        self.setWindowIcon(QIcon(win_connector))
+        self.comboBox.setItemIcon(0,QIcon(b_mysql))
+        self.comboBox.setItemIcon(1,QIcon(b_mssql))
+        self.comboBox.setItemIcon(2,QIcon(b_postgreesql))
 
         self.show()
-        self.buttons.accepted.connect(self.Connect)
-        self.buttons.rejected.connect(self.close)
+        self.buttons.rejected.connect(self.close)        
+        self.buttons.accepted.connect(self.pre_connection)
+
+    def pre_connection (self):        
+        if self.host_in.text() == "" or self.port_in.text() == "" or self.user_in.text() == "" or self.pass_in.text() == "":
+            QMessageBox.warning(self," EMPTY FIELD ALERT!! ","Maybe you left some empty field \nPlease check and try again.",QMessageBox.Ok)
+        else:self.Connect()
+
 
     def Connect (self):
-        self._host = self.host_in.displayText()
-        self._port = self.port_in.displayText() 
-        self._user = self.user_in.displayText()
-        self._pass = self.pass_in.displayText()
+        self._host = self.host_in.text()
+        self._port = self.port_in.text() 
+        self._user = self.user_in.text()
+        self._pass = self.pass_in.text()
         self.buffered_c = self.buffered.isChecked()
 
         try:

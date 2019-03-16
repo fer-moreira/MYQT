@@ -1,6 +1,6 @@
 <h1 align="center">
     <br>
-    <img src="assets/UI/Icons/ui_database.png" alt="logo" width="100">
+    <img src="assets\UI\Icons\myqt_logo.png" alt="logo" width="200">
     <br>
     MYQT
     <br>
@@ -45,33 +45,28 @@ MYQT is an open source visual database design and querying tool for the MySQL da
 - SQL syntax highlighter and statement parser
 - Multiple and editable result sets
 - Visual EXPLAIN
-- SQL snippets collections
+- Beautiful color and themes
+! SQL snippets collections
+x Matplot data visualizer
+x Import table from xlsx/csv/txt/etc file
 </pre>
 
 # **Dependencies**
 
 <pre>
 Python >= 3 with at least the following modules is required:
-- pip install -r requirements.txt
 - PyQt5                      : ^5.11.3
 - mysql-connector            : ^2.1.6
 - mysql-connector-python     : ^8.0.13
 - mysql-connector-python-rf  : ^2.2.2
-- PyQt5-sip                  :  ^4.19.13
-- matplotlib                 :  ^3.0.2
-- numpy                      :  ^1.15.2
-- panda"                     :  ^0.3.1
-- pandas                     :  ^0.23.4
-- tabula"                    :  ^1.0.5
-- tabula-py                  : ^1.3.1
+- PyQt5-sip                  : ^4.19.13
 </pre>
 
-# **Interface UI**
-<img src="assets/prints/connector.PNG"    alt="Server Connector"  width="300"/><br>
-<img src="assets/prints/manager.PNG"      alt="Query Manager"     width="500"/>
-<img src="assets/prints/table_script.PNG" alt="Table Types"       width="500"/>
-<img src="assets/prints/data.PNG"         alt="Table Content"     width="500"/>
-<br>
+# **Connector**
+![](assets\prints\Connector.gif)
+# **Manager**
+![](assets\prints\workstation.gif)
+
 ---
 <br>
 #### Author : Fernando Ferreira Moreira <br> CC0 - 2018 Creative Commons
