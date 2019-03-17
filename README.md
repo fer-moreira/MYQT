@@ -63,9 +63,9 @@ Python >= 3 with at least the following modules is required:
 </pre>
 
 # **Connector**
-![](assets\prints\Connector.gif)
+![](assets/prints/Connector.gif)
 # **Manager**
-![](assets\prints\workstation.gif)
+![](assets/prints/workstation.gif)
 
 ---
 <br>
