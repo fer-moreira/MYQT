@@ -15,13 +15,13 @@ from functools import partial
 import mysql.connector as mysql
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtCore import QCoreApplication, QFile, Qt,QPoint
-from PyQt5.QtGui import QIcon,QCursor, QFont, QSyntaxHighlighter, QTextCharFormat
-from PyQt5.QtWidgets import (QAction, QApplication, QDialog, QFileDialog,QHeaderView,
-QMainWindow, QMenu, QMessageBox,QSizePolicy, QStyleFactory, QTableWidget,QTableWidgetItem,
+from PyQt5.QtGui import QIcon,QCursor
+from PyQt5.QtWidgets import (QAction, QDialog, QFileDialog,QHeaderView,
+QMainWindow, QMenu, QMessageBox,QSizePolicy, QTableWidget,QTableWidgetItem,
 QToolBar, QTreeWidgetItem,QWidget, qApp)
 
 
-from Lib.icons_manager import _export, _import, _newDatabase, _newTable, _refresh, _run, _runSelected, _viewGraphs, _exportData
+from Lib.icons_manager import _export, _import, _newDatabase, _newTable, _refresh, _run, _runSelected, _viewGraphs, _exportData,_settings
 from Lib.icons_manager import ui_db, ui_tb, ui_data,ui_field,ui_query
 from Lib.icons_manager import win_manager
 
@@ -321,8 +321,10 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         compileSelected = QAction(QIcon(_runSelected),"RUN SL" ,self,shortcut="Shift+Ctrl+F9",triggered=self.get_selected_text)
         newDatabase     = QAction(QIcon(_newDatabase),"NEW DB" ,self,                         triggered=self.create_database)
         newTable        = QAction(QIcon(_newTable)   ,"NEW TB" ,self,                         triggered=self.create_table)
-        exportData      = QAction(QIcon(_exportData) ,"DATAEXP",self,                         triggered=lambda:self.export_table(self.result_out))
+        exportData      = QAction(QIcon(_exportData) ,"EXPORT" ,self,                         triggered=lambda:self.export_table(self.result_out))
     
+        settings        = QAction(QIcon(_settings), "SETTINGS"  ,self,                        triggered=lambda: print("WORKS"))
+
 
         refresh_t.setToolTip        ("Refresh all server databases and table (F5)")
         import_t.setToolTip         ("Load SQL (Ctrl+O)")
@@ -332,6 +334,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         newDatabase.setToolTip      ("Open database creator")
         newTable.setToolTip         ("Open table creator")
         exportData.setToolTip       ("Export all data from result table")
+        settings.setToolTip         ("View settings")
 
         # toolBar.addSeparator()
         toolBar.addAction(refresh_t)
@@ -343,7 +346,13 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         toolBar.addSeparator()
         toolBar.addAction(exportData)
 
+        _sp = QWidget()
+        _sp.setSizePolicy(QSizePolicy.Fixed,QSizePolicy.Expanding)
+        toolBar.addWidget(_sp)
+        toolBar.addAction(settings)
+        
         self.processEvents()
+
 
     def expand_console       (self):
         """EXPAND CONSOLE WINDOW"""
@@ -439,7 +448,6 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         _menu.addAction("Format SQL",self.format_sql_text)
         _menu.addAction("Clear QUERY",lambda:self.query_in.setPlainText(""))
         _menu.addSeparator()
-
         _pos = QCursor.pos()
         action = _menu.exec_(self.mapFromGlobal(_pos))
     def table_view_context_menu (self,_w):

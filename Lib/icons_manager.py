@@ -10,6 +10,7 @@ _newDatabase    = r'assets\UI\Icons\toolbar_icons\act_newDatabase.png'
 _newTable       = r'assets\UI\Icons\toolbar_icons\act_newTable.png'
 _viewGraphs     = r'assets\UI\Icons\toolbar_icons\act_viewGraphics.png'
 _exportData     = r'assets\UI\Icons\toolbar_icons\act_export_result.png'
+_settings       = r'assets\UI\Icons\toolbar_icons\act_settings.png'
 
 # INTERFACE ICONS
 ui_db           = r'assets\UI\Icons\interface_icons\ui_database.PNG'
@@ -26,5 +27,5 @@ b_postgreesql  = r'assets\UI\Icons\brand_icons\postgre.png'
 
 # WINDOW ICONS
 
-win_connector   = r'assets\UI\Icons\win_icons\ico_connector.png'
-win_manager     = r'assets\UI\Icons\win_icons\ico_consult.png'
+win_connector   = r'assets\UI\Icons\win_icons\ico_connector.ico'
+win_manager     = r'assets\UI\Icons\win_icons\ico_consult.ico'
