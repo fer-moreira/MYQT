@@ -1,4 +1,4 @@
-"""
+﻿"""
 MYQT.Manager é o modulo principal que gerencia todo o funcionamento do aplicativo
 
 Como:
@@ -23,7 +23,7 @@ QToolBar, QTreeWidgetItem,QWidget, qApp)
 
 from Lib.icons_manager import _export, _import, _newDatabase, _newTable, _refresh, _run, _runSelected, _viewGraphs, _exportData,_settings
 from Lib.icons_manager import ui_db, ui_tb, ui_data,ui_field,ui_query
-from Lib.icons_manager import win_manager
+from Lib.icons_manager import win_icon
 
 from Lib.SQL_formatter import Formatter
 
@@ -36,7 +36,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
     def __init__(self,hs,pt,us,ps,bfr, parent = None):
         super(ManagerWindow,self).__init__(parent)
         self.setupUi(self)
-        self.setWindowIcon(QIcon(win_manager))
+        self.setWindowIcon(QIcon(win_icon))
         self.tabs.setTabIcon(0,QIcon(ui_data))
         self.tabs.setTabIcon(1,QIcon(ui_field))
         self.tabs.setTabIcon(2,QIcon(ui_query))

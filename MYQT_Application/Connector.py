@@ -1,4 +1,4 @@
-"""
+﻿"""
 MYQT.Connector é o modulo que gerencia como o aplicativo deve se conectar com o Servidor
 e como ele deve agir depois de conectar
 
@@ -23,7 +23,7 @@ from PyQt5.QtWidgets import (QAction, QApplication, QDialog, QMainWindow,QMenu, 
 from Core.Manager import ManagerWindow
 from assets.UI.Scripts.ConnectorWindow import Ui_Connector
 
-from Lib.icons_manager import win_connector
+from Lib.icons_manager import win_icon
 from Lib.icons_manager import b_mssql,b_mysql,b_postgreesql
 
 from Lib.ConfigHandler import ConfigHandler
@@ -38,7 +38,7 @@ class MainWindow(QMainWindow,Ui_Connector):
     def __init__(self, parent = None):
         super(MainWindow,self).__init__(parent)
         self.setupUi(self)
-        self.setWindowIcon(QIcon(win_connector))
+        self.setWindowIcon(QIcon(win_icon))
 
         self.comboBox.setItemIcon(0,QIcon(b_mysql))
         self.comboBox.setItemIcon(1,QIcon(b_mssql))
