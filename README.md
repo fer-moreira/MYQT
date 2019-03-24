@@ -1,6 +1,6 @@
 <h1 align="center">
     <br>
-    <img src="assets\UI\Icons\myqt_logo.png" alt="logo" width="200">
+    <img src=".github/myqt_logo.png" alt="logo" width="200">
     <br>
     MYQT
     <br>
@@ -63,9 +63,9 @@ Python >= 3 with at least the following modules is required:
 </pre>
 
 # **Connector**
-![](assets/prints/Connector.gif)
+![](.github/prints/Connector.gif)
 # **Manager**
-![](assets/prints/workstation.gif)
+![](.github/prints/workstation.gif)
 
 ---
 <br>
