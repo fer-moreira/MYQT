@@ -22,7 +22,7 @@ QToolBar, QTreeWidgetItem,QWidget, qApp)
 
 
 from Lib.icons_manager import _export, _import, _newDatabase, _newTable, _refresh, _run, _runSelected, _viewGraphs, _exportData,_settings
-from Lib.icons_manager import ui_db, ui_tb, ui_data,ui_field,ui_query
+from Lib.icons_manager import ui_db, ui_tb,ui_folder, ui_data,ui_field,ui_query
 from Lib.icons_manager import win_icon
 
 from Lib.SQL_formatter import Formatter
@@ -176,9 +176,13 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
             item_name = top_item.text(0)
             if item_name == str(_cDb):
                 self.mycursor.execute("show tables")
-                self.tbs = self.mycursor.fetchall()
+                self.tbs = self.mycursor.fetchall()                
+                folder = QTreeWidgetItem(top_item)
+                folder.setText(0,"Tables")
+                folder.setIcon(0,QIcon(ui_folder))
+                
                 for tb in self.tbs:
-                    child = QTreeWidgetItem(top_item)
+                    child = QTreeWidgetItem(folder)
                     child.setFlags(child.flags())
                     child.setText(0,"%s"%tb)
                     child.setIcon(0,QIcon(ui_tb))
