@@ -178,7 +178,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <property name="iconSize">
        <size>
@@ -353,8 +353,8 @@
           <property name="sizeAdjustPolicy">
            <enum>QAbstractScrollArea::AdjustToContents</enum>
           </property>
-          <property name="editTriggers">
-           <set>QAbstractItemView::NoEditTriggers</set>
+          <property name="autoScroll">
+           <bool>true</bool>
           </property>
           <property name="tabKeyNavigation">
            <bool>false</bool>
@@ -600,17 +600,11 @@
           <property name="plainText">
            <string notr="true"/>
           </property>
-          <property name="overwriteMode">
-           <bool>true</bool>
-          </property>
-          <property name="textInteractionFlags">
-           <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
-          </property>
           <property name="backgroundVisible">
            <bool>false</bool>
           </property>
           <property name="centerOnScroll">
-           <bool>true</bool>
+           <bool>false</bool>
           </property>
          </widget>
         </item>
