@@ -70,7 +70,7 @@
       </property>
       <property name="font">
        <font>
-        <family>Arial,Helvetica,sans-serif</family>
+        <family>Arial</family>
         <pointsize>10</pointsize>
        </font>
       </property>
@@ -155,7 +155,7 @@
       </property>
       <property name="font">
        <font>
-        <family>Arial,Helvetica,sans-serif</family>
+        <family>Arial</family>
         <pointsize>12</pointsize>
        </font>
       </property>
@@ -178,7 +178,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <property name="iconSize">
        <size>
@@ -243,7 +243,7 @@
           </property>
           <property name="font">
            <font>
-            <family>Arial,Helvetica,sans-serif</family>
+            <family>Arial</family>
             <pointsize>10</pointsize>
            </font>
           </property>
@@ -333,6 +333,11 @@
             <height>304</height>
            </size>
           </property>
+          <property name="font">
+           <font>
+            <family>Arial</family>
+           </font>
+          </property>
           <property name="contextMenuPolicy">
            <enum>Qt::CustomContextMenu</enum>
           </property>
@@ -390,7 +395,7 @@
           </property>
           <property name="font">
            <font>
-            <family>Arial,Helvetica,sans-serif</family>
+            <family>Arial</family>
             <pointsize>10</pointsize>
            </font>
           </property>
@@ -485,7 +490,7 @@
           </property>
           <property name="font">
            <font>
-            <family>Arial,Helvetica,sans-serif</family>
+            <family>Arial</family>
             <pointsize>10</pointsize>
            </font>
           </property>
@@ -558,7 +563,7 @@
           </property>
           <property name="font">
            <font>
-            <family>Arial,Helvetica,sans-serif</family>
+            <family>Arial</family>
             <pointsize>11</pointsize>
            </font>
           </property>
@@ -595,11 +600,17 @@
           <property name="plainText">
            <string notr="true"/>
           </property>
+          <property name="overwriteMode">
+           <bool>true</bool>
+          </property>
+          <property name="textInteractionFlags">
+           <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+          </property>
           <property name="backgroundVisible">
            <bool>false</bool>
           </property>
           <property name="centerOnScroll">
-           <bool>false</bool>
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -623,7 +634,7 @@
       </property>
       <property name="font">
        <font>
-        <family>Arial,Helvetica,sans-serif</family>
+        <family>Arial</family>
         <pointsize>12</pointsize>
        </font>
       </property>
@@ -675,7 +686,7 @@
      <widget class="QPushButton" name="openConsole">
       <property name="font">
        <font>
-        <family>Arial,Helvetica,sans-serif</family>
+        <family>Arial</family>
         <pointsize>10</pointsize>
        </font>
       </property>

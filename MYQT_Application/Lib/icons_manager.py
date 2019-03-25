@@ -27,4 +27,4 @@ b_postgreesql  = r'assets\UI\Icons\brand_icons\postgre.png'
 
 # WINDOW ICONS
 
-win_icon = r'Icons\icon.ico'
+win_icon = r'assets\UI\icon.ico'

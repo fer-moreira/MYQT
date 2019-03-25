@@ -38,6 +38,7 @@ color:rgb(255, 255, 255);
 QMenu::separator {
 background:rgb(100,100,100);
 height:1px;
+
 }
 
 
@@ -74,7 +75,7 @@ QComboBox:!editable, QComboBox::drop-down:editable {
 background: rgb(50,50,50);
 }
 
-/* QComboBox gets the "on" state when the popup is open */
+/* QComboBox gets the "on" state w  hen the popup is open */
 QComboBox:!editable:on, QComboBox::drop-down:editable:on {
 background: rgb(70,70,70);
 }
@@ -95,6 +96,8 @@ border-left-style: solid; /* just a single line */
 border-top-right-radius: 3px; /* same radius as the QComboBox */
 border-bottom-right-radius: 3px;
 }
+
+
 QCheckBox,QRadioButton
 {
 background: rgb(50,50,50);
@@ -139,13 +142,13 @@ background:rgb(50,50,50);
 
 
 /* -------------------------------------------------------------------------- */
-
+/* 
 QDialogButtonBox
 {
 color:red;
 min-height: 35px;
 min-width: 50px;
-}
+} */
 
 
 /*  ----------------------------  LCD NUMBER ---------------------------- */

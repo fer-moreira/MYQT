@@ -17,7 +17,7 @@ import sys
 
 import mysql.connector as mysql
 from PyQt5.QtGui import QIcon,QPixmap
-from PyQt5.QtCore import QFile, QTextStream, pyqtSlot,QSize
+from PyQt5.QtCore import QFile, QTextStream, pyqtSlot,QSize,Qt
 from PyQt5.QtWidgets import (QAction, QApplication, QDialog, QMainWindow,QMenu, QMessageBox, QStyleFactory)
 
 from Core.Manager import ManagerWindow
@@ -40,6 +40,8 @@ class MainWindow(QMainWindow,Ui_Connector):
         self.setupUi(self)
         self.setWindowIcon(QIcon(win_icon))
 
+        self.setWindowFlag(Qt.Window)
+
         self.comboBox.setItemIcon(0,QIcon(b_mysql))
         self.comboBox.setItemIcon(1,QIcon(b_mssql))
         self.comboBox.setItemIcon(2,QIcon(b_postgreesql))
@@ -48,8 +50,8 @@ class MainWindow(QMainWindow,Ui_Connector):
         self.cf.load_config()
 
         self.show()
-        self.buttons.rejected.connect(self.close)        
-        self.buttons.accepted.connect(self.pre_connection)
+        self.connect.clicked.connect(self.pre_connection)
+
 
     def pre_connection (self):        
         if self.host_in.text() == "" or self.port_in.text() == "" or self.user_in.text() == "" or self.pass_in.text() == "":
@@ -64,22 +66,22 @@ class MainWindow(QMainWindow,Ui_Connector):
         self._pass      = self.pass_in.text()
         self.buffered_c = self.buffered.isChecked()
 
-        try:
-            mydb = mysql.connect(
+        try:    
+            mysql.connect(
             host=self._host,
             port=self._port,
             user=self._user,passwd=self._pass,
-            buffered=self.buffered_c
+            buffered=self.buffered_c,
+            auth_plugin='caching_sha2_password'
             )
 
-            self.manager = ManagerWindow(self._host,self._port,self._user,self._pass,self.buffered_c)
-            
+            self.manager = ManagerWindow(self._host,self._port,self._user,self._pass,self.buffered_c) 
             self.cf.save_config()
             self.close()
 
         
         except Exception as error:
-            reply = QMessageBox.critical(self, "CRITICAL ERROR",str(error),QMessageBox.Ok)
+            QMessageBox.critical(self, "CRITICAL ERROR",str(error),QMessageBox.Ok)
             pass
 
 Main_GUI = MainWindow()

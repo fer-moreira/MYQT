@@ -32,6 +32,8 @@ from Core.Table_Creator import TBCreator
 from Core.Database_Creator import DBCreator
 from Core.Console import Console
 
+from Core import syntax_pars
+
 class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLMANAGER,object):
     def __init__(self,hs,pt,us,ps,bfr, parent = None):
         super(ManagerWindow,self).__init__(parent)
@@ -41,6 +43,8 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         self.tabs.setTabIcon(1,QIcon(ui_field))
         self.tabs.setTabIcon(2,QIcon(ui_query))
         self.add_tool_bar()
+
+
         self.showMaximized()
 
         self.hs = hs
@@ -50,7 +54,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         self.bfred = bfr
 
         try:
-            self.mydb = mysql.connect(host=self.hs,port=self.pt,user=self.us,passwd=self.ps,buffered=self.bfred)
+            self.mydb = mysql.connect(host=self.hs,port=self.pt,user=self.us,passwd=self.ps,buffered=self.bfred,auth_plugin='caching_sha2_password')
             self.console_output('<b>Connected to SQL Server</b>',True)
             self.get_server_dbs()
         except:
@@ -68,6 +72,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         self.result_out.customContextMenuRequested.connect(lambda:self.table_view_context_menu(self.result_out))
         self.desc_result.customContextMenuRequested.connect(lambda:self.table_view_context_menu(self.desc_result))
         self.data_result.customContextMenuRequested.connect(lambda:self.table_view_context_menu(self.data_result))
+
 
     def EXECUTE_QUERY_HANDLER(self,text):            ## 
         """Master function to execute all type of query and return in result table"""
@@ -98,6 +103,8 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
                 self.result_out.resizeColumnsToContents()
                 self.console_output("%s"%_query.lower(),False)
                 self.processEvents()
+                syntax_pars.PythonHighlighter(self.query_in.document())
+
             except:pass
             # self.console_output(_query,False)
         except Exception as error:
