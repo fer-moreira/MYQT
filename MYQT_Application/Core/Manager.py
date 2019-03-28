@@ -12,14 +12,13 @@ Como:
 import sys
 import time
 from functools import partial
-import mysql.connector as mysql
+
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtCore import QCoreApplication, QFile, Qt,QPoint
 from PyQt5.QtGui import QIcon,QCursor
 from PyQt5.QtWidgets import (QAction, QDialog, QFileDialog,QHeaderView,
 QMainWindow, QMenu, QMessageBox,QSizePolicy, QTableWidget,QTableWidgetItem,
 QToolBar, QTreeWidgetItem,QWidget, qApp)
-
 
 from Lib.icons_manager import _export, _import, _newDatabase, _newTable, _refresh, _run, _runSelected, _viewGraphs, _exportData,_settings
 from Lib.icons_manager import ui_db, ui_tb,ui_folder, ui_data,ui_field,ui_query
@@ -32,10 +31,11 @@ from Core.Table_Creator import TBCreator
 from Core.Database_Creator import DBCreator
 from Core.Console import Console
 
-from Core import syntax_pars
+from Engines import MYSQL_Engine
+from Engines import MSSQL_Engine
 
 class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLMANAGER,object):
-    def __init__(self,hs,pt,us,ps,bfr, parent = None):
+    def __init__(self,hs,pt,us,ps,bfr,type, parent = None):
         super(ManagerWindow,self).__init__(parent)
         self.setupUi(self)
         self.setWindowIcon(QIcon(win_icon))
@@ -43,8 +43,6 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         self.tabs.setTabIcon(1,QIcon(ui_field))
         self.tabs.setTabIcon(2,QIcon(ui_query))
         self.add_tool_bar()
-
-
         self.showMaximized()
 
         self.hs = hs
@@ -52,27 +50,28 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         self.us = us
         self.ps = ps
         self.bfred = bfr
+        self.type = type
 
-        try:
-            self.mydb = mysql.connect(host=self.hs,port=self.pt,user=self.us,passwd=self.ps,buffered=self.bfred,auth_plugin='caching_sha2_password')
-            self.console_output('<b>Connected to SQL Server</b>',True)
-            self.get_server_dbs()
-        except:
-            self.console_output('<p style="color:rgb(175, 50, 50);">Cannot Connect to SQL Server</span>',True)
+        if self.type == 'mysql':
+            self.mydb = MYSQL_Engine.connect(self.hs,self.pt,self.us,self.ps,self.bfred)
+        if self.type == 'mssql':
+            self.mydb = MSSQL_Engine.connect(self.hs,self.us,self.ps)
+
+        self.console_output('<b>Connected to SQL Server</b>',True)
+        self.get_server_dbs()
 
         self.tables_out.itemDoubleClicked.connect(self.ItemDoubleClicked)
         self.openConsole.clicked.connect(self.expand_console)
 
         self.openedConsole = False
 
-        self.console_out.customContextMenuRequested.connect(self.console_context_menu)
-        self.tables_out.customContextMenuRequested.connect(self.TDB_context_menu)
-        self.query_in.customContextMenuRequested.connect(self.query_context_menu)
+        self.console_out.customContextMenuRequested.connect (self.console_context_menu)
+        self.tables_out.customContextMenuRequested.connect  (self.TDB_context_menu  ) 
+        self.query_in.customContextMenuRequested.connect    (self.query_context_menu)
 
-        self.result_out.customContextMenuRequested.connect(lambda:self.table_view_context_menu(self.result_out))
-        self.desc_result.customContextMenuRequested.connect(lambda:self.table_view_context_menu(self.desc_result))
-        self.data_result.customContextMenuRequested.connect(lambda:self.table_view_context_menu(self.data_result))
-
+        self.result_out.customContextMenuRequested.connect  (lambda:self.table_view_context_menu(self.result_out))
+        self.desc_result.customContextMenuRequested.connect (lambda:self.table_view_context_menu(self.desc_result))
+        self.data_result.customContextMenuRequested.connect (lambda:self.table_view_context_menu(self.data_result))
 
     def EXECUTE_QUERY_HANDLER(self,text):            ## 
         """Master function to execute all type of query and return in result table"""
@@ -114,28 +113,78 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
     def ItemDoubleClicked    (self):                 ## SINGLE CLICK HANDLER FOR QTreeWIDGET
         index = self.tables_out.currentIndex()
         data =  self.tables_out.model().data(index)
-        text = str(data)
-        if text in self.databases and text != str(self.mydb.database):
-            lastDb = self.mydb.database
-            self.mydb.database = text
-            nowDb = self.mydb.database
-            if lastDb != nowDb and lastDb != "None":
-                self.tables_out.clear()
-                self.get_server_dbs()
-                self.get_tables_from_db(nowDb)
-        if text not in self.databases:
-            self.get_table_script(text)
-            self.get_table_types(text)
-            self.get_table_data(text)
-        self.processEvents()
+        _selected = str(data)
 
-    def get_all_text         (self):
+        cursor = self.mydb.cursor()
+
+        if _selected in self.databases:
+            if self.type == 'mysql':
+                MYSQL_Engine.Set_Database(cursor,_selected)
+                self.refresh_database(_selected)
+            if self.type == 'mssql': 
+                MSSQL_Engine.Set_Database(cursor,_selected)
+                self.refresh_database(_selected)
+        if _selected in self.tables:
+            self.get_table_types(_selected)
+            print("a")
+
+    def get_server_dbs       (self):
+        """GET ALL DATABASES IN SERVER AND RETURN AS PARENT TO QTREEVIEW"""
+        self.tables_out.clear()
+        self.databases = []
+        _dict = {}
+
+        cursor = self.mydb.cursor()
+
+        if self.type == 'mysql':
+            self.dbs = MYSQL_Engine.databases(cursor)
+        if self.type == 'mssql':
+            self.dbs = MSSQL_Engine.databases(cursor)
+
+        for db in self.dbs:
+            _db = db[0]
+            self.databases.append(_db)
+            parent = QTreeWidgetItem(self.tables_out)
+            parent.setText(0,"%s"%_db)
+            parent.setIcon(0,QIcon(ui_db))
+            parent.setFlags(parent.flags())
+
+    def get_tables_from_db   (self,_cDb):
+        """GET ALL TABLES FROM DATABASE AND RETURN IN TREE VIEW AS CHILD OF DATABASE PARENT ITEM"""
+        self.tables = []
+
+
+        cursor = self.mydb.cursor()
+        if self.type == 'mysql' : self.tbs = MYSQL_Engine.tables(cursor)
+        if self.type == 'mssql' : self.tbs = MSSQL_Engine.tables(cursor)
+
+        top_level_items = self.tables_out.topLevelItemCount()
+
+        for i in range(top_level_items):
+            top_item = self.tables_out.topLevelItem(i)
+            item_name = top_item.text(0)
+            if item_name == str(_cDb):
+                folder = QTreeWidgetItem(top_item)
+                folder.setText(0,"Tables")
+                folder.setIcon(0,QIcon(ui_folder))
+                
+                for tb in self.tbs:
+                    _tb = tb[0]
+                    self.tables.append(_tb)
+
+                    child = QTreeWidgetItem(folder)
+                    child.setFlags(child.flags())
+                    child.setText(0,"%s"%tb)
+                    child.setIcon(0,QIcon(ui_tb))
+                break
+
+    def execute_all_query    (self):
         """EXECUTE ALL QUERY TEXT"""
         _allQuery = str(self.query_in.toPlainText()).replace("\n"," ")
         self.EXECUTE_QUERY_HANDLER(_allQuery)
         self.processEvents()
 
-    def get_selected_text    (self):
+    def execute_selected_query    (self):
         """EXECUTE ONLY SELECTED QUERY TEXT"""
         cursor = self.query_in.textCursor()
         _allText = str(self.query_in.toPlainText()).replace("\n"," ")
@@ -146,75 +195,20 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
             _buildText+=_allText[letter]
         self.EXECUTE_QUERY_HANDLER(_buildText)
         self.processEvents()
-
-    def get_server_dbs       (self):
-        """GET ALL DATABASES IN SERVER AND RETURN AS PARENT TO QTREEVIEW"""
-        try:
-            self.tables_out.clear()
-            self.databases = []
-            _dict = {}
-            self.mycursor = self.mydb.cursor()
-            self.mycursor.execute("show databases")
-            self.dbs = self.mycursor.fetchall()
-            for db in self.dbs:
-                _db = db[0]
-                self.databases.append(_db)
-                parent = QTreeWidgetItem(self.tables_out)
-                parent.setText(0,"%s"%_db)
-                parent.setIcon(0,QIcon(ui_db))
-                parent.setFlags(parent.flags())
-            self.console_output("SHOW DATABASES",False)
-        except Exception as error:
-            self.application_error(error)
-            pass
-
-    def get_tables_from_db   (self,_cDb):
-        """GET ALL TABLES FROM DATABASE AND RETURN IN TREE VIEW AS CHILD OF DATABASE PARENT ITEM"""
-        top_level_items = self.tables_out.topLevelItemCount()
-        for i in range(top_level_items):
-            top_item = self.tables_out.topLevelItem(i)
-            item_name = top_item.text(0)
-            if item_name == str(_cDb):
-                self.mycursor.execute("show tables")
-                self.tbs = self.mycursor.fetchall()                
-                folder = QTreeWidgetItem(top_item)
-                folder.setText(0,"Tables")
-                folder.setIcon(0,QIcon(ui_folder))
-                
-                for tb in self.tbs:
-                    child = QTreeWidgetItem(folder)
-                    child.setFlags(child.flags())
-                    child.setText(0,"%s"%tb)
-                    child.setIcon(0,QIcon(ui_tb))
-                break
-        self.tables_out.expandAll()
-        self.console_output("SHOW TABLES",False)
-
-    def get_table_script     (self,data):
+  
+    def get_table_script     (self,table):
         """GET CREATE TABLE SCRIPT"""
-        table = str(data)
-        _query = "show create table %s" %table
-        try:
-            self.create_in.setPlainText('')
-            cursor = self.mydb.cursor()
-            cursor.execute(_query)
-            allSQLRows = cursor.fetchall()
-            code_create = str(allSQLRows[0][1])
-            schemeCode = self.colorize_sql_query(code_create)
-            self.create_in.appendHtml(schemeCode)
-            self.console_output("%s"%str(_query),False)
-        except Exception as error:
-            self.console_output(error,True)
-            print(error)
 
-    def get_table_types      (self,data):
+    def get_table_types      (self,tb):
         """GET ALL TABLES DESCRITIONS"""
-        table = str(data)
-        _query = "desc %s"%table
+        table = str(tb)
+        cursor = self.mydb.cursor()
         try:
-            cursor = self.mydb.cursor()
-            cursor.execute(_query)
-            allSQLRows = cursor.fetchall()
+            if self.type == 'mysql':
+                allSQLRows = MYSQL_Engine.Get_Struct(cursor,table)
+            if self.type == 'mssql':
+                allSQLRows = MSSQL_Engine.Get_Struct(cursor,table)
+
             lenRow = len(allSQLRows)
             lenCol = len(allSQLRows[0])
             self.desc_result.setRowCount(lenRow) ##set number of rows
@@ -234,15 +228,16 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
             self.console_output(error,True)
             pass
 
-    def get_table_data       (self,data):
+    def get_table_data       (self,tb):
         """GET ALL DATA FROM TABLES"""
-        table = str(data)
-        _query = "select * from %s"%table
-        try:
-            cursor = self.mydb.cursor()
-            cursor.execute(_query)
+        table = str(tb)
+        cursor = self.mydb.cursor()
 
-            allSQLRows = cursor.fetchall()
+        try:
+            if self.type == 'mysql': allSQLRows = MYSQL_Engine.Get_Data(cursor,table)
+            if self.type == 'mssql': allSQLRows = MSSQL_Engine.Get_Data(cursor,table)
+
+            print(allSQLRows)
 
             lenRow = len(allSQLRows)
             lenCol = len(allSQLRows[0])
@@ -261,7 +256,6 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
                 self.data_result.setHorizontalHeaderItem(col, headerName)
 
             self.data_result.resizeColumnsToContents()
-            self.processEvents()
         except Exception as error:
             self.console_output(error,True)
             pass
@@ -311,11 +305,12 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
             self.application_error(error)
             pass
 
-    def refresh_database     (self):
+    def refresh_database     (self,db):
         """REFRESH HANDLER FOR REFRESHIND DATABASE AND ITS TABLE"""
+        self.tables_out.clear()
         self.get_server_dbs()
-        _db = str(self.mydb.database)
-        self.get_tables_from_db(_db)
+        self.get_tables_from_db(db)
+        self.tables_out.expandAll()
 
     def add_tool_bar         (self):
         """ADD TOOLBAR AND TOOLBAR ICONS HANDLER"""
@@ -325,11 +320,11 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
 
         self.addToolBar(Qt.LeftToolBarArea,toolBar)
 
-        refresh_t       = QAction(QIcon(_refresh),    "REFRESH",self,shortcut="F5",           triggered=self.refresh_database)
-        compileAll      = QAction(QIcon(_run),        "COMPILE",self,shortcut="F9",           triggered=self.get_all_text)
+        refresh_t       = QAction(QIcon(_refresh),    "REFRESH",self,shortcut="F5")
+        compileAll      = QAction(QIcon(_run),        "COMPILE",self,shortcut="F9",           triggered=self.execute_all_query)
         import_t        = QAction(QIcon(_import),     "IMPORT" ,self,shortcut="Ctrl+O",       triggered=self.load_query_from_file)
         export_t        = QAction(QIcon(_export),     "EXPORT" ,self,shortcut="Ctrl+S",       triggered=self.save_query_to_file)
-        compileSelected = QAction(QIcon(_runSelected),"RUN SL" ,self,shortcut="Shift+Ctrl+F9",triggered=self.get_selected_text)
+        compileSelected = QAction(QIcon(_runSelected),"RUN SL" ,self,shortcut="Shift+Ctrl+F9",triggered=self.execute_selected_query)
         newDatabase     = QAction(QIcon(_newDatabase),"NEW DB" ,self,                         triggered=self.create_database)
         newTable        = QAction(QIcon(_newTable)   ,"NEW TB" ,self,                         triggered=self.create_table)
         exportData      = QAction(QIcon(_exportData) ,"EXPORT" ,self,                         triggered=lambda:self.export_table(self.result_out))
@@ -363,7 +358,6 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         toolBar.addAction(settings)
         
         self.processEvents()
-
 
     def expand_console       (self):
         """EXPAND CONSOLE WINDOW"""
@@ -402,7 +396,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
             self.console_out.appendHtml(errorPat.format(str(text)))
             self.processEvents()
 
-    def application_error    (self,error): reply = QMessageBox.critical(self, "CRITICAL ERROR",str(error),QMessageBox.Ok)
+    def application_error    (self,error): QMessageBox.critical(self, "CRITICAL ERROR",str(error),QMessageBox.Ok) ; print(error)
 
     def format_sql_text      (self):
         sql_text = str(self.query_in.toPlainText())
@@ -450,8 +444,8 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         _menu.addAction("Copy  (NOT IMPLEMENTED)")
         _menu.addAction("Paste (NOT IMPLEMENTED)")
         _menu.addSeparator()
-        _menu.addAction("Compile",self.get_all_text)
-        _menu.addAction("Compile selected",self.get_selected_text)
+        _menu.addAction("Compile",self.execute_all_query)
+        _menu.addAction("Compile selected",self.execute_selected_query)
         _menu.addSeparator()
         _menu.addAction("Load SQL",self.load_query_from_file)
         _menu.addAction("Save SQL",self.save_query_to_file)

@@ -57,6 +57,12 @@ color:rgb(20,20,20);
 background-color:white;
 border:1px solid lightgrey;
 }
+QLineEdit:disabled
+{
+color:rgb(87, 87, 87);
+background-color:rgb(119, 119, 119);
+border:2px dashed rgb(102, 78, 78);        
+}
 
 /*  ---------------------------- CHECK/COMBO BOX ----------------------------*/
 QComboBox 

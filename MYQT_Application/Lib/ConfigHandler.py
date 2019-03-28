@@ -28,6 +28,10 @@ class ConfigHandler (object):
     def __init__(self,window):
         self.config = configparser.ConfigParser()
         self.config.read(r'settings\prefs.ini')
+        
+        self.types = {'mysql':0,'mssql':1,'postgre':2}
+        self.reverse_type = {0:'mysql',1:'mssql',2:'postgre'}
+
 
         self._connection    = self.config['Connection']
         self._credentials   = self.config['Credentials']
@@ -44,6 +48,7 @@ class ConfigHandler (object):
         
         # opt_theme = self._option['theme']
         # opt_language = self._option['language']
+        opt_type = self.types.get(self._option['type'])
 
         crdt_login = self._credentials['login']
         crdt_pass  = self._credentials['pass']
@@ -57,6 +62,8 @@ class ConfigHandler (object):
 
         self.w.user_in.setText(crdt_login)
         self.w.pass_in.setText(crdt_pass)
+        
+        self.w.dbType.setCurrentIndex(opt_type)
 
     def save_config (self):
         self._connection['server']      = str(self.w.host_in.displayText())
@@ -68,6 +75,8 @@ class ConfigHandler (object):
 
         if self.w.remember.isChecked() == True: self._credentials['pass'] = str(self.w.pass_in.text())
         else: self._credentials['pass'] = ""
+
+        self._option['type'] = self.reverse_type.get(self.w.dbType.currentIndex())
 
         with open(r'settings\prefs.ini', 'w') as cf:
             self.config.write(cf)
