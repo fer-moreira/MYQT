@@ -20,7 +20,7 @@ from PyQt5.QtWidgets import (QAction, QDialog, QFileDialog,QHeaderView,
 QMainWindow, QMenu, QMessageBox,QSizePolicy, QTableWidget,QTableWidgetItem,
 QToolBar, QTreeWidgetItem,QWidget, qApp)
 
-from Lib.icons_manager import _export, _import, _newDatabase, _newTable, _refresh, _run, _runSelected, _viewGraphs, _exportData,_settings
+from Lib.icons_manager import _export, _import, _newDatabase, _refresh, _run, _runSelected, _viewGraphs, _exportData,_settings
 from Lib.icons_manager import ui_db, ui_tb,ui_folder, ui_data,ui_field,ui_query
 from Lib.icons_manager import win_icon
 
@@ -99,9 +99,9 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
                 for col in range(0,lenCol):
                     headerName = QTableWidgetItem(columns[col][0])
                     self.result_out.setHorizontalHeaderItem(col, headerName)
+                    self.processEvents()
                 self.result_out.resizeColumnsToContents()
                 self.console_output("%s"%_query.lower(),False)
-                self.processEvents()
                 syntax_pars.PythonHighlighter(self.query_in.document())
 
             except:pass
@@ -293,21 +293,14 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
             self.application_error(error)
             pass
 
-    def create_table         (self):
-        """OPEN TABLE CREATOR WIZARD"""
-        try:
-            if not (self.mydb.database is None):
-                self.tableCreator = TBCreator(str(self.mydb.database),self.hs,self.pt,self.us,self.ps,self.bfred,self)
-                self.tableCreator.show()
-            else:
-                self.application_error("myqt_1:\nNo database selected")
-        except Exception as error:
-            self.application_error(error)
-            pass
-
     def refresh_database     (self,db):
         """REFRESH HANDLER FOR REFRESHIND DATABASE AND ITS TABLE"""
         self.tables_out.clear()
+        cursor = self.mydb.cursor()
+
+        # if self.type == 'mysql': db = MYSQL_Engine.Get_Data(cursor)
+        if self.type == 'mssql': db = MSSQL_Engine.Database(cursor)
+        
         self.get_server_dbs()
         self.get_tables_from_db(db)
         self.tables_out.expandAll()
@@ -320,15 +313,13 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
 
         self.addToolBar(Qt.LeftToolBarArea,toolBar)
 
-        refresh_t       = QAction(QIcon(_refresh),    "REFRESH",self,shortcut="F5")
+        refresh_t       = QAction(QIcon(_refresh),    "REFRESH",self,shortcut="F5",           triggered=self.refresh_database)
         compileAll      = QAction(QIcon(_run),        "COMPILE",self,shortcut="F9",           triggered=self.execute_all_query)
         import_t        = QAction(QIcon(_import),     "IMPORT" ,self,shortcut="Ctrl+O",       triggered=self.load_query_from_file)
         export_t        = QAction(QIcon(_export),     "EXPORT" ,self,shortcut="Ctrl+S",       triggered=self.save_query_to_file)
         compileSelected = QAction(QIcon(_runSelected),"RUN SL" ,self,shortcut="Shift+Ctrl+F9",triggered=self.execute_selected_query)
         newDatabase     = QAction(QIcon(_newDatabase),"NEW DB" ,self,                         triggered=self.create_database)
-        newTable        = QAction(QIcon(_newTable)   ,"NEW TB" ,self,                         triggered=self.create_table)
         exportData      = QAction(QIcon(_exportData) ,"EXPORT" ,self,                         triggered=lambda:self.export_table(self.result_out))
-    
         settings        = QAction(QIcon(_settings), "SETTINGS"  ,self,                        triggered=lambda: print("WORKS"))
 
 
@@ -338,7 +329,6 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         compileAll.setToolTip       ("Run all query (F9)")
         compileSelected.setToolTip  ("Run selected query (Shift+Ctrl+F9)")
         newDatabase.setToolTip      ("Open database creator")
-        newTable.setToolTip         ("Open table creator")
         exportData.setToolTip       ("Export all data from result table")
         settings.setToolTip         ("View settings")
 
@@ -348,7 +338,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         toolBar.addSeparator()
         toolBar.addAction(compileAll),toolBar.addAction(compileSelected)
         toolBar.addSeparator()
-        toolBar.addAction(newDatabase),toolBar.addAction(newTable)
+        toolBar.addAction(newDatabase)
         toolBar.addSeparator()
         toolBar.addAction(exportData)
 
@@ -368,22 +358,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
 
     def colorize_sql_query   (self,text):
         """ADD COLOR TO SQL CODE"""
-        query = str(text.lower()).replace(","," , ").replace("("," ( ").replace(")"," ) ").replace("="," = ")
-        from Lib.color_schema import schema,greenPat,bluePat
-        words = query.split(" ")
-        finalQuery = ""
-        for w in words:
-            if w in schema.keys():
-                scWord = schema.get(w)
-                finalQuery += "%s " %scWord.format(str(w).upper())
-            else:
-                try:
-                    if eval(w) >= 0:
-                        finalQuery += "%s " %bluePat.format(w)
-                except:
-                    finalQuery += "%s " %greenPat.format(w)
-                    pass
-        return finalQuery.replace('\n','<br></br>').replace(' , ',',').replace(' ) ',')').replace(' ( ','(')
+        return text
 
     def console_output       (self,text,isError):
         """DEBUG ALL STATE TO CONSOLE"""
@@ -434,7 +409,6 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         cmenu = QMenu(self)
 
         cmenu.addAction("Database Manager",self.create_database)
-        cmenu.addAction("Table Manager",self.create_table)
 
         _pos = QCursor.pos()
         cmenu.exec_(self.mapFromGlobal(_pos))

@@ -1,34 +1,28 @@
 import mysql.connector as mysql
 
 def connect (host,port,user,passw,bfred):
-    mydb = mysql.connect(
+    return mysql.connect (
         host        =   host,
         port        =   port,
         user        =   user,
         passwd      =   passw,
         buffered    =   bfred,
-        auth_plugin =  'caching_sha2_password'
-    )
-    return mydb
-
+        auth_plugin =  'caching_sha2_password')
 def databases (cursor):
     cursor.execute('show databases')
-    dbs = cursor.fetchall()
-    return dbs
-
+    return cursor.fetchall()
 def tables (cursor):
     cursor.execute('show tables')
-    tbs = cursor.fetchall()
-    return tbs
-
+    return cursor.fetchall()  
 def Set_Database (cursor,name):
     cursor.execute('use %s' %name)
-
+def Database (cursor):
+    cursor.execute("SELECT DATABASE()")
+    fetch = cursor.fetchall()
+    return fetch[0][0]
 def  Get_Struct (cursor,table):
     cursor.execute('desc %s' %table)
-    res = cursor.fetchall()
-    return res
+    return cursor.fetchall()
 def Get_Data (cursor,table):
     cursor.execute('select * from %s'%table)
-    res = cursor.fetchall()
-    return res
+    return cursor.fetchall()
