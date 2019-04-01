@@ -98,6 +98,9 @@
       <property name="sizeAdjustPolicy">
        <enum>QAbstractScrollArea::AdjustToContents</enum>
       </property>
+      <property name="horizontalScrollMode">
+       <enum>QAbstractItemView::ScrollPerItem</enum>
+      </property>
       <property name="headerHidden">
        <bool>false</bool>
       </property>
@@ -122,7 +125,7 @@
        </property>
        <property name="font">
         <font>
-         <pointsize>10</pointsize>
+         <pointsize>12</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
@@ -178,7 +181,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <property name="iconSize">
        <size>
@@ -212,7 +215,7 @@
         </sizepolicy>
        </property>
        <attribute name="title">
-        <string>Data</string>
+        <string>Data  x1000</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_2">
         <property name="leftMargin">
@@ -382,58 +385,6 @@
           </property>
           <property name="cornerButtonEnabled">
            <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QPlainTextEdit" name="create_in">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>304</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <family>Arial</family>
-            <pointsize>10</pointsize>
-           </font>
-          </property>
-          <property name="frameShape">
-           <enum>QFrame::NoFrame</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Plain</enum>
-          </property>
-          <property name="lineWidth">
-           <number>1</number>
-          </property>
-          <property name="midLineWidth">
-           <number>0</number>
-          </property>
-          <property name="horizontalScrollBarPolicy">
-           <enum>Qt::ScrollBarAsNeeded</enum>
-          </property>
-          <property name="sizeAdjustPolicy">
-           <enum>QAbstractScrollArea::AdjustToContents</enum>
-          </property>
-          <property name="undoRedoEnabled">
-           <bool>false</bool>
-          </property>
-          <property name="readOnly">
-           <bool>true</bool>
-          </property>
-          <property name="plainText">
-           <string/>
-          </property>
-          <property name="backgroundVisible">
-           <bool>false</bool>
-          </property>
-          <property name="centerOnScroll">
-           <bool>false</bool>
-          </property>
-          <property name="placeholderText">
-           <string/>
           </property>
          </widget>
         </item>
@@ -800,7 +751,6 @@
   <tabstop>tables_out</tabstop>
   <tabstop>data_result</tabstop>
   <tabstop>desc_result</tabstop>
-  <tabstop>create_in</tabstop>
   <tabstop>result_out</tabstop>
   <tabstop>console_out</tabstop>
   <tabstop>openConsole</tabstop>

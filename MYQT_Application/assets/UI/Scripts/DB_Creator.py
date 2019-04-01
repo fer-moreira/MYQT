@@ -2,11 +2,12 @@
 
 # Form implementation generated from reading ui file '.\assets\UI\Layout\DB_Creator.ui'
 #
-# Created by: PyQt5 UI code generator 5.11.3
+# Created by: PyQt5 UI code generator 5.12.1
 #
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+
 
 class Ui_Creator(object):
     def setupUi(self, Creator):
@@ -116,6 +117,8 @@ class Ui_Creator(object):
         self.clearBtn.setText(_translate("Creator", "Clear entry selection"))
 
 
+
+
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
@@ -124,4 +127,3 @@ if __name__ == "__main__":
     ui.setupUi(Creator)
     Creator.show()
     sys.exit(app.exec_())
-

@@ -2,11 +2,12 @@
 
 # Form implementation generated from reading ui file '.\assets\UI\Layout\PlotVisualizer.ui'
 #
-# Created by: PyQt5 UI code generator 5.11.3
+# Created by: PyQt5 UI code generator 5.12.1
 #
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+
 
 class Ui_PlotView(object):
     def setupUi(self, PlotView):
@@ -71,6 +72,8 @@ class Ui_PlotView(object):
         self.pushButton.setText(_translate("PlotView", "GENERATE PLOT"))
 
 
+
+
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
@@ -79,4 +82,3 @@ if __name__ == "__main__":
     ui.setupUi(PlotView)
     PlotView.show()
     sys.exit(app.exec_())
-

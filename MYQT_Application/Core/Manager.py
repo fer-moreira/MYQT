@@ -27,7 +27,7 @@ from Lib.icons_manager import win_icon
 from Lib.SQL_formatter import Formatter
 
 from assets.UI.Scripts.MainWindow import Ui_SQLMANAGER
-from Core.Table_Creator import TBCreator
+# from Core.Table_Creator import TBCreator
 from Core.Database_Creator import DBCreator
 from Core.Console import Console
 
@@ -45,12 +45,9 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         self.add_tool_bar()
         self.showMaximized()
 
-        self.hs = hs
-        self.pt = pt
-        self.us = us
-        self.ps = ps
-        self.bfred = bfr
-        self.type = type
+        self.hs = hs;self.pt = pt
+        self.us = us;self.ps = ps
+        self.bfred = bfr;self.type = type
 
         if self.type == 'mysql':
             self.mydb = MYSQL_Engine.connect(self.hs,self.pt,self.us,self.ps,self.bfred)
@@ -64,14 +61,6 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         self.openConsole.clicked.connect(self.expand_console)
 
         self.openedConsole = False
-
-        self.console_out.customContextMenuRequested.connect (self.console_context_menu)
-        self.tables_out.customContextMenuRequested.connect  (self.TDB_context_menu  ) 
-        self.query_in.customContextMenuRequested.connect    (self.query_context_menu)
-
-        self.result_out.customContextMenuRequested.connect  (lambda:self.table_view_context_menu(self.result_out))
-        self.desc_result.customContextMenuRequested.connect (lambda:self.table_view_context_menu(self.desc_result))
-        self.data_result.customContextMenuRequested.connect (lambda:self.table_view_context_menu(self.data_result))
 
     def EXECUTE_QUERY_HANDLER(self,text):            ## 
         """Master function to execute all type of query and return in result table"""
@@ -126,7 +115,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
                 self.refresh_database(_selected)
         if _selected in self.tables:
             self.get_table_types(_selected)
-            print("a")
+            self.get_table_data(_selected)
 
     def get_server_dbs       (self):
         """GET ALL DATABASES IN SERVER AND RETURN AS PARENT TO QTREEVIEW"""
@@ -236,8 +225,6 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         try:
             if self.type == 'mysql': allSQLRows = MYSQL_Engine.Get_Data(cursor,table)
             if self.type == 'mssql': allSQLRows = MSSQL_Engine.Get_Data(cursor,table)
-
-            print(allSQLRows)
 
             lenRow = len(allSQLRows)
             lenCol = len(allSQLRows[0])
@@ -399,40 +386,3 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
             _file.write(_data)
             _file.close()
         except FileNotFoundError:pass
-
-    def console_context_menu    (self,event):
-        cmenu = QMenu(self)
-        cmenu.addAction("View all log",self.expand_console)
-        _pos = QCursor.pos()
-        cmenu.exec_(self.mapFromGlobal(_pos))
-    def TDB_context_menu        (self):
-        cmenu = QMenu(self)
-
-        cmenu.addAction("Database Manager",self.create_database)
-
-        _pos = QCursor.pos()
-        cmenu.exec_(self.mapFromGlobal(_pos))
-    def query_context_menu      (self):
-        _menu = QMenu(self)
-
-        _menu.addAction("Copy  (NOT IMPLEMENTED)")
-        _menu.addAction("Paste (NOT IMPLEMENTED)")
-        _menu.addSeparator()
-        _menu.addAction("Compile",self.execute_all_query)
-        _menu.addAction("Compile selected",self.execute_selected_query)
-        _menu.addSeparator()
-        _menu.addAction("Load SQL",self.load_query_from_file)
-        _menu.addAction("Save SQL",self.save_query_to_file)
-        _menu.addSeparator()
-        _menu.addAction("Format SQL",self.format_sql_text)
-        _menu.addAction("Clear QUERY",lambda:self.query_in.setPlainText(""))
-        _menu.addSeparator()
-        _pos = QCursor.pos()
-        _menu.exec_(self.mapFromGlobal(_pos))
-    def table_view_context_menu (self,_w):
-        cmenu = QMenu(self)
-        cmenu.addAction("Export Data", lambda:self.export_table(_w))
-        _pos = QCursor.pos()
-        cmenu.exec_(self.mapFromGlobal(_pos))
-
-

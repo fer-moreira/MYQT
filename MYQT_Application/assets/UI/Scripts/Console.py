@@ -2,11 +2,12 @@
 
 # Form implementation generated from reading ui file '.\assets\UI\Layout\Console.ui'
 #
-# Created by: PyQt5 UI code generator 5.11.3
+# Created by: PyQt5 UI code generator 5.12.1
 #
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+
 
 class Ui_Canvas(object):
     def setupUi(self, Canvas):
@@ -44,6 +45,8 @@ class Ui_Canvas(object):
         self.export_2.setText(_translate("Canvas", "EXPORT LOG"))
 
 
+
+
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
@@ -52,4 +55,3 @@ if __name__ == "__main__":
     ui.setupUi(Canvas)
     Canvas.show()
     sys.exit(app.exec_())
-

@@ -2,11 +2,12 @@
 
 # Form implementation generated from reading ui file '.\assets\UI\Layout\MainWindow.ui'
 #
-# Created by: PyQt5 UI code generator 5.11.3
+# Created by: PyQt5 UI code generator 5.12.1
 #
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+
 
 class Ui_SQLMANAGER(object):
     def setupUi(self, SQLMANAGER):
@@ -46,12 +47,13 @@ class Ui_SQLMANAGER(object):
         self.tables_out.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
         self.tables_out.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
         self.tables_out.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
+        self.tables_out.setHorizontalScrollMode(QtWidgets.QAbstractItemView.ScrollPerItem)
         self.tables_out.setHeaderHidden(False)
         self.tables_out.setColumnCount(1)
         self.tables_out.setObjectName("tables_out")
         self.tables_out.headerItem().setTextAlignment(0, QtCore.Qt.AlignCenter)
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setPointSize(12)
         font.setBold(True)
         font.setWeight(75)
         self.tables_out.headerItem().setFont(0, font)
@@ -158,26 +160,6 @@ class Ui_SQLMANAGER(object):
         self.desc_result.setColumnCount(0)
         self.desc_result.setRowCount(0)
         self.gridLayout_3.addWidget(self.desc_result, 0, 0, 1, 1)
-        self.create_in = QtWidgets.QPlainTextEdit(self._desc)
-        self.create_in.setMinimumSize(QtCore.QSize(0, 304))
-        font = QtGui.QFont()
-        font.setFamily("Arial")
-        font.setPointSize(10)
-        self.create_in.setFont(font)
-        self.create_in.setFrameShape(QtWidgets.QFrame.NoFrame)
-        self.create_in.setFrameShadow(QtWidgets.QFrame.Plain)
-        self.create_in.setLineWidth(1)
-        self.create_in.setMidLineWidth(0)
-        self.create_in.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
-        self.create_in.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
-        self.create_in.setUndoRedoEnabled(False)
-        self.create_in.setReadOnly(True)
-        self.create_in.setPlainText("")
-        self.create_in.setBackgroundVisible(False)
-        self.create_in.setCenterOnScroll(False)
-        self.create_in.setPlaceholderText("")
-        self.create_in.setObjectName("create_in")
-        self.gridLayout_3.addWidget(self.create_in, 1, 0, 1, 1)
         self.tabs.addTab(self._desc, "")
         self._query = QtWidgets.QWidget()
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
@@ -312,12 +294,11 @@ class Ui_SQLMANAGER(object):
         self.actionRefresh_Database.setObjectName("actionRefresh_Database")
 
         self.retranslateUi(SQLMANAGER)
-        self.tabs.setCurrentIndex(2)
+        self.tabs.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(SQLMANAGER)
         SQLMANAGER.setTabOrder(self.tables_out, self.data_result)
         SQLMANAGER.setTabOrder(self.data_result, self.desc_result)
-        SQLMANAGER.setTabOrder(self.desc_result, self.create_in)
-        SQLMANAGER.setTabOrder(self.create_in, self.result_out)
+        SQLMANAGER.setTabOrder(self.desc_result, self.result_out)
         SQLMANAGER.setTabOrder(self.result_out, self.console_out)
         SQLMANAGER.setTabOrder(self.console_out, self.openConsole)
         SQLMANAGER.setTabOrder(self.openConsole, self.tabs)
@@ -327,7 +308,7 @@ class Ui_SQLMANAGER(object):
         SQLMANAGER.setWindowTitle(_translate("SQLMANAGER", "SQL Manager"))
         self.tables_out.headerItem().setText(0, _translate("SQLMANAGER", "CONNECTION"))
         self.data_result.setSortingEnabled(False)
-        self.tabs.setTabText(self.tabs.indexOf(self._data), _translate("SQLMANAGER", "Data"))
+        self.tabs.setTabText(self.tabs.indexOf(self._data), _translate("SQLMANAGER", "Data  x1000"))
         self.desc_result.setSortingEnabled(False)
         self.tabs.setTabText(self.tabs.indexOf(self._desc), _translate("SQLMANAGER", "Fields"))
         self.result_out.setSortingEnabled(False)
@@ -358,6 +339,8 @@ class Ui_SQLMANAGER(object):
         self.actionRefresh_Database.setShortcut(_translate("SQLMANAGER", "Ctrl+R"))
 
 
+
+
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
@@ -366,4 +349,3 @@ if __name__ == "__main__":
     ui.setupUi(SQLMANAGER)
     SQLMANAGER.show()
     sys.exit(app.exec_())
-
