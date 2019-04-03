@@ -6,6 +6,7 @@ cls
 %localappdata%\programs\Python\Python37-32\Scripts\pyuic5.exe -x .\assets\UI\Layout\DB_Creator.ui       -o  .\assets\UI\Scripts\DB_Creator.py
 %localappdata%\programs\Python\Python37-32\Scripts\pyuic5.exe -x .\assets\UI\Layout\Console.ui          -o  .\assets\UI\Scripts\Console.py
 %localappdata%\programs\Python\Python37-32\Scripts\pyuic5.exe -x .\assets\UI\Layout\PlotVisualizer.ui   -o  .\assets\UI\Scripts\PlotVisualizer.py
+%localappdata%\programs\Python\Python37-32\Scripts\pyuic5.exe -x .\assets\UI\Layout\debug_style.ui      -o  .\assets\UI\Scripts\DebugStyle.py
 py.exe Connector.py
 
 REM cls

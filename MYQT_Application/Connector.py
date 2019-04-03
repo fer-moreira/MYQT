@@ -23,10 +23,10 @@ from PyQt5.QtWidgets import (QAction, QApplication, QDialog, QMainWindow,QMenu, 
 from Core.Manager import ManagerWindow
 from assets.UI.Scripts.ConnectorWindow import Ui_Connector
 
-from Lib.icons_manager import win_icon
-from Lib.icons_manager import b_mssql,b_mysql,b_postgreesql
+from Helper.icons_manager import win_icon
+from Helper.icons_manager import b_mssql,b_mysql,b_postgreesql
 
-from Lib.ConfigHandler import ConfigHandler
+from Helper.ConfigHandler import ConfigHandler
 
 from Engines import MYSQL_Engine
 from Engines import MSSQL_Engine
@@ -57,16 +57,8 @@ class MainWindow(QMainWindow,Ui_Connector):
         self.show()
         self.connect.clicked.connect(self.pre_connection)
 
-        self.db_changed()
-        self.dbType.currentIndexChanged[int].connect(self.db_changed)
-
-
-    def db_changed(self):
-        if self.dbType.currentIndex() == 0: 
-            self.port_in.setEnabled(True)
-        else: 
-            self.port_in.setEnabled(False)
-
+        self.check_connection_type()
+        self.dbType.currentIndexChanged[int].connect(self.check_connection_type)
 
     def pre_connection (self):        
         if self.host_in.text() == "" or self.port_in.text() == "" or self.user_in.text() == "" or self.pass_in.text() == "":
@@ -95,6 +87,12 @@ class MainWindow(QMainWindow,Ui_Connector):
         except Exception as error:
             QMessageBox.critical(self, "CRITICAL ERROR",str(error),QMessageBox.Ok)
             pass
+    
+    def check_connection_type(self):
+        if self.dbType.currentIndex() == 0: 
+            self.port_in.setEnabled(True)
+        else: 
+            self.port_in.setEnabled(False)
 
 Main_GUI = MainWindow()
 sys.exit(app.exec_())

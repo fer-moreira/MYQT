@@ -7,8 +7,6 @@ _import         = r'assets\UI\Icons\toolbar_icons\act_import.PNG'
 _export         = r'assets\UI\Icons\toolbar_icons\act_export.PNG'
 _refresh        = r'assets\UI\Icons\toolbar_icons\act_refresh.PNG'
 _newDatabase    = r'assets\UI\Icons\toolbar_icons\act_newDatabase.png'
-_newTable       = r'assets\UI\Icons\toolbar_icons\act_newTable.png'
-_viewGraphs     = r'assets\UI\Icons\toolbar_icons\act_viewGraphics.png'
 _exportData     = r'assets\UI\Icons\toolbar_icons\act_export_result.png'
 _settings       = r'assets\UI\Icons\toolbar_icons\act_settings.png'
 
