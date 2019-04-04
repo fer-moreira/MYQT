@@ -159,10 +159,7 @@
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Trusted Connection&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="autoFillBackground">
-     <bool>false</bool>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">padding:10;background:white;</string>
+     <bool>true</bool>
     </property>
     <property name="text">
      <string>Remember me</string>
@@ -359,10 +356,7 @@
      <enum>Qt::LeftToRight</enum>
     </property>
     <property name="autoFillBackground">
-     <bool>false</bool>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">padding:10;background:white;</string>
+     <bool>true</bool>
     </property>
     <property name="text">
      <string>Buffered</string>

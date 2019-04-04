@@ -40,56 +40,81 @@ height:1px;
 }
 
 
-/*  ---------------------------- TAB WIDGET ---------------------------- */
+/*  ---------------------------- Q TAB BAR ---------------------------- */
 QTabBar::tab {
 color:rgb(150,150,150);
 background:rgb(240,240,240);
+height:30;
+width:80;
+border: rgb(240,240,240);
+border-width: 0 0 2px 0;
+padding-left:10;
 }
+
 QTabBar::tab:selected {
 background:white;
 color:rgb(100,100,100);
+border: solid rgb(0,150,255);
+border-width: 0 0 5px 0;
 }
 
 
-/*  ---------------------------- 
-LINE_EDIT 
-TEXT BROWSER 
-TEXT_EDIT
-PLAIN_TEXT 
----------------------------- */
+/*  -----------------------------------------------------------------------
+-------------------------------------------------------------- LINE_EDIT 
+-------------------------------------------------------------- TEXT BROWSER 
+-------------------------------------------------------------- TEXT_EDIT
+-------------------------------------------------------------- PLAIN_TEXT 
+------------------------------------------------------------------------ */
 
 QLineEdit,QTextBrowser,QTextEdit,QPlainTextEdit 
 {
 color:rgb(20,20,20);
 background-color:white;
-border:1px solid lightgrey;
-}
-QLineEdit:disabled
-{
-color:rgb(87, 87, 87);
-background-color:rgb(119, 119, 119);
-border:2px dashed rgb(102, 78, 78);        
+border: solid lightgrey;
+border-width: 0 0 2px 0;
+border-bottom-left-radius: 5;
+border-bottom-right-radius: 5;
 }
 
-/*  ---------------------------- CHECK/COMBO BOX ----------------------------*/
-QComboBox 
+QLineEdit:disabled
 {
-border: transparent;
-padding: 1px 18px 1px 3px;
-min-width: 5px;
+color:rgb(160, 150, 150);
+background-color:rgb(255, 240, 240);
+border: solid rgb(253, 14, 14);
+border-width: 0 0 2px 0;
+border-bottom-left-radius: 5;
+border-bottom-right-radius: 5;
+}
+
+/*  ---------------------------- COMBO BOX ----------------------------*/
+QComboBox
+{
 color:rgb(0,115,170);
-background-color:white;
-border:1px solid rgb(0,115,170);
+background-color:rgb(255, 255, 255);
+min-width: 5px;
 padding: 1px 0px 1px 3px;
+border: 1px solid rgb(0,115,170);
+}
+
+QComboBox:hover
+{
+color:rgb(0,115,170);
+background-color: white;
+}
+
+QComboBox:selected
+{
+color:rgb(0,115,170);
+selection-background-color: rgb(255, 255, 255);
 }
 
 QComboBox::drop-down
 {
-width: 20px;
+width: 30px;
 background-color:rgb(0,115,170);
 }
 
-QComboBox::down-arrow 
+QComboBox::down-arrow
 {
 image: url(assets/UI/Icons/interface_icons/arrow.png);
 width: 14px;
@@ -100,12 +125,10 @@ height: 14px;
 /* -------------------------------- CHECK BOX ----------------------------------------- */
 QCheckBox
 {
-background: white;
-color:rgb(40,40,40);
-padding: 5;
-border:1px solid rgb(230,230,230);
+background: rgb(255, 255, 255);
+color:rgb(25, 29, 32);
+padding: 6;
 }
-
 /* ----------------------------  TOOL BOX  ----------------------------  */
 QToolBox::tab
 {
@@ -264,30 +287,22 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
 
 QToolBar {
 background: rgb(35,40,45);
-spacing: 4;
+spacing: 6;
+margin:-1;
+max-width:40;
 }
 QToolBar:separator
 {
 background: rgb(80, 80, 80);
-height: 1;
+height: 2;
 }
 
 /* -----------------------------------------------Q TOOL BUTTON------------------------------------------- */
 QToolButton
 {
-margin: 3;
+margin: 0;
 color:rgb(255, 255, 255);
 background:transparent;
 }
-QToolButton:hover
-{
-margin: 0;
-color:white;
-background:rgb(0,115,170);
-}
-QToolButton:pressed
-{
-margin: 0;
-color:white;
-background:rgb(0, 73, 107);
-}
+QToolButton:hover     { margin: -1; }
+QToolButton:pressed { margin: 0; }

@@ -34,32 +34,36 @@ MYQT is an open source visual database design and querying tool for the MySQL da
 - Execute selected QUERY    -> (Ctrl + Shift F9)
 </pre>
 
-
 # **Features**
 <pre>
-- Database Connection & Instance Management
-- Wizard driven action items
-- Fully scriptable with Python
-- Support for custom plugins and themes
-- Schema object browsing, inspection, and search
-- SQL syntax highlighter and statement parser
-- Multiple and editable result sets
-- Visual EXPLAIN
-- Beautiful color and themes
-! SQL snippets collections
-x Matplot data visualizer
-x Import table from xlsx/csv/txt/etc file
+<img src="https://img.shields.io/badge/-OK-green.svg"> Database Connection & Instance Management
+<img src="https://img.shields.io/badge/-OK-green.svg"> Wizard driven action items
+<img src="https://img.shields.io/badge/-OK-green.svg"> Fully scriptable with Python
+<img src="https://img.shields.io/badge/-OK-green.svg"> Support for custom plugins and themes
+<img src="https://img.shields.io/badge/-OK-green.svg"> Schema object browsing, inspection, and search
+<img src="https://img.shields.io/badge/-OK-green.svg"> Multiple and editable result sets
+<img src="https://img.shields.io/badge/-OK-green.svg"> Visual EXPLAIN
+<img src="https://img.shields.io/badge/-OK-green.svg"> Beautiful color and themes
+<img src="https://img.shields.io/badge/-OK-green.svg"> Export table to csv/txt/all other files
+<img src="https://img.shields.io/badge/-OK-green.svg"> Suported MYSQL / Microsoft SQL Server
+<img src="https://img.shields.io/badge/-OK-green.svg"> Dark and white theme
+<img src="https://img.shields.io/badge/-NO-red.svg">  Import table from xlsx/csv/txt/etc file
+<img src="https://img.shields.io/badge/-NO-red.svg">  SQL snippets collections
+<img src="https://img.shields.io/badge/-NO-red.svg">  Matplot data visualizer
+<img src="https://img.shields.io/badge/-NO-red.svg"> SQL syntax highlighter and statement parser
 </pre>
+
 
 # **Dependencies**
 
 <pre>
 Python >= 3 with at least the following modules is required:
 - PyQt5                      : ^5.11.3
+- PyQt5-sip                  : ^4.19.13
 - mysql-connector            : ^2.1.6
 - mysql-connector-python     : ^8.0.13
 - mysql-connector-python-rf  : ^2.2.2
-- PyQt5-sip                  : ^4.19.13
+- pymssql                    : ^2.1.4
 </pre>
 
 # **Connector**

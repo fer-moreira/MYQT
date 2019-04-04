@@ -20,7 +20,7 @@ from PyQt5.QtWidgets import (QAction, QDialog, QFileDialog,QHeaderView,
 QMainWindow, QMenu, QMessageBox,QSizePolicy, QTableWidget,QTableWidgetItem,
 QToolBar, QTreeWidgetItem,QWidget, qApp)
 
-from Helper.icons_manager import ui_db, ui_tb,ui_folder, ui_data,ui_field,ui_query,win_icon
+from Helper.icons_manager import ui_db, ui_tb,ui_folder
 
 from assets.UI.Scripts.MainWindow import Ui_SQLMANAGER
 from Core.Database_Creator import DBCreator
@@ -36,12 +36,11 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
     def __init__(self,hs,pt,us,ps,bfr,type, parent = None):
         super(ManagerWindow,self).__init__(parent)
         self.setupUi(self)
-        self.setWindowIcon(QIcon(win_icon))
-        self.tabs.setTabIcon(0,QIcon(ui_data))
-        self.tabs.setTabIcon(1,QIcon(ui_field))
-        self.tabs.setTabIcon(2,QIcon(ui_query))
+
+        # self.setWindowFlags(Qt.Window | Qt.CustomizeWindowHint | Qt.WindowTitleHint | Qt.WindowMinimizeButtonHint | Qt.WindowMaximizeButtonHint | Qt.WindowCloseButtonHint)
 
         toolsManager = ManagerTools(self)
+        toolsManager.SetIcons()
         toolsManager.AddVerticalToolbar()
 
         self.showMaximized()
@@ -55,11 +54,11 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         if self.type == 'mssql':
             self.mydb = MSSQL_Engine.connect(self.hs,self.us,self.ps)
 
-        self.console_output('Connected to SQL Server',False)
+        # self.console_output('Connected to SQL Server',False)
         self.get_server_dbs()
 
         self.tables_out.itemDoubleClicked.connect(self.ItemDoubleClicked)
-        self.openConsole.clicked.connect(self.expand_console)
+        # self.openConsole.clicked.connect(self.expand_console)
 
     def EXECUTE_QUERY_HANDLER(self,text):
         """Master function to execute all type of query and return in result table"""
@@ -72,12 +71,12 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
             cursor = self.mydb.cursor()
             cursor.execute(_query)
             
-            allSQLRows = cursor.fetchall() #fetch results to dictionary
+            allSQLRows = cursor.fetchall()
 
             lenRow = len(allSQLRows)
             lenCol = len(allSQLRows[0])
-            self.result_out.setRowCount(lenRow) ##set number of rows
-            self.result_out.setColumnCount(lenCol) ##this is fixed for result_out, ensure that both of your tables, sql and qtablewidged have the same number of columns
+            self.result_out.setRowCount(lenRow)
+            self.result_out.setColumnCount(lenCol) 
             if allSQLRows is not None:
                 for lin in range(0,lenRow):
                     for col in range(0,lenCol):
@@ -89,15 +88,14 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
                 self.result_out.setHorizontalHeaderItem(col, headerName)
                 self.processEvents()
             self.result_out.resizeColumnsToContents()
-            self.console_output("%s"%_query.lower(),False)
 
         except Exception as error:
-            self.console_output(error,True)
+            self.application_error(error)
             pass
 
     # ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── # 
     
-    def ItemDoubleClicked    (self):
+    def ItemDoubleClicked  (self):
         index = self.tables_out.currentIndex()
         data =  self.tables_out.model().data(index)
         _selected = str(data)
@@ -115,7 +113,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
             self.get_table_types(_selected)
             self.get_table_data(_selected)
 
-    def get_server_dbs       (self):
+    def get_server_dbs     (self):
         """GET ALL DATABASES IN SERVER AND RETURN AS PARENT TO QTREEVIEW"""
         self.tables_out.clear()
         self.databases = []
@@ -136,10 +134,9 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
             parent.setIcon(0,QIcon(ui_db))
             parent.setFlags(parent.flags())
 
-    def get_tables_from_db   (self,_cDb):
+    def get_tables_from_db (self,_cDb):
         """GET ALL TABLES FROM DATABASE AND RETURN IN TREE VIEW AS CHILD OF DATABASE PARENT ITEM"""
         self.tables = []
-
 
         cursor = self.mydb.cursor()
         if self.type == 'mysql' : self.tbs = MYSQL_Engine.tables(cursor)
@@ -167,25 +164,26 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
 
     # ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── # 
 
-    def refresh_database     (self,db):
+    def refresh_database       (self,db):
         """REFRESH HANDLER FOR REFRESHIND DATABASE AND ITS TABLE"""
-        self.tables_out.clear()
         cursor = self.mydb.cursor()
 
-        # if self.type == 'mysql': db = MYSQL_Engine.Get_Data(cursor)
+        if self.type == 'mysql': db = MYSQL_Engine.Database(cursor)
         if self.type == 'mssql': db = MSSQL_Engine.Database(cursor)
         
-        self.get_server_dbs()
-        self.get_tables_from_db(db)
-        self.tables_out.expandAll()
+        if not db == None:
+            self.tables_out.clear()
+            self.get_server_dbs()
+            self.get_tables_from_db(db)
+            self.tables_out.expandAll()
 
-    def execute_all_query    (self):
+    def execute_all_query      (self):
         """EXECUTE ALL QUERY TEXT"""
         _allQuery = str(self.query_in.toPlainText()).replace("\n"," ")
         self.EXECUTE_QUERY_HANDLER(_allQuery)
         self.processEvents()
 
-    def execute_selected_query    (self):
+    def execute_selected_query (self):
         """EXECUTE ONLY SELECTED QUERY TEXT"""
         cursor = self.query_in.textCursor()
         _allText = str(self.query_in.toPlainText()).replace("\n"," ")
@@ -199,7 +197,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
   
     # ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── # 
     
-    def get_table_types      (self,tb):
+    def get_table_types (self,tb):
         """GET ALL TABLES DESCRITIONS"""
         table = str(tb)
         cursor = self.mydb.cursor()
@@ -225,10 +223,10 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
             self.desc_result.resizeColumnsToContents()
             self.processEvents()
         except Exception as error:
-            self.console_output(error,True)
+            self.application_error(error)
             pass
 
-    def get_table_data       (self,tb):
+    def get_table_data  (self,tb):
         """GET ALL DATA FROM TABLES"""
         table = str(tb)
         cursor = self.mydb.cursor()
@@ -255,23 +253,15 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
 
             self.data_result.resizeColumnsToContents()
         except Exception as error:
-            self.console_output(error,True)
+            self.application_error(error)
             pass
     
     # ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── # 
     
-    def application_error    (self,error): 
+    def application_error  (self,error): 
         QMessageBox.critical(self, "CRITICAL ERROR",str(error),QMessageBox.Ok)
-        print(error) 
 
-    def expand_console       (self):
-        """Expand console"""
-        _msg = str(self.console_out.toPlainText())
-        self.consoleWindow = Console()
-        self.consoleWindow.console.setPlainText(_msg)
-        self.consoleWindow.show()
-
-    def openChanger          (self):
+    def openChanger        (self):
         self.styleChanger = StyleChanger(self)
         self.styleChanger.input.setPlainText(str(self.styleSheet()))
         self.styleChanger.show()
@@ -301,46 +291,25 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
             self.processEvents()
         except FileNotFoundError:pass
     
-    def create_database_wizard      (self):
-        """OPEN DATABASE CREATOR WIZARD"""
-        try:
-            self.databaseCreator = DBCreator(self,self.mydb)
-            self.databaseCreator.show()
-
-        except Exception as error:
-            self.application_error(error)
-            pass
-
-    def console_output       (self,text,isError):
-        """DEBUG ALL STATE TO CONSOLE"""
-        if isError == False:
-            self.console_out.appendPlainText(text)
-            self.processEvents()
-        else:
-            errors = str(text)
-
-            self.console_out.appendPlainText(r'%s'%errors)
-
-            self.processEvents()
 
     def export_table         (self,_w):  
         try:
             _data = ""
 
             maxRow = _w.rowCount()
-            maxColumn = _w.columnCount()
+            maxColumn = _w.columnCount()-1
 
             for hc in range(0,maxColumn):
                 _hci = str(_w.horizontalHeaderItem(hc).text())
-                if hc == maxColumn-1:_data += _hci
-                elif hc < maxColumn-1:_data += "%s," % _hci
+                if hc == maxColumn:_data += _hci
+                elif hc < maxColumn:_data += "%s," % _hci
             _data += "\n"
 
             for r in range(0, maxRow):
                 for c in range(0, maxColumn):
                     _d = str(_w.item(r, c).text())
-                    if c == maxColumn-1:_data += _d
-                    elif c < maxColumn-1:_data += "%s," % _d
+                    if c == maxColumn:_data += _d
+                    elif c < maxColumn:_data += "%s," % _d
                 _data += "\n"
 
             options = QFileDialog.Options()
@@ -351,4 +320,14 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
             _file.close()
         except FileNotFoundError:pass
     
+    def create_database_wizard (self):
+        """OPEN DATABASE CREATOR WIZARD"""
+        try:
+            self.databaseCreator = DBCreator(self,self.mydb)
+            self.databaseCreator.show()
+
+        except Exception as error:
+            self.application_error(error)
+            pass
+
     # ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── # 
