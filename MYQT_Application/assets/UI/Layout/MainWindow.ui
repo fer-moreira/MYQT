@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>942</width>
-    <height>725</height>
+    <width>853</width>
+    <height>564</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -54,6 +54,21 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <property name="spacing">
+     <number>0</number>
+    </property>
     <item row="0" column="0" rowspan="2">
      <widget class="QTreeWidget" name="tables_out">
       <property name="minimumSize">
@@ -181,7 +196,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <property name="iconSize">
        <size>
@@ -256,8 +271,11 @@
           <property name="lineWidth">
            <number>1</number>
           </property>
+          <property name="horizontalScrollBarPolicy">
+           <enum>Qt::ScrollBarAsNeeded</enum>
+          </property>
           <property name="sizeAdjustPolicy">
-           <enum>QAbstractScrollArea::AdjustToContents</enum>
+           <enum>QAbstractScrollArea::AdjustIgnored</enum>
           </property>
           <property name="editTriggers">
            <set>QAbstractItemView::NoEditTriggers</set>
@@ -266,13 +284,19 @@
            <bool>false</bool>
           </property>
           <property name="showDropIndicator" stdset="0">
-           <bool>false</bool>
+           <bool>true</bool>
           </property>
           <property name="dragDropOverwriteMode">
            <bool>false</bool>
           </property>
           <property name="alternatingRowColors">
            <bool>true</bool>
+          </property>
+          <property name="verticalScrollMode">
+           <enum>QAbstractItemView::ScrollPerPixel</enum>
+          </property>
+          <property name="horizontalScrollMode">
+           <enum>QAbstractItemView::ScrollPerPixel</enum>
           </property>
           <property name="showGrid">
            <bool>true</bool>
@@ -281,7 +305,7 @@
            <enum>Qt::SolidLine</enum>
           </property>
           <property name="sortingEnabled">
-           <bool>false</bool>
+           <bool>true</bool>
           </property>
           <property name="wordWrap">
            <bool>true</bool>
@@ -342,7 +366,7 @@
            <number>1</number>
           </property>
           <property name="sizeAdjustPolicy">
-           <enum>QAbstractScrollArea::AdjustToContents</enum>
+           <enum>QAbstractScrollArea::AdjustIgnored</enum>
           </property>
           <property name="autoScroll">
            <bool>true</bool>
@@ -434,7 +458,7 @@
            <number>1</number>
           </property>
           <property name="sizeAdjustPolicy">
-           <enum>QAbstractScrollArea::AdjustToContents</enum>
+           <enum>QAbstractScrollArea::AdjustIgnored</enum>
           </property>
           <property name="editTriggers">
            <set>QAbstractItemView::NoEditTriggers</set>

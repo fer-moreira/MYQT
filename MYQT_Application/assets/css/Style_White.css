@@ -116,7 +116,7 @@ background-color:rgb(0,115,170);
 
 QComboBox::down-arrow
 {
-image: url(assets/UI/Icons/interface_icons/arrow.png);
+image: url(assets/UI/Icons/interface_icons/arrow_down.png);
 width: 14px;
 height: 14px;
 }
@@ -154,10 +154,7 @@ font-size:13px;
 QProgressBar::chunk {
 background:rgb(0, 193, 50);
 }
-
-
 /*  ---------------------------- PUSHBUTTON ---------------------------- */
-
 QPushButton
 {
 border: 1px solid lightgrey;
@@ -166,7 +163,6 @@ background:rgb(0,115,170);
 min-height:30;
 min-width: 50;
 }
-
 QPushButton:hover
 {
 border: 1px solid lightgrey;
@@ -180,14 +176,12 @@ border: 1px solid lightgrey;
 color:white;
 background:rgb(0, 53, 100);
 }
-
 /*  ----------------------------  LCD NUMBER ---------------------------- */
 QLCDNumber
 {
 color:rgb(0,115,170);
 border:2 solid rgb(100,100,100);
 }
-
 /*  ---------------------------- TABLE_LIST_TABLE ---------------------------- */
 QTableView,QTableWidget
 {
@@ -212,7 +206,10 @@ QTreeView::item:selected,QListView::item:selected,QTableView::item:selected
 color:rgb(37, 62, 71);
 background:rgb(209, 241, 252);
 }
-
+QTreeView::item:has-children
+{
+border-bottom: 2px solid qlineargradient(spread:pad, x1:1, y1:0.5, x2:0, y2:0.5, stop:0 rgba(255, 255, 255, 255), stop:0.5 rgba(0, 150, 255, 255), stop:1 rgba(255, 255, 255, 255));
+}
 /*  ---------------------------- HEADER VIEW ---------------------------- */
 QHeaderView::section 
 {
@@ -222,9 +219,7 @@ border:1px solid rgb(240,240,240);
 text-align:center;
 padding:1;
 }
-
 /* ------------------------------- CALENDAR -------------------------------------------------- */
-
 QCalendarView
 { 
 color: rgb(20,20,20); 
@@ -237,70 +232,66 @@ QAbstractItemView
 {
 color:rgb(200,200,200);
 }
-
-
 /* ----------------------------------- Q SCROLLBAR --------------------------------------------------------- */
-
 /* SCROLLBAR */
 QScrollBar:vertical {
-    background: white;
-    width: 15px;
-    margin: 22px 0 22px 0;
+background: white;
+width: 15px;
+margin: 22px 0 22px 0;
 }
 /* HANDLE*/
 QScrollBar::handle:vertical {
-    background: rgb(0,115,170);
-    min-height: 20px;
+background: rgb(0,115,170);
+min-height: 20px;
 }
 
-/* ARROWS */
-QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {
-    image: url(assets/UI/Icons/interface_icons/arrow.png);
-    width: 10px;
-    height: 10px;
+/* UP ARROW */
+QScrollBar::up-arrow:vertical {
+image: url(assets/UI/Icons/interface_icons/arrow_up.png);
+width: 10px;
+height: 10px;
 }
-
+/* DOWN ARROW */
+QScrollBar::down-arrow:vertical {
+image: url(assets/UI/Icons/interface_icons/arrow_down.png);
+width: 10px;
+height: 10px;
+}
 /* UP BUTTON */
 QScrollBar::sub-line:vertical {
-    background: rgb(0,115,170);
-    height: 20px;
-    subcontrol-position: top;
-    subcontrol-origin: margin;
+background: rgb(0,115,170);
+height: 20px;
+subcontrol-position: top;
+subcontrol-origin: margin;
 }
-
-
 /* DOWN BUTTON */
 QScrollBar::add-line:vertical {
-    background: rgb(0,115,170);
-    height: 20px;
-    subcontrol-position: bottom;
-    subcontrol-origin: margin;
+background: rgb(0,115,170);
+height: 20px;
+subcontrol-position: bottom;
+subcontrol-origin: margin;
 }
-
-/* SUBPAGES-ADDPAGE */
+/* SUBPAGES - ADDPAGE */
 QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
-    background: none;
+background: none;
 }
-
-
 /* ---------------------------------- Q TOOL BAR -------------------------------------------------------- */
-
+/* TOOLBAR REGION */
 QToolBar {
 background: rgb(35,40,45);
-spacing: 6;
-margin:-1;
-max-width:40;
+spacing: 20;
 }
-QToolBar:separator
+/* SEPARATOR */
+QToolBar:separator 
 {
 background: rgb(80, 80, 80);
 height: 2;
 }
-
 /* -----------------------------------------------Q TOOL BUTTON------------------------------------------- */
+/* BUTTON */
 QToolButton
 {
-margin: 0;
+margin: 3;
 color:rgb(255, 255, 255);
 background:transparent;
 }

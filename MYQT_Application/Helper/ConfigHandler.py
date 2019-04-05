@@ -1,28 +1,7 @@
 import configparser
 
 from PyQt5.Qt import QMainWindow
-
-# config = configparser.ConfigParser()
-# config.read(r'prefs.ini')
-
-# # [Connection]
-# # server,port,buffered,trusted
-#     # [Credentials]
-#     # login
-#         # [Options]
-#         # theme,language
-
-# _connction = config['Connection']
-# _credentials = config['Credentials']
-# _option = config['Options']
-
-# user = _credentials['login']
-
-# def load_config ():
-#     print("AA")
-
-# def save_config ():
-#     print("BB")
+from PyQt5.QtWidgets import QApplication
 
 class ConfigHandler (object):
     def __init__(self,window):
@@ -46,7 +25,7 @@ class ConfigHandler (object):
         sv_buff     = self._connection['buffered']
         sv_remember = self._connection['remember']
         
-        # opt_theme = self._option['theme']
+        opt_theme = self._option['theme']
         # opt_language = self._option['language']
         opt_type = self.types.get(self._option['type'])
 
@@ -65,6 +44,14 @@ class ConfigHandler (object):
         
         self.w.dbType.setCurrentIndex(opt_type)
 
+        white = str(open(r'assets\css\Style_White.css','r').read())
+        dark  = str(open(r'assets\css\Style_Dark.css','r').read())
+
+        if opt_theme == "White":
+            self.w.setStyleSheet(white)
+        else:
+            self.w.setStyleSheet(dark)
+
     def save_config (self):
         self._connection['server']      = str(self.w.host_in.displayText())
         self._connection['port']        = str(self.w.port_in.displayText())
@@ -80,8 +67,7 @@ class ConfigHandler (object):
 
         with open(r'settings\prefs.ini', 'w') as cf:
             self.config.write(cf)
-
+    
     def conditional (self,config):
         if config == "2":return True
         elif config == "0":return False
-

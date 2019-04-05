@@ -2,4 +2,3 @@
 from .icons_manager import *
 from .ConfigHandler import *
 from .ManagerTools import *
-from .VisualSettings import *

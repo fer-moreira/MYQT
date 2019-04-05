@@ -13,29 +13,22 @@ Atualmente o conector conta com as seguintes interfaces:
 +---------------------------+----+
 """
 
-import sys
-
-from PyQt5.QtCore import QFile, QSize, Qt, QTextStream, pyqtSlot
-# import mysql.connector as mysql
-from PyQt5.QtGui import QIcon, QPixmap
-from PyQt5.QtWidgets import (QAction, QApplication, QDialog, QMainWindow,
-                             QMenu, QMessageBox, QStyleFactory)
+from PyQt5.QtCore import  Qt
+from PyQt5.QtGui import QIcon
+from PyQt5.QtWidgets import (QAction, QApplication, QMainWindow, QMessageBox)
 
 from assets.UI.Scripts.ConnectorWindow import Ui_Connector
+
 from Core.Manager import ManagerWindow
+
 from Engines import MSSQL_Engine, MYSQL_Engine
+
 from Helper.ConfigHandler import ConfigHandler
 from Helper.icons_manager import b_mssql, b_mysql, b_postgreesql, win_icon
-from Helper import VisualSettings 
 
-app = QApplication(sys.argv)
-app.processEvents()
-
-VisualSettings.SetTheme(app,'Dark')
-
-class MainWindow(QMainWindow,Ui_Connector):
+class ConnectorWindow(QMainWindow,Ui_Connector):
     def __init__(self, parent = None):
-        super(MainWindow,self).__init__(parent)
+        super(ConnectorWindow,self).__init__(parent)
         self.setupUi(self)
         self.setWindowIcon(QIcon(win_icon))
 
@@ -89,6 +82,3 @@ class MainWindow(QMainWindow,Ui_Connector):
             self.port_in.setEnabled(True)
         else: 
             self.port_in.setEnabled(False)
-
-Main_GUI = MainWindow()
-sys.exit(app.exec_())

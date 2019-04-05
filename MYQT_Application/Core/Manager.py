@@ -9,35 +9,27 @@ Como:
 
 """
 
-import sys
-import time
-from functools import partial
-
 from PyQt5 import QtCore, QtWidgets
-from PyQt5.QtCore import QCoreApplication, QFile, Qt,QPoint
-from PyQt5.QtGui import QIcon,QCursor
-from PyQt5.QtWidgets import (QAction, QDialog, QFileDialog,QHeaderView,
-QMainWindow, QMenu, QMessageBox,QSizePolicy, QTableWidget,QTableWidgetItem,
-QToolBar, QTreeWidgetItem,QWidget, qApp)
+from PyQt5.QtCore import QCoreApplication, QFile, Qt
+from PyQt5.QtGui import QIcon
+from PyQt5.QtWidgets import QAction, QFileDialog,QMainWindow, QMessageBox, QTableWidget,QTableWidgetItem, QTreeWidgetItem,QWidget
 
-from Helper.icons_manager import ui_db, ui_tb,ui_folder
 
 from assets.UI.Scripts.MainWindow import Ui_SQLMANAGER
-from Core.Database_Creator import DBCreator
-from Core.Console import Console
-from Core.StyleChanger import StyleChanger
 
 from Engines import MYSQL_Engine
 from Engines import MSSQL_Engine
 
 from Helper.ManagerTools import ManagerTools
+from Helper.icons_manager import ui_db, ui_tb
 
-class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLMANAGER,object):
+class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLMANAGER,object):
     def __init__(self,hs,pt,us,ps,bfr,type, parent = None):
         super(ManagerWindow,self).__init__(parent)
         self.setupUi(self)
 
-        # self.setWindowFlags(Qt.Window | Qt.CustomizeWindowHint | Qt.WindowTitleHint | Qt.WindowMinimizeButtonHint | Qt.WindowMaximizeButtonHint | Qt.WindowCloseButtonHint)
+        self.dark_theme = False
+        self.change_theme(self.dark_theme)
 
         toolsManager = ManagerTools(self)
         toolsManager.SetIcons()
@@ -54,14 +46,20 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         if self.type == 'mssql':
             self.mydb = MSSQL_Engine.connect(self.hs,self.us,self.ps)
 
-        # self.console_output('Connected to SQL Server',False)
         self.get_server_dbs()
-
         self.tables_out.itemDoubleClicked.connect(self.ItemDoubleClicked)
-        # self.openConsole.clicked.connect(self.expand_console)
+
+    def change_theme (self,theme):
+        white = str(open(r'assets\css\Style_White.css','r').read())
+        dark  = str(open(r'assets\css\Style_Dark.css','r').read())
+
+        if theme == True:
+            self.setStyleSheet(dark)
+        else: 
+            self.setStyleSheet(white)
 
     def EXECUTE_QUERY_HANDLER(self,text):
-        """Master function to execute all type of query and return in result table"""
+        "EXECUTE_QUERY_HANDLER  ('Select * from database')"
 
         _query = text
         try:
@@ -96,6 +94,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
     # ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── # 
     
     def ItemDoubleClicked  (self):
+        "ItemDoubleClicked()"
         index = self.tables_out.currentIndex()
         data =  self.tables_out.model().data(index)
         _selected = str(data)
@@ -114,7 +113,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
             self.get_table_data(_selected)
 
     def get_server_dbs     (self):
-        """GET ALL DATABASES IN SERVER AND RETURN AS PARENT TO QTREEVIEW"""
+        """ get_server_dbs () """
         self.tables_out.clear()
         self.databases = []
         _dict = {}
@@ -135,7 +134,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
             parent.setFlags(parent.flags())
 
     def get_tables_from_db (self,_cDb):
-        """GET ALL TABLES FROM DATABASE AND RETURN IN TREE VIEW AS CHILD OF DATABASE PARENT ITEM"""
+        """get_tables_from_db("Current Database")"""
         self.tables = []
 
         cursor = self.mydb.cursor()
@@ -148,15 +147,12 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
             top_item = self.tables_out.topLevelItem(i)
             item_name = top_item.text(0)
             if item_name == str(_cDb):
-                folder = QTreeWidgetItem(top_item)
-                folder.setText(0,"Tables")
-                folder.setIcon(0,QIcon(ui_folder))
                 
                 for tb in self.tbs:
                     _tb = tb[0]
                     self.tables.append(_tb)
 
-                    child = QTreeWidgetItem(folder)
+                    child = QTreeWidgetItem(top_item)
                     child.setFlags(child.flags())
                     child.setText(0,"%s"%tb)
                     child.setIcon(0,QIcon(ui_tb))
@@ -165,7 +161,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
     # ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── # 
 
     def refresh_database       (self,db):
-        """REFRESH HANDLER FOR REFRESHIND DATABASE AND ITS TABLE"""
+        """refresh_database("Database Name")"""
         cursor = self.mydb.cursor()
 
         if self.type == 'mysql': db = MYSQL_Engine.Database(cursor)
@@ -178,13 +174,13 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
             self.tables_out.expandAll()
 
     def execute_all_query      (self):
-        """EXECUTE ALL QUERY TEXT"""
+        """Execute all query"""
         _allQuery = str(self.query_in.toPlainText()).replace("\n"," ")
         self.EXECUTE_QUERY_HANDLER(_allQuery)
         self.processEvents()
 
     def execute_selected_query (self):
-        """EXECUTE ONLY SELECTED QUERY TEXT"""
+        """Execute selected query"""
         cursor = self.query_in.textCursor()
         _allText = str(self.query_in.toPlainText()).replace("\n"," ")
         _startIndex = cursor.selectionStart()
@@ -198,7 +194,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
     # ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── # 
     
     def get_table_types (self,tb):
-        """GET ALL TABLES DESCRITIONS"""
+        """get_table_types(Table Widget)"""
         table = str(tb)
         cursor = self.mydb.cursor()
         try:
@@ -227,7 +223,8 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
             pass
 
     def get_table_data  (self,tb):
-        """GET ALL DATA FROM TABLES"""
+        "get_table_data('table')"
+
         table = str(tb)
         cursor = self.mydb.cursor()
 
@@ -258,18 +255,14 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
     
     # ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── # 
     
-    def application_error  (self,error): 
+    def application_error  (self,error):
+        " application_error ('error text') "
         QMessageBox.critical(self, "CRITICAL ERROR",str(error),QMessageBox.Ok)
-
-    def openChanger        (self):
-        self.styleChanger = StyleChanger(self)
-        self.styleChanger.input.setPlainText(str(self.styleSheet()))
-        self.styleChanger.show()
 
     # ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── # 
     
     def load_query_from_file (self):
-        """Open dialog to load file from file"""
+        " load_query_from_file () "
         try:
             fname = QFileDialog.getOpenFileName(self, 'Load SQL From file', 'Query',"Select query file (*.indext *.sql *.dat *.csv *.tsv *.psv)")
             selectFilePath = str(fname[0])
@@ -280,7 +273,7 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         except FileNotFoundError:pass
 
     def save_query_to_file   (self):
-        """Open dialog to save query as file"""
+        "save_query_to_file ()"
         try:
             options = QFileDialog.Options()
             saved_file,_ = QFileDialog.getSaveFileName(self,"Save SQL to file Query","Query","Query Files (*.sql);;Text Files (*.indext);;Data Files (*.dat);;All Files (*)",options=options)
@@ -292,7 +285,8 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
         except FileNotFoundError:pass
     
 
-    def export_table         (self,_w):  
+    def export_table         (self,_w):
+        "export_table (widget)"
         try:
             _data = ""
 
@@ -320,14 +314,4 @@ class ManagerWindow(QMainWindow,QToolBar,QTreeWidgetItem,QCoreApplication,QWidge
             _file.close()
         except FileNotFoundError:pass
     
-    def create_database_wizard (self):
-        """OPEN DATABASE CREATOR WIZARD"""
-        try:
-            self.databaseCreator = DBCreator(self,self.mydb)
-            self.databaseCreator.show()
-
-        except Exception as error:
-            self.application_error(error)
-            pass
-
     # ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── # 

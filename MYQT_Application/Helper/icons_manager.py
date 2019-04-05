@@ -6,15 +6,16 @@ _runSelected    = r'assets\UI\Icons\toolbar_icons\act_compileSel.PNG'
 _import         = r'assets\UI\Icons\toolbar_icons\act_import.PNG'
 _export         = r'assets\UI\Icons\toolbar_icons\act_export.PNG'
 _refresh        = r'assets\UI\Icons\toolbar_icons\act_refresh.PNG'
-_newDatabase    = r'assets\UI\Icons\toolbar_icons\act_newDatabase.png'
 _exportData     = r'assets\UI\Icons\toolbar_icons\act_export_result.png'
+# ----------------------------------------------------------------------------------
+_themeSwitch    = r'assets\UI\Icons\toolbar_icons\act_themeSwitch.png'
 _alerts         = r'assets\UI\Icons\toolbar_icons\act_alerts.png'
 _settings       = r'assets\UI\Icons\toolbar_icons\act_settings.png'
 
 # INTERFACE ICONS
 ui_db           = r'assets\UI\Icons\interface_icons\ui_database.PNG'
 ui_tb           = r'assets\UI\Icons\interface_icons\ui_table.PNG'
-ui_folder       = r'assets\UI\Icons\interface_icons\folder.png'
+# ui_folder       = r'assets\UI\Icons\interface_icons\folder.png'
 ui_data         = r'assets\UI\Icons\interface_icons\data_ico.png'
 ui_field        = r'assets\UI\Icons\interface_icons\fields_ico.png'
 ui_query        = r'assets\UI\Icons\interface_icons\query_ico.png'
