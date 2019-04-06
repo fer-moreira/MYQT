@@ -108,7 +108,7 @@ background-color:rgb(0,115,170);
 
 QComboBox::down-arrow 
 {
-image: url(assets/UI/Icons/interface_icons/arrow.png);
+image: url(assets/UI/Icons/interface_icons/arrow_down.png);
 width: 14px;
 height: 14px;
 }
@@ -342,11 +342,9 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
 }
 
 /* ---------------------------------- Q TOOL BAR -------------------------------------------------------- */
-
 /* TOOLBAR REGION */
-QToolBar 
-{
-background: rgb(25,29,32);
+QToolBar {
+background: rgb(24, 27, 31);
 spacing: 20;
 }
 /* SEPARATOR */
@@ -355,7 +353,6 @@ QToolBar:separator
 background: rgb(80, 80, 80);
 height: 2;
 }
-
 /* -----------------------------------------------Q TOOL BUTTON------------------------------------------- */
 /* BUTTON */
 QToolButton
@@ -366,3 +363,8 @@ background:transparent;
 }
 QToolButton:hover     { margin: -1; }
 QToolButton:pressed { margin: 0; }
+
+QMessageBox 
+{
+    color: red;
+}

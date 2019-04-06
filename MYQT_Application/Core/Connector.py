@@ -72,7 +72,7 @@ class ConnectorWindow(QMainWindow,Ui_Connector):
 
             self.manager = ManagerWindow(self._host,self._port,self._user,self._pass,self.buffered_c,self._type)
             self.cf.save_config()
-            self.close()
+            self.hide()
         except Exception as error:
             QMessageBox.critical(self, "CRITICAL ERROR",str(error),QMessageBox.Ok)
             pass
@@ -82,3 +82,8 @@ class ConnectorWindow(QMainWindow,Ui_Connector):
             self.port_in.setEnabled(True)
         else: 
             self.port_in.setEnabled(False)
+
+    def closeEvent(self,sender):
+        #Your code here
+        import sys
+        sys.exit(0)
