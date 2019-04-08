@@ -29,7 +29,7 @@ color:rgb(90,90,90);
 background:rgb(230,230,230);
 padding: 3;
 }
-QMenu::item:selected 
+QMenu::item:selected
 {
 color:rgb(90,90,90);
 background:rgb(200,200,200);
@@ -57,16 +57,16 @@ color:rgb(100,100,100);
 border: solid rgb(0,150,255);
 border-width: 0 0 5px 0;
 }
-
-
-/*  -----------------------------------------------------------------------
--------------------------------------------------------------- LINE_EDIT 
--------------------------------------------------------------- TEXT BROWSER 
--------------------------------------------------------------- TEXT_EDIT
--------------------------------------------------------------- PLAIN_TEXT 
------------------------------------------------------------------------- */
-
-QLineEdit,QTextBrowser,QTextEdit,QPlainTextEdit 
+QTableWidget QTableCornerButton::section {
+background-color: rgb(255, 255, 255);
+}
+/*-----------------------------------------------------------------
+------------------------------ LINE_EDIT --------------------------
+------------------------------ TEXT BROWSER -----------------------
+------------------------------ TEXT_EDIT---------------------------
+------------------------------ PLAIN_TEXT -------------------------
+------------------------------------------------------------------- */
+QLineEdit,QTextBrowser,QTextEdit,QPlainTextEdit
 {
 color:rgb(20,20,20);
 background-color:white;
@@ -192,7 +192,7 @@ QTreeView
 background: rgb(250,250,250);
 color: rgb(180,180,180);
 }
-QTableView::item:selected, QListView::item:selected,QTableView::item:hover, QListView::item:hover, QTreeView::item:hover 
+QTableView::item:selected, QListView::item:selected,QTableView::item:hover, QListView::item:hover, QTreeView::item:hover
 {
 background:rgb(0,115,170);
 color:rgb(250,250,250);
@@ -208,31 +208,97 @@ background:rgb(209, 241, 252);
 }
 QTreeView::item:has-children
 {
-border-bottom: 2px solid qlineargradient(spread:pad, x1:1, y1:0.5, x2:0, y2:0.5, stop:0 rgba(255, 255, 255, 255), stop:0.5 rgba(0, 150, 255, 255), stop:1 rgba(255, 255, 255, 255));
+background-color: rgb(0, 78, 134);
+color: white;
+border-bottom: 2px solid qlineargradient(spread:pad, x1:1, y1:0.5, x2:0, y2:0.5, stop:0 rgba(255, 255, 255, 0), stop:0.5 rgba(0, 150, 255, 255), stop:1 rgba(255, 255, 255, 0));
 }
 /*  ---------------------------- HEADER VIEW ---------------------------- */
-QHeaderView::section 
+QHeaderView::section
 {
 color:rgb(133, 133, 133);
 background:white;
-border:1px solid rgb(240,240,240);
+border:transparent;
 text-align:center;
 padding:1;
 }
 /* ------------------------------- CALENDAR -------------------------------------------------- */
 QCalendarView
-{ 
-color: rgb(20,20,20); 
+{
+color: rgb(20,20,20);
 background-color: rgb(240,240,240);
 alternate-background-color: rgb(0,115,170);
-selection-background-color: white; 
+selection-background-color: white;
 selection-color: black;
 }
 QAbstractItemView
 {
 color:rgb(200,200,200);
 }
-/* ----------------------------------- Q SCROLLBAR --------------------------------------------------------- */
+
+
+/* ---------------------------------------- SLIDER HORIZONTAL ----------------------------------------------- */
+
+
+QSlider::groove:horizontal,QSlider::add-page:horizontal
+{
+background: rgb(255, 255, 255);
+height: 27px;
+}
+QSlider::sub-page:horizontal {
+height: 10px;
+background: rgb(0,115,170);
+}
+QSlider::handle:horizontal {
+margin-right: -10px;
+margin-left: -10px;
+background: rgb(0,115,170);
+}
+QSlider::handle:horizontal:hover {
+background:rgb(0,115,170);
+}
+
+/* --------------------------------  VERTICAL SLIDER --------------------------------------------------------------  */
+
+QSlider::handle
+{
+border-radius: 3px;
+}
+
+QSlider::groove:vertical,QSlider::add-page:vertical,QSlider::sub-page:vertical
+{
+width: 20px;
+background: rgb(255, 255, 255);
+}
+
+QSlider::handle:vertical {
+margin-top: -10px;
+margin-bottom: -10px;
+background: rgb(0,115,170);
+}
+QSlider::handle:vertical:hover {
+background: rgb(0,115,170);
+}
+
+/* --------------------------------- SCROLLBAR HORIZONTAL --------------------------------------  */
+
+QScrollBar::groove:horizontal{
+background: white;
+height: 17px;
+}
+QScrollBar::sub-page:horizontal,QScrollBar::add-page:horizontal  {
+height: 10px;
+background: rgb(255, 255, 255);
+}
+QScrollBar::handle:horizontal {
+margin-right: -5px;
+background: rgb(0,115,170);
+}
+QScrollBar::handle:horizontal:hover {
+background: rgb(0,115,170);
+}
+
+/* --------------------------------------- SCROLLBAR VERTICAL ----------------------------------------------  */
+
 /* SCROLLBAR */
 QScrollBar:vertical {
 background: white;
@@ -280,20 +346,31 @@ background: none;
 QToolBar {
 background: rgb(35,40,45);
 spacing: 20;
+
 }
 /* SEPARATOR */
-QToolBar:separator 
+QToolBar:separator
 {
 background: rgb(80, 80, 80);
 height: 2;
 }
+/* QToolBar QToolButton { 
+    width: 100px;
+} */
 /* -----------------------------------------------Q TOOL BUTTON------------------------------------------- */
 /* BUTTON */
 QToolButton
 {
-margin: 3;
-color:rgb(255, 255, 255);
-background:transparent;
+color: rgb(255, 255, 255);
+background:rgb(35,40,45);
 }
-QToolButton:hover     { margin: -1; }
-QToolButton:pressed { margin: 0; }
+
+QToolButton:hover,QToolButton:pressed
+{
+background-color: rgb(64, 73, 82);
+}
+
+QMessageBox QLabel
+{
+color: red;
+}

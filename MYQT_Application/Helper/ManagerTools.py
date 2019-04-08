@@ -5,11 +5,15 @@ from PyQt5.QtWidgets import QApplication,QAction,QSizePolicy,QToolBar,QWidget
 
 from Helper.icons_manager import _export, _import, _refresh, _run, _runSelected, _exportData,_themeSwitch,_alerts,_settings
 from Helper.icons_manager import ui_data,ui_field,ui_query,win_icon
+from Helper.ConfigHandler import ConfigHandler
 
 class ManagerTools (object):
     def __init__(self,w):
         self.window = w
-        self.darkTheme = False
+
+        self.cf = ConfigHandler(self)
+        self.themeIsDark = self.cf.themeIsDark()
+
 
     def SetIcons (self):
         self.window.setWindowIcon(QIcon(win_icon))
@@ -24,6 +28,8 @@ class ManagerTools (object):
 
         toolBar.setMovable(False)
         toolBar.setToolButtonStyle(Qt.ToolButtonIconOnly)
+        # toolBar.setToolButtonStyle(Qt.ToolButtonTextBesideIcon)
+
         self.window.addToolBar(Qt.LeftToolBarArea,toolBar)
 
         _spacer = QWidget()
@@ -45,5 +51,14 @@ class ManagerTools (object):
         self.window.processEvents()
 
     def flipTheme (self):
-        self.darkTheme = not self.darkTheme
-        self.window.change_theme(self.darkTheme)
+        self.themeIsDark = not self.themeIsDark
+
+        white = str(open(r'assets\css\Style_White.css','r').read())
+        dark  = str(open(r'assets\css\Style_Dark.css','r').read())
+
+        if self.themeIsDark == True:
+            self.window.setStyleSheet(dark)
+        else: 
+            self.window.setStyleSheet(white)
+
+        self.cf.save_theme(self.themeIsDark)

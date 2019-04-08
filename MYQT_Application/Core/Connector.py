@@ -12,6 +12,7 @@ Atualmente o conector conta com as seguintes interfaces:
 | Postgree SQL     (TCP/IP) | NO |
 +---------------------------+----+
 """
+import sys
 
 from PyQt5.QtCore import  Qt
 from PyQt5.QtGui import QIcon
@@ -40,6 +41,7 @@ class ConnectorWindow(QMainWindow,Ui_Connector):
 
         self.cf = ConfigHandler(self)
         self.cf.load_config()
+        self.cf.load_theme()
 
         self.connections = {0:'mysql',1:'mssql',2:'postgre'}
 
@@ -84,6 +86,5 @@ class ConnectorWindow(QMainWindow,Ui_Connector):
             self.port_in.setEnabled(False)
 
     def closeEvent(self,sender):
-        #Your code here
-        import sys
+        self.cf.save_config()
         sys.exit(0)

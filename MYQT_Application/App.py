@@ -10,8 +10,6 @@ app = QApplication(sys.argv)
 Main_GUI = ConnectorWindow()
 
 def closeEvent(self):
-    #Your code here
-    print('User has pressed the close button')
     import sys
     sys.exit(0)
 

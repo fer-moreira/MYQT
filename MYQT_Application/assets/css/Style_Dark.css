@@ -2,8 +2,6 @@
 *{
 selection-background-color: rgb(0,115,170);
 selection-color: rgb(250,250,250);
-
-border:transparent;
 }
 
 /*  ---------------------------- MAIN WINDOW, WIDGET ---------------------------- */
@@ -11,7 +9,6 @@ QMainWindow,QWidget
 {
 color:rgb(0,0,0);
 background:rgb(35,40,45);
-border:transparent;
 }
 
 /*  ---------------------------- MENU BAR ---------------------------- */
@@ -43,7 +40,7 @@ height:1px;
 }
 
 
-/*  ---------------------------- TAB WIDGET ---------------------------- */
+/*  ---------------------------- Q TAB BAR ---------------------------- */
 QTabBar::tab {
 color:rgb(150,150,150);
 background:rgb(35,40,45);
@@ -60,15 +57,16 @@ color:rgb(207, 207, 207);
 border: solid rgb(0,150,255);
 border-width: 0 0 5px 0;
 }
+QTableWidget QTableCornerButton::section {
+background-color: rgb(55,60,65);
+}
 
-
-/*  --------------------------------------------------------------- 
---------------------- LINE_EDIT 
---------------------- TEXT BROWSER 
---------------------- TEXT_EDIT
---------------------- PLAIN_TEXT 
+/*----------------------------------------------------------------- 
+------------------------------ LINE_EDIT --------------------------
+------------------------------ TEXT BROWSER -----------------------
+------------------------------ TEXT_EDIT---------------------------
+------------------------------ PLAIN_TEXT -------------------------
 ------------------------------------------------------------------- */
-
 QLineEdit,QTextBrowser,QTextEdit,QPlainTextEdit 
 {
 color:rgb(120,120,120);
@@ -93,16 +91,28 @@ border-bottom-right-radius: 5;
 /*  ---------------------------- COMBO BOX ----------------------------*/
 QComboBox 
 {
-padding: 1px 18px 1px 3px;
-min-width: 5px;
 color:rgb(0,115,170);
 background-color:rgb(25, 29, 32);
+min-width: 5px;
 padding: 1px 0px 1px 3px;
+border: 1px solid rgb(0,115,170);
+}
+
+QComboBox:hover
+{
+color:rgb(0,115,170);
+background-color: rgb(33, 35, 37);
+}
+
+QComboBox:selected
+{
+color:rgb(0,115,170);
+selection-background-color: rgb(255, 255, 255);
 }
 
 QComboBox::drop-down
 {
-width: 20px;
+width: 30px;
 background-color:rgb(0,115,170);
 }
 
@@ -121,7 +131,6 @@ background: rgb(25, 29, 32);
 color:rgb(140,140,140);
 padding: 6;
 }
-
 /* ----------------------------  TOOL BOX  ----------------------------  */
 QToolBox::tab
 {
@@ -147,10 +156,7 @@ font-size:13px;
 QProgressBar::chunk {
 background:rgb(0, 193, 50);
 }
-
-
 /*  ---------------------------- PUSHBUTTON ---------------------------- */
-
 QPushButton
 {
 color:white;
@@ -207,8 +213,8 @@ QTreeView::item:has-children
 {
 background-color: rgb(0, 78, 134);
 color: white;
-font: bold 24px;
-border-bottom: 2px solid qlineargradient(spread:pad, x1:1, y1:0.5, x2:0, y2:0.5, stop:0 rgba(255, 255, 255 0), stop:0.5 rgba(0, 150, 255, 255), stop:1 rgba(255, 255, 255,0));
+border-bottom: 2px solid qlineargradient(spread:pad, x1:1, y1:0.5, x2:0, y2:0.5, stop:0 rgba(255, 255, 255, 0), stop:0.5 rgba(0, 150, 255, 255), stop:1 rgba(255, 255, 255, 0));
+
 }
 /*  ---------------------------- HEADER VIEW ---------------------------- */
 QHeaderView::section 
@@ -216,6 +222,7 @@ QHeaderView::section
 color:rgb(180, 180, 180);
 background:rgb(55,60,65);
 text-align:center;
+padding: 1;
 border:transparent;
 }
 
@@ -233,6 +240,7 @@ QAbstractItemView
 {
 color:rgb(200,200,200);
 }
+
 
 /* ---------------------------------------- SLIDER HORIZONTAL ----------------------------------------------- */
 
@@ -285,7 +293,7 @@ height: 17px;
 }
 QScrollBar::sub-page:horizontal,QScrollBar::add-page:horizontal  {
 height: 10px;
-background: rgb(25,30,35);
+background: rgb(35,40,45);
 }
 QScrollBar::handle:horizontal {
 margin-right: -5px;
@@ -299,51 +307,50 @@ background: rgb(0,115,170);
 
 /* SCROLLBAR */
 QScrollBar:vertical {
-    background: rgb(25,30,35);
-    width: 15px;
-    margin: 22px 0 22px 0;
+background: rgb(35,40,45);
+width: 15px;
+margin: 22px 0 22px 0;
 }
 /* HANDLE*/
 QScrollBar::handle:vertical {
-    background: rgb(0,115,170);
-    min-height: 20px;
+background: rgb(0,115,170);
+min-height: 20px;
 }
 
 /* UP ARROW */
 QScrollBar::up-arrow:vertical {
-    image: url(assets/UI/Icons/interface_icons/arrow_up.png);
-    width: 10px;
-    height: 10px;
+image: url(assets/UI/Icons/interface_icons/arrow_up.png);
+width: 10px;
+height: 10px;
 }
 /* DOWN ARROW */
 QScrollBar::down-arrow:vertical {
-    image: url(assets/UI/Icons/interface_icons/arrow_down.png);
-    width: 10px;
-    height: 10px;
+image: url(assets/UI/Icons/interface_icons/arrow_down.png);
+width: 10px;
+height: 10px;
 }
-
 /* UP BUTTON */
 QScrollBar::sub-line:vertical {
-    background: rgb(0,115,170);
-    height: 20px;
-    subcontrol-position: top;
-    subcontrol-origin: margin;
+background: rgb(0,115,170);
+height: 20px;
+subcontrol-position: top;
+subcontrol-origin: margin;
 }
 /* DOWN BUTTON */
 QScrollBar::add-line:vertical {
-    background: rgb(0,115,170);
-    height: 20px;
-    subcontrol-position: bottom;
-    subcontrol-origin: margin;
+background: rgb(0,115,170);
+height: 20px;
+subcontrol-position: bottom;
+subcontrol-origin: margin;
 }
 /* SUBPAGES - ADDPAGE */
 QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
-    background: none;
+background: rgb(35,40,45);
 }
-
 /* ---------------------------------- Q TOOL BAR -------------------------------------------------------- */
 /* TOOLBAR REGION */
 QToolBar {
+color: rgb(0,115,170);
 background: rgb(24, 27, 31);
 spacing: 20;
 }
@@ -353,18 +360,25 @@ QToolBar:separator
 background: rgb(80, 80, 80);
 height: 2;
 }
+/* QToolBar QToolButton { 
+    width: 100px;
+    padding-top: 10px;
+} */
 /* -----------------------------------------------Q TOOL BUTTON------------------------------------------- */
 /* BUTTON */
 QToolButton
 {
-margin: 3;
-color:rgb(255, 255, 255);
-background:transparent;
+max-width: 120;
+color: rgb(0,115,170);
+background:rgb(24, 27, 31);
 }
-QToolButton:hover     { margin: -1; }
-QToolButton:pressed { margin: 0; }
 
-QMessageBox 
+QToolButton:hover,QToolButton:pressed     
+{ 
+background-color: rgb(47, 53, 61);
+}
+
+QMessageBox QLabel
 {
-    color: red;
+color: red;
 }

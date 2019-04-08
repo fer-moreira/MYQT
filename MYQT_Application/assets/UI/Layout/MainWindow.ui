@@ -217,7 +217,7 @@
        <bool>false</bool>
       </property>
       <property name="movable">
-       <bool>false</bool>
+       <bool>true</bool>
       </property>
       <property name="tabBarAutoHide">
        <bool>false</bool>
@@ -240,13 +240,13 @@
          <number>0</number>
         </property>
         <property name="rightMargin">
-         <number>2</number>
+         <number>0</number>
         </property>
         <property name="bottomMargin">
          <number>0</number>
         </property>
         <property name="horizontalSpacing">
-         <number>6</number>
+         <number>0</number>
         </property>
         <item row="0" column="0">
          <widget class="QTableWidget" name="data_result">
@@ -335,15 +335,12 @@
          <number>0</number>
         </property>
         <property name="rightMargin">
-         <number>2</number>
+         <number>0</number>
         </property>
         <property name="bottomMargin">
          <number>0</number>
         </property>
-        <property name="horizontalSpacing">
-         <number>6</number>
-        </property>
-        <property name="verticalSpacing">
+        <property name="spacing">
          <number>0</number>
         </property>
         <item row="0" column="0">
@@ -425,11 +422,8 @@
         <property name="bottomMargin">
          <number>0</number>
         </property>
-        <property name="horizontalSpacing">
-         <number>6</number>
-        </property>
-        <property name="verticalSpacing">
-         <number>4</number>
+        <property name="spacing">
+         <number>0</number>
         </property>
         <item row="2" column="0">
          <widget class="QTableWidget" name="result_out">
@@ -540,16 +534,16 @@
            <set>Qt::ImhDate|Qt::ImhDialableCharactersOnly|Qt::ImhDigitsOnly|Qt::ImhEmailCharactersOnly|Qt::ImhExclusiveInputMask|Qt::ImhFormattedNumbersOnly|Qt::ImhHiddenText|Qt::ImhLatinOnly|Qt::ImhLowercaseOnly|Qt::ImhMultiLine|Qt::ImhNoAutoUppercase|Qt::ImhNoEditMenu|Qt::ImhNoPredictiveText|Qt::ImhNoTextHandles|Qt::ImhPreferLatin|Qt::ImhPreferLowercase|Qt::ImhPreferNumbers|Qt::ImhPreferUppercase|Qt::ImhSensitiveData|Qt::ImhTime|Qt::ImhUppercaseOnly|Qt::ImhUrlCharactersOnly</set>
           </property>
           <property name="frameShape">
-           <enum>QFrame::NoFrame</enum>
+           <enum>QFrame::WinPanel</enum>
           </property>
           <property name="frameShadow">
-           <enum>QFrame::Plain</enum>
+           <enum>QFrame::Raised</enum>
           </property>
           <property name="lineWidth">
-           <number>1</number>
+           <number>3</number>
           </property>
           <property name="midLineWidth">
-           <number>0</number>
+           <number>3</number>
           </property>
           <property name="sizeAdjustPolicy">
            <enum>QAbstractScrollArea::AdjustToContents</enum>
