@@ -23,13 +23,15 @@ from Engines import MSSQL_Engine
 from Helper.ManagerTools import ManagerTools
 from Helper.icons_manager import ui_db, ui_tb
 
+from Helper.ConfigHandler import ConfigHandler
+
 class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLMANAGER,object):
-    def __init__(self,hs,pt,us,ps,bfr,type, parent = None):
+    def __init__(self,hs,pt,us,ps,bfr,_type, parent = None):
         super(ManagerWindow,self).__init__(parent)
         self.setupUi(self)
 
-        self.dark_theme = False
-        self.change_theme(self.dark_theme)
+        self.cf = ConfigHandler(self)
+        self.cf.load_theme()
 
         toolsManager = ManagerTools(self)
         toolsManager.SetIcons()
@@ -39,27 +41,19 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
 
         self.hs = hs;self.pt = pt
         self.us = us;self.ps = ps
-        self.bfred = bfr;self.type = type
+        self.bfred = bfr;self.type = _type
 
-        if self.type == 'mysql':
-            self.mydb = MYSQL_Engine.connect(self.hs,self.pt,self.us,self.ps,self.bfred)
-        if self.type == 'mssql':
-            self.mydb = MSSQL_Engine.connect(self.hs,self.us,self.ps)
+        if self.type == 'mysql': self.mydb = MYSQL_Engine.connect(self.hs,self.pt,self.us,self.ps,self.bfred)
+        if self.type == 'mssql': self.mydb = MSSQL_Engine.connect(self.hs,self.us,self.ps)
 
         self.get_server_dbs()
         self.tables_out.itemDoubleClicked.connect(self.ItemDoubleClicked)
-
-    def change_theme (self,theme):
-        white = str(open(r'assets\css\Style_White.css','r').read())
-        dark  = str(open(r'assets\css\Style_Dark.css','r').read())
-
-        if theme == True:
-            self.setStyleSheet(dark)
-        else: 
-            self.setStyleSheet(white)
+    
 
     def EXECUTE_QUERY_HANDLER(self,text):
-        "EXECUTE_QUERY_HANDLER  ('Select * from database')"
+        """
+        EXECUTE_QUERY_HANDLER ('Sample Query')
+        """
 
         _query = text
         try:
@@ -87,9 +81,7 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
                 self.processEvents()
             self.result_out.resizeColumnsToContents()
 
-        except Exception as error:
-            self.application_error(error)
-            pass
+        except Exception as error: self.application_error(error) ; pass
 
     # ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── # 
     
@@ -120,10 +112,8 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
 
         cursor = self.mydb.cursor()
 
-        if self.type == 'mysql':
-            self.dbs = MYSQL_Engine.databases(cursor)
-        if self.type == 'mssql':
-            self.dbs = MSSQL_Engine.databases(cursor)
+        if self.type == 'mysql': self.dbs = MYSQL_Engine.databases(cursor)
+        if self.type == 'mssql': self.dbs = MSSQL_Engine.databases(cursor)
 
         for db in self.dbs:
             _db = db[0]
@@ -151,10 +141,12 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
                 for tb in self.tbs:
                     _tb = tb[0]
                     self.tables.append(_tb)
+                    table_name = "%s"%tb
 
                     child = QTreeWidgetItem(top_item)
                     child.setFlags(child.flags())
-                    child.setText(0,"%s"%tb)
+                    child.setText(0,table_name)
+                    child.setToolTip(0,table_name)
                     child.setIcon(0,QIcon(ui_tb))
                 break
 
@@ -174,13 +166,13 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
             self.tables_out.expandAll()
 
     def execute_all_query      (self):
-        """Execute all query"""
+        """execute_all_query ()"""
         _allQuery = str(self.query_in.toPlainText()).replace("\n"," ")
         self.EXECUTE_QUERY_HANDLER(_allQuery)
         self.processEvents()
 
     def execute_selected_query (self):
-        """Execute selected query"""
+        """execute_selected_query ()"""
         cursor = self.query_in.textCursor()
         _allText = str(self.query_in.toPlainText()).replace("\n"," ")
         _startIndex = cursor.selectionStart()
@@ -194,7 +186,7 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
     # ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── # 
     
     def get_table_types (self,tb):
-        """get_table_types(Table Widget)"""
+        """get_table_types ('Table name')"""
         table = str(tb)
         cursor = self.mydb.cursor()
         try:
@@ -223,8 +215,7 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
             pass
 
     def get_table_data  (self,tb):
-        "get_table_data('table')"
-
+        """get_table_data ('Tablename')"""
         table = str(tb)
         cursor = self.mydb.cursor()
 
@@ -286,23 +277,25 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
     
 
     def export_table         (self,_w):
-        "export_table (widget)"
+        """export_table (QTableWidget or QTableView)"""
         try:
             _data = ""
 
             maxRow = _w.rowCount()
-            maxColumn = _w.columnCount()-1
+            maxColumn = _w.columnCount()
 
             for hc in range(0,maxColumn):
-                _hci = str(_w.horizontalHeaderItem(hc).text())
-                if hc == maxColumn:_data += _hci
+                try: _hci = str(_w.horizontalHeaderItem(hc).text())
+                except:_hci="None";pass
+                if hc == (maxColumn-1) :_data += _hci
                 elif hc < maxColumn:_data += "%s," % _hci
+
             _data += "\n"
 
             for r in range(0, maxRow):
                 for c in range(0, maxColumn):
                     _d = str(_w.item(r, c).text())
-                    if c == maxColumn:_data += _d
+                    if c == (maxColumn-1):_data += _d
                     elif c < maxColumn:_data += "%s," % _d
                 _data += "\n"
 
@@ -314,4 +307,6 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
             _file.close()
         except FileNotFoundError:pass
     
+
+
     # ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── # 
