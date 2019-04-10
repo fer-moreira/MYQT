@@ -22,7 +22,7 @@ from assets.UI.Scripts.ConnectorWindow import Ui_Connector
 
 from Core.Manager import ManagerWindow
 
-from Engines import MSSQL_Engine, MYSQL_Engine
+from Engines import MSSQL_Engine, MYSQL_Engine,POSTG_Engine
 
 from Helper.ConfigHandler import ConfigHandler
 from Helper.IconsHandler import b_mssql, b_mysql, b_postgreesql, win_icon
@@ -65,22 +65,18 @@ class ConnectorWindow(QMainWindow,Ui_Connector):
         self.buffered_c = self.buffered.isChecked()
 
         try:
-            if self._type == 'mysql':
-                MYSQL_Engine.connect(self._host,self._port,self._user,self._pass,self.buffered_c)
-            if self._type == 'mssql':
-                MSSQL_Engine.connect(self._host,self._user,self._pass)
-            if self._type == 'postgre':
-                print("POSTGRE")
-
+            if self._type == 'mysql':   MYSQL_Engine.connect(self._host,self._port,self._user,self._pass,self.buffered_c)
+            if self._type == 'mssql':   MSSQL_Engine.connect(self._host,self._user,self._pass)
+            if self._type == 'postgre': POSTG_Engine.connect(self._host,self._port,self._user,self._pass)
+                
             self.manager = ManagerWindow(self._host,self._port,self._user,self._pass,self.buffered_c,self._type)
             self.cf.save_config()
             self.hide()
         except Exception as error:
             QMessageBox.critical(self, "CRITICAL ERROR",str(error),QMessageBox.Ok)
-            pass
     
     def check_connection_type(self):
-        if self.dbType.currentIndex() == 0: 
+        if self.dbType.currentIndex() == 0 or self.dbType.currentIndex() == 2:
             self.port_in.setEnabled(True)
         else: 
             self.port_in.setEnabled(False)

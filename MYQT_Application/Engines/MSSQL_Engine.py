@@ -1,3 +1,22 @@
+"""
+Connector Functions
+
+- database=''
+- server='.' 
+- user=None 
+- password=None
+- host=''
+- port='1433' 
+- timeout=0
+- login_timeout=60
+- charset='UTF-8' 
+- as_dict=False
+- appname=None
+- conn_properties=None
+- autocommit=False
+- tds_version=None
+"""
+
 import pymssql
 
 def connect (server,user,passw):
@@ -21,21 +40,3 @@ def Get_Data (cursor,table):
     cursor.execute("select top(1000) * from %s"%table)
     return cursor.fetchall()
     
-"""
-Connector Functions
-
-- database=''
-- server='.' 
-- user=None 
-- password=None
-- host=''
-- port='1433' 
-- timeout=0
-- login_timeout=60
-- charset='UTF-8' 
-- as_dict=False
-- appname=None
-- conn_properties=None
-- autocommit=False
-- tds_version=None
-"""

@@ -19,6 +19,7 @@ from assets.UI.Scripts.MainWindow import Ui_SQLMANAGER
 
 from Engines import MYSQL_Engine
 from Engines import MSSQL_Engine
+from Engines import POSTG_Engine
 
 from Helper.ManagerTools import ManagerTools
 from Helper.IconsHandler import ui_db, ui_tb
@@ -41,10 +42,12 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
 
         self.hs = hs;self.pt = pt
         self.us = us;self.ps = ps
-        self.bfred = bfr;self.type = _type
+        self.bfred = bfr
+        self.type = _type
 
-        if self.type == 'mysql': self.mydb = MYSQL_Engine.connect(self.hs,self.pt,self.us,self.ps,self.bfred)
-        if self.type == 'mssql': self.mydb = MSSQL_Engine.connect(self.hs,self.us,self.ps)
+        if self.type == 'mysql':    self.mydb = MYSQL_Engine.connect(self.hs,self.pt,self.us,self.ps,self.bfred)
+        if self.type == 'mssql':    self.mydb = MSSQL_Engine.connect(self.hs,self.us,self.ps)
+        if self.type == 'postgre': self.mydb = POSTG_Engine.connect(self.hs,self.pt,self.us,ps)
 
         self.get_server_dbs()
         self.tables_out.itemDoubleClicked.connect(self.ItemDoubleClicked)
@@ -94,12 +97,11 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
         cursor = self.mydb.cursor()
 
         if _selected in self.databases:
-            if self.type == 'mysql':
-                MYSQL_Engine.Set_Database(cursor,_selected)
-                self.refresh_database(_selected)
-            if self.type == 'mssql': 
-                MSSQL_Engine.Set_Database(cursor,_selected)
-                self.refresh_database(_selected)
+            if self.type == 'mysql'  : MYSQL_Engine.Set_Database(cursor,_selected)
+            if self.type == 'mssql'  : MSSQL_Engine.Set_Database(cursor,_selected)
+            if self.type == 'postgre': POSTG_Engine.Set_Database(cursor,_selected)
+            self.refresh_database(_selected)
+
         if _selected in self.tables:
             self.get_table_types(_selected)
             self.get_table_data(_selected)
@@ -112,8 +114,9 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
 
         cursor = self.mydb.cursor()
 
-        if self.type == 'mysql': self.dbs = MYSQL_Engine.databases(cursor)
-        if self.type == 'mssql': self.dbs = MSSQL_Engine.databases(cursor)
+        if self.type == 'mysql'  : self.dbs = MYSQL_Engine.databases(cursor)
+        if self.type == 'mssql'  : self.dbs = MSSQL_Engine.databases(cursor)
+        if self.type == 'postgre': self.dbs = POSTG_Engine.databases(cursor)
 
         for db in self.dbs:
             _db = db[0]
@@ -128,8 +131,9 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
         self.tables = []
 
         cursor = self.mydb.cursor()
-        if self.type == 'mysql' : self.tbs = MYSQL_Engine.tables(cursor)
-        if self.type == 'mssql' : self.tbs = MSSQL_Engine.tables(cursor)
+        if self.type == 'mysql'   : self.tbs = MYSQL_Engine.tables(cursor)
+        if self.type == 'mssql'   : self.tbs = MSSQL_Engine.tables(cursor)
+        if self.type == 'postgre' : self.tbs = POSTG_Engine.tables(cursor)
 
         top_level_items = self.tables_out.topLevelItemCount()
 
@@ -156,8 +160,9 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
         """refresh_database("Database Name")"""
         cursor = self.mydb.cursor()
 
-        if self.type == 'mysql': db = MYSQL_Engine.Database(cursor)
-        if self.type == 'mssql': db = MSSQL_Engine.Database(cursor)
+        if self.type == 'mysql'  : db = MYSQL_Engine.Database(cursor)
+        if self.type == 'mssql'  : db = MSSQL_Engine.Database(cursor)
+        if self.type == 'postgre': db = POSTG_Engine.Database(cursor)
         
         if not db == None:
             self.tables_out.clear()
@@ -190,10 +195,9 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
         table = str(tb)
         cursor = self.mydb.cursor()
         try:
-            if self.type == 'mysql':
-                allSQLRows = MYSQL_Engine.Get_Struct(cursor,table)
-            if self.type == 'mssql':
-                allSQLRows = MSSQL_Engine.Get_Struct(cursor,table)
+            if self.type == 'mysql'  : allSQLRows = MYSQL_Engine.Get_Struct(cursor,table)
+            if self.type == 'mssql'  : allSQLRows = MSSQL_Engine.Get_Struct(cursor,table)
+            if self.type == 'postgre': allSQLRows = POSTG_Engine.Get_Struct(cursor,table)
 
             lenRow = len(allSQLRows)
             lenCol = len(allSQLRows[0])
@@ -212,7 +216,6 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
             self.processEvents()
         except Exception as error:
             self.application_error(error)
-            pass
 
     def get_table_data  (self,tb):
         """get_table_data ('Tablename')"""
@@ -220,8 +223,9 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
         cursor = self.mydb.cursor()
 
         try:
-            if self.type == 'mysql': allSQLRows = MYSQL_Engine.Get_Data(cursor,table)
-            if self.type == 'mssql': allSQLRows = MSSQL_Engine.Get_Data(cursor,table)
+            if self.type == 'mysql'  : allSQLRows = MYSQL_Engine.Get_Data(cursor,table)
+            if self.type == 'mssql'  : allSQLRows = MSSQL_Engine.Get_Data(cursor,table)
+            if self.type == 'postgre': allSQLRows = POSTG_Engine.Get_Data(cursor,table)
 
             lenRow = len(allSQLRows)
             lenCol = len(allSQLRows[0])
@@ -241,8 +245,7 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
 
             self.data_result.resizeColumnsToContents()
         except Exception as error:
-            self.application_error(error)
-            pass
+            self.application_error(error)            
     
     # ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── # 
     

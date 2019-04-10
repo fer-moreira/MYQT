@@ -9,8 +9,6 @@ app = QApplication(sys.argv)
 
 Main_GUI = ConnectorWindow()
 
-def closeEvent(self):
-    import sys
-    sys.exit(0)
+def closeEvent(self): sys.exit(0)
 
 sys.exit(app.exec_())

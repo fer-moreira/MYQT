@@ -4,7 +4,7 @@
     <br>
     MYQT
     <br>
-    MySQL Querying Tool with QT Designer
+    SQL Querying Tool with QT Designer
     <br>
 </h1>
 
