@@ -15,7 +15,7 @@
     "pymssql" : "^2.1.4",
     "psycopg2" : "^2.8.1"
   },
-  "keywords": [],
+  "keywords": ["mysql","database","sql","python","pyqt","gui","manager","database-management","microsoft-sql-server"],
   "author": "Fernando Ferreira Moreira <nandoferreira_prof@hotmail.com>",
   "license": "Apache License 2.0"
 }
