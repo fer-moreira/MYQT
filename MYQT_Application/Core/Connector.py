@@ -25,7 +25,7 @@ from Core.Manager import ManagerWindow
 from Engines import MSSQL_Engine, MYSQL_Engine
 
 from Helper.ConfigHandler import ConfigHandler
-from Helper.icons_manager import b_mssql, b_mysql, b_postgreesql, win_icon
+from Helper.IconsHandler import b_mssql, b_mysql, b_postgreesql, win_icon
 
 class ConnectorWindow(QMainWindow,Ui_Connector):
     def __init__(self, parent = None):

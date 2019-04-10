@@ -64,6 +64,7 @@ Python >= 3 with at least the following modules is required:
 - mysql-connector-python     : ^8.0.13
 - mysql-connector-python-rf  : ^2.2.2
 - pymssql                    : ^2.1.4
+- psycopg2                   : ^2.8.1
 </pre>
 
 # **Connector**
@@ -73,4 +74,4 @@ Python >= 3 with at least the following modules is required:
 
 ---
 <br>
-#### Author : Fernando Ferreira Moreira <br> CC0 - 2018 Creative Commons
+Author : Fernando Ferreira Moreira <br> Apache License 2.0

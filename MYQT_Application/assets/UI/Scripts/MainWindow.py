@@ -2,11 +2,12 @@
 
 # Form implementation generated from reading ui file '.\assets\UI\Layout\MainWindow.ui'
 #
-# Created by: PyQt5 UI code generator 5.11.3
+# Created by: PyQt5 UI code generator 5.12.1
 #
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+
 
 class Ui_SQLMANAGER(object):
     def setupUi(self, SQLMANAGER):
@@ -303,6 +304,8 @@ class Ui_SQLMANAGER(object):
         self.actionRefresh_Database.setShortcut(_translate("SQLMANAGER", "Ctrl+R"))
 
 
+
+
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
@@ -311,4 +314,3 @@ if __name__ == "__main__":
     ui.setupUi(SQLMANAGER)
     SQLMANAGER.show()
     sys.exit(app.exec_())
-

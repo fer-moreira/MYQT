@@ -21,7 +21,7 @@ from Engines import MYSQL_Engine
 from Engines import MSSQL_Engine
 
 from Helper.ManagerTools import ManagerTools
-from Helper.icons_manager import ui_db, ui_tb
+from Helper.IconsHandler import ui_db, ui_tb
 
 from Helper.ConfigHandler import ConfigHandler
 

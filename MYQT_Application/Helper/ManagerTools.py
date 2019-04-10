@@ -3,28 +3,27 @@ from PyQt5.QtCore import QCoreApplication, QFile, Qt,QPoint
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication,QAction,QSizePolicy,QToolBar,QWidget
 
-from Helper.icons_manager import _export, _import, _refresh, _run, _runSelected, _exportData,_themeSwitch,_alerts,_settings
-from Helper.icons_manager import ui_data,ui_field,ui_query,win_icon
+from Helper.IconsHandler import _export, _import, _refresh, _run, _runSelected, _exportData,_themeSwitch,_alerts,_settings
+from Helper.IconsHandler import ui_data,ui_field,ui_query,win_icon
 from Helper.ConfigHandler import ConfigHandler
 
 class ManagerTools (object):
     def __init__(self,w):
+        """ ManagerTools (Window) """ 
         self.window = w
-
         self.cf = ConfigHandler(self)
         self.themeIsDark = self.cf.themeIsDark()
 
-
     def SetIcons (self):
+        """ SetIcons () Set window tabs icon """
         self.window.setWindowIcon(QIcon(win_icon))
         self.window.tabs.setTabIcon(0,QIcon(ui_data))
         self.window.tabs.setTabIcon(1,QIcon(ui_field))
         self.window.tabs.setTabIcon(2,QIcon(ui_query))
 
     def AddVerticalToolbar (self):
-        """ADD TOOLBAR AND TOOLBAR ICONS HANDLER"""
+        """ AddVerticalToolbar() """
         toolBar = QToolBar()
-
 
         toolBar.setMovable(False)
         toolBar.setToolButtonStyle(Qt.ToolButtonIconOnly)
@@ -51,14 +50,13 @@ class ManagerTools (object):
         self.window.processEvents()
 
     def flipTheme (self):
+        """ flipTheme () """
         self.themeIsDark = not self.themeIsDark
 
         white = str(open(r'assets\css\Style_White.css','r').read())
         dark  = str(open(r'assets\css\Style_Dark.css','r').read())
 
-        if self.themeIsDark == True:
-            self.window.setStyleSheet(dark)
-        else: 
-            self.window.setStyleSheet(white)
+        if self.themeIsDark == True: self.window.setStyleSheet(dark)
+        else:                        self.window.setStyleSheet(white)
 
         self.cf.save_theme(self.themeIsDark)

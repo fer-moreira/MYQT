@@ -2,11 +2,12 @@
 
 # Form implementation generated from reading ui file '.\assets\UI\Layout\ConnectorWindow.ui'
 #
-# Created by: PyQt5 UI code generator 5.11.3
+# Created by: PyQt5 UI code generator 5.12.1
 #
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+
 
 class Ui_Connector(object):
     def setupUi(self, Connector):
@@ -202,6 +203,8 @@ class Ui_Connector(object):
         self.port_in.setPlaceholderText(_translate("Connector", "Port:"))
 
 
+
+
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
@@ -210,4 +213,3 @@ if __name__ == "__main__":
     ui.setupUi(Connector)
     Connector.show()
     sys.exit(app.exec_())
-
