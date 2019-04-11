@@ -68,9 +68,11 @@ Python >= 3 with at least the following modules is required:
 </pre>
 
 # **Connector**
-![](.github/prints/Connector.gif)
+![](.github/prints/Connector.PNG)
+![](.github/prints/Connector_white.PNG)
 # **Manager**
-![](.github/prints/workstation.gif)
+![](.github/prints/workstation.PNG)
+![](.github/prints/workstation_white.PNG)
 
 ---
 <br>

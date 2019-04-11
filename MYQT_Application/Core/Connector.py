@@ -67,7 +67,7 @@ class ConnectorWindow(QMainWindow,Ui_Connector):
         try:
             if self._type == 'mysql':   MYSQL_Engine.connect(self._host,self._port,self._user,self._pass,self.buffered_c)
             if self._type == 'mssql':   MSSQL_Engine.connect(self._host,self._user,self._pass)
-            if self._type == 'postgre': POSTG_Engine.connect(self._host,self._port,self._user,self._pass)
+            if self._type == 'postgre': POSTG_Engine.connect("postgres",self._host,self._port,self._user,self._pass)
                 
             self.manager = ManagerWindow(self._host,self._port,self._user,self._pass,self.buffered_c,self._type)
             self.cf.save_config()

@@ -9,6 +9,8 @@ Como:
 
 """
 
+import traceback
+
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtCore import QCoreApplication, QFile, Qt
 from PyQt5.QtGui import QIcon
@@ -47,31 +49,34 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
 
         if self.type == 'mysql':    self.mydb = MYSQL_Engine.connect(self.hs,self.pt,self.us,self.ps,self.bfred)
         if self.type == 'mssql':    self.mydb = MSSQL_Engine.connect(self.hs,self.us,self.ps)
-        if self.type == 'postgre': self.mydb = POSTG_Engine.connect(self.hs,self.pt,self.us,ps)
+        if self.type == 'postgre':  self.mydb = POSTG_Engine.connect("postgres",self.hs,self.pt,self.us,ps)
 
+        self.refresh_database()
         self.get_server_dbs()
+
+
         self.tables_out.itemDoubleClicked.connect(self.ItemDoubleClicked)
     
+
 
     def EXECUTE_QUERY_HANDLER(self,text):
         """
         EXECUTE_QUERY_HANDLER ('Sample Query')
         """
 
-        _query = text
+        _query = str(text)
         try:
             self.result_out.clear()
-            self.result_out.verticalScrollBar().setValue(self.result_out.verticalScrollBar().maximum())
 
             cursor = self.mydb.cursor()
             cursor.execute(_query)
-            
             allSQLRows = cursor.fetchall()
-
             lenRow = len(allSQLRows)
             lenCol = len(allSQLRows[0])
+
             self.result_out.setRowCount(lenRow)
             self.result_out.setColumnCount(lenCol) 
+
             if allSQLRows is not None:
                 for lin in range(0,lenRow):
                     for col in range(0,lenCol):
@@ -82,9 +87,10 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
                 headerName = QTableWidgetItem(columns[col][0])
                 self.result_out.setHorizontalHeaderItem(col, headerName)
                 self.processEvents()
-            self.result_out.resizeColumnsToContents()
 
-        except Exception as error: self.application_error(error) ; pass
+        except Exception as error: 
+            traceback.print_exc();self.application_error(error)
+
 
     # ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── # 
     
@@ -99,12 +105,28 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
         if _selected in self.databases:
             if self.type == 'mysql'  : MYSQL_Engine.Set_Database(cursor,_selected)
             if self.type == 'mssql'  : MSSQL_Engine.Set_Database(cursor,_selected)
-            if self.type == 'postgre': POSTG_Engine.Set_Database(cursor,_selected)
-            self.refresh_database(_selected)
+            if self.type == 'postgre': self.mydb = POSTG_Engine.connect(str(_selected),self.hs,self.pt,self.us,self.ps)
+            self.refresh_database()
 
         if _selected in self.tables:
             self.get_table_types(_selected)
             self.get_table_data(_selected)
+
+    # ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── # 
+
+    def refresh_database       (self):
+        """refresh_database("Database Name")"""
+        cursor = self.mydb.cursor()
+
+        if self.type == 'mysql'  : db = MYSQL_Engine.Database(cursor)
+        if self.type == 'mssql'  : db = MSSQL_Engine.Database(cursor)
+        if self.type == 'postgre': db = POSTG_Engine.Database(cursor)
+        
+        if not db == None:
+            self.tables_out.clear()
+            self.get_server_dbs()
+            self.get_tables_from_db(db)
+            self.tables_out.expandAll()
 
     def get_server_dbs     (self):
         """ get_server_dbs () """
@@ -156,19 +178,7 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
 
     # ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── # 
 
-    def refresh_database       (self,db):
-        """refresh_database("Database Name")"""
-        cursor = self.mydb.cursor()
-
-        if self.type == 'mysql'  : db = MYSQL_Engine.Database(cursor)
-        if self.type == 'mssql'  : db = MSSQL_Engine.Database(cursor)
-        if self.type == 'postgre': db = POSTG_Engine.Database(cursor)
-        
-        if not db == None:
-            self.tables_out.clear()
-            self.get_server_dbs()
-            self.get_tables_from_db(db)
-            self.tables_out.expandAll()
+    
 
     def execute_all_query      (self):
         """execute_all_query ()"""
@@ -201,6 +211,7 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
 
             lenRow = len(allSQLRows)
             lenCol = len(allSQLRows[0])
+            
             self.desc_result.setRowCount(lenRow) ##set number of rows
             self.desc_result.setColumnCount(lenCol) ##this is fixed for result_out, ensure that both of your tables, sql and qtablewidged have the same number of columns
             if allSQLRows is not None:
@@ -214,8 +225,8 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
                 self.desc_result.setHorizontalHeaderItem(col, headerName)
             self.desc_result.resizeColumnsToContents()
             self.processEvents()
-        except Exception as error:
-            self.application_error(error)
+        except Exception as error: 
+            traceback.print_exc();self.application_error(error)
 
     def get_table_data  (self,tb):
         """get_table_data ('Tablename')"""
@@ -244,8 +255,8 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
                 self.data_result.setHorizontalHeaderItem(col, headerName)
 
             self.data_result.resizeColumnsToContents()
-        except Exception as error:
-            self.application_error(error)            
+        except Exception as error: 
+            traceback.print_exc();self.application_error(error)    
     
     # ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── # 
     
@@ -277,7 +288,6 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
             _file.close()
             self.processEvents()
         except FileNotFoundError:pass
-    
 
     def export_table         (self,_w):
         """export_table (QTableWidget or QTableView)"""
@@ -309,7 +319,5 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
             _file.write(_data)
             _file.close()
         except FileNotFoundError:pass
-    
-
 
     # ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── # 
