@@ -8,14 +8,12 @@ Como:
 - Exportar uma tabela para um arquivo
 
 """
-
 import traceback
 
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtCore import QCoreApplication, QFile, Qt
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QAction, QFileDialog,QMainWindow, QMessageBox, QTableWidget,QTableWidgetItem, QTreeWidgetItem,QWidget
-
 
 from assets.UI.Scripts.MainWindow import Ui_SQLMANAGER
 
@@ -54,10 +52,7 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
         self.refresh_database()
         self.get_server_dbs()
 
-
         self.tables_out.itemDoubleClicked.connect(self.ItemDoubleClicked)
-    
-
 
     def EXECUTE_QUERY_HANDLER(self,text):
         """
@@ -88,12 +83,13 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
                 self.result_out.setHorizontalHeaderItem(col, headerName)
                 self.processEvents()
 
+            self.result_out.resizeColumnsToContents()
+
         except Exception as error: 
             traceback.print_exc();self.application_error(error)
 
-
     # ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── # 
-    
+
     def ItemDoubleClicked  (self):
         "ItemDoubleClicked()"
         index = self.tables_out.currentIndex()
@@ -177,8 +173,6 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
                 break
 
     # ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── # 
-
-    
 
     def execute_all_query      (self):
         """execute_all_query ()"""

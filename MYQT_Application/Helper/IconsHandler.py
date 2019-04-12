@@ -17,7 +17,6 @@ ui_tb           = r'assets\UI\Icons\interface_icons\ui_table.PNG'
 ui_data         = r'assets\UI\Icons\interface_icons\data_ico.png'
 ui_field        = r'assets\UI\Icons\interface_icons\fields_ico.png'
 ui_query        = r'assets\UI\Icons\interface_icons\query_ico.png'
-# ui_folder       = r'assets\UI\Icons\interface_icons\folder.png'
 
 # BRAND ICONS
 b_mysql        = r'assets\UI\Icons\brand_icons\dolphin.png'
@@ -25,4 +24,6 @@ b_mssql        = r'assets\UI\Icons\brand_icons\mssql.png'
 b_postgreesql  = r'assets\UI\Icons\brand_icons\postgre.png'
 
 # WINDOW ICONS
-win_icon = r'assets\UI\icon.ico'
+win_icon       = r'assets\UI\Icons\win_icons\icon.ico'
+
+# ui_folder    = r'assets\UI\Icons\interface_icons\folder.png'

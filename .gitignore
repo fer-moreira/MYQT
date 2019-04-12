@@ -1,0 +1,5 @@
+assets/UI/Scripts/__pycache__*
+Engines/__pycache__*
+Helper/__pycache__*
+Core/__pycache__*
+*.pyc
