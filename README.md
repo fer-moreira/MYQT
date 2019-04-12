@@ -1,6 +1,6 @@
 <h1 align="center">
     <br>
-    <img src=".github/myqt_logo.png" alt="logo" width="200">
+    <img src=".github/myqt_logo.png" alt="logo" width="150">
     <br>
     MYQT
     <br>
@@ -20,7 +20,7 @@
     <img src="https://img.shields.io/github/repo-size/zisongbr/MYQT.svg" alt="Repo Size"/>
 </h1>
 
-MYQT is an open source visual database design and querying tool for the MySQL database developed in python using the QT (Cute) framework for creating  interface, Developed by Fernando Moreira between 2018 - 2019
+MYQT is an open source visual database design and querying tool. Developed in python using the QT(Cute) framework for creating  interface, Developed by Fernando Moreira between 2018 - 2019 
 
 # **Interface Help**
 <pre>
@@ -37,20 +37,19 @@ MYQT is an open source visual database design and querying tool for the MySQL da
 # **Features**
 <pre>
 <img src="https://img.shields.io/badge/-OK-green.svg"> Database Connection & Instance Management
-<img src="https://img.shields.io/badge/-OK-green.svg"> Wizard driven action items
 <img src="https://img.shields.io/badge/-OK-green.svg"> Fully scriptable with Python
 <img src="https://img.shields.io/badge/-OK-green.svg"> Support for custom plugins and themes
 <img src="https://img.shields.io/badge/-OK-green.svg"> Schema object browsing, inspection, and search
 <img src="https://img.shields.io/badge/-OK-green.svg"> Multiple and editable result sets
-<img src="https://img.shields.io/badge/-OK-green.svg"> Visual EXPLAIN
-<img src="https://img.shields.io/badge/-OK-green.svg"> Beautiful color and themes
 <img src="https://img.shields.io/badge/-OK-green.svg"> Export table to csv/txt/all other files
-<img src="https://img.shields.io/badge/-OK-green.svg"> Suported MYSQL / Microsoft SQL Server
+<img src="https://img.shields.io/badge/-OK-green.svg"> SUPPORT MYSQL
+<img src="https://img.shields.io/badge/-OK-green.svg"> SUPPORT SQL SERVER
+<img src="https://img.shields.io/badge/-OK-green.svg"> SUPPORT POSTGRES 
 <img src="https://img.shields.io/badge/-OK-green.svg"> Dark and white theme
-<img src="https://img.shields.io/badge/-NO-red.svg"> Import table from xlsx/csv/txt/etc file
-<img src="https://img.shields.io/badge/-NO-red.svg"> SQL snippets collections
-<img src="https://img.shields.io/badge/-NO-red.svg"> Matplot data visualizer
-<img src="https://img.shields.io/badge/-NO-red.svg"> SQL syntax highlighter and statement parser
+<img src="https://img.shields.io/badge/-NO-red.svg"  > Import table from xlsx/csv/txt/etc file
+<img src="https://img.shields.io/badge/-NO-red.svg"  > SQL snippets collections
+<img src="https://img.shields.io/badge/-NO-red.svg"  > Matplot data visualizer
+<img src="https://img.shields.io/badge/-NO-red.svg"  > SQL syntax highlighter and statement parser
 </pre>
 
 
