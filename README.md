@@ -47,9 +47,9 @@ MYQT is an open source visual database design and querying tool for the MySQL da
 <img src="https://img.shields.io/badge/-OK-green.svg"> Export table to csv/txt/all other files
 <img src="https://img.shields.io/badge/-OK-green.svg"> Suported MYSQL / Microsoft SQL Server
 <img src="https://img.shields.io/badge/-OK-green.svg"> Dark and white theme
-<img src="https://img.shields.io/badge/-NO-red.svg">  Import table from xlsx/csv/txt/etc file
-<img src="https://img.shields.io/badge/-NO-red.svg">  SQL snippets collections
-<img src="https://img.shields.io/badge/-NO-red.svg">  Matplot data visualizer
+<img src="https://img.shields.io/badge/-NO-red.svg"> Import table from xlsx/csv/txt/etc file
+<img src="https://img.shields.io/badge/-NO-red.svg"> SQL snippets collections
+<img src="https://img.shields.io/badge/-NO-red.svg"> Matplot data visualizer
 <img src="https://img.shields.io/badge/-NO-red.svg"> SQL syntax highlighter and statement parser
 </pre>
 
