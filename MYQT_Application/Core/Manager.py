@@ -50,7 +50,6 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
         self.get_server_dbs()
 
         self.tables_out.itemDoubleClicked.connect(self.ItemDoubleClicked)
-
     def EXECUTE_QUERY_HANDLER(self,text):
         """
         EXECUTE_QUERY_HANDLER ('Sample Query')
@@ -84,9 +83,7 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
 
         except Exception as error: 
             traceback.print_exc()
-            
     # ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── # 
-
     def ItemDoubleClicked  (self):
         "ItemDoubleClicked()"
         index = self.tables_out.currentIndex()
@@ -104,10 +101,8 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
         if _selected in self.tables:
             self.get_table_types(_selected)
             self.get_table_data(_selected)
-
     # ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── # 
-
-    def refresh_database       (self):
+    def refresh_database   (self):
         """refresh_database("Database Name")"""
         cursor = self.mydb.cursor()
 
@@ -121,7 +116,6 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
             self.get_server_dbs()
             self.get_tables_from_db(db)
             self.tables_out.expandAll()
-
     def get_server_dbs     (self):
         """ get_server_dbs () """
         self.tables_out.clear()
@@ -138,7 +132,6 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
             parent.setText(0,"%s"%db)
             parent.setIcon(0,QIcon(ui_db))
             parent.setFlags(parent.flags())
-
     def get_tables_from_db (self,_cDb):
         """get_tables_from_db("Current Database")"""
 
@@ -170,29 +163,24 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
 
                 #if find toplevel then stop
                 break 
-
-    def TreeItem (self,parent,name,tooltip,icon):
+    def TreeItem           (self,parent,name,tooltip,icon):
         child = QTreeWidgetItem(parent)
         child.setText(0,name)
         child.setToolTip(0,tooltip)
         child.setIcon(0,QIcon(icon))
         child.setFlags(child.flags())
-
-    def FolderItem (self,parent,name,icon):
+    def FolderItem         (self,parent,name,icon):
         table_folder = QTreeWidgetItem(parent)
         table_folder.setText(0,name)
         table_folder.setIcon(0,QIcon(icon))
         table_folder.setFlags(table_folder.flags())
         return table_folder
-
     # ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── # 
-
-    def execute_all_query      (self):
+    def execute_all_query  (self):
         """execute_all_query ()"""
         _allQuery = str(self.query_in.toPlainText()).replace("\n"," ")
         self.EXECUTE_QUERY_HANDLER(_allQuery)
         self.processEvents()
-
     def execute_selected_query (self):
         """execute_selected_query ()"""
         cursor = self.query_in.textCursor()
@@ -204,9 +192,7 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
             _buildText+=_allText[letter]
         self.EXECUTE_QUERY_HANDLER(_buildText)
         self.processEvents()
-  
     # ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── # 
-    
     def get_table_types (self,tb):
         """get_table_types ('Table name')"""
         table = str(tb)
@@ -233,9 +219,7 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
             self.desc_result.resizeColumnsToContents()
             self.processEvents()
         except IndexError:pass # NO RESULT TO FETCH
-        except Exception as error: 
-            traceback.print_exc()
-
+        except Exception as error: traceback.print_exc()
     def get_table_data  (self,tb):
         """get_table_data ('Tablename')"""
         table = str(tb)
@@ -264,12 +248,8 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
 
             self.data_result.resizeColumnsToContents()
         except IndexError:pass # NO RESULT TO FETCH
-        except Exception as error: 
-            traceback.print_exc()
-            # QMessageBox.Warning(self,"Critical",)
-
+        except Exception as error: traceback.print_exc()
     # ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── # 
-    
     def load_query_from_file (self):
         " load_query_from_file () "
         try:
@@ -280,7 +260,6 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
             self.query_in.setPlainText(_content)
             self.processEvents()
         except FileNotFoundError:pass
-
     def save_query_to_file   (self):
         "save_query_to_file ()"
         try:
@@ -292,36 +271,28 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
             _file.close()
             self.processEvents()
         except FileNotFoundError:pass
-
     def export_table         (self,_w):
         """export_table (QTableWidget or QTableView)"""
         try:
             _data = ""
-
             maxRow = _w.rowCount()
             maxColumn = _w.columnCount()
-
             for hc in range(0,maxColumn):
                 try: _hci = str(_w.horizontalHeaderItem(hc).text())
                 except:_hci="None";pass
                 if hc == (maxColumn-1) :_data += _hci
                 elif hc < maxColumn:_data += "%s," % _hci
-
             _data += "\n"
-
             for r in range(0, maxRow):
                 for c in range(0, maxColumn):
                     _d = str(_w.item(r, c).text())
                     if c == (maxColumn-1):_data += _d
                     elif c < maxColumn:_data += "%s," % _d
                 _data += "\n"
-
             options = QFileDialog.Options()
-
             saved_file, _ = QFileDialog.getSaveFileName(self, "Save Table to file ", "data", "Plain Text (*.txt);;CSV (*.csv);;All Files (*)", options=options)
             _file = open(saved_file, 'w')
             _file.write(_data)
             _file.close()
         except FileNotFoundError:pass
-
     # ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── # 
