@@ -17,13 +17,10 @@ from PyQt5.QtWidgets import QAction, QFileDialog,QMainWindow, QMessageBox, QTabl
 
 from assets.UI.Scripts.MainWindow import Ui_SQLMANAGER
 
-from Engines import MYSQL_Engine
-from Engines import MSSQL_Engine
-from Engines import POSTG_Engine
+from Engines import MYSQL_Engine,MSSQL_Engine,POSTG_Engine
 
 from Helper.ManagerTools import ManagerTools
-from Helper.IconsHandler import ui_db, ui_tb
-
+from Helper.IconsHandler import ui_db, ui_tb,ui_field,ui_folder
 from Helper.ConfigHandler import ConfigHandler
 
 class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLMANAGER,object):
@@ -86,8 +83,8 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
             self.result_out.resizeColumnsToContents()
 
         except Exception as error: 
-            traceback.print_exc();self.application_error(error)
-
+            traceback.print_exc()
+            
     # ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── # 
 
     def ItemDoubleClicked  (self):
@@ -118,6 +115,7 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
         if self.type == 'mssql'  : db = MSSQL_Engine.Database(cursor)
         if self.type == 'postgre': db = POSTG_Engine.Database(cursor)
         
+
         if not db == None:
             self.tables_out.clear()
             self.get_server_dbs()
@@ -127,50 +125,65 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
     def get_server_dbs     (self):
         """ get_server_dbs () """
         self.tables_out.clear()
-        self.databases = []
         _dict = {}
 
         cursor = self.mydb.cursor()
 
-        if self.type == 'mysql'  : self.dbs = MYSQL_Engine.databases(cursor)
-        if self.type == 'mssql'  : self.dbs = MSSQL_Engine.databases(cursor)
-        if self.type == 'postgre': self.dbs = POSTG_Engine.databases(cursor)
+        if self.type == 'mysql'  : self.databases = MYSQL_Engine.databases(cursor)
+        if self.type == 'mssql'  : self.databases = MSSQL_Engine.databases(cursor)
+        if self.type == 'postgre': self.databases = POSTG_Engine.databases(cursor)
 
-        for db in self.dbs:
-            _db = db[0]
-            self.databases.append(_db)
+        for db in self.databases:
             parent = QTreeWidgetItem(self.tables_out)
-            parent.setText(0,"%s"%_db)
+            parent.setText(0,"%s"%db)
             parent.setIcon(0,QIcon(ui_db))
             parent.setFlags(parent.flags())
 
     def get_tables_from_db (self,_cDb):
         """get_tables_from_db("Current Database")"""
-        self.tables = []
 
         cursor = self.mydb.cursor()
-        if self.type == 'mysql'   : self.tbs = MYSQL_Engine.tables(cursor)
-        if self.type == 'mssql'   : self.tbs = MSSQL_Engine.tables(cursor)
-        if self.type == 'postgre' : self.tbs = POSTG_Engine.tables(cursor)
+        if self.type == 'mysql'   : 
+            self.tables = MYSQL_Engine.tables(cursor,_cDb)
+            self.views = MYSQL_Engine.views(cursor,_cDb)
+
+        if self.type == 'mssql'   : 
+            self.tables = MSSQL_Engine.tables(cursor)
+            self.views = MSSQL_Engine.views(cursor)
+            
+        if self.type == 'postgre' : self.tables = sorted(POSTG_Engine.tables(cursor))
 
         top_level_items = self.tables_out.topLevelItemCount()
-
         for i in range(top_level_items):
             top_item = self.tables_out.topLevelItem(i)
             item_name = top_item.text(0)
             if item_name == str(_cDb):
-                
-                for tb in self.tbs:
-                    _tb = tb[0]
-                    self.tables.append(_tb)
-                    table_name = "%s"%tb
+                table_folder = self.FolderItem(top_item,"Tables",ui_folder)
+                views_folder = self.FolderItem(top_item,"Views",ui_folder)
 
-                    child = QTreeWidgetItem(top_item)
-                    child.setFlags(child.flags())
-                    child.setText(0,table_name)
-                    child.setToolTip(0,table_name)
-                    child.setIcon(0,QIcon(ui_tb))
-                break
+                for tb in self.tables:                    
+                    table_name = "%s"%tb
+                    self.TreeItem(table_folder,table_name,table_name,ui_tb)
+                for vw in self.views:
+                    view_name = "%s"%vw
+                    self.TreeItem(views_folder,view_name,view_name,ui_field)
+
+                #if find toplevel then stop
+                break 
+
+    def TreeItem (self,parent,name,tooltip,icon):
+        child = QTreeWidgetItem(parent)
+        child.setText(0,name)
+        child.setToolTip(0,tooltip)
+        child.setIcon(0,QIcon(icon))
+        child.setFlags(child.flags())
+
+    def FolderItem (self,parent,name,icon):
+        table_folder = QTreeWidgetItem(parent)
+        table_folder.setText(0,name)
+        table_folder.setIcon(0,QIcon(icon))
+        table_folder.setFlags(table_folder.flags())
+        return table_folder
 
     # ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── # 
 
@@ -219,8 +232,9 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
                 self.desc_result.setHorizontalHeaderItem(col, headerName)
             self.desc_result.resizeColumnsToContents()
             self.processEvents()
+        except IndexError:pass # NO RESULT TO FETCH
         except Exception as error: 
-            traceback.print_exc();self.application_error(error)
+            traceback.print_exc()
 
     def get_table_data  (self,tb):
         """get_table_data ('Tablename')"""
@@ -249,14 +263,10 @@ class ManagerWindow(QMainWindow,QTreeWidgetItem,QCoreApplication,QWidget,Ui_SQLM
                 self.data_result.setHorizontalHeaderItem(col, headerName)
 
             self.data_result.resizeColumnsToContents()
+        except IndexError:pass # NO RESULT TO FETCH
         except Exception as error: 
-            traceback.print_exc();self.application_error(error)    
-    
-    # ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── # 
-    
-    def application_error  (self,error):
-        " application_error ('error text') "
-        QMessageBox.critical(self, "CRITICAL ERROR",str(error),QMessageBox.Ok)
+            traceback.print_exc()
+            # QMessageBox.Warning(self,"Critical",)
 
     # ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── # 
     

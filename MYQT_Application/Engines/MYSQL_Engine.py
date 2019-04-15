@@ -26,26 +26,45 @@ Connector Function
 
 import mysql.connector as mysql
 
+
 def connect (host,port,user,passw,bfr):
-    return mysql.connect (
-        host        =   host,port        =   port,
-        user        =   user,passwd      =   passw,
-        buffered    =   bfr)
+    return mysql.connect (host=host,port=port,user=user,passwd=passw,buffered=bfr)
+
+
+
 def databases (cursor):
+    _dbs = []
     cursor.execute('show databases')
-    return cursor.fetchall()
-def tables (cursor):
-    cursor.execute('show tables')
-    return cursor.fetchall()  
+    res = cursor.fetchall()
+    for d in res: _dbs.append(d[0])
+    return sorted(_dbs)
+
+def tables (cursor,db):
+    tables = []
+    cursor.execute("""SHOW FULL TABLES IN {database} WHERE TABLE_TYPE LIKE 'BASE TABLE'""".format(database=db))
+    res = cursor.fetchall()
+    for t in res: tables.append(t[0])
+    return sorted(tables)
+
+def views (cursor,db):
+    views = []
+    cursor.execute("""SHOW FULL TABLES IN {database} WHERE TABLE_TYPE LIKE 'VIEW'""".format(database=db))
+    res = cursor.fetchall()
+    for v in res: views.append(v[0])
+    return views
+
 def Set_Database (cursor,name):
     cursor.execute('use %s' %name)
+
 def Database (cursor):
     cursor.execute("SELECT DATABASE()")
     fetch = cursor.fetchall()
     return fetch[0][0]
-def  Get_Struct (cursor,table):
+
+def Get_Struct (cursor,table):
     cursor.execute('desc %s' %table)
     return cursor.fetchall()
+
 def Get_Data (cursor,table):
     cursor.execute('select * from %s limit 1000 '%table)
     return cursor.fetchall()

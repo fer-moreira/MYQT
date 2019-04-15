@@ -209,13 +209,12 @@ QTreeView::item:selected,QListView::item:selected,QTableView::item:selected
 color:rgb(235,240,245);
 background:rgb(95,100,105);
 }
-QTreeView::item:has-children
+/* QTreeView::item:has-children
 {
 background-color: rgb(0, 78, 134);
 color: white;
 border-bottom: 2px solid qlineargradient(spread:pad, x1:1, y1:0.5, x2:0, y2:0.5, stop:0 rgba(255, 255, 255, 0), stop:0.5 rgba(0, 150, 255, 255), stop:1 rgba(255, 255, 255, 0));
-
-}
+} */
 /*  ---------------------------- HEADER VIEW ---------------------------- */
 QHeaderView::section 
 {

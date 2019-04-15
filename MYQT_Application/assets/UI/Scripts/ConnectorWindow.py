@@ -192,6 +192,7 @@ class Ui_Connector(object):
         self.pass_in.setToolTip(_translate("Connector", "<html><head/><body><p>Password</p></body></html>"))
         self.pass_in.setPlaceholderText(_translate("Connector", "Password:"))
         self.connect.setText(_translate("Connector", "CONNECT"))
+        self.connect.setShortcut(_translate("Connector", "Enter"))
         self.user_in.setToolTip(_translate("Connector", "<html><head/><body><p>Username</p></body></html>"))
         self.user_in.setPlaceholderText(_translate("Connector", "User:"))
         self.buffered.setToolTip(_translate("Connector", "<html><head/><body><p>Buffered Connection</p></body></html>"))

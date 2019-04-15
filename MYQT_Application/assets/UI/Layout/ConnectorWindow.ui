@@ -267,6 +267,9 @@
     <property name="text">
      <string>CONNECT</string>
     </property>
+    <property name="shortcut">
+     <string>Enter</string>
+    </property>
     <property name="autoDefault">
      <bool>false</bool>
     </property>

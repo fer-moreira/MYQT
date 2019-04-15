@@ -6,16 +6,19 @@ from PyQt5.QtWidgets import QApplication
 
 class ConfigHandler (object):
     def __init__(self, window):
+        self.w = window
 
         self.types = {'mysql': 0, 'mssql': 1, 'postgre': 2}
         self.reverse_type = {0: 'mysql', 1: 'mssql', 2: 'postgre'}
 
-        self.config = configparser.ConfigParser()
-        self.config.read(r'settings\prefs.ini')
-        self._connection = self.config['Connection']
-        self._credentials = self.config['Credentials']
-        self._option = self.config['Options']
-        self.w = window
+        try:
+            self.config = configparser.ConfigParser()
+            self.config.read(r'settings\prefs.ini')
+            self._connection = self.config['Connection']
+            self._credentials = self.config['Credentials']
+            self._option = self.config['Options']
+        except KeyError:
+            self.w.close()
 
     def load_config(self):
         sv_host = self._connection['server']

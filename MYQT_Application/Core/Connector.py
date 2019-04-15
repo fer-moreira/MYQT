@@ -14,9 +14,11 @@ Atualmente o conector conta com as seguintes interfaces:
 """
 import sys
 
+import traceback
+
 from PyQt5.QtCore import  Qt
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import (QAction, QApplication, QMainWindow, QMessageBox)
+from PyQt5.QtWidgets import QMainWindow, QMessageBox
 
 from assets.UI.Scripts.ConnectorWindow import Ui_Connector
 
@@ -74,6 +76,7 @@ class ConnectorWindow(QMainWindow,Ui_Connector):
             self.hide()
         except Exception as error:
             QMessageBox.critical(self, "CRITICAL ERROR",str(error),QMessageBox.Ok)
+            traceback.print_exc()
     
     def check_connection_type(self):
         if self.dbType.currentIndex() == 0 or self.dbType.currentIndex() == 2:

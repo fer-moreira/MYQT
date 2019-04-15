@@ -1,5 +1,4 @@
-"""dsn
-
+"""
 Create a new database connection.
 
 The connection parameters can be specified as a string:
@@ -7,18 +6,16 @@ The connection parameters can be specified as a string:
 conn = psycopg2.connect("dbname=test user=postgres password=secret")
 or using a set of keyword arguments:
 
-conn = psycopg2.connect(database="test", user="postgres", password="secret")
-Or as a mix of both. The basic connection parameters are:
+- host='0.0.0.0'
+- hostaddr='0.0.0.0'
+- port=5432
+- dbname=''
+- user=''
+- password=''
+- passfile=~/.pgpass, or %APPDATA%\postgresql\pgpass.conf
+- connect_timeout=5
+- application_name='Application Name'
 
-dbname: the database name
-database: the database name (only as keyword argument)
-user: user name used to authenticate
-password: password used to authenticate
-host: database host address (defaults to UNIX socket if not provided)
-port: connection port number (defaults to 5432 if not provided)
-Using the connection_factory parameter a different class or connections factory can be specified. It should be a callable object taking a dsn argument.
-
-Using the cursor_factory parameter, a new default cursor factory will be used by cursor().
 """
 
 import psycopg2

@@ -2,3 +2,4 @@
 from .IconsHandler import *
 from .ConfigHandler import *
 from .ManagerTools import *
+from .LoggingHandler import *
